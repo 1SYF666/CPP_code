@@ -4898,219 +4898,291 @@
 //
 
 
+//#define LEN 20
+//
+//char* s_gets(char* st, int n)
+//{
+//	char* ret_val;
+//	char* find;
+//
+//	ret_val = fgets(st, n, stdin);  // 从标准输入文件中获取字符串，并保留了'\n'
+//
+//	if (ret_val)
+//	{
+//		find = strchr(st, '\n');    // 然会'\n'的地址，并给它赋值为字符串结束标志'\0'
+//		if (find)
+//		{
+//			*find = '\0';
+//		}
+//		else
+//		{
+//			while (getchar()!='\n')  
+//			{
+//				continue;  // 后面输入行中的其它字符;？？？？？？
+//			}
+//		}
+//	}
+//	return ret_val;
+//}
+//
+//int is_within(char* str, char ch)
+//{
+//	while (*str)
+//	{
+//		if (*str == ch)
+//		{
+//			return 1;
+//		}
+//		++str;
+//	}
+//
+//	return 0;
+//}
+//
+//
+//int main1()
+//{
+//	char ch, str[LEN];
+//	printf("Please enter a string (EOF to quit):\n");
+//	
+//	while (s_gets(str, LEN) != NULL)
+//	{
+//
+//		printf("Please enter a charater:");
+//		
+//		ch = getchar();
+//		
+//		while (getchar()!='\n')
+//		{
+//			continue;
+//		}
+//
+//		printf("String:-> ");
+//
+//		puts(str);
+//
+//		if (!is_within(str, ch))
+//		{
+//			printf("Not exist %c in the section.\n", ch);
+//		}
+//		else
+//		{
+//			printf("Exist %c in the string.\n", ch);
+//		}
+//		printf("You can enter a string (EOF to quit):\n");
+//	}
+//	printf("Done.\n");
+//
+//	return 0;
+//}
+//
+//// 编写strncpy(s1,s2,n)函数
+//// 把s2中的n个字符拷贝至s1中，截断s2，或者有必要的话在末尾添加 空字符
+//// if length(s2)>=n s1不能以空字符结尾
+//// 
+//// strncpy
+//char* mystrcpy(char* dest,const char* src, int n)
+//{
+//	char* ptr = dest;
+//
+//	do
+//	{
+//		*dest++ = *src++;
+//	} while ((dest - ptr)<n);
+//
+//	return ptr;
+//
+//}
+//
+//int main2()
+//{
+//	char str[LEN];
+//	char dest[LEN];
+//	char* ptr;
+//
+//	int n;
+//	printf("Please enter a string (EOF to quit):\n");
+//
+//	while (s_gets(str,LEN)!=NULL)
+//	{
+//		printf("Please enter a copy numbers:");
+//		scanf("%d", &n);
+//
+//		while (getchar() != '\n')
+//		{
+//			continue;
+//		}
+//
+//		printf("src:-> ");
+//		puts(str);
+//
+//		memset(dest, '\0', sizeof(dest));
+//		ptr = mystrcpy(dest, str, n);
+//
+//		printf("dest:-> ");
+//		puts(ptr);
+//
+//		printf("You can enter a string (EOF to quit):\n");
+//	}
+//
+//	printf("Done.\n");
+//
+//	return 0;
+//}
+//
+//
+//void eatline()
+//{
+//	while (getchar() != '\n')
+//	{
+//		continue;
+//	}
+//
+//	return;
+//}
+//
+//char* mystrncpy2(char* dest, char* src, int n)
+//{
+//	int count = 0;
+//	while (*src!='\0'&&count<n)
+//	{
+//		*(dest + count) = *src++; //源字符串不为空且长度小于n时的复制
+//		count++;
+//	}
+//	*(dest + count) = '\0';  //保证字符串有效
+//	
+//	return dest;
+//}
+//
+//char* s_gets2(char* st, int n)
+//{
+//	char* ret_val;
+//	char* find;
+//
+//	ret_val = fgets(st, n, stdin);
+//
+//	if (ret_val)
+//	{
+//		find = strchr(st, '\n');
+//
+//		if (find)
+//		{
+//			*find = '\0';
+//		}
+//		else
+//		{
+//			eatline();
+//		}
+//	}
+//	return ret_val;
+//}
+//
+//int main()
+//{
+//	int len;
+//	char target[LEN];
+//	char source[LEN];
+//
+//	printf("Please enter a string (EOF to quit):\n");
+//
+//	while (s_gets2(source, LEN) != NULL)
+//	{
+//		printf("Please enter a number for copy(>0): ");
+//
+//		while (scanf("%d", &len)!=1||len<=0)
+//		{
+//			eatline();
+//			printf("Please enter again: ");
+//		}
+//
+//		eatline();
+//
+//		printf("Source string: %s\n", source);
+//		printf("Target string: %s\n", mystrncpy2(target,source,len));
+//
+//		printf("You can enter a string again (EOF to quit):\n");
+//
+//	}
+//
+//	printf("Done.\n");
+//
+//	return 0;
+//}
 
-
+//*******************2023/10/13 23:25*********************//
+//编写 string_in()函数
+//参数是 两个指向字符串的指针
+// if 第二个字符串 中 包含第一个字符串，该函数返回 第一个字符串开始的地址
+// 否则返回 NULL
+// 循环给函数输入输入值
+//
 
 #define LEN 20
 
-char* s_gets(char* st, int n)
+char* string_in(char* str1, char* str2)
+{
+
+
+}
+
+
+char* s_gets(char* str, int n)
 {
 	char* ret_val;
 	char* find;
 
-	ret_val = fgets(st, n, stdin);  // 从标准输入文件中获取字符串，并保留了'\n'
+	ret_val = fgets(str, n, stdin); //fgets函数会读取 标准输入文件中'\n'
 
 	if (ret_val)
 	{
-		find = strchr(st, '\n');    // 然会'\n'的地址，并给它赋值为字符串结束标志'\0'
+		find = strchr(str, '\n'); 
 		if (find)
 		{
 			*find = '\0';
 		}
 		else
 		{
-			while (getchar()!='\n')  
+			while (getchar()!='\n')
 			{
-				continue;  // 后面输入行中的其它字符;？？？？？？
+				continue; //丢弃 输入行的其余字符
 			}
-		}
-	}
-	return ret_val;
-}
 
-int is_within(char* str, char ch)
-{
-	while (*str)
-	{
-		if (*str == ch)
-		{
-			return 1;
 		}
-		++str;
+
 	}
 
-	return 0;
-}
-
-
-int main1()
-{
-	char ch, str[LEN];
-	printf("Please enter a string (EOF to quit):\n");
-	
-	while (s_gets(str, LEN) != NULL)
-	{
-
-		printf("Please enter a charater:");
-		
-		ch = getchar();
-		
-		while (getchar()!='\n')
-		{
-			continue;
-		}
-
-		printf("String:-> ");
-
-		puts(str);
-
-		if (!is_within(str, ch))
-		{
-			printf("Not exist %c in the section.\n", ch);
-		}
-		else
-		{
-			printf("Exist %c in the string.\n", ch);
-		}
-		printf("You can enter a string (EOF to quit):\n");
-	}
-	printf("Done.\n");
-
-	return 0;
-}
-
-// 编写strncpy(s1,s2,n)函数
-// 把s2中的n个字符拷贝至s1中，截断s2，或者有必要的话在末尾添加 空字符
-// if length(s2)>=n s1不能以空字符结尾
-// 
-// strncpy
-char* mystrcpy(char* dest,const char* src, int n)
-{
-	char* ptr = dest;
-
-	do
-	{
-		*dest++ = *src++;
-	} while ((dest - ptr)<n);
-
-	return ptr;
-
-}
-
-int main2()
-{
-	char str[LEN];
-	char dest[LEN];
-	char* ptr;
-
-	int n;
-	printf("Please enter a string (EOF to quit):\n");
-
-	while (s_gets(str,LEN)!=NULL)
-	{
-		printf("Please enter a copy numbers:");
-		scanf("%d", &n);
-
-		while (getchar() != '\n')
-		{
-			continue;
-		}
-
-		printf("src:-> ");
-		puts(str);
-
-		memset(dest, '\0', sizeof(dest));
-		ptr = mystrcpy(dest, str, n);
-
-		printf("dest:-> ");
-		puts(ptr);
-
-		printf("You can enter a string (EOF to quit):\n");
-	}
-
-	printf("Done.\n");
-
-	return 0;
-}
-
-
-void eatline()
-{
-	while (getchar() != '\n')
-	{
-		continue;
-	}
-
-	return;
-}
-
-char* mystrncpy2(char* dest, char* src, int n)
-{
-	int count = 0;
-	while (*src!='\0'&&count<n)
-	{
-		*(dest + count) = *src++; //源字符串不为空且长度小于n时的复制
-		count++;
-	}
-	*(dest + count) = '\0';  //保证字符串有效
-	
-	return dest;
-}
-
-char* s_gets2(char* st, int n)
-{
-	char* ret_val;
-	char* find;
-
-	ret_val = fgets(st, n, stdin);
-
-	if (ret_val)
-	{
-		find = strchr(st, '\n');
-
-		if (find)
-		{
-			*find = '\0';
-		}
-		else
-		{
-			eatline();
-		}
-	}
 	return ret_val;
 }
 
 int main()
 {
-	int len;
-	char target[LEN];
-	char source[LEN];
+	char str1[LEN];
+	char str2[LEN];
+	char* ptr;
 
-	printf("Please enter a string (EOF to quit):\n");
-
-	while (s_gets2(source, LEN) != NULL)
+	printf("Please enter the first string (EOF to quit):\n");
+	while (s_gets(str1, LEN) != NULL)
 	{
-		printf("Please enter a number for copy(>0): ");
-
-		while (scanf("%d", &len)!=1||len<=0)
+		printf("Please enter the second string (EOF to quit):\n");
+		
+		if (s_gets(str2, LEN) == NULL)
 		{
-			eatline();
-			printf("Please enter again: ");
+			break;
 		}
 
-		eatline();
+		ptr = string_in(str1, str2);
 
-		printf("Source string: %s\n", source);
-		printf("Target string: %s\n", mystrncpy2(target,source,len));
+		
 
-		printf("You can enter a string again (EOF to quit):\n");
 
+		printf("Please enter the first string again (EOF to quit) :\n");
 	}
 
 	printf("Done.\n");
 
 	return 0;
 }
+
 
 
 
