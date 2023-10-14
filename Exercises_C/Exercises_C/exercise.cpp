@@ -5121,7 +5121,34 @@
 
 char* string_in(char* str1, char* str2)
 {
+	int i = 0; //主串移动标志位
+	int j = 0; //子串移动标志位 
 
+	while (*(str1 + i)!='\0'&& *(str2 + j) != '\0')
+	{
+		if (*(str1 + i) == *(str2 + j))
+		{
+			i++;
+			j++;
+		}
+
+		else
+		{
+			i = i - j + 1;
+			j = 0;
+		}
+
+	}
+
+	if (j)
+	{
+		return str1 + i - j;  //找到了
+	}
+
+	else
+	{
+		return  NULL; //找不到
+	}
 
 }
 
@@ -5160,10 +5187,10 @@ int main()
 	char str2[LEN];
 	char* ptr;
 
-	printf("Please enter the first string (EOF to quit):\n");
+	printf("Please enter the first string(20以内) (EOF to quit):\n");
 	while (s_gets(str1, LEN) != NULL)
 	{
-		printf("Please enter the second string (EOF to quit):\n");
+		printf("Please enter the second string(10以内) (EOF to quit):\n");
 		
 		if (s_gets(str2, LEN) == NULL)
 		{
@@ -5172,7 +5199,21 @@ int main()
 
 		ptr = string_in(str1, str2);
 
-		
+		printf("str1:-> ");
+		puts(str1);
+		printf("str2:-> ");
+		puts(str2);
+
+		if (ptr == NULL)
+		{
+			printf("未找到\n");
+		}
+		else
+		{
+			printf("str2 在 str1中的位置是：%d \n", ptr - str1 + 1);
+		}
+
+
 
 
 		printf("Please enter the first string again (EOF to quit) :\n");
