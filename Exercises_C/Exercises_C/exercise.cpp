@@ -5272,6 +5272,160 @@
 //	return 0;
 //}
 
+// 编写一个函数
+// 把字符串的内容 顺序取反 代替
+// 使用一个循环给函数提供输入值
+//
+
+//#define LEN 20
+//void myreverse(char* str)
+//{
+//	
+//
+//	int n = strlen(str);
+//	char temp;
+//
+//	//char* ptr = str;
+//	//for (int i = 0; i < n; i++)
+//	//{
+//	//	*(ptr + n - i - 1) = *(str + i);
+//
+//	//}
+//
+//
+//	for (int i = 0; i < n/2; i++)
+//	{
+//		temp = str[n - i - 1];
+//		str[n - i - 1] = str[i];
+//		str[i] = temp;
+//	}
+//	str[n] = '\0';
+//
+//	
+//}
+//
+//
+char* s_gets(char* str, int n)
+{
+	char* ret_val;
+	char* find;
+
+	ret_val = fgets(str, n, stdin);
+	
+	if (ret_val)
+	{
+		find = strchr(str, '\n');
+
+		if ( find )
+		{
+			*find = '\0';
+		}
+		else
+		{
+			while (getchar()!='\n')
+			{
+				continue;
+			}
+		}
+	}
+	return ret_val;
+
+}
+//
+//int main()
+//{
+//	char str[LEN];
+//	char* ptr;
+//
+//	printf("Please enter the string(EOF to quit): \n");
+//
+//	while (s_gets(str, LEN) != NULL)
+//	{
+//		printf("before reverse:-> ");
+//		puts(str);
+//
+//		myreverse(str);
+//		
+//		printf("after reverse:-> ");
+//		puts(str);
+//
+//		printf("Please enter the string again (EOF to quit): \n");
+//
+//	}
+//
+//	printf("Done.\n");
+//
+//	return 0;
+//}
+
+
+// 编写一个函数
+// 参数：字符串
+// 作用：删除字符串中的空格
+// 循环输入
+#define LEN 20
+
+void mydelspace(const char* str,char* ptr)
+{
+	int n = strlen(str);
+	for (int i = 0; i < n; i++)
+	{
+		if (!isspace(*(str + i)))
+		{
+			*ptr++=*(str + i);
+		}
+		*ptr = '\0';
+	}
+}
+
+void cancel(char* str)
+{
+	int j = 0;
+	int n = strlen(str);
+
+	for (int i = 0; i < n; i++)
+	{
+		if (str[i] != ' ')
+		{
+			str[j++] = str[i];
+		}
+		
+	}
+	str[j] = '\0';
+}
+
+int main()
+{
+	char str[LEN];
+	char ptr[LEN];
+	printf("Please enter the string(EOF to quit): \n");
+
+	while (s_gets(str, LEN) != NULL&&str[0]!='\0')
+	{
+		printf("before reverse:-> ");
+		puts(str);
+
+		//mydelspace(str,ptr);
+		
+		cancel(str);
+
+		printf("after reverse:-> ");
+		//puts(ptr);
+		puts(str);
+
+		printf("Please enter the string again (EOF to quit): \n");
+
+	}
+
+	printf("Done.\n");
+
+	return 0;
+}
+
+
+
+
+
 
 
 
