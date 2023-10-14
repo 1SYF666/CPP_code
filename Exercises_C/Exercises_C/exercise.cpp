@@ -5117,112 +5117,162 @@
 // 循环给函数输入输入值
 //
 
-#define LEN 20
+//#define LEN 20
+//
+//char* string_in(char* str1, char* str2)
+//{
+//	int i = 0; //主串移动标志位
+//	int j = 0; //子串移动标志位 
+//
+//	while (*(str1 + i)!='\0'&& *(str2 + j) != '\0')
+//	{
+//		if (*(str1 + i) == *(str2 + j))
+//		{
+//			i++;
+//			j++;
+//		}
+//
+//		else
+//		{
+//			i = i - j + 1;
+//			j = 0;
+//		}
+//
+//	}
+//
+//	if (j)
+//	{
+//		return str1 + i - j;  //找到了
+//	}
+//
+//	else
+//	{
+//		return  NULL; //找不到
+//	}
+//
+//}
+//
+//char* string_in(char* str, char* pt)
+//{
+//	int i = 0, j = 0;
+//	int str_len = strlen(str), pt_len = strlen(pt);
+//
+//	while (i < str_len && j < pt_len)
+//	{
+//		if (str[i] == pt[j])
+//		{
+//			i++;
+//			j++;
+//		}
+//		else
+//		{
+//			i = i - j + 1;
+//			j = 0;
+//		}
+//	}
+//	return j == pt_len ? str + i - j : NULL;
+//}
+//
+//char* s_gets(char* str, int n)
+//{
+//	char* ret_val;
+//	char* find;
+//
+//	ret_val = fgets(str, n, stdin); //fgets函数会读取 标准输入文件中'\n'
+//
+//	if (ret_val)
+//	{
+//		find = strchr(str, '\n'); 
+//		if (find)
+//		{
+//			*find = '\0';
+//		}
+//		else
+//		{
+//			while (getchar()!='\n')
+//			{
+//				continue; //丢弃 输入行的其余字符
+//			}
+//		}
+//	}
+//	return ret_val;
+//}
+//
+//int main1()
+//{
+//	char str1[LEN];
+//	char str2[LEN];
+//	char* ptr;
+//
+//	printf("Please enter the first string(20以内) (EOF to quit):\n");
+//	while (s_gets(str1, LEN) != NULL)
+//	{
+//		printf("Please enter the second string(10以内) (EOF to quit):\n");
+//		
+//		if (s_gets(str2, LEN) == NULL)
+//		{
+//			break;
+//		}
+//
+//		ptr = string_in(str1, str2);
+//
+//		printf("str1:-> ");
+//		puts(str1);
+//		printf("str2:-> ");
+//		puts(str2);
+//
+//		if (ptr == NULL)
+//		{
+//			printf("未找到\n");
+//		}
+//		else
+//		{
+//			printf("str2 在 str1中的位置是：%d \n", ptr - str1 + 1);
+//		}
+//
+//		printf("Please enter the first string again (EOF to quit) :\n");
+//	}
+//
+//	printf("Done.\n");
+//
+//	return 0;
+//}
+//
+//
+//#define LEN 10
+//
+//char* s_gets(char* st, int n);
+//char* string_in(char* str, char* pt);
+//
+//int main(int argc, char* argv[])
+//{
+//	char str1[LEN];
+//	char str2[LEN];
+//
+//	printf("Please enter the first string (EOF to quit):\n");
+//	while (s_gets(str1, LEN) != NULL)
+//	{
+//		printf("Please enter the second string:\n");
+//		if (s_gets(str2, LEN) != NULL)
+//		{
+//			const char* temp = string_in(str1, str2);
+//			if (temp != NULL)
+//			{
+//				printf("String %s exists in string %s\n", str2, temp);
+//			}
+//			else
+//			{
+//				printf("String %s doesn't exist in string %s\n", str2, str1);
+//			}
+//		}
+//		printf("You can enter again (EOF to quit):\n");
+//	}
+//	printf("Done.\n");
+//
+//	return 0;
+//}
 
-char* string_in(char* str1, char* str2)
-{
-	int i = 0; //主串移动标志位
-	int j = 0; //子串移动标志位 
 
-	while (*(str1 + i)!='\0'&& *(str2 + j) != '\0')
-	{
-		if (*(str1 + i) == *(str2 + j))
-		{
-			i++;
-			j++;
-		}
-
-		else
-		{
-			i = i - j + 1;
-			j = 0;
-		}
-
-	}
-
-	if (j)
-	{
-		return str1 + i - j;  //找到了
-	}
-
-	else
-	{
-		return  NULL; //找不到
-	}
-
-}
-
-
-char* s_gets(char* str, int n)
-{
-	char* ret_val;
-	char* find;
-
-	ret_val = fgets(str, n, stdin); //fgets函数会读取 标准输入文件中'\n'
-
-	if (ret_val)
-	{
-		find = strchr(str, '\n'); 
-		if (find)
-		{
-			*find = '\0';
-		}
-		else
-		{
-			while (getchar()!='\n')
-			{
-				continue; //丢弃 输入行的其余字符
-			}
-
-		}
-
-	}
-
-	return ret_val;
-}
-
-int main()
-{
-	char str1[LEN];
-	char str2[LEN];
-	char* ptr;
-
-	printf("Please enter the first string(20以内) (EOF to quit):\n");
-	while (s_gets(str1, LEN) != NULL)
-	{
-		printf("Please enter the second string(10以内) (EOF to quit):\n");
-		
-		if (s_gets(str2, LEN) == NULL)
-		{
-			break;
-		}
-
-		ptr = string_in(str1, str2);
-
-		printf("str1:-> ");
-		puts(str1);
-		printf("str2:-> ");
-		puts(str2);
-
-		if (ptr == NULL)
-		{
-			printf("未找到\n");
-		}
-		else
-		{
-			printf("str2 在 str1中的位置是：%d \n", ptr - str1 + 1);
-		}
-
-
-
-
-		printf("Please enter the first string again (EOF to quit) :\n");
-	}
-
-	printf("Done.\n");
-
-	return 0;
-}
 
 
 
