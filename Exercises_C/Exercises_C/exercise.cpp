@@ -5305,32 +5305,32 @@
 //}
 //
 //
-char* s_gets(char* str, int n)
-{
-	char* ret_val;
-	char* find;
-
-	ret_val = fgets(str, n, stdin);
-	
-	if (ret_val)
-	{
-		find = strchr(str, '\n');
-
-		if ( find )
-		{
-			*find = '\0';
-		}
-		else
-		{
-			while (getchar()!='\n')
-			{
-				continue;
-			}
-		}
-	}
-	return ret_val;
-
-}
+//char* s_gets(char* str, int n)
+//{
+//	char* ret_val;
+//	char* find;
+//
+//	ret_val = fgets(str, n, stdin);
+//	
+//	if (ret_val)
+//	{
+//		find = strchr(str, '\n');
+//
+//		if ( find )
+//		{
+//			*find = '\0';
+//		}
+//		else
+//		{
+//			while (getchar()!='\n')
+//			{
+//				continue;
+//			}
+//		}
+//	}
+//	return ret_val;
+//
+//}
 //
 //int main()
 //{
@@ -5363,64 +5363,140 @@ char* s_gets(char* str, int n)
 // 参数：字符串
 // 作用：删除字符串中的空格
 // 循环输入
-#define LEN 20
+//#define LEN 20
+//
+//void mydelspace(const char* str,char* ptr)
+//{
+//	int n = strlen(str);
+//	for (int i = 0; i < n; i++)
+//	{
+//		if (!isspace(*(str + i)))
+//		{
+//			*ptr++=*(str + i);
+//		}
+//		*ptr = '\0';
+//	}
+//}
+//
+//void cancel(char* str)
+//{
+//	int j = 0;
+//	int n = strlen(str);
+//
+//	for (int i = 0; i < n; i++)
+//	{
+//		if (str[i] != ' ')
+//		{
+//			str[j++] = str[i];
+//		}
+//		
+//	}
+//	str[j] = '\0';
+//}
+//
+//int main()
+//{
+//	char str[LEN];
+//	char ptr[LEN];
+//	printf("Please enter the string(EOF to quit): \n");
+//
+//	while (s_gets(str, LEN) != NULL&&str[0]!='\0')
+//	{
+//		printf("before reverse:-> ");
+//		puts(str);
+//
+//		//mydelspace(str,ptr);
+//		
+//		cancel(str);
+//
+//		printf("after reverse:-> ");
+//		//puts(ptr);
+//		puts(str);
+//
+//		printf("Please enter the string again (EOF to quit): \n");
+//
+//	}
+//
+//	printf("Done.\n");
+//
+//	return 0;
+//}
 
-void mydelspace(const char* str,char* ptr)
+//*******************2023/10/15 23:11*********************//
+// 编写一个函数
+// 读入10个字符串 或者 读到EOF时停止
+// 提供5个选项菜单：
+// 1.打印源字符串列表 2.以ASCII中的顺序打印字符串
+// 3.按长度递增顺序打印字符串 4.按字符串中第一个单词的长度打印字符串
+// 5.退出
+// 菜单可以循环显示 除非用户选择退出选项 
+
+
+#define MAX 10
+#define LEN 20
+void Show_menu1015()
 {
-	int n = strlen(str);
-	for (int i = 0; i < n; i++)
-	{
-		if (!isspace(*(str + i)))
-		{
-			*ptr++=*(str + i);
-		}
-		*ptr = '\0';
-	}
+	printf("***********菜  单**********\n");
+	printf("1.打印源字符串列表\n");
+	printf("2.以ASCII中的顺序打印字符串\n");
+	printf("3.按长度递增顺序打印字符串\n");
+	printf("4.按字符串中第一个单词的长度打印字符串\n");
+	printf("5.退出\n");
 }
 
-void cancel(char* str)
+char* s_gets(char* str, int n)
 {
-	int j = 0;
-	int n = strlen(str);
+	char* ret_val;
+	char* find;
+	ret_val = fgets(str, n, stdin);
 
-	for (int i = 0; i < n; i++)
+	if (ret_val)
 	{
-		if (str[i] != ' ')
+		find = strchr(str, '\n');
+
+		if (find)
 		{
-			str[j++] = str[i];
+			*find = '\0';
 		}
-		
+		else
+		{
+			while (getchar()!='\n')
+			{
+				continue;
+			}
+		}
 	}
-	str[j] = '\0';
+	
+	return ret_val;
 }
 
 int main()
 {
-	char str[LEN];
-	char ptr[LEN];
-	printf("Please enter the string(EOF to quit): \n");
+	
+	char* str[MAX];
+	int i = 0;
+	//读入10个字符串 或者 读到EOF时停止
 
-	while (s_gets(str, LEN) != NULL&&str[0]!='\0')
+	Show_menu1015();
+	while (i<MAX)
 	{
-		printf("before reverse:-> ");
-		puts(str);
-
-		//mydelspace(str,ptr);
+		printf("Please enter the %d-th string: \n", i+1);
 		
-		cancel(str);
+		if (s_gets(*(str + i), LEN) == NULL)
+			break;
 
-		printf("after reverse:-> ");
-		//puts(ptr);
-		puts(str);
-
-		printf("Please enter the string again (EOF to quit): \n");
-
+		i++;
 	}
 
-	printf("Done.\n");
+
+
+
+
 
 	return 0;
 }
+
+
 
 
 

@@ -1,5 +1,2 @@
 ﻿  exercise.cpp
-C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\exercise.cpp(5370,21): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
-C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\exercise.cpp(5384,21): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
-C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\exercise.cpp(5400,7): warning C4101: “ptr”: 未引用的局部变量
   Exercises_C.vcxproj -> C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\x64\Debug\Exercises_C.exe
