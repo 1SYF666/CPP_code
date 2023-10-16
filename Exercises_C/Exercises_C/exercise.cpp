@@ -5422,6 +5422,69 @@
 //	return 0;
 //}
 
+
+//#define MAX 10
+//#define LEN 20
+//void Show_menu1015()
+//{
+//	printf("***********菜  单**********\n");
+//	printf("1.打印源字符串列表\n");
+//	printf("2.以ASCII中的顺序打印字符串\n");
+//	printf("3.按长度递增顺序打印字符串\n");
+//	printf("4.按字符串中第一个单词的长度打印字符串\n");
+//	printf("5.退出\n");
+//}
+//
+//char* s_gets(char* str,int n)
+//{
+//	char* ret_val;
+//	char* find;
+//	ret_val = fgets(str, n, stdin);
+//
+//	if (ret_val)
+//	{
+//		find = strchr(str, '\n');
+//
+//		if (find)
+//		{
+//			*find = '\0';
+//		}
+//		else
+//		{
+//			while (getchar() != '\n')
+//			{
+//				continue;
+//			}
+//		}
+//	}
+//
+//	return ret_val;
+//}
+//
+//int main()
+//{
+//
+//	char* str[MAX];
+//	int i = 0;
+//	//读入10个字符串 或者 读到EOF时停止
+//
+//	Show_menu1015();
+//	while (i < MAX)
+//	{
+//		printf("Please enter the %d-th string: \n", i + 1);
+//
+//		if (s_gets(*(str+i),LEN) == NULL)
+//			break;
+//
+//		i++;
+//	}
+//
+//
+//	return 0;
+//}
+//
+
+
 //*******************2023/10/15 23:11*********************//
 // 编写一个函数
 // 读入10个字符串 或者 读到EOF时停止
@@ -5444,7 +5507,7 @@ void Show_menu1015()
 	printf("5.退出\n");
 }
 
-char* s_gets(char* str, int n)
+char* s_gets(char*str, int n)
 {
 	char* ret_val;
 	char* find;
@@ -5470,6 +5533,12 @@ char* s_gets(char* str, int n)
 	return ret_val;
 }
 
+void print1016(char* str,int j)
+{
+		printf("the %d-th string : ",j+1);
+		puts(str);
+}
+
 int main()
 {
 	
@@ -5480,17 +5549,18 @@ int main()
 	Show_menu1015();
 	while (i<MAX)
 	{
-		printf("Please enter the %d-th string: \n", i+1);
-		
-		if (s_gets(*(str + i), LEN) == NULL)
+		printf("Please enter the %d-th string-> ", i+1);
+
+		if (s_gets((*(str + i)), LEN) == NULL)
 			break;
 
 		i++;
 	}
-
-
-
-
+	//打印
+	for (int j = 0; j < i; j++)
+	{
+		print1016(*(str + j),j);
+	}
 
 
 	return 0;
