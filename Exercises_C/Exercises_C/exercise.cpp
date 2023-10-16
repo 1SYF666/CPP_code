@@ -5423,6 +5423,17 @@
 //}
 
 
+
+//*******************2023/10/15 23:11*********************//
+// 编写一个函数
+// 读入10个字符串 或者 读到EOF时停止
+// 提供5个选项菜单：
+// 1.打印源字符串列表 2.以ASCII中的顺序打印字符串
+// 3.按长度递增顺序打印字符串 4.按字符串中第一个单词的长度打印字符串
+// 5.退出
+// 菜单可以循环显示 除非用户选择退出选项 
+
+
 //#define MAX 10
 //#define LEN 20
 //void Show_menu1015()
@@ -5434,8 +5445,8 @@
 //	printf("4.按字符串中第一个单词的长度打印字符串\n");
 //	printf("5.退出\n");
 //}
-//
-//char* s_gets(char* str,int n)
+
+//char* s_gets(char*str, int n)
 //{
 //	char* ret_val;
 //	char* find;
@@ -5451,66 +5462,55 @@
 //		}
 //		else
 //		{
-//			while (getchar() != '\n')
+//			while (getchar()!='\n')
 //			{
 //				continue;
 //			}
 //		}
 //	}
-//
+//	
 //	return ret_val;
+//}
+//
+//void print1016(char* str,int j)
+//{
+//		printf("the %d-th string : ",j+1);
+//		puts(str);
 //}
 //
 //int main()
 //{
-//
+//	
 //	char* str[MAX];
 //	int i = 0;
 //	//读入10个字符串 或者 读到EOF时停止
 //
 //	Show_menu1015();
-//	while (i < MAX)
+//	while (i<MAX)
 //	{
-//		printf("Please enter the %d-th string: \n", i + 1);
+//		printf("Please enter the %d-th string-> ", i+1);
 //
-//		if (s_gets(*(str+i),LEN) == NULL)
+//		if (s_gets((*(str + i)), LEN) == NULL)
 //			break;
 //
 //		i++;
 //	}
-//
-//
+//	//打印
+//	for (int j = 0; j < i; j++)
+//	{
+//		print1016(*(str + j),j);
+//	}
 //	return 0;
 //}
-//
 
+#define ROWS 10
+#define COLUMNS 10
 
-//*******************2023/10/15 23:11*********************//
-// 编写一个函数
-// 读入10个字符串 或者 读到EOF时停止
-// 提供5个选项菜单：
-// 1.打印源字符串列表 2.以ASCII中的顺序打印字符串
-// 3.按长度递增顺序打印字符串 4.按字符串中第一个单词的长度打印字符串
-// 5.退出
-// 菜单可以循环显示 除非用户选择退出选项 
-
-
-#define MAX 10
-#define LEN 20
-void Show_menu1015()
-{
-	printf("***********菜  单**********\n");
-	printf("1.打印源字符串列表\n");
-	printf("2.以ASCII中的顺序打印字符串\n");
-	printf("3.按长度递增顺序打印字符串\n");
-	printf("4.按字符串中第一个单词的长度打印字符串\n");
-	printf("5.退出\n");
-}
-
-char* s_gets(char*str, int n)
+char* s_gets(char* str, int n)
 {
 	char* ret_val;
 	char* find;
+
 	ret_val = fgets(str, n, stdin);
 
 	if (ret_val)
@@ -5523,49 +5523,255 @@ char* s_gets(char*str, int n)
 		}
 		else
 		{
-			while (getchar()!='\n')
+			while (getchar() != '\n')
 			{
 				continue;
 			}
 		}
 	}
-	
+
 	return ret_val;
 }
 
-void print1016(char* str,int j)
+
+int get_strings(char (*string)[COLUMNS], char** str, int n)
 {
-		printf("the %d-th string : ",j+1);
-		puts(str);
+	int i = 0;
+	for (i = 0; i < n; i++)
+	{
+		if (s_gets(*(string + i), COLUMNS) != NULL)
+		{
+			//str[i]=string[i];
+			*(str + i) = *(string + i);
+		}
+		else
+		{
+			break;
+		}
+	}
+	return i;
+
 }
+
+int get_first()
+{
+	int ch;
+
+	do
+	{
+		ch = towlower(getchar());
+	} while (isspace);
+
+	while (getchar() != '\n')
+	{
+		continue;
+	}
+
+	return ch;
+}
+
+int show_menu1016()
+{
+	int ch;
+
+	printf("+---------------------------------------------------------------------+\n");
+	printf("|a) 打印源字符串列表               b) 以ASCII中的顺序打印字符串          |\n");
+	printf("|c) 按长度递增顺序打印字符串        d) 按字符串中第一个单词的长度打印字符串|\n");
+	printf("|q) 退出                                                              |\n");
+	printf("+---------------------------------------------------------------------+\n");
+	
+	ch = get_first();
+
+	while (ch < 'a' || ch>'d' && ch != 'q')
+	{
+		printf("Please enter a, b, c, d or q: ");
+		ch = get_first();
+	}
+	
+	//while ((scanf("%c", &ch)) != 1 || ch < 'a' || ch>'d' && ch != 'q')
+	//{
+	//	printf("Please enter a, b, c, d or q: ");
+	//	while (getchar()!='\n')
+	//	{
+	//		continue;
+	//	}
+	//}
+	
+	return ch;
+}
+
+//a) 打印源字符串列表
+void origin_output(char (* str)[COLUMNS],int n)
+{
+	printf("Source string:\n", n);
+
+	for (int i = 0; i < n; i++)
+	{
+		puts(*(str + i));
+	}
+
+	putchar('\n');
+}
+
+
+//b) 以ASCII中的顺序打印字符串
+void ascall_output(char** str, int n)
+{
+	for (int i = 0; i < n-1; i++)
+	{
+		for (int j = i + 1; j < n; j++)
+		{
+			if (strcmp(str[i], str[j]) > 0)
+			{
+				char* temp = *(str + i);
+				str[i] = str[j];
+				*(str + j) = temp;
+			}
+
+		}
+	}
+
+	printf("Print source string for ASCII: \n", n);
+
+	for (int i = 0; i < n; i++)
+	{
+		puts(*(str + i));
+	}
+
+	putchar('\n');
+}
+
+//c) 按长度递增顺序打印字符串
+void length_up_output(char** str, int n)
+{
+	for (int i = 0; i < n - 1; i++)
+	{
+		for (int j = i + 1; j < n; j++)
+		{
+			if (strlen(str[i]) > strlen(str[j]))
+			{
+				char* temp = str[i];
+				*(str + i) = *(str + j);
+				*(str + j) = temp;
+			}
+
+		}
+	}
+
+	printf("Print source strings for length:\n");
+	for (int i = 0; i < n; i++)
+	{
+		puts(str[i]);
+	}
+	putchar('\n');
+}
+
+int word(char* str)
+{
+	int length = 0;
+	bool inword = false;
+
+	/*统计字符串第一个非空白字符的单词长度
+	并作为欸返回值传递给调用函数；*/
+
+	while (*str)
+	{
+		if (isspace(*str) && !inword)
+		{
+			/*从第一个非空白字符开始统计单词长度*/
+			inword = true;
+			length++;
+		}
+
+		else if (!isspace(*str) && inword)
+		{
+			length++;
+		}
+		
+		else if (isspace(*str) && inword)
+		{
+			/*若遇到第一个单词后的空白符
+			则退出循环*/
+			break;
+		}
+		str++;
+	}
+
+	return length;
+
+}
+
+//d) 按字符串中第一个单词的长度打印字符串
+void first_word_output(char** str, int n)
+{
+	for (int i = 0; i < n - 1; i++)
+	{
+		for (int j = i + 1; j < n; j++)
+		{
+			if (word(str[i]) > word(str[j]))
+			{
+				char* temp = str[i];
+				str[i] = str[j];
+				str[j] = temp;
+			}
+		}
+	}
+
+
+}
+
 
 int main()
 {
-	
-	char* str[MAX];
-	int i = 0;
-	//读入10个字符串 或者 读到EOF时停止
+	int n, choice;
+	char* str[ROWS];
+	char strings[ROWS][COLUMNS];
 
-	Show_menu1015();
-	while (i<MAX)
+	printf("Please enter %d string (EOF to quit): \n", ROWS);
+
+	if ((n = get_strings(strings, str, ROWS)) != 0)
 	{
-		printf("Please enter the %d-th string-> ", i+1);
+		while ((choice = show_menu1016())!='q')
+		{
+			switch (choice)
+			{
+			case 'a':
+			{
+				origin_output(strings, n);
+				break;
+			}
+			case 'b':
+			{
+				ascall_output(str, n);
+				break;
+			}
+			
+			case 'c':
+			{
+				length_up_output(str, n);
+				break;
+			}
+			
+			case 'd':
+			{
+				first_word_output(str, n);
+				break;
+			}
 
-		if (s_gets((*(str + i)), LEN) == NULL)
-			break;
+			default:
+				break;
+			}
 
-		i++;
+		}
+
 	}
-	//打印
-	for (int j = 0; j < i; j++)
-	{
-		print1016(*(str + j),j);
-	}
+	printf("Done.\n");
+
+
 
 
 	return 0;
 }
-
 
 
 
