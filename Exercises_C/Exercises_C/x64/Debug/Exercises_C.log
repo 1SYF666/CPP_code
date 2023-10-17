@@ -1,7 +1,7 @@
 ﻿  exercise.cpp
-C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\exercise.cpp(5563,11): warning C4551: 缺少参数列表的函数调用
-C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\exercise.cpp(5606,29): warning C4474: printf: 格式字符串中传递的参数太多
-C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\exercise.cpp(5606,29): message : 占位符和其参数预计 0 可变参数，但提供的却是 1 参数
-C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\exercise.cpp(5634,46): warning C4474: printf: 格式字符串中传递的参数太多
-C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\exercise.cpp(5634,46): message : 占位符和其参数预计 0 可变参数，但提供的却是 1 参数
+C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\exercise.cpp(5582,6): warning C4101: “n”: 未引用的局部变量
+C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\exercise.cpp(5616,29): warning C4474: printf: 格式字符串中传递的参数太多
+C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\exercise.cpp(5616,29): message : 占位符和其参数预计 0 可变参数，但提供的却是 1 参数
+C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\exercise.cpp(5644,46): warning C4474: printf: 格式字符串中传递的参数太多
+C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\exercise.cpp(5644,46): message : 占位符和其参数预计 0 可变参数，但提供的却是 1 参数
   Exercises_C.vcxproj -> C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\x64\Debug\Exercises_C.exe

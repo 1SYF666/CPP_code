@@ -5503,6 +5503,8 @@
 //	return 0;
 //}
 
+
+
 #define ROWS 10
 #define COLUMNS 10
 
@@ -5539,10 +5541,14 @@ int get_strings(char (*string)[COLUMNS], char** str, int n)
 	int i = 0;
 	for (i = 0; i < n; i++)
 	{
-		if (s_gets(*(string + i), COLUMNS) != NULL)
+		//if (s_gets(string[i], COLUMNS) != NULL)
+		//{
+		//	str[i]=string[i];
+		//	//*(str + i) = *(string + i);  //   **********************
+		//}
+		if (s_gets((*(string + i)), COLUMNS) != NULL)
 		{
-			//str[i]=string[i];
-			*(str + i) = *(string + i);
+			*(str + i) = *(string + i);  //   **********************
 		}
 		else
 		{
@@ -5560,7 +5566,7 @@ int get_first()
 	do
 	{
 		ch = towlower(getchar());
-	} while (isspace);
+	} while (isspace(ch));
 
 	while (getchar() != '\n')
 	{
@@ -5573,22 +5579,26 @@ int get_first()
 int show_menu1016()
 {
 	int ch;
-
+	int n;
 	printf("+---------------------------------------------------------------------+\n");
-	printf("|a) 打印源字符串列表               b) 以ASCII中的顺序打印字符串          |\n");
-	printf("|c) 按长度递增顺序打印字符串        d) 按字符串中第一个单词的长度打印字符串|\n");
+	printf("|a) 打印源字符串列表                b) 以ASCII中的顺序打印字符串          |\n");
+	printf("|c) 按长度递增顺序打印字符串         d) 按字符串中第一个单词的长度打印字符串|\n");
 	printf("|q) 退出                                                              |\n");
 	printf("+---------------------------------------------------------------------+\n");
 	
-	ch = get_first();
+	printf("Please you choose: ");
 
+	ch = get_first();
 	while (ch < 'a' || ch>'d' && ch != 'q')
 	{
 		printf("Please enter a, b, c, d or q: ");
 		ch = get_first();
 	}
 	
-	//while ((scanf("%c", &ch)) != 1 || ch < 'a' || ch>'d' && ch != 'q')
+
+
+	//***********有问题************
+	//while ((n=scanf("%c", &ch)) != 1 || ch < 'a' ||(ch > 'd' && ch != 'q'))
 	//{
 	//	printf("Please enter a, b, c, d or q: ");
 	//	while (getchar()!='\n')
@@ -5724,8 +5734,8 @@ void first_word_output(char** str, int n)
 int main()
 {
 	int n, choice;
-	char* str[ROWS];
-	char strings[ROWS][COLUMNS];
+	char* str[ROWS];				// 字符串指针数组
+	char strings[ROWS][COLUMNS];	// 二维数组
 
 	printf("Please enter %d string (EOF to quit): \n", ROWS);
 
@@ -5766,10 +5776,6 @@ int main()
 
 	}
 	printf("Done.\n");
-
-
-
-
 	return 0;
 }
 
