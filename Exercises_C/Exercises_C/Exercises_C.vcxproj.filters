@@ -39,9 +39,6 @@
     <ClCompile Include="queue.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\WCDMA_from_github_CSDN\2023_09_16\cPPbmp\image.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="BmpRot.cpp">
       <Filter>源文件</Filter>
     </ClCompile>

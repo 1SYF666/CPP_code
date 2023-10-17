@@ -5505,279 +5505,385 @@
 
 
 
-#define ROWS 10
-#define COLUMNS 10
+//#define ROWS 10
+//#define COLUMNS 10
+//
+//char* s_gets(char* str, int n)
+//{
+//	char* ret_val;
+//	char* find;
+//
+//	ret_val = fgets(str, n, stdin);
+//
+//	if (ret_val)
+//	{
+//		find = strchr(str, '\n');
+//
+//		if (find)
+//		{
+//			*find = '\0';
+//		}
+//		else
+//		{
+//			while (getchar() != '\n')
+//			{
+//				continue;
+//			}
+//		}
+//	}
+//
+//	return ret_val;
+//}
+//
+//
+//int get_strings(char (*string)[COLUMNS], char** str, int n)
+//{
+//	int i = 0;
+//	for (i = 0; i < n; i++)
+//	{
+//		//if (s_gets(string[i], COLUMNS) != NULL)
+//		//{
+//		//	str[i]=string[i];
+//		//	//*(str + i) = *(string + i);  //   **********************
+//		//}
+//		if (s_gets((*(string + i)), COLUMNS) != NULL)
+//		{
+//			*(str + i) = *(string + i);  //   **********************
+//		}
+//		else
+//		{
+//			break;
+//		}
+//	}
+//	return i;
+//
+//}
+//
+//int get_first()
+//{
+//	int ch;
+//
+//	do
+//	{
+//		ch = towlower(getchar());
+//	} while (isspace(ch));
+//
+//	while (getchar() != '\n')
+//	{
+//		continue;
+//	}
+//
+//	return ch;
+//}
+//
+//int show_menu1016()
+//{
+//	int ch;
+//	int n;
+//	printf("+---------------------------------------------------------------------+\n");
+//	printf("|a) 打印源字符串列表                b) 以ASCII中的顺序打印字符串          |\n");
+//	printf("|c) 按长度递增顺序打印字符串         d) 按字符串中第一个单词的长度打印字符串|\n");
+//	printf("|q) 退出                                                              |\n");
+//	printf("+---------------------------------------------------------------------+\n");
+//	
+//	printf("Please you choose: ");
+//
+//	ch = get_first();
+//	while (ch < 'a' || ch>'d' && ch != 'q')
+//	{
+//		printf("Please enter a, b, c, d or q: ");
+//		ch = get_first();
+//	}
+//	
+//
+//
+//	//***********有问题************
+//	//while ((n=scanf("%c", &ch)) != 1 || ch < 'a' ||(ch > 'd' && ch != 'q'))
+//	//{
+//	//	printf("Please enter a, b, c, d or q: ");
+//	//	while (getchar()!='\n')
+//	//	{
+//	//		continue;
+//	//	}
+//	//}
+//	
+//	return ch;
+//}
+//
+////a) 打印源字符串列表
+//void origin_output(char (* str)[COLUMNS],int n)
+//{
+//	printf("Source string:\n", n);
+//
+//	for (int i = 0; i < n; i++)
+//	{
+//		puts(*(str + i));
+//	}
+//
+//	putchar('\n');
+//}
+//
+//
+////b) 以ASCII中的顺序打印字符串
+//void ascall_output(char** str, int n)
+//{
+//	for (int i = 0; i < n-1; i++)
+//	{
+//		for (int j = i + 1; j < n; j++)
+//		{
+//			if (strcmp(str[i], str[j]) > 0)
+//			{
+//				//两个位置替换一下
+//				char* temp = *(str + i);  
+//				str[i] = str[j];		  
+//				*(str + j) = temp;
+//			}
+//
+//		}
+//	}
+//
+//	printf("Print source string for ASCII: \n", n);
+//
+//	for (int i = 0; i < n; i++)
+//	{
+//		puts(*(str + i));
+//	}
+//
+//	putchar('\n');
+//}
+//
+////c) 按长度递增顺序打印字符串
+//void length_up_output(char** str, int n)
+//{
+//	for (int i = 0; i < n - 1; i++)
+//	{
+//		for (int j = i + 1; j < n; j++)
+//		{
+//			if (strlen(str[i]) > strlen(str[j]))
+//			{
+//				char* temp = str[i];  
+//				*(str + i) = *(str + j);
+//				*(str + j) = temp;
+//			}
+//
+//		}
+//	}
+//
+//	printf("Print source strings for length:\n");
+//	for (int i = 0; i < n; i++)
+//	{
+//		puts(str[i]);
+//	}
+//	putchar('\n');
+//}
+//
+//int word(char* str)
+//{
+//	int length = 0;
+//	bool inword = false;
+//
+//	/*统计字符串第一个非空白字符的单词长度
+//	并作为欸返回值传递给调用函数；*/
+//
+//	while (*str)
+//	{
+//		//单词首
+//		if (isspace(*str) && !inword)
+//		{
+//			/*从第一个非空白字符开始统计单词长度*/
+//			inword = true;
+//			length++;
+//		}
+//
+//		//单词中
+//		else if (!isspace(*str) && inword)
+//		{
+//			length++;
+//		}
+//
+//		//单词尾
+//		else if (isspace(*str) && inword)
+//		{
+//			/*若遇到第一个单词后的空白符
+//			则退出循环*/
+//			break;
+//		}
+//
+//		str++;
+//
+//	}
+//
+//	return length;
+//
+//}
+//
+////d) 按字符串中第一个单词的长度打印字符串
+//void first_word_output(char** str, int n)
+//{
+//	for (int i = 0; i < n - 1; i++)
+//	{
+//		for (int j = i + 1; j < n; j++)
+//		{
+//			if (word(str[i]) > word(str[j]))
+//			{
+//				char* temp = str[i];
+//				str[i] = str[j];
+//				str[j] = temp;
+//			}
+//		}
+//	}
+//
+//	printf("Print source string for the first word:\n", n);
+//	for (int i = 0; i < n; i++)
+//	{
+//		puts(str[i]);
+//	}
+//
+//	putchar('\n');
+//}
+//
+//
+//int main()
+//{
+//	int n, choice;
+//	char* str[ROWS];				// 字符串指针数组
+//	char strings[ROWS][COLUMNS];	// 二维数组
+//
+//	printf("Please enter %d string (EOF to quit): \n", ROWS);
+//
+//	if ((n = get_strings(strings, str, ROWS)) != 0)
+//	{
+//		while ((choice = show_menu1016())!='q')
+//		{
+//			switch (choice)
+//			{
+//			case 'a':
+//			{
+//				origin_output(strings, n);
+//				break;
+//			}
+//			case 'b':
+//			{
+//				ascall_output(str, n);
+//				break;
+//			}
+//			
+//			case 'c':
+//			{
+//				length_up_output(str, n);
+//				break;
+//			}
+//			
+//			case 'd':
+//			{
+//				first_word_output(str, n);
+//				break;
+//			}
+//
+//			default:
+//				break;
+//			}
+//
+//		}
+//
+//	}
+//	printf("Done.\n");
+//	return 0;
+//}
 
-char* s_gets(char* str, int n)
+
+//***************2023/10/17 14:08********************
+// 编写一个函数
+// 读取输入；直到读取EOF，
+// 报告读入的 单词数、大写字母数、小写字母数、标点符号数、数字字符数 
+
+//int main(int argc, char* argv[])
+//{
+//	int ch, lower, upper, digit;
+//	int punct, words;
+//	lower = upper = digit = 0;
+//	punct = words = 0;
+//	bool inword = false;
+//
+//	printf("Please enter some characters(EOF to quit):\n");
+//
+//	while ((ch = getchar()) != EOF)
+//	{
+//		if (islower(ch))			// islower()---小写字母 返回为真 
+//		{
+//			lower++;
+//		}
+//		else if (isupper(ch))		// isupper(ch)--大写字母 返回为真
+//		{
+//			upper++;
+//		}
+//		else if (isdigit(ch))       // 检查参数ch是否为阿拉伯数字0到9,是返回为 真
+//		{
+//			digit++;
+//		}
+//		else if (ispunct(ch))       // ch是一个标点符号字符，则该函数返回 真
+//		{
+//			punct++;
+//		}
+//		// 检查参数c是否为空格字符，也就是判断是否为空格(' ')、定位字符('\t')、CR('\r')、换行('\n')、垂直定位字符('\v')或翻页('\f')的情况
+//		// 若是，则isspace()函数返回真
+//		if (!isspace(ch) && !inword) 
+//		{
+//			inword = true;
+//			words++;
+//		}
+//
+//		if (isspace(ch) && inword)
+//		{
+//			inword = false;
+//		}
+//
+//	}
+//
+//	printf("Words:%d\n", words);
+//	printf("Lower:%d\n", lower);
+//	printf("Upper:%d\n", upper);
+//	printf("Digit:%d\n", digit);
+//	printf("Punct:%d\n", punct);
+//
+//	return 0;
+//}
+
+// 编写程序
+// 反序 显示命令行参数的单词
+// see you later---later you see
+
+int main(int argc, char* argv[])
 {
-	char* ret_val;
-	char* find;
-
-	ret_val = fgets(str, n, stdin);
-
-	if (ret_val)
+	if (argc < 2)
 	{
-		find = strchr(str, '\n');
-
-		if (find)
+		printf("Usage:%s words\n", argv[0]);
+	}
+	else
+	{
+		printf("Worlds:\n");
+		for (int i = 1; i < argc; i++)
 		{
-			*find = '\0';
+			printf("%s ", argv[i]);
 		}
-		else
+		printf("\nReversing printing is:\n");
+		for (int i = argc - 1; i > 0; i--)
 		{
-			while (getchar() != '\n')
-			{
-				continue;
-			}
+			printf("%s ", argv[i]);
 		}
+		putchar('\n');
 	}
 
-	return ret_val;
-}
-
-
-int get_strings(char (*string)[COLUMNS], char** str, int n)
-{
-	int i = 0;
-	for (i = 0; i < n; i++)
-	{
-		//if (s_gets(string[i], COLUMNS) != NULL)
-		//{
-		//	str[i]=string[i];
-		//	//*(str + i) = *(string + i);  //   **********************
-		//}
-		if (s_gets((*(string + i)), COLUMNS) != NULL)
-		{
-			*(str + i) = *(string + i);  //   **********************
-		}
-		else
-		{
-			break;
-		}
-	}
-	return i;
-
-}
-
-int get_first()
-{
-	int ch;
-
-	do
-	{
-		ch = towlower(getchar());
-	} while (isspace(ch));
-
-	while (getchar() != '\n')
-	{
-		continue;
-	}
-
-	return ch;
-}
-
-int show_menu1016()
-{
-	int ch;
-	int n;
-	printf("+---------------------------------------------------------------------+\n");
-	printf("|a) 打印源字符串列表                b) 以ASCII中的顺序打印字符串          |\n");
-	printf("|c) 按长度递增顺序打印字符串         d) 按字符串中第一个单词的长度打印字符串|\n");
-	printf("|q) 退出                                                              |\n");
-	printf("+---------------------------------------------------------------------+\n");
-	
-	printf("Please you choose: ");
-
-	ch = get_first();
-	while (ch < 'a' || ch>'d' && ch != 'q')
-	{
-		printf("Please enter a, b, c, d or q: ");
-		ch = get_first();
-	}
-	
-
-
-	//***********有问题************
-	//while ((n=scanf("%c", &ch)) != 1 || ch < 'a' ||(ch > 'd' && ch != 'q'))
-	//{
-	//	printf("Please enter a, b, c, d or q: ");
-	//	while (getchar()!='\n')
-	//	{
-	//		continue;
-	//	}
-	//}
-	
-	return ch;
-}
-
-//a) 打印源字符串列表
-void origin_output(char (* str)[COLUMNS],int n)
-{
-	printf("Source string:\n", n);
-
-	for (int i = 0; i < n; i++)
-	{
-		puts(*(str + i));
-	}
-
-	putchar('\n');
-}
-
-
-//b) 以ASCII中的顺序打印字符串
-void ascall_output(char** str, int n)
-{
-	for (int i = 0; i < n-1; i++)
-	{
-		for (int j = i + 1; j < n; j++)
-		{
-			if (strcmp(str[i], str[j]) > 0)
-			{
-				char* temp = *(str + i);
-				str[i] = str[j];
-				*(str + j) = temp;
-			}
-
-		}
-	}
-
-	printf("Print source string for ASCII: \n", n);
-
-	for (int i = 0; i < n; i++)
-	{
-		puts(*(str + i));
-	}
-
-	putchar('\n');
-}
-
-//c) 按长度递增顺序打印字符串
-void length_up_output(char** str, int n)
-{
-	for (int i = 0; i < n - 1; i++)
-	{
-		for (int j = i + 1; j < n; j++)
-		{
-			if (strlen(str[i]) > strlen(str[j]))
-			{
-				char* temp = str[i];
-				*(str + i) = *(str + j);
-				*(str + j) = temp;
-			}
-
-		}
-	}
-
-	printf("Print source strings for length:\n");
-	for (int i = 0; i < n; i++)
-	{
-		puts(str[i]);
-	}
-	putchar('\n');
-}
-
-int word(char* str)
-{
-	int length = 0;
-	bool inword = false;
-
-	/*统计字符串第一个非空白字符的单词长度
-	并作为欸返回值传递给调用函数；*/
-
-	while (*str)
-	{
-		if (isspace(*str) && !inword)
-		{
-			/*从第一个非空白字符开始统计单词长度*/
-			inword = true;
-			length++;
-		}
-
-		else if (!isspace(*str) && inword)
-		{
-			length++;
-		}
-		
-		else if (isspace(*str) && inword)
-		{
-			/*若遇到第一个单词后的空白符
-			则退出循环*/
-			break;
-		}
-		str++;
-	}
-
-	return length;
-
-}
-
-//d) 按字符串中第一个单词的长度打印字符串
-void first_word_output(char** str, int n)
-{
-	for (int i = 0; i < n - 1; i++)
-	{
-		for (int j = i + 1; j < n; j++)
-		{
-			if (word(str[i]) > word(str[j]))
-			{
-				char* temp = str[i];
-				str[i] = str[j];
-				str[j] = temp;
-			}
-		}
-	}
-
-
-}
-
-
-int main()
-{
-	int n, choice;
-	char* str[ROWS];				// 字符串指针数组
-	char strings[ROWS][COLUMNS];	// 二维数组
-
-	printf("Please enter %d string (EOF to quit): \n", ROWS);
-
-	if ((n = get_strings(strings, str, ROWS)) != 0)
-	{
-		while ((choice = show_menu1016())!='q')
-		{
-			switch (choice)
-			{
-			case 'a':
-			{
-				origin_output(strings, n);
-				break;
-			}
-			case 'b':
-			{
-				ascall_output(str, n);
-				break;
-			}
-			
-			case 'c':
-			{
-				length_up_output(str, n);
-				break;
-			}
-			
-			case 'd':
-			{
-				first_word_output(str, n);
-				break;
-			}
-
-			default:
-				break;
-			}
-
-		}
-
-	}
-	printf("Done.\n");
 	return 0;
 }
+
+
+
+
+
+
+
+
 
 
 
