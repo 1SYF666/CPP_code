@@ -5853,26 +5853,118 @@
 // 反序 显示命令行参数的单词
 // see you later---later you see
 
-int main(int argc, char* argv[])
+//int main(int argc, char* argv[])
+//{
+//	if (argc < 2)
+//	{
+//		printf("Usage:%s words\n", argv[0]);
+//	}
+//	else
+//	{
+//		printf("Worlds:\n");
+//		for (int i = 1; i < argc; i++)
+//		{
+//			printf("%s ", argv[i]);
+//		}
+//		printf("\nReversing printing is:\n");
+//		for (int i = argc - 1; i > 0; i--)
+//		{
+//			printf("%s ", argv[i]);
+//		}
+//		putchar('\n');
+//	}
+//
+//	return 0;
+//}
+
+
+// 编写一个 通过 命令行运行的 程序计算幂
+// 第一个参数：是double类型的参数，作为 底
+// 第二个参数：整数，作为 幂的指数
+//#include <stdlib.h>
+//// argc 统计命令行输入多个字符串(以空白符分隔) argv存放命令行输入argc个字符串的地址
+//int main(int argc, char* argv[])
+//{
+//	int exp1 = 0;
+//	double num, sum = 1.0;
+//
+//	if (argc != 3)
+//	{
+//		printf("Usage: %s floating-point exp\n", argv[0]);
+//	}
+//	else
+//	{
+//		num = atof(argv[1]), exp1 = atoi(argv[2]);
+//		for (int i = 1; i <= exp1; i++)
+//		{
+//			sum *= num;
+//		}
+//		printf("%g^%d is %g.\n", num, exp1, sum);
+//	}
+//
+//	return 0;
+//}
+
+
+// 使用字符分类函数 实现 atoi()函数
+// 如果输入的字符串不是纯数字，返回0
+
+#define LEN 10
+
+char* s_gets(char* str, int n)
 {
-	if (argc < 2)
+	char* ret_val;
+	char* find;
+
+	ret_val = fgets(str, n, stdin);
+
+	if (ret_val)
 	{
-		printf("Usage:%s words\n", argv[0]);
+		find = strchr(str, '\n');
+		if (find)
+		{
+			*find = '\0';
+		}
+		else
+		{
+			while (getchar() != '\n')
+			{
+				continue;
+			}
+
+		}
 	}
-	else
+
+	return ret_val;
+}
+
+int myatoi(char* str)
+{
+	int n = 0, len = strlen(str);
+
+	for (int i = 0; i < len; i++)
 	{
-		printf("Worlds:\n");
-		for (int i = 1; i < argc; i++)
+		if (!isdigit(str[i]))
 		{
-			printf("%s ", argv[i]);
+			return 0;
 		}
-		printf("\nReversing printing is:\n");
-		for (int i = argc - 1; i > 0; i--)
-		{
-			printf("%s ", argv[i]);
-		}
-		putchar('\n');
+		n = n * 10 + (str[i] - '0');
 	}
+	return n;
+}
+
+int main()
+{
+	char str[LEN];
+
+	printf("Please enter a string (EOF to quit):\n");
+
+	while (s_gets(str, LEN) != NULL)
+	{
+		printf("String %s convert number %d\n", str, myatoi(str));
+		printf("Please enter a string again (EOF to quit):\n");
+	}
+	printf("Done.\n");
 
 	return 0;
 }
