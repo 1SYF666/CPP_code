@@ -5909,75 +5909,198 @@
 // 使用字符分类函数 实现 atoi()函数
 // 如果输入的字符串不是纯数字，返回0
 
-#define LEN 10
+//#define LEN 10
+//
+//char* s_gets(char* str, int n)
+//{
+//	char* ret_val;
+//	char* find;
+//
+//	ret_val = fgets(str, n, stdin);
+//
+//	if (ret_val)
+//	{
+//		find = strchr(str, '\n');
+//		if (find)
+//		{
+//			*find = '\0';
+//		}
+//		else
+//		{
+//			while (getchar() != '\n')
+//			{
+//				continue;
+//			}
+//
+//		}
+//	}
+//
+//	return ret_val;
+//}
+//
+//int myatoi(char* str)
+//{
+//	int n = 0, len = strlen(str);
+//
+//	for (int i = 0; i < len; i++)
+//	{
+//		if (!isdigit(str[i]))
+//		{
+//			return 0;
+//		}
+//		n = n * 10 + (str[i] - '0');
+//	}
+//	return n;
+//}
+//
+//int main()
+//{
+//	char str[LEN];
+//
+//	printf("Please enter a string (EOF to quit):\n");
+//
+//	while (s_gets(str, LEN) != NULL)
+//	{
+//		printf("String %s convert number %d\n", str, myatoi(str));
+//		printf("Please enter a string again (EOF to quit):\n");
+//	}
+//	printf("Done.\n");
+//
+//	return 0;
+//}
 
-char* s_gets(char* str, int n)
-{
-	char* ret_val;
-	char* find;
 
-	ret_val = fgets(str, n, stdin);
+//编写一个程序读取输入：直至读取文件结尾，
+// 打印字符串
+// 该程序识别和实现下面命令行参数：
+// -p 按原样打印
+// -u 把输入全部转换为大写
+// -l 把输入全部转换成小写
+// if no 命令行参数，则让程序实现 -p 运行
+//
 
-	if (ret_val)
-	{
-		find = strchr(str, '\n');
-		if (find)
-		{
-			*find = '\0';
-		}
-		else
-		{
-			while (getchar() != '\n')
-			{
-				continue;
-			}
+//int main(int argc,char* argv[])
+//{
+//	int ch;
+//	int flag = 1;
+//	char mode = 'p';
+//
+//	if (argc > 2)
+//	{
+//		printf("Usage %s [-p | -u -l]\n", argv[0]);
+//		flag = 0;
+//	}
+//	else if(argc==2)
+//	{
+//		if (argv[1][0] != '-')
+//		{
+//			printf("Usage:%s [-p|-u|-l]\n", argv[0]);
+//			flag = 0;
+//		}
+//		else
+//		{
+//			switch (argv[1][1])
+//			{
+//			case 'p':
+//			case 'u':
+//			case 'l':
+//			{
+//				mode = argv[1][1];
+//				break;
+//			}
+//			default:
+//			{
+//				printf("The argumen isn't p,u or l,the program start to run with -p way.\n");
+//			}
+//			}
+//		}
+//
+//	}
+//	if (flag)
+//	{
+//		printf("Please enter some characters(EOF to quit):\n");
+//		while ((ch=getchar())!=EOF)
+//		{
+//			switch (mode)
+//			{
+//				case 'p':
+//				{
+//					putchar(ch);
+//					break;
+//				}
+//				case 'u':
+//				{
+//					putchar(toupper(ch));
+//					break;
+//				}
+//				case 'l':
+//				{
+//					putchar(tolower(ch));
+//					break;
+//				}
+//
+//			}
+//
+//		}
+//
+//	}
+//
+//	printf("Done.\n");
+//
+//	return 0;
+//}
 
-		}
-	}
+///* global.c -- 使用外部变量 */
+//int units = 0;  /*一个外部变量*/
+//void critic();
+//int main()
+//{
+//	extern int units; /*可选的二次声明*/
+//
+//	printf("How many pounds to a firkin of butter?\n");
+//	scanf("%d", &units);
+//	while (units != 56)
+//	{
+//		critic();
+//	}
+//
+//	printf("You must have looked it up!\n");
+//
+//	return 0;
+//}
+//
+//void critic()
+//{
+//	/*这里省略了可选的二次声明*/
+//	printf("No luck,chummy.Try again.\n");
+//	scanf("%d", &units);
+//}
 
-	return ret_val;
-}
 
-int myatoi(char* str)
-{
-	int n = 0, len = strlen(str);
-
-	for (int i = 0; i < len; i++)
-	{
-		if (!isdigit(str[i]))
-		{
-			return 0;
-		}
-		n = n * 10 + (str[i] - '0');
-	}
-	return n;
-}
+void critic(int* units);
 
 int main()
 {
-	char str[LEN];
+	int units;
 
-	printf("Please enter a string (EOF to quit):\n");
+	printf("How many pounds to a firkin of butter?\n");
+	scanf("%d", &units);
 
-	while (s_gets(str, LEN) != NULL)
+	while (units != 56)
 	{
-		printf("String %s convert number %d\n", str, myatoi(str));
-		printf("Please enter a string again (EOF to quit):\n");
+		critic(&units);
 	}
-	printf("Done.\n");
+	printf("You must have looked it up!\n");
 
 	return 0;
 }
 
-
-
-
-
-
-
-
-
-
+void critic(int* units)
+{
+	printf("No luck,my friend. Try again.\n");
+	scanf("%d", units);
+	return;
+}
 
 
 
