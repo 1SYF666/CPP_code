@@ -91,3 +91,9 @@ void quickSort(int* arr, int left, int right);
 //
 //void show_array(int n, int m, double x[N][M]);
 //void copy_array(int n, int m, double a[N][M], double b[N][M]);
+
+//*******************2023/10/20 12:42*********************//
+
+//void set_mode(int n);
+//void get_info(void);
+//void show_info(void);
