@@ -6564,37 +6564,75 @@
 //
 //}
 
-int units = 0;     /*  一个外部变量  */
-void critic(void);
-int main(void)
-{
-	extern int units; /* 可选的二次声明 */
-	printf("How many pounds to a firkin of butter?\n");
-	scanf("%d", &units);
-	while (units != 56)
-	{
-		critic();
-	}
-	printf("You must have looked it up!\n");
+//int units = 0;     /*  一个外部变量  */
+//void critic(void);
+//int main(void)
+//{
+//	extern int units; /* 可选的二次声明 */
+//	printf("How many pounds to a firkin of butter?\n");
+//	scanf("%d", &units);
+//	while (units != 56)
+//	{
+//		critic();
+//	}
+//	printf("You must have looked it up!\n");
+//
+//	return 0;
+//}
+//
+//void critic(void)
+//{
+//	/*这里省略了可选的二次声明*/
+//	printf("No luck,chummy. Try again.\n");
+//	scanf("%d", &units);
+//}
 
-	return 0;
-}
-
-void critic(void)
-{
-	/*这里省略了可选的二次声明*/
-	printf("No luck,chummy. Try again.\n");
-	scanf("%d", &units);
-}
+// auto register static extern typedef
+// auto--变量具有自动存储时期
+// register--只能用于具有代码块作用域的变量(它的使用也使你不能获得变量的地址)
+// static--用于具有代码块作用域的变量声明中，静态存储时期;
+// 用于文件作用域的变量声明中，表明该变量具有内部链接
+// extern 表明在声明一个已经在别处定义了的变量
+//
 
 
+//void report_count();
+//void accumulate(int k);
+//int count = 0;  //文件作用域，外部链接
+//
+//int main(void)
+//{
+//	int value;			//自动变量
+//	register int i;		//寄存器变量
+//
+//	printf("Enter a positive integer(0 to quit):");
+//
+//	while (scanf("%d", &value) == 1 && value > 0)
+//	{
+//		++count;   //使用文件作用域变量
+//		for (i = value; i >= 0; i--)
+//		{
+//			accumulate(i);
+//		}
+//		printf("Enter a postive integer(0 to quit):");
+//	}
+//	report_count();
+//	
+//	return 0;
+//}
+//
+//void report_count()
+//{
+//	printf("Loop executed %d times\n", count);
+//}
 
 
+//double gamma();       // 可被程序的其他文件中的函数使用
+//static double beta(); // 不可以，限定在一个文件中，
+//					  // 故可在其他文件中使用具有相同名称的不同函数
+//extern double delta();// 可被程序的其他文件中的函数使用
+//
+////除非函数声明使用了关键字static,否则认为它时extern的
 
-
-
-
-
-
-
+//12.4 随机数函数和静态变量
 

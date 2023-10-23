@@ -1,7 +1,7 @@
 ﻿  exercise.cpp
 C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\exercise.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\exercise.cpp(1424,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\exercise.cpp(1423,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
 C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\exercise.cpp(2724,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
 C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\exercise.cpp(4198,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
 C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\exercise.cpp(5689,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-  Exercises_C.vcxproj -> C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\x64\Debug\Exercises_C.exe
+C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\exercise.cpp(6615,4): error C3861: “accumulate”: 找不到标识符
