@@ -6327,54 +6327,172 @@
 //}
 
 
-int rollem(int sides);
+//int rollem(int sides);
+//
+//int main()
+//{
+//	int dice, count, roll;
+//	int sides;
+//	int set, sets;
+//
+//	srand((unsigned int)time(0));
+//	printf("Enter the number of sets.\nEnter q to stop: ");
+//	while (scanf("%d", &sets) == 1)
+//	{
+//		printf("How many sides and how many dice?\n");
+//		printf("Please two integer: ");
+//		if (scanf("%d %d", &sides, &dice) != 2)
+//		{
+//			puts("Not integers--terminating input loop.");
+//			break;
+//		}
+//		printf("Here are %d sets of %d %d-sided throw.\n",sets,dice,sides);
+//		for (set = 0; set < sets; set++)
+//		{
+//			for (roll = 0, count = 0; count < dice; count++)
+//			{
+//				roll += rollem(sides);
+//			}
+//			printf("%-3d", roll);
+//
+//			if (0 == (set + 1) % 8);
+//			{
+//				putchar('\n');
+//			}
+//		}
+//		printf("\nHow many sets?Enter q to stop: ");
+//	}
+//	puts("GOOD FORTUNE TO YOU!\n");
+//
+//	return 0;
+//}
+//
+//int rollem(int sides)
+//{
+//	return rand() % sides + 1;
+//}
+
+//下面是程序的一部分
+//pe12-8.c
+//int* make_array(int elem, int val)
+//{
+//	int* arr = (int*)malloc(sizeof(int) * elem);
+//	if (arr == NULL)
+//	{
+//		printf("Memory allocation failed\n");
+//		exit(EXIT_FAILURE);
+//	}
+//	printf("Output %d numbers:\n", val);
+//
+//	for (int i = 0; i < elem; i++)
+//	{
+//		arr[i] = val;
+//		//*(arr + i) = val;
+//	}
+//
+//	return arr;
+//}
+//void show_array(const int ar[], int n)
+//{
+//	for (int i = 0; i < n; i++)
+//	{
+//		//if (i && !(i % 8))
+//		//{
+//		//	putchar('\n');
+//		//}
+//		printf("%d ", *(ar + i));
+//		if (((i + 1) % 8) == 0)
+//		{
+//			putchar('\n');
+//		}
+//	}
+//	putchar('\n');
+//}
+//
+//int main()
+//{
+//	int* pa;
+//	int size;
+//	int value;
+//
+//	printf("Enter the number of elements: ");
+//	while (scanf("%d", &size) == 1 && size > 0)
+//	{
+//		printf("Enter the initilization value: ");
+//		scanf("%d", &value);
+//		pa = make_array(size, value);
+//		if (pa)
+//		{
+//			show_array(pa, size);
+//			free(pa);
+//		}
+//
+//		printf("Enter the number of elements(<1 to quit):");
+//	}
+//	printf("Done.\n");
+//	return 0;
+//}
+
+// 1.询问用户需要输入多少个单词
+// 使用malloc()，创建一个动态数组，
+// 每一个数组元素存放的字符串的地址
+// 2.接收用户输入的单词并显示
+// 读取字符串时，把单词读入到一个临时的char 数组
+// 使用malloc()分配足够的存储空间
+// 从临时数组中 把单词拷贝到动态分配的存储空间中
+// 
+
+#define LEN 256
 
 int main()
 {
-	int dice, count, roll;
-	int sides;
-	int set, sets;
+	int n=0;
+	char** pt;
+	int i = 0; int length = 0;
+	static char temp[LEN];
 
-	srand((unsigned int)time(0));
-	printf("Enter the number of sets.\nEnter q to stop: ");
-	while (scanf("%d", &sets) == 1)
+	printf("How many words do you wish to enter? ");
+	scanf("%d", &n);
+	if ((pt = (char**)malloc(n * sizeof(char*))) != NULL)
 	{
-		printf("How many sides and how many dice?\n");
-		printf("Please two integer: ");
-		if (scanf("%d %d", &sides, &dice) != 2)
+		printf("Enter %d words now:\n", n);
+		for (i = 0; i < n; i++)
 		{
-			puts("Not integers--terminating input loop.");
-			break;
+			//scanf函数 获取标准输入文件中的字符串 空格的ASCII码值是多少来着？
+			scanf("%255s", temp);
+			length = strlen(temp) + 1;
+			//使用malloc分配足够的存储空间来存储单词;
+			pt[i] = (char*)malloc(length * sizeof(char));
+			
+			if (pt[i] == NULL)
+			{
+				printf("Memory allocation failed!\n");
+				exit(EXIT_FAILURE);
+			}
+			//从临时数组中把单词拷贝到动态分配的存储空间中;
+			strcpy(pt[i], temp);
 		}
-		printf("Here are %d sets of %d %d-sided throw.\n",sets,dice,sides);
-		for (set = 0; set < sets; set++)
+
+		printf("Here are your words:\n");
+		for (i = 0; i < n; i++)
 		{
-			for (roll = 0, count = 0; count < dice; count++)
-			{
-				roll += rollem(sides);
-			}
-			printf("%-3d", roll);
-			if (0 == (set + 1) % 8);
-			{
-				putchar('\n');
-			}
+			puts(pt[i]);
+			free(pt[i]);
+			pt[i] = NULL;
+
 		}
-		printf("\nHow many sets?Enter q to stop: ");
+		free(pt);
+		pt = NULL;
+
 	}
-	puts("GOOD FORTUNE TO YOU!\n");
+	else
+	{
+		printf("Memory allocation failed!\n");
+		exit(EXIT_FAILURE);
+	}
 
 	return 0;
 }
-
-int rollem(int sides)
-{
-	return rand() % sides + 1;
-}
-
-
-
-
-
 
 
 
