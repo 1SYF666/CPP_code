@@ -6442,58 +6442,150 @@
 // 从临时数组中 把单词拷贝到动态分配的存储空间中
 // 
 
-#define LEN 256
+//#define LEN 256
+//
+//int main()
+//{
+//	int n=0;
+//	char** pt;
+//	int i = 0; int length = 0;
+//	static char temp[LEN];
+//
+//	printf("How many words do you wish to enter? ");
+//	scanf("%d", &n);
+//	if ((pt = (char**)malloc(n * sizeof(char*))) != NULL)
+//	{
+//		printf("Enter %d words now:\n", n);
+//		for (i = 0; i < n; i++)
+//		{
+//			//scanf函数 获取标准输入文件中的字符串 空格的ASCII码值是多少来着？
+//			scanf("%255s", temp);
+//			length = strlen(temp) + 1;
+//			//使用malloc分配足够的存储空间来存储单词;
+//			pt[i] = (char*)malloc(length * sizeof(char));
+//			
+//			if (pt[i] == NULL)
+//			{
+//				printf("Memory allocation failed!\n");
+//				exit(EXIT_FAILURE);
+//			}
+//			//从临时数组中把单词拷贝到动态分配的存储空间中;
+//			strcpy(pt[i], temp);
+//		}
+//
+//		printf("Here are your words:\n");
+//		for (i = 0; i < n; i++)
+//		{
+//			puts(pt[i]);
+//			free(pt[i]);
+//			pt[i] = NULL;
+//
+//		}
+//		free(pt);
+//		pt = NULL;
+//
+//	}
+//	else
+//	{
+//		printf("Memory allocation failed!\n");
+//		exit(EXIT_FAILURE);
+//	}
+//
+//	return 0;
+//}
 
-int main()
+/*hiding.c - 代码块内的变量 */
+//int main()
+//{
+//	int x = 30;  /*初始化*/
+//	printf("x in outer block:%d\n", x);
+//	{
+//		int x = 77; /*新的x,覆盖第一个x*/
+//		printf("x in inner block:%d\n", x);
+//	}
+//	printf("x in outer block:%d\n",x);
+//	while (x++<33)
+//	{
+//		int x = 100; /*新的x,覆盖第一个x*/
+//		x++;
+//		printf("x in while loop:%d\n", x);
+//	}
+//	printf(" in outer blook:%d\n", x);
+//
+//	return 0;
+//}
+
+//int main()
+//{
+//	int n = 10;
+//
+//	printf("Initially,n=%d\n", n);
+//	for (int n = 1; n < 3; n++)
+//	{
+//		printf("loop1:n=%d\n", n);
+//	}
+//	printf("After loop 1,n=%d\n", n);
+//	
+//	for (int n = 1; n < 3; n++)
+//	{
+//		printf("loop 2 index n=%d\n", n);
+//		int n = 30;
+//		printf("loop 2:n=%d\n", n);
+//		n++;
+//	}
+//	printf("After loop 2,n=%d\n", n);
+//
+//	return 0;
+//}
+
+//静态是--指变量的位置固定不动
+//void trystat();
+//
+//int main()
+//{
+//	int count;
+//
+//	for (count = 1; count <= 3; count++)
+//	{
+//		printf("Here comes iteration %d:\n", count);
+//		trystat();
+//	}
+//
+//	return 0;
+//}
+//
+//void trystat()
+//{
+//	int fade = 1;
+//	//一声明就会有一个值了，下次该函数不会执行该语句了
+//	static int stay = 1; 
+//
+//	printf("fade = %d and stay =%d\n", fade++, stay++);
+//
+//}
+
+int units = 0;     /*  一个外部变量  */
+void critic(void);
+int main(void)
 {
-	int n=0;
-	char** pt;
-	int i = 0; int length = 0;
-	static char temp[LEN];
-
-	printf("How many words do you wish to enter? ");
-	scanf("%d", &n);
-	if ((pt = (char**)malloc(n * sizeof(char*))) != NULL)
+	extern int units; /* 可选的二次声明 */
+	printf("How many pounds to a firkin of butter?\n");
+	scanf("%d", &units);
+	while (units != 56)
 	{
-		printf("Enter %d words now:\n", n);
-		for (i = 0; i < n; i++)
-		{
-			//scanf函数 获取标准输入文件中的字符串 空格的ASCII码值是多少来着？
-			scanf("%255s", temp);
-			length = strlen(temp) + 1;
-			//使用malloc分配足够的存储空间来存储单词;
-			pt[i] = (char*)malloc(length * sizeof(char));
-			
-			if (pt[i] == NULL)
-			{
-				printf("Memory allocation failed!\n");
-				exit(EXIT_FAILURE);
-			}
-			//从临时数组中把单词拷贝到动态分配的存储空间中;
-			strcpy(pt[i], temp);
-		}
-
-		printf("Here are your words:\n");
-		for (i = 0; i < n; i++)
-		{
-			puts(pt[i]);
-			free(pt[i]);
-			pt[i] = NULL;
-
-		}
-		free(pt);
-		pt = NULL;
-
+		critic();
 	}
-	else
-	{
-		printf("Memory allocation failed!\n");
-		exit(EXIT_FAILURE);
-	}
+	printf("You must have looked it up!\n");
 
 	return 0;
 }
 
+void critic(void)
+{
+	/*这里省略了可选的二次声明*/
+	printf("No luck,chummy. Try again.\n");
+	scanf("%d", &units);
+}
 
 
 
