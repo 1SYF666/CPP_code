@@ -2,7 +2,10 @@
 
 #include<stdio.h>
 #include<string.h>
+#include<stdlib.h>
+#include<time.h>
 #include"function.h"
+
 
 
 //int main()
@@ -6188,33 +6191,185 @@
 //	return 0;
 //}
 
-#include <stdio.h>
+//#include <stdio.h>
+//
+//static int count = 0;
+//
+//int counter(void);
+//
+//int main(void)
+//{
+//    int i, j, k;
+//    printf("Please enter a integer: ");
+//    scanf("%d", &i);
+//
+//    for (j = 1; j <= i; j++)
+//    {
+//        printf("count = %d\n", counter());
+//    }
+//    printf("The function called %d times.\n", count);
+//
+//    return 0;
+//}
+//
+//int counter(void)
+//{
+//    return ++count;
+//}
 
-static int count = 0;
+//***************2023/10/13 8:08********************
+//编写一个程序 生成100个 1-10随机数
+// 以降序排列
+//
 
-int counter(void);
+//#define LEN 100
+//
+//void sort(int a[], int n);
+//void show_array(const int a[], int n);
+//
+//int main()
+//{
+//	int i, a[LEN];
+//	srand((unsigned int)time(0));
+//	for (i = 0; i < LEN; i++)
+//	{
+//		a[i] = rand() % 10 + 1;
+//	}
+//	printf("Array :\n");
+//	show_array(a, LEN);
+//	sort(a, LEN);
+//	printf("After sorting:\n");
+//	show_array(a, LEN);
+//
+//	return 0;
+//}
+//
+//void sort(int a[], int n)
+//{
+//	int i, j, t;
+//
+//	for (i = 0; i < n - 1; i++)
+//	{
+//		for (j = i + 1; j < n; j++)
+//		{
+//			if (a[i] < a[j])
+//			{
+//				t = a[j];
+//				a[j] = a[i];
+//				a[i] = t;
+//			}
+//		}
+//	}
+//
+//	return;
+//}
+//
+//void show_array(const int a[], int n)
+//{
+//	int i;
+//
+//	for (i = 0; i < n; i++)
+//	{
+//		printf("%-3d ", a[i]);
+//		if (0 == (i + 1) % 10)
+//		{
+//			putchar('\n');
+//		}
+//	}
+//
+//	putchar('\n');
+//	return;
+//}
 
-int main(void)
+
+// 生成1000个1-10范围内的随机数
+// no save no print only print the times of each rand number
+// 用十个不同的种子运行 生成的数字出现的次数是否相同？
+// 使用本章自定义的函数或ANSIC的rand()或srand()函数
+//
+
+//#define N 10
+//#define LEN 1000
+//
+//int main()
+//{
+//	int i, temp, a[N + 1];
+//	unsigned int seeds;
+//
+//	for (seeds = 1; seeds < N; seeds++)
+//	{
+//		printf("Time #%d: \n", seeds);
+//		srand(seeds);
+//		//初始化 用来存放保存1-10 出现的次数，
+//		for (i = 0; i < N; i++)
+//		{
+//			a[i] = 0;
+//		}
+//		//数组下标就对应该下标存放的1-10内的随机数
+//		//相同则累加次数
+//		for (i = 0; i < LEN; i++)
+//		{
+//			temp = rand() % 10 + 1;
+//			a[temp]++;
+//		}
+//
+//		for (i = 1; i < N + 1; i++)
+//		{
+//			//打印该数出现的次数
+//			printf("%-3d appeared %d times\n", i, a[i]);
+//		}
+//
+//		printf("Total random numbers:%d\n\n", LEN);
+//
+//	}
+//
+//	return 0;
+//}
+
+
+int rollem(int sides);
+
+int main()
 {
-    int i, j, k;
-    printf("Please enter a integer: ");
-    scanf("%d", &i);
+	int dice, count, roll;
+	int sides;
+	int set, sets;
 
-    for (j = 1; j <= i; j++)
-    {
-        printf("count = %d\n", counter());
-    }
-    printf("The function called %d times.\n", count);
+	srand((unsigned int)time(0));
+	printf("Enter the number of sets.\nEnter q to stop: ");
+	while (scanf("%d", &sets) == 1)
+	{
+		printf("How many sides and how many dice?\n");
+		printf("Please two integer: ");
+		if (scanf("%d %d", &sides, &dice) != 2)
+		{
+			puts("Not integers--terminating input loop.");
+			break;
+		}
+		printf("Here are %d sets of %d %d-sided throw.\n",sets,dice,sides);
+		for (set = 0; set < sets; set++)
+		{
+			for (roll = 0, count = 0; count < dice; count++)
+			{
+				roll += rollem(sides);
+			}
+			printf("%-3d", roll);
+			if (0 == (set + 1) % 8);
+			{
+				putchar('\n');
+			}
+		}
+		printf("\nHow many sets?Enter q to stop: ");
+	}
+	puts("GOOD FORTUNE TO YOU!\n");
 
-    return 0;
+	return 0;
 }
 
-int counter(void)
+int rollem(int sides)
 {
-    return ++count;
+	return rand() % sides + 1;
 }
-
-
 
 
 
