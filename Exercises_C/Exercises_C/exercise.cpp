@@ -6636,3 +6636,123 @@
 
 //12.4 随机数函数和静态变量
 
+
+//*******************2023/10/24 14:27*********************//
+
+/*count.c -- 使用标准的I/O*/
+
+// #include <stdlib.h> //ANSIC 的exit()原型
+
+//int main1(int argc,char*argv[])
+//{
+//	int ch;
+//	FILE* fp;
+//	long count = 0;
+//
+//	if (argc != 2)
+//	{
+//		printf("Usage:%s filename\n", argv[0]);
+//		exit(1);
+//	}
+//
+//	if ((fp = fopen(argv[1], "r")) == NULL)
+//	{
+//		printf("Can't open %s\n", argv[1]);
+//		exit(1);
+//	}
+//
+//	while ((ch = getc(fp)) != EOF)
+//	{
+//		putc(ch, stdout); //相当于putchar(ch)
+//		count++;
+//	}
+//
+//	fclose(fp);
+//	printf("File %s has %ld characters\n", argv[1], count);
+//
+//	return 0;
+//}
+
+//#define LEN 50
+//
+//int main(int argc, char* argv[])
+//{
+//	int ch;
+//	FILE* fp;
+//	unsigned long count = 0;
+//	char filename[LEN];
+//
+//	printf("Please enter a filename: ");
+//	scanf("%49s", filename);
+//
+//	if ((fp = fopen(filename, "r")) == NULL)
+//	{
+//		printf("Can't open %s\n", filename);
+//		exit(EXIT_FAILURE);
+//	}
+//
+//	while ((ch=getc(fp))!=EOF)
+//	{
+//		putc(ch, stdout);
+//		count++;
+//	}
+//
+//	fclose(fp);
+//	printf("\nFile %s has %lu characters\n", filename, count);
+//
+//	return 0;
+//}
+
+// 编写一个文件拷贝程序
+// 通过命令获取原始文件名和拷贝文件名
+// 尽量使用标准I/O和二进制模式
+//
+
+#define BUF 512
+
+int main(int argc,char*argv[])
+{
+	int bytes;
+	FILE* source;
+	FILE* target;
+	static char temp[BUF];
+
+	if (argc != 3)
+	{
+		fprintf(stderr, "Usage:%s sourcefile targetfile\n", argv[0]);
+		exit(EXIT_FAILURE);
+	}
+
+	if ((source = fopen(argv[1], "rb")) == NULL)
+	{
+		fprintf(stderr, "Can't open %s\n", argv[1]);
+		exit(EXIT_FAILURE);
+	}
+
+	if ((target = fopen(argv[2], "wb")) == NULL)
+	{
+		fprintf(stderr, "Can't open %s\n", argv[2]);
+		exit(EXIT_FAILURE);
+	}
+
+	//以二进制模式读入文件内容
+	while ((bytes = fread(temp, sizeof(char), BUF, source)) > 0)
+	{
+		//以二进制写入到文件中
+		fwrite(temp, sizeof(char), bytes, target); 
+	}
+
+	if (fclose(source) != 0)
+	{
+		fprintf(stderr, "Can't close %s\n", argv[1]);
+	}
+
+	if (fclose(target) != 0)
+	{
+		fprintf(stderr, "Can't close %s\n", argv[2]);
+	}
+
+	return 0;
+}
+
+
