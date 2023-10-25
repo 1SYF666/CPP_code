@@ -6708,51 +6708,217 @@
 // 尽量使用标准I/O和二进制模式
 //
 
-#define BUF 512
+//#define BUF 512
+//
+//int main(int argc,char*argv[])
+//{
+//	int bytes;
+//	FILE* source;
+//	FILE* target;
+//	static char temp[BUF];
+//
+//	if (argc != 3)
+//	{
+//		fprintf(stderr, "Usage:%s sourcefile targetfile\n", argv[0]);
+//		exit(EXIT_FAILURE);
+//	}
+//
+//	if ((source = fopen(argv[1], "rb")) == NULL)
+//	{
+//		fprintf(stderr, "Can't open %s\n", argv[1]);
+//		exit(EXIT_FAILURE);
+//	}
+//
+//	if ((target = fopen(argv[2], "wb")) == NULL)
+//	{
+//		fprintf(stderr, "Can't open %s\n", argv[2]);
+//		exit(EXIT_FAILURE);
+//	}
+//
+//	//以二进制模式读入文件内容
+//	while ((bytes = fread(temp, sizeof(char), BUF, source)) > 0)
+//	{
+//		//以二进制写入到文件中
+//		fwrite(temp, sizeof(char), bytes, target); 
+//	}
+//
+//	if (fclose(source) != 0)
+//	{
+//		fprintf(stderr, "Can't close %s\n", argv[1]);
+//	}
+//
+//	if (fclose(target) != 0)
+//	{
+//		fprintf(stderr, "Can't close %s\n", argv[2]);
+//	}
+//
+//	return 0;
+//}
 
-int main(int argc,char*argv[])
+//*******************2023/10/25 14:41*********************//
+
+//extern int rand0(void);
+//
+//int main(void)
+//{
+//	int count;
+//
+//	for (count = 0; count < 5; count++)
+//	{
+//		printf("%hd\n", rand0());
+//	}
+//
+//	return 0;
+//}
+
+//extern void srand1(unsigned int seed);
+//extern int rand1(void);
+//
+//int main(void)
+//{
+//	int count;
+//	unsigned seed;
+//
+//	printf("Please enter your choice for seed.\n");
+//
+//	while (scanf("%u", &seed) == 1)
+//	{
+//		srand1(seed);  /*重置种子*/
+//		for (count = 0; count < 5; count++)
+//		{
+//			printf("%hd\n", rand1());
+//		}
+//
+//		printf("Please enter next seed (q to quit):\n");
+//
+//	}
+//	printf("Done.\n");
+//
+//	return 0;
+//}
+
+//int rollem(int sides)
+//{
+//	int roll;
+//
+//	roll = rand() % sides + 1;
+//	return roll;
+//}
+
+
+//int roll_count = 0;				/* 外部链接 */
+//
+//static int rollem(int sides)	/* 这个文件的私有函数 */
+//{
+//	int roll;
+//
+//	roll = rand() % sides + 1;
+//
+//	++roll_count;				/* 计数函数调用 */
+//	
+//	return roll;
+//}
+//
+//int roll_n_dice(int dice, int sides)
+//{
+//	int d;
+//	int total = 0;
+//	
+//	if (sides < 2)
+//	{
+//		printf("Need at least 2 sides.\n");
+//		return -2;
+//	}
+//	if (dice < 1)
+//	{
+//		printf("Need at least 1 die.\n");
+//		return -1;
+//	}
+//
+//	for (d = 0; d < dice; d++)
+//	{
+//		total += rollem(sides);
+//	}
+//
+//	return total;
+//
+//}
+//
+//
+//int main()
+//{
+//	int dice, roll;
+//
+//	int sides;
+//
+//	srand((unsigned int)time(0));		/* 随机化种子 */
+//	printf("Enter the number of sides per die,0 to stop.\n");
+//	while (scanf("%d", &sides) == 1 && sides > 0)
+//	{
+//		printf("How many dice?\n");
+//		scanf("%d", &dice);
+//		roll = roll_n_dice(dice, sides);
+//		printf("You have rolled a %d using %d %d-sided side.\n",
+//			roll, dice, sides);
+//
+//		printf("How many sides?Enter 0 to stop.\n");
+//	}
+//
+//	printf("The rollem() function was called %d times.\n",
+//			roll_count);
+//
+//	printf("Good fortune to you!\n");
+//
+//
+//	return 0;
+//}
+//
+
+
+
+/* dyn-arr.c -- 为数组动态分配存储空间 */
+
+int main()
 {
-	int bytes;
-	FILE* source;
-	FILE* target;
-	static char temp[BUF];
+	double* ptd;
+	int max;
+	int number;
+	int i = 0;
 
-	if (argc != 3)
+	puts("What is the maximum number of type double entries?");
+	scanf("%d", &max);
+
+	ptd = (double*)malloc(max * sizeof(double));
+	if (ptd == NULL)
 	{
-		fprintf(stderr, "Usage:%s sourcefile targetfile\n", argv[0]);
+		puts("Memory allocation failed.Goodbye.");
 		exit(EXIT_FAILURE);
 	}
 
-	if ((source = fopen(argv[1], "rb")) == NULL)
-	{
-		fprintf(stderr, "Can't open %s\n", argv[1]);
-		exit(EXIT_FAILURE);
-	}
+	/* ptd现在指向有max个元素的数组 */
+	puts("Enter the values(q to quit): ");
 
-	if ((target = fopen(argv[2], "wb")) == NULL)
-	{
-		fprintf(stderr, "Can't open %s\n", argv[2]);
-		exit(EXIT_FAILURE);
-	}
+	while (i < max && scanf("%lf", &ptd[i]) == 1)
+		++i;
 
-	//以二进制模式读入文件内容
-	while ((bytes = fread(temp, sizeof(char), BUF, source)) > 0)
+	printf("Here are your %d entires: \n", number = i);
+	for ( i = 0; i < number; i++)
 	{
-		//以二进制写入到文件中
-		fwrite(temp, sizeof(char), bytes, target); 
+		printf("%7.2f ", ptd[i]);
+		
+		if (i % 7 == 6)
+		{
+				putchar('\n');
+		}
 	}
-
-	if (fclose(source) != 0)
+	
+	if (i % 7 != 0)
 	{
-		fprintf(stderr, "Can't close %s\n", argv[1]);
+		putchar('\n');
 	}
-
-	if (fclose(target) != 0)
-	{
-		fprintf(stderr, "Can't close %s\n", argv[2]);
-	}
+	puts("Done.");
+	
+	free(ptd);
 
 	return 0;
 }
-
-

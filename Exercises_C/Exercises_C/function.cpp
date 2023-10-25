@@ -660,3 +660,28 @@ void quickSort(int* arr, int left, int right)
 //	}
 //
 //}
+
+
+//*******************2023/10/25 14:41*********************//
+static unsigned long int next = 1;			/*种子*/
+
+int rand0(void)
+{
+	/*产生伪随机数的魔术般的公式*/
+	next = next * 1103515245 + 12345;
+	return (unsigned int)(next / 65536) % 32768;
+}
+
+
+int rand1(void)
+{
+	/*产生伪随机数的魔术般的公式*/
+	next = next * 1103515245 + 12345;
+	return (unsigned int)(next / 65536) % 32768;
+
+}
+
+void srand1(unsigned int seed)
+{
+	next = seed;
+}
