@@ -6878,47 +6878,142 @@
 
 /* dyn-arr.c -- 为数组动态分配存储空间 */
 
-int main()
+//int main()
+//{
+//	double* ptd;
+//	int max;
+//	int number;
+//	int i = 0;
+//
+//	puts("What is the maximum number of type double entries?");
+//	scanf("%d", &max);
+//
+//	ptd = (double*)malloc(max * sizeof(double));
+//	if (ptd == NULL)
+//	{
+//		puts("Memory allocation failed.Goodbye.");
+//		exit(EXIT_FAILURE);
+//	}
+//
+//	/* ptd现在指向有max个元素的数组 */
+//	puts("Enter the values(q to quit): ");
+//
+//	while (i < max && scanf("%lf", &ptd[i]) == 1)
+//		++i;
+//
+//	printf("Here are your %d entires: \n", number = i);
+//	for ( i = 0; i < number; i++)
+//	{
+//		printf("%7.2f ", ptd[i]);
+//		
+//		if (i % 7 == 6)
+//		{
+//				putchar('\n');
+//		}
+//	}
+//	
+//	if (i % 7 != 0)
+//	{
+//		putchar('\n');
+//	}
+//	puts("Done.");
+//	
+//	free(ptd);
+//
+//	return 0;
+//}
+
+
+//*******************2023/10/26 19:13*********************//
+// 编写文件拷贝程序
+// 提示用户输入文本文件名 ---以该文件名作为原始文件名和输出文件名
+// 程序使用toupper()函数 在写入输入文件时把所有文本转换成大写
+// 使用标准I/O和文本模式
+//
+
+//#define LEN 50
+//
+//int main(int argc, char* argv[])
+//{
+//	int ch;
+//	FILE* fp;
+//
+//	char filename[LEN];
+//
+//	printf("Please enter a filename: ");
+//	scanf("%49s", filename);
+//
+//	if ((fp = fopen(filename, "r+")) == NULL)
+//	{
+//		fprintf(stderr, "Can't open %s\n", filename);
+//		exit(EXIT_FAILURE);
+//	}
+//
+//	while ((ch = getc(fp)) != EOF)
+//	{
+//		fseek(fp, -1L, SEEK_CUR);   //回退一个字节
+//		putc(toupper(ch), fp);
+//		fseek(fp, 0L, SEEK_CUR);	//改变文件状态，使得下一个字符可以被正常读取（详情参见C陷阱与缺陷一书）
+//	}
+//
+//	rewind(fp);
+//
+//	printf("File %s:\n", filename);
+//
+//	while ((ch = getc(fp)) != EOF)
+//	{
+//		//显示字符是否成功转换为大写
+//		putchar(ch);
+//	}
+//
+//	putchar('\n');
+//
+//	if (fclose(fp) != 0)
+//	{
+//		fprintf(stderr, "Can't close %s\n", filename);
+//	}
+//
+//	return 0;
+//}
+
+// 编写一个程序，在顺序在屏幕上显示命令行中列出的所有文件
+
+int main(int argc, char* argv[])
 {
-	double* ptd;
-	int max;
-	int number;
-	int i = 0;
+	int i, temp;
+	FILE* source;
 
-	puts("What is the maximum number of type double entries?");
-	scanf("%d", &max);
-
-	ptd = (double*)malloc(max * sizeof(double));
-	if (ptd == NULL)
+	if (argc == 1)
 	{
-		puts("Memory allocation failed.Goodbye.");
+		fprintf(stderr, "Usage: %s filename[s]\n", argv[0]);
 		exit(EXIT_FAILURE);
 	}
 
-	/* ptd现在指向有max个元素的数组 */
-	puts("Enter the values(q to quit): ");
-
-	while (i < max && scanf("%lf", &ptd[i]) == 1)
-		++i;
-
-	printf("Here are your %d entires: \n", number = i);
-	for ( i = 0; i < number; i++)
+	for (i = 1; i < argc; i++)
 	{
-		printf("%7.2f ", ptd[i]);
-		
-		if (i % 7 == 6)
+		if ((source = fopen(argv[i], "r")) == NULL)
 		{
-				putchar('\n');
+			fprintf(stderr, "Can't open file %s\n", argv[i]);
+			continue;
+		}
+
+		printf("File %s: \n", argv[i]);
+		//显示
+		while ((temp=getc(source))!=EOF)
+		{
+			putchar(temp);
+		}
+		putchar('\n');
+	
+		if (fclose(source) != 0)
+		{
+			fprintf(stderr, "Can't close file %s\n", argv[i]);
 		}
 	}
-	
-	if (i % 7 != 0)
-	{
-		putchar('\n');
-	}
-	puts("Done.");
-	
-	free(ptd);
+
 
 	return 0;
 }
+
+
+
