@@ -7069,115 +7069,216 @@
 //	return 0;
 //}
 
-#define BUFSIZE 4096
-#define SLEN 81
+//#define BUFSIZE 4096
+//#define SLEN 81
+//
+//void append(FILE* source, FILE* dest)
+//{
+//	rsize_t bytes;
+//	static char temp[BUFSIZE];  // 静态无链接变量只分配一次内存
+//
+//	/* 
+//		fread函数把source指向的文件中的BUFSIZE 块char 类型的
+//		数据 写入到temp数组中，返回值是成功读取数据块的数量；
+//	*/
+//	while ((bytes = fread(temp, sizeof(char), BUFSIZE, source)) > 0)
+//	{
+//		// fwrite函数把temp数组中bytes块char类型的数据写入dest
+//		// 指向的文件中，返回值是成功写入数据块的数量；
+//		fwrite(temp, sizeof(char), bytes, dest);
+//	}
+//
+//	return;
+//}
+//
+//
+//int main(int argc, char* argv[])
+//{
+//	int i, ch;
+//	int files = 0;
+//	FILE* fa;
+//	FILE* fs;
+//
+//	if (argc < 3)
+//	{
+//		printf("Usage: %s appendfile sourcefile.\n", argv[0]);
+//		exit(EXIT_FAILURE);
+//	}
+//
+//	if ((fa = fopen(argv[1], "a+")) == NULL)
+//	{
+//		fprintf(stderr, "Can't open %s\n", argv[1]);
+//		exit(EXIT_FAILURE);
+//	}
+//
+//	if (setvbuf(fa, NULL, _IOFBF, BUFSIZE) != 0)
+//	{
+//		// 设置缓冲区大小为BUFSIZE；
+//		// _IOFBF表示完全缓冲
+//		// NULL表示为fa指向的文件分配缓冲区；
+//		
+//		fputs("Can't create output buffer\n", stderr);
+//		exit(EXIT_FAILURE);
+//	}
+//
+//	for (i = 2; i < argc; i++)
+//	{
+//		if (strcmp(argv[i], argv[1]) == 0)
+//		{
+//			//防止文件自身附加在文件末尾
+//			fputs("Can't append file to itself\n", stderr);
+//		}
+//		else if ((fs = fopen(argv[i], "r")) == NULL)
+//		{
+//			fprintf(stderr, "Can't open %s\n", argv[i]);
+//		}
+//		else
+//		{
+//			if (setvbuf(fs, NULL, _IOFBF, BUFSIZE) != 0)
+//			{
+//				// 同上一个setvbuf函数所述；
+//				// 本次调用是为了fs指向的文件分配缓冲区；
+//				fputs("Can't create input buffer\n", stderr);
+//				continue;
+//			}
+//
+//			append(fs, fa);
+//
+//			if (ferror(fs) != 0)
+//			{
+//				// 读写出现错误 ferror函数返回一个非0值
+//				fprintf(stderr, "Error in reading file %s.\n", argv[i]);
+//			}
+//
+//			if (ferror(fa) != 0)
+//			{
+//				fprintf(stderr, "Error in writing file %s.\n", argv[1]);
+//			}
+//
+//			fclose(fs);
+//			files++;
+//			printf("File %s appended.\n", argv[i]);
+//		}
+//
+//	}
+//
+//	printf("Done appending. %d files appended.\n", files);
+//
+//	rewind(fa);  // 返回文件起始处；
+//
+//	printf("%s contents:\n", argv[1]);
+//
+//	while ((ch=getc(fa))!=EOF)
+//	{
+//		putchar(ch);
+//	}
+//
+//	putchar('\n');
+//
+//	puts("Done displaying.");
+//
+//	fclose(fa);
+//
+//	return 0;
+//}
 
-void append(FILE* source, FILE* dest)
-{
-	rsize_t bytes;
-	static char temp[BUFSIZE];  // 静态无链接变量只分配一次内存
 
-	/* 
-		fread函数把source指向的文件中的BUFSIZE 块char 类型的
-		数据 写入到temp数组中，返回值是成功读取数据块的数量；
-	*/
-	while ((bytes = fread(temp, sizeof(char), BUFSIZE, source)) > 0)
-	{
-		// fwrite函数把temp数组中bytes块char类型的数据写入dest
-		// 指向的文件中，返回值是成功写入数据块的数量；
-		fwrite(temp, sizeof(char), bytes, dest);
-	}
+//使用命令行参数的程序依赖于用户的内存如何正确的使用他们
+//重写程序清单13.2中的程序
 
-	return;
-}
+// reducto.c -- 把您的文件压缩为原来的三分之一！
+//#define LEN 40
+//
+//int main(int argc, char* argv[])
+//{
+//	FILE* in, * out;	//声明两个FILE指针
+//	int ch;
+//	char name[LEN];		//用于存储输入文件名
+//	int count = 0;		
+//	
+//	//检查命令行参数
+//	if (argc < 2)
+//	{
+//		fprintf(stderr, "Usage: %s filename\n", argv[0]);
+//		exit(1);
+//	}
+//
+//	//实现输入
+//	if ((in = fopen(argv[1], "r")) == NULL)
+//	{
+//		fprintf(stderr, "I couldn't open the file \"%s\"\n",argv[1]);
+//		exit(2);
+//	}
+//
+//	//实现输出
+//	strcpy(name, argv[1]);  //把文件名复制到数组中
+//	strcat(name, ".red");   //在文件名后添加.red
+//
+//	if ((out = fopen(name, "w")) == NULL)
+//	{
+//		fprintf(stderr, "Can't create output file.\n");
+//		exit(3);
+//	}
+//
+//
+//	//复制数据
+//	while ((ch = getc(in)) != EOF)
+//	{
+//		if (count++ % 3 == 0)
+//			putc(ch, out);		// 打印每三个字符中的1个
+//	}
+//
+//	//收尾工作
+//	if (fclose(in) != 0 || fclose(out) != 0)
+//		fprintf(stderr, "Error in closing files\n");
+//
+//	return 0;
+//}
 
+#define LEN 40
 
 int main(int argc, char* argv[])
 {
-	int i, ch;
-	int files = 0;
-	FILE* fa;
-	FILE* fs;
+	FILE* in, * out;
+	int ch;
+	char name[LEN];
+	int count = 0;
+	char temp[LEN];
 
-	if (argc < 3)
+	printf("Please enter a filename: \n");
+	scanf("%39s", temp);
+
+	if ((in = fopen(temp, "r")) == NULL)
 	{
-		printf("Usage: %s appendfile sourcefile.\n", argv[0]);
+		fprintf(stderr, "I could't open the file \"%s\" \n", temp);
 		exit(EXIT_FAILURE);
 	}
 
-	if ((fa = fopen(argv[1], "a+")) == NULL)
+	//拷贝文件名
+	strncpy(name, temp, LEN - 5);
+	name[LEN - 5] = '\0';
+	strcat(name, ".red");
+
+	if ((out = fopen(name, "w")) == NULL)
 	{
-		fprintf(stderr, "Can't open %s\n", argv[1]);
-		exit(EXIT_FAILURE);
+		fprintf(stderr, "Can't create output file.\n");
+		exit(3);
 	}
 
-	if (setvbuf(fa, NULL, _IOFBF, BUFSIZE) != 0)
+	//拷贝数据
+	while ((ch = getc(in)) != EOF)
 	{
-		// 设置缓冲区大小为BUFSIZE；
-		// _IOFBF表示完全缓冲
-		// NULL表示为fa指向的文件分配缓冲区；
-		
-		fputs("Can't create output buffer\n", stderr);
-		exit(EXIT_FAILURE);
-	}
-
-	for (i = 2; i < argc; i++)
-	{
-		if (strcmp(argv[i], argv[1]) == 0)
+		if (count++ % 3 == 0)
 		{
-			//防止文件自身附加在文件末尾
-			fputs("Can't append file to itself\n", stderr);
-		}
-		else if ((fs = fopen(argv[i], "r")) == NULL)
-		{
-			fprintf(stderr, "Can't open %s\n", argv[i]);
-		}
-		else
-		{
-			if (setvbuf(fs, NULL, _IOFBF, BUFSIZE) != 0)
-			{
-				// 同上一个setvbuf函数所述；
-				// 本次调用是为了fs指向的文件分配缓冲区；
-				fputs("Can't create input buffer\n", stderr);
-				continue;
-			}
-
-			append(fs, fa);
-
-			if (ferror(fs) != 0)
-			{
-				// 读写出现错误 ferror函数返回一个非0值
-				fprintf(stderr, "Error in reading file %s.\n", argv[i]);
-			}
-
-			if (ferror(fa) != 0)
-			{
-				fprintf(stderr, "Error in writing file %s.\n", argv[1]);
-			}
-
-			fclose(fs);
-			files++;
-			printf("File %s appended.\n", argv[i]);
+			putc(ch, out);
 		}
 
 	}
 
-	printf("Done appending. %d files appended.\n", files);
-
-	rewind(fa);  // 返回文件起始处；
-
-	printf("%s contents:\n", argv[1]);
-
-	while ((ch=getc(fa))!=EOF)
+	if (fclose(in) != 0 || fclose(out) != 0)
 	{
-		putchar(ch);
+		fprintf(stderr, "Error in closing files\n");
 	}
-
-	putchar('\n');
-
-	puts("Done displaying.");
-
-	fclose(fa);
 
 	return 0;
 }
