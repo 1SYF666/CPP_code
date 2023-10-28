@@ -7235,53 +7235,320 @@
 //	return 0;
 //}
 
-#define LEN 40
+//#define len 40
+//
+//int main(int argc, char* argv[])
+//{
+//	file* in, * out;
+//	int ch;
+//	char name[len];
+//	int count = 0;
+//	char temp[len];
+//
+//	printf("please enter a filename: \n");
+//	scanf("%39s", temp);
+//
+//	if ((in = fopen(temp, "r")) == null)
+//	{
+//		fprintf(stderr, "i could't open the file \"%s\" \n", temp);
+//		exit(exit_failure);
+//	}
+//
+//	//拷贝文件名
+//	strncpy(name, temp, len - 5);
+//	name[len - 5] = '\0';
+//	strcat(name, ".red");
+//
+//	if ((out = fopen(name, "w")) == null)
+//	{
+//		fprintf(stderr, "can't create output file.\n");
+//		exit(3);
+//	}
+//
+//	//拷贝数据
+//	while ((ch = getc(in)) != eof)
+//	{
+//		if (count++ % 3 == 0)
+//		{
+//			putc(ch, out);
+//		}
+//
+//	}
+//
+//	if (fclose(in) != 0 || fclose(out) != 0)
+//	{
+//		fprintf(stderr, "error in closing files\n");
+//	}
+//
+//	return 0;
+//}
+
+
+//*******************2023/10/28 11:43*********************//
+
+//#define LEN 256
+//
+//int main(int argc, char* argv[])
+//{
+//    FILE* f1;
+//    FILE* f2;
+//    char str1[LEN], str2[LEN];
+//
+//    if (argc != 3)
+//    {
+//        printf("Usage: %s file1 file2\n", argv[0]);
+//        exit(EXIT_FAILURE);
+//    }
+//    if ((f1 = fopen(argv[1], "r")) == NULL)
+//    {
+//        fprintf(stderr, "Can't open file %s\n", argv[1]);
+//        exit(EXIT_FAILURE);
+//    }
+//    if ((f2 = fopen(argv[2], "r")) == NULL)
+//    {
+//        fprintf(stderr, "Can't open file %s\n", argv[2]);
+//        exit(EXIT_FAILURE);
+//    }
+//
+//    // gets()函数的作用可以这么解释：从第三个参数指定的流中读取最多第二个参数大小的字符到第一个参数指定的容器地址中。
+//    // 在这个过程中，在还没读取够第二个参数指定大小的字符前，读取到换行符'\n'或者需要读取的流中已经没有数据了。
+//    // 则提前结束，并把已经读取到的字符存储进第一个参数指定的容器地址中。
+//    // 在正常情况下fgets()函数的返回值和它第一个参数相同。即读取到数据后存储的容器地址。
+//    // 但是如果读取出错或读取文件时文件为空，则返回一个空指针
+//    
+//    //读取一行字符串
+//    char* s1 = fgets(str1, LEN, f1);
+//    char* s2 = fgets(str2, LEN, f2);
+//
+//    while (s1 || s2)
+//    {
+//        int len1 = strlen(str1), len2 = strlen(str2);
+//      
+//        //将换行符换成字符串结束标志'\0'
+//        if (str1[len1 - 1] == '\n')
+//        {
+//            str1[len1 - 1] = '\0';
+//        }
+//        if (str2[len2 - 1] == '\n')
+//        {
+//            str2[len2 - 1] = '\0';
+//        }
+//
+//        if (s1)
+//        {
+//            printf("%s\n", str1);
+//        }
+//        if (s2)
+//        {
+//            printf("%s\n", str2);
+//        }
+//        s1 = fgets(str1, LEN, f1), s2 = fgets(str2, LEN, f2);
+//    }
+//    if (fclose(f1) != 0)
+//    {
+//        fprintf(stderr, "Can't close %s\n", argv[1]);
+//    }
+//    if (fclose(f2) != 0)
+//    {
+//        fprintf(stderr, "Can't close %s\n", argv[2]);
+//    }
+//
+//    return 0;
+//}
+
+
+//#define LEN 256
+//
+//int main(int argc, char* argv[])
+//{
+//	FILE* f1;
+//	FILE* f2;
+//
+//	char str1[LEN], str2[LEN];
+//
+//	if (argc != 3)
+//	{
+//		printf("Usage:%s file1 file2\n", argv[0]);
+//		exit(EXIT_FAILURE);
+//	}
+//
+//	//stdout -- 标准输出设备(printf("..")) 同 stdout。
+//	//	stderr -- 标准错误输出设备 两者默认向屏幕输出。
+//	//	但如果用转向标准输出到磁盘文件，则可看出两者区别。stdout输出到磁盘文件，stderr在屏幕。
+//
+//	if ((f1 = fopen(argv[1], "r")) == NULL)
+//	{
+//		fprintf(stderr, "Can't open file %s\n", argv[1]);
+//		exit(EXIT_FAILURE);
+//	}
+//
+//	if ((f2 = fopen(argv[2], "r")) == NULL)
+//	{
+//		fprintf(stderr, "Can't open file %s\n", argv[2]);
+//		exit(EXIT_FAILURE);
+//	}
+//
+//	char* s1 = fgets(str1, LEN, f1);
+//	char* s2 = fgets(str2, LEN, f2);
+//
+//	while (s1 || s2)
+//	{
+//		int len1 = strlen(str1);
+//		int len2 = strlen(str2);
+//
+//		if (str1[len1 - 1] == '\n')
+//		{
+//			str1[len1 - 1] = '\0';
+//		}
+//
+//		if (str2[len2 - 1] == '\n')
+//		{
+//			str2[len2 - 1] = '\0';
+//		}
+//
+//		if (s1)
+//		{
+//			printf("%s ", str1);
+//		}
+//		
+//		if (s2)
+//		{
+//			printf("%s ", str2);
+//		}
+//		putchar('\n');
+//		s1 = fgets(str1, LEN, f1);
+//		s2 = fgets(str2, LEN, f2);
+//	}
+//
+//	if (fclose(f1) != 0)
+//	{
+//		fprintf(stderr, "Can't close %s\n", argv[1]);
+//	}
+//
+//	if (fclose(f2) != 0)
+//	{
+//		fprintf(stderr, "Can't close %s\n", argv[2]);
+//	}
+//
+//	return 0;
+//}
+
+// 以 一个字符 和 任意文件名 作为命令行参数
+// if 字符后面没有参数，程序读取标准输入
+// else 程序一次打开每个文件并报告 每个文件中 该 字符出现的次数
+// 文件名和字符本身也要一同报告，
+// if 程序应包含错误检查，以确定
+// 参数数量 是否确定 和 是否能打开文件
+// if 无法打开文件， 程序应报告这一情况，然后继续处理下一个文件
+//	 
+
+int search(int ch, FILE* fp)
+{
+	int find;
+	int n = 0;
+
+	while ((find = getc(fp))!= EOF)
+	{
+		if (ch == find)
+		{
+			++n;
+		}
+	}
+
+	return n;
+}
+
+
 
 int main(int argc, char* argv[])
 {
-	FILE* in, * out;
-	int ch;
-	char name[LEN];
-	int count = 0;
-	char temp[LEN];
+	FILE* fp;
+	int ch, count = 0, i, ct;
 
-	printf("Please enter a filename: \n");
-	scanf("%39s", temp);
 
-	if ((in = fopen(temp, "r")) == NULL)
+	if (argc < 2)
 	{
-		fprintf(stderr, "I could't open the file \"%s\" \n", temp);
+		fprintf(stderr, "Usage:%s character filename[s]\n", argv[0]);
 		exit(EXIT_FAILURE);
 	}
 
-	//拷贝文件名
-	strncpy(name, temp, LEN - 5);
-	name[LEN - 5] = '\0';
-	strcat(name, ".red");
-
-	if ((out = fopen(name, "w")) == NULL)
+	if (strlen(argv[1]) != 1)
 	{
-		fprintf(stderr, "Can't create output file.\n");
-		exit(3);
+		fprintf(stderr, "The second argument must be a character!\n");
+		exit(EXIT_FAILURE);
 	}
 
-	//拷贝数据
-	while ((ch = getc(in)) != EOF)
+	if (argc == 2)
 	{
-		if (count++ % 3 == 0)
+		fp = stdin;
+		ch = argv[1][0];
+		printf("Please enter a string (EOF to quit): ");
+		count = search(ch, fp);
+		printf("\n%c appeared %d times.\n", ch, count);
+	}
+
+	else if (argc > 2)
+	{
+		ch = argv[1][0];
+
+		for (i = 2; i < argc; i++)
 		{
-			putc(ch, out);
+
+			if ((fp = fopen(argv[i], "r")) == NULL)
+			{
+				fprintf(stderr, "Can't open file %s\n", argv[i]);
+				continue;
+			}
+
+			printf("File %s: \n",argv[i]);
+
+			while ((ct = getc(fp)) != EOF)
+			{
+				putchar(ct);
+			}
+
+			rewind(fp);
+
+			count = search(ch, fp);
+
+			printf("\n%c appeared %d times in file %s\n", ch, count, argv[i]);
+			
+			if (fclose(fp) != 0)
+			{
+				fprintf(stderr, "Can't close file %s\n", argv[i]);
+			}
 		}
-
-	}
-
-	if (fclose(in) != 0 || fclose(out) != 0)
-	{
-		fprintf(stderr, "Error in closing files\n");
 	}
 
 	return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
