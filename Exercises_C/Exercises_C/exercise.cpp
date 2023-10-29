@@ -7442,86 +7442,193 @@
 // if 无法打开文件， 程序应报告这一情况，然后继续处理下一个文件
 //	 
 
-int search(int ch, FILE* fp)
-{
-	int find;
-	int n = 0;
+//int search(int ch, FILE* fp)
+//{
+//	int find;
+//	int n = 0;
+//
+//	while ((find = getc(fp))!= EOF)
+//	{
+//		if (ch == find)
+//		{
+//			++n;
+//		}
+//	}
+//
+//	return n;
+//}
+//
+//
+//
+//int main(int argc, char* argv[])
+//{
+//	FILE* fp;
+//	int ch, count = 0, i, ct;
+//
+//
+//	if (argc < 2)
+//	{
+//		fprintf(stderr, "Usage:%s character filename[s]\n", argv[0]);
+//		exit(EXIT_FAILURE);
+//	}
+//
+//	if (strlen(argv[1]) != 1)
+//	{
+//		fprintf(stderr, "The second argument must be a character!\n");
+//		exit(EXIT_FAILURE);
+//	}
+//
+//	if (argc == 2)
+//	{
+//		fp = stdin;
+//		ch = argv[1][0];
+//		printf("Please enter a string (EOF to quit): ");
+//		count = search(ch, fp);
+//		printf("\n%c appeared %d times.\n", ch, count);
+//	}
+//
+//	else if (argc > 2)
+//	{
+//		ch = argv[1][0];
+//
+//		for (i = 2; i < argc; i++)
+//		{
+//
+//			if ((fp = fopen(argv[i], "r")) == NULL)
+//			{
+//				fprintf(stderr, "Can't open file %s\n", argv[i]);
+//				continue;
+//			}
+//
+//			printf("File %s: \n",argv[i]);
+//
+//			while ((ct = getc(fp)) != EOF)
+//			{
+//				putchar(ct);
+//			}
+//
+//			rewind(fp);
+//
+//			count = search(ch, fp);
+//
+//			printf("\n%c appeared %d times in file %s\n", ch, count, argv[i]);
+//			
+//			if (fclose(fp) != 0)
+//			{
+//				fprintf(stderr, "Can't close file %s\n", argv[i]);
+//			}
+//		}
+//	}
+//
+//	return 0;
+//}
 
-	while ((find = getc(fp))!= EOF)
-	{
-		if (ch == find)
-		{
-			++n;
-		}
-	}
 
-	return n;
-}
+//*******************2023/10/29 16:07*********************//
+
+/* addaword.c -- 使用fprintf()，fscanf()和rewind()函数 */
+//#define MAX 40
+//
+//int main(void)
+//{
+//	FILE* fp;
+//	char words[MAX];
+//
+//	// 打开一个文本文件，可以进行更新（读取和写入），
+//	// 向以后文件的尾部追加内容，
+//	// 如果该文件不存在则先创建之，
+//	// 可以读取整个文件，但写入时只能追加内容
+//	//
+//
+//	if ((fp = fopen("words", "a+")) == NULL)
+//	{
+//		fprintf(stdout, "Can't open words file.\n");
+//		exit(1);
+//	}
+//	puts("Enter words to add to the file; press the Enter");
+//	puts("key at the beginning of a line to terminate.");
+//	while (gets_s(words) != NULL && words[0] != '\0')
+//	{
+//		fprintf(fp, "%s ", words);
+//	}
+//
+//
+//	puts("File contents: ");
+//	rewind(fp);   /* 回到文件的开始处 */
+//
+//	while (fscanf(fp, "%s", words) == 1)
+//	{
+//		puts(words);
+//	}
+//
+//	if (fclose(fp) != 0)
+//	{
+//		fprintf(stderr, "Error closing file\n");
+//	}
+//
+//
+//	return 0;
+//}
+//
 
 
+// 修改程序清单13.3中的程序，从1开始，根据加入列表的顺序为每个单词编号。
+// 当程序下次运行时，确保新的单词编写接着上次的编号开始
 
-int main(int argc, char* argv[])
+#define MAX 41
+
+int main()
 {
 	FILE* fp;
-	int ch, count = 0, i, ct;
+	int ct = 0;
 
+	char words[MAX];
 
-	if (argc < 2)
+	if ((fp = fopen("wordy", "a+")) == NULL)
 	{
-		fprintf(stderr, "Usage:%s character filename[s]\n", argv[0]);
+		fprintf(stdout, "Can't open wordy file.\n");
 		exit(EXIT_FAILURE);
 	}
 
-	if (strlen(argv[1]) != 1)
+	while (fgets(words,MAX,fp)!=NULL)
 	{
-		fprintf(stderr, "The second argument must be a character!\n");
-		exit(EXIT_FAILURE);
+		ct++;
 	}
 
-	if (argc == 2)
+	rewind(fp);
+
+	puts("Enter words to add to the file; press the #");
+	puts("key at the beginning of a line to terminate.");
+
+	while ((fscanf(stdin,"%40s",words))==1&&(words[0]!='#'))
 	{
-		fp = stdin;
-		ch = argv[1][0];
-		printf("Please enter a string (EOF to quit): ");
-		count = search(ch, fp);
-		printf("\n%c appeared %d times.\n", ch, count);
+		//把标号写到文件中
+		fprintf(fp, "%-2d : %s\n", ++ct, words);
 	}
 
-	else if (argc > 2)
+	puts("File contents: ");
+	rewind(fp);
+
+	while (fgets(words,MAX,fp)!=NULL)
 	{
-		ch = argv[1][0];
+		fputs(words, stdout);
+	}
 
-		for (i = 2; i < argc; i++)
-		{
+	puts("Done!");
 
-			if ((fp = fopen(argv[i], "r")) == NULL)
-			{
-				fprintf(stderr, "Can't open file %s\n", argv[i]);
-				continue;
-			}
-
-			printf("File %s: \n",argv[i]);
-
-			while ((ct = getc(fp)) != EOF)
-			{
-				putchar(ct);
-			}
-
-			rewind(fp);
-
-			count = search(ch, fp);
-
-			printf("\n%c appeared %d times in file %s\n", ch, count, argv[i]);
-			
-			if (fclose(fp) != 0)
-			{
-				fprintf(stderr, "Can't close file %s\n", argv[i]);
-			}
-		}
+	if (fclose(fp) != 0)
+	{
+		fprintf(stderr, "Error in closing file.\n");
 	}
 
 	return 0;
 }
+
+
+
+
+
+
 
 
 
