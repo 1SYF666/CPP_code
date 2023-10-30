@@ -7575,88 +7575,279 @@
 // 修改程序清单13.3中的程序，从1开始，根据加入列表的顺序为每个单词编号。
 // 当程序下次运行时，确保新的单词编写接着上次的编号开始
 
-#define MAX 41
+//#define MAX 41
+//
+//int main()
+//{
+//	FILE* fp;
+//	int ct = 0;
+//
+//	char words[MAX];
+//
+//	if ((fp = fopen("wordy", "a+")) == NULL)
+//	{
+//		fprintf(stdout, "Can't open wordy file.\n");
+//		exit(EXIT_FAILURE);
+//	}
+//
+//	while (fgets(words,MAX,fp)!=NULL)
+//	{
+//		ct++;
+//	}
+//
+//	rewind(fp);
+//
+//	puts("Enter words to add to the file; press the #");
+//	puts("key at the beginning of a line to terminate.");
+//
+//	while ((fscanf(stdin,"%40s",words))==1&&(words[0]!='#'))
+//	{
+//		//把标号写到文件中
+//		fprintf(fp, "%-2d : %s\n", ++ct, words);
+//	}
+//
+//	puts("File contents: ");
+//	rewind(fp);
+//
+//	while (fgets(words,MAX,fp)!=NULL)
+//	{
+//		fputs(words, stdout);
+//	}
+//
+//	puts("Done!");
+//
+//	if (fclose(fp) != 0)
+//	{
+//		fprintf(stderr, "Error in closing file.\n");
+//	}
+//
+//	return 0;
+//}
 
-int main()
+//*******************2023/10/30 13:40*********************//
+
+// 编写一个程序打开文本文件
+// 通过交互方式获得文件名
+// 通过一个循环，提示用户输入一个文件位置
+// 然后该程序打印从该位置开始到下一个换行符之前的内容
+// 用户输入负数或非数值字符可以结束输入循环
+//
+
+//C 库函数 int fseek(FILE* stream, long int offset, int whence) 
+//设置流 stream 的文件位置为给定的偏移 offset，参数 offset 意味着从给定的 whence 位置查找的字节数。
+//stream -- 这是指向 FILE 对象的指针，该 FILE 对象标识了流。
+//offset -- 这是相对 whence 的偏移量，以字节为单位。
+//whence -- 这是表示开始添加偏移 offset 的位置。它一般指定为下列常量之一：
+//SEEK_SET	文件的开头
+//SEEK_CUR	文件指针的当前位置
+//SEEK_END	文件的末尾
+
+//#define LEN 50
+//
+//int main(int argc,char* argv[])
+//{
+//	int ch;
+//	FILE* fp;
+//	long int number;
+//	char filename[LEN];
+//
+//	printf("Pleasen enter a filename: ");
+//	scanf("%49s", filename);
+//
+//	if ((fp = fopen(filename, "r")) == NULL)
+//	{
+//		fprintf(stderr, "Can't open file %s\n", filename);
+//		exit(EXIT_FAILURE);
+//	}
+//
+//	printf("Please enter a file position (<0 or q to quit): ");
+//
+//	while (scanf("%ld", &number) == 1 && number >= 0)
+//	{
+//		fseek(fp, number, SEEK_SET);
+//
+//		while ((ch=getc(fp))!='\n'&&ch!=EOF)
+//		{
+//			/* 打印从该位置开始到下一个换行符之前的内容 */
+//			putchar(ch);
+//		}
+//
+//		if (ch == EOF)
+//		{
+//			printf("The position reaches EOF.\n");
+//			break;
+//		}
+//
+//		printf("\nYou can enter again(<0 or q to quit): ");
+//	}
+//
+//	printf("Done.\n");
+//
+//	if (fclose(fp) != 0)
+//	{
+//		fprintf(stderr, "Can't close file %s\n",filename);
+//	}
+//
+//	return 0;
+//}
+
+//int main()
+//{
+//	FILE* fp;
+//
+//	fp = fopen("C:\\Users\\PC\\Desktop\\file.txt", "w+");
+//	fputs("This is runoob.com", fp);
+//
+//	fseek(fp, 7, SEEK_END);
+//	fputs(" C Programming Langauge", fp);
+//	fclose(fp);
+//
+//	return(0);
+//}
+
+// 接受两个命令行参数。第一个参数是一个字符串；第二个参数是一个文件名
+// 然后该程序查找该文件，打印文件中包含该字符串的所有行
+// 因为该任务是面向行而不是面向字符的
+// 所以要使用fgets()而不是getc()，使用标准C库函数strstr()
+// 在每一行中茶轴指定的字符串。假设文件中的所有行都不超过255个字符
+//
+
+//#define SLEN 256
+//
+//int main(int argc, char* argv[])
+//{
+//	FILE* fp;
+//	char line[SLEN];
+//
+//	if (argc != 3)
+//	{
+//		fprintf(stderr, "Usage: %s string filename\n", argv[0]);
+//		exit(EXIT_FAILURE);
+//	}
+//
+//	if ((fp = fopen(argv[2], "r")) == NULL)
+//	{
+//		fprintf(stderr, "Can't open file %s", argv[2]);
+//		exit(EXIT_FAILURE);
+//	}
+//
+//	while (fgets(line,SLEN,fp)!=NULL)
+//	{
+//		if (strstr(line, argv[1]) != NULL)
+//		{
+//			fputs(line, stdout);
+//		}
+//	}
+//
+//	if (fclose(fp) != 0)
+//	{
+//		fprintf(stderr, "Can't close file %s", argv[2]);
+//	}
+//
+//	return 0;
+//}
+
+// 一个文本文件：20*30 rand(0-9),
+// 该文件使用数字表示一张图片 0-9表示逐渐增加的灰度
+// 编写一个程序，把文件中的内容读入一个20*30 int数组
+// 一种把这些数字转化为图片的粗略方法是：
+// 该程序使用数组中的值初始化为一个20*31的字符数组 
+// 用 值0对应空格字符，1对应点字符，以此类推
+// 数字越大表示字符所占空间越大。
+// 例如：用#表示9.每行的最后一个字符(第31个)是空字符
+// 这样该数组包含了20个字符串
+//
+
+
+#define ROWS 20
+#define COLS 30
+#define LEVELS 10
+#define LEN 50
+
+const char trans[LEVELS + 1] = " .':~*=&%#";   //存储需要转换的字符;
+
+void change(int(*a)[COLS], char(*b)[COLS], int rows)
 {
-	FILE* fp;
-	int ct = 0;
+	int row, col;
 
-	char words[MAX];
-
-	if ((fp = fopen("wordy", "a+")) == NULL)
+	for (row = 0; row < ROWS; row++)
 	{
-		fprintf(stdout, "Can't open wordy file.\n");
+		for (col = 0; col < COLS; col++)
+		{
+			// 进行数字对应的字符转换;
+			b[row][col] = trans[a[row][col]];
+
+		}
+	}
+
+	return;
+}
+
+int main(int argc, char* argv[])
+{
+	int row, col;
+	FILE* infile;
+	char filename[LEN];
+	int figure[ROWS][COLS];
+	char picture[ROWS][COLS];
+
+	printf("Please enter a filename: ");
+	scanf("%49s", filename);
+
+	if ((infile = fopen(filename, "r+")) == NULL)
+	{
+		fprintf(stderr, "Can't open file %s\n", filename);
 		exit(EXIT_FAILURE);
 	}
 
-	while (fgets(words,MAX,fp)!=NULL)
+	for (row = 0; row < ROWS; row++)
 	{
-		ct++;
+		for (col = 0; col < COLS; col++)
+		{
+			//从 infile 读入到 &figure[row][col]
+			fscanf(infile, "%d", &figure[row][col]);
+		}
 	}
 
-	rewind(fp);
-
-	puts("Enter words to add to the file; press the #");
-	puts("key at the beginning of a line to terminate.");
-
-	while ((fscanf(stdin,"%40s",words))==1&&(words[0]!='#'))
+	if (ferror(infile))
 	{
-		//把标号写到文件中
-		fprintf(fp, "%-2d : %s\n", ++ct, words);
+		fprintf(stderr, "Error getting data from file %s\n", filename);
+		exit(EXIT_FAILURE);
 	}
 
-	puts("File contents: ");
-	rewind(fp);
+	change(figure, picture, ROWS);
 
-	while (fgets(words,MAX,fp)!=NULL)
+	printf("File %s have been transformed pictures:\n", filename);
+	for (row = 0; row < ROWS; row++)
 	{
-		fputs(words, stdout);
+		for (col = 0; col < COLS; col++)
+		{
+			putchar(picture[row][col]);
+		}
+		putchar('\n');
 	}
 
-	puts("Done!");
+	fseek(infile, 0L, SEEK_END);  //定位到文件末尾
+	putc('\n', infile);           //将结果存储到文本文件中
 
-	if (fclose(fp) != 0)
+	for (row = 0; row < ROWS; row++)
 	{
-		fprintf(stderr, "Error in closing file.\n");
+		for (col = 0; col < COLS; col++)
+		{
+			//从 picture 输出到 infile
+
+			fprintf(infile, "%c", picture[row][col]);
+		}
+		putc('\n', infile);
+	}
+
+	if (fclose(infile) != 0)
+	{
+		fprintf(stderr, "Can't close file %s\n", filename);
 	}
 
 	return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
