@@ -7857,143 +7857,247 @@
 //
 
 
-#define ROWS 20
-#define COLS 30
-#define LEVELS 10
-#define LEN 50
+//#define ROWS 20
+//#define COLS 30
+//#define LEVELS 10
+//#define LEN 50
+//
+//const char trans[LEVELS + 1] = " .':~*=&%#";  //存储需要转换的字符
+//
+//void change(int rows, int(*a)[COLS], char(*b)[COLS])
+//{
+//	int row, col;
+//
+//	for (row = 0; row < rows; row++)
+//	{
+//		for (col = 0; col < COLS; col++)
+//		{
+//			//*(*(b + row) + col) = trans[*(*(a + row) + col)];
+//			*(*(b + row) + col) = *(trans + *(*(a + row) + col));
+//		}
+//
+//	}
+//
+//	return;
+//
+//}
+//
+//int clean_distortion(int(*a)[COLS], int rows, int x, int y)
+//{
+//	int i = 0;
+//	int average = 0;
+//	int cnt = 0;
+//	int sur = 0;
+//
+//	int d[4][2] = { {0,1},{1,0},{0,-1},{-1,0} };
+//
+//	for (i = 0; i < 4; i++)
+//	{
+//		int dx = x + d[i][0];
+//		int dy = y + d[i][1];
+//
+//		if (dx < 0 || dx >= ROWS || dy < 0 || dy >= COLS)
+//		{
+//			continue;
+//		}
+//		++sur;
+//
+//		if (abs(a[x][y] - a[dx][dy]) > 1)
+//		{
+//			++cnt;
+//			average += a[dx][dy];
+//		}
+//	}
+//
+//	if (cnt != sur)
+//	{
+//		return a[x][y];
+//	}
+//
+//	return 1.0 * average / cnt + 0.5;
+//}
+//
+//
+//int main(int argc, char* argv[])
+//{
+//	int row, col;
+//	FILE* infile;
+//	char filename[LEN];
+//	int figure[ROWS][COLS];
+//	char picture[ROWS][COLS];
+//
+//	printf("Please enter a filename: ");
+//	scanf("%49s", filename);
+//
+//	if ((infile = fopen(filename, "r+")) == NULL)
+//	{
+//		fprintf(stderr, "Can't open file %s\n", filename);
+//		exit(EXIT_FAILURE);
+//	}
+//
+//	for (row = 0; row < ROWS; row++)
+//	{
+//		for (col = 0; col < COLS; col++)
+//		{
+//			fscanf(infile, "%d", &figure[row][col]);
+//		}
+//	}
+//
+//	if (ferror(infile))
+//	{
+//		fprintf(stderr, "Error getting data form file %s\n", filename);
+//		exit(EXIT_FAILURE);
+//	}
+//
+//	for (row = 0; row < ROWS; row++)
+//	{
+//		for (col = 0; col < COLS; col++)
+//		{
+//			*(*(figure + row) + col) = clean_distortion(figure, ROWS, row, col);
+//		}
+//	}
+//
+//	change(ROWS,figure , picture);
+//
+//	printf("File %s have been transformed pictures:\n", filename);
+//
+//	for (row = 0; row < ROWS; row++)
+//	{
+//		for (col = 0; col < COLS; col++)
+//		{
+//			putchar(picture[row][col]);
+//		}
+//
+//		putchar('\n');
+//	}
+//
+//	fseek(infile, 0L, SEEK_END);   // 定位到文件末尾
+//	putc('\n', infile);			   // 将结果存储到文本文件中
+//
+//	for (row = 0; row < ROWS; row++)
+//	{
+//		for (col = 0; col < COLS; col++)
+//		{
+//			fprintf(infile, "%c", picture[row][col]);
+//		}
+//		putc('\n', infile);
+//	}
+//
+//	if (fclose(infile) != 0)
+//	{
+//		fprintf(stderr, "Can't close file %s\n", filename);
+//	}
+//
+//	return 0;
+//}
 
-const char trans[LEVELS + 1] = " .':~*=&%#";  //存储需要转换的字符
 
-void change(int rows, int(*a)[COLS], char(*b)[COLS])
+//*******************2023/10/31 19:24*********************//
+
+// 重复编写复习题5
+// 用月份的拼写代替月份号（使用strcmp()）
+// 一个简单的程序中测试该函数 
+//
+
+#define LEN 12
+
+struct  month
 {
-	int row, col;
+	char name[10];
+	char abbrev[4];
+	int days;
+	int monnub;
+};
 
-	for (row = 0; row < rows; row++)
+const struct month months[LEN] =
+{
+	{"January","Jan",31,1},
+	{"February","Feb",28,2},
+	{"March","Mar",31,3},
+	{"April","May",31,5},
+	{"May", "May", 31, 5},
+	{"June", "Jun", 30, 6},
+	{"July", "Jul", 31, 7},
+	{"August", "Aug", 31, 8},
+	{"September", "Sep", 30, 9},
+	{"October", "Oct", 31, 10},
+	{"November", "Nov", 30, 11},
+	{"December", "Dec", 31, 12}
+};
+
+int days(char* name);
+
+int main(void)
+{
+	int daytotal;
+	char input[LEN];
+
+	printf("Please enter the name of mouth (q to quit): ");
+
+	while (scanf("%11s", input) == 1 && input[0] != 'q')
 	{
-		for (col = 0; col < COLS; col++)
+		daytotal = days(input);
+
+		if (daytotal > 0)
 		{
-			//*(*(b + row) + col) = trans[*(*(a + row) + col)];
-			*(*(b + row) + col) = *(trans + *(*(a + row) + col));
+			printf("There are %d days through %s.\n", daytotal, input);
+		}
+		else
+		{
+			printf("%s isn't a valid month!\n", input);
+
 		}
 
-	}
+		printf("You can enter again (q to quit): ");
 
-	return;
-
-}
-
-int clean_distortion(int(*a)[COLS], int rows, int x, int y)
-{
-	int i = 0;
-	int average = 0;
-	int cnt = 0;
-	int sur = 0;
-
-	int d[4][2] = { {0,1},{1,0},{0,-1},{-1,0} };
-
-	for (i = 0; i < 4; i++)
-	{
-		int dx = x + d[i][0];
-		int dy = y + d[i][1];
-
-		if (dx < 0 || dx >= ROWS || dy < 0 || dy >= COLS)
+		while (getchar() != '\n')
 		{
 			continue;
 		}
-		++sur;
-
-		if (abs(a[x][y] - a[dx][dy]) > 1)
-		{
-			++cnt;
-			average += a[dx][dy];
-		}
 	}
 
-	if (cnt != sur)
-	{
-		return a[x][y];
-	}
 
-	return 1.0 * average / cnt + 0.5;
-}
-
-
-int main(int argc, char* argv[])
-{
-	int row, col;
-	FILE* infile;
-	char filename[LEN];
-	int figure[ROWS][COLS];
-	char picture[ROWS][COLS];
-
-	printf("Please enter a filename: ");
-	scanf("%49s", filename);
-
-	if ((infile = fopen(filename, "r+")) == NULL)
-	{
-		fprintf(stderr, "Can't open file %s\n", filename);
-		exit(EXIT_FAILURE);
-	}
-
-	for (row = 0; row < ROWS; row++)
-	{
-		for (col = 0; col < COLS; col++)
-		{
-			fscanf(infile, "%d", &figure[row][col]);
-		}
-	}
-
-	if (ferror(infile))
-	{
-		fprintf(stderr, "Error getting data form file %s\n", filename);
-		exit(EXIT_FAILURE);
-	}
-
-	for (row = 0; row < ROWS; row++)
-	{
-		for (col = 0; col < COLS; col++)
-		{
-			*(*(figure + row) + col) = clean_distortion(figure, ROWS, row, col);
-		}
-	}
-
-	change(ROWS,figure , picture);
-
-	printf("File %s have been transformed pictures:\n", filename);
-
-	for (row = 0; row < ROWS; row++)
-	{
-		for (col = 0; col < COLS; col++)
-		{
-			putchar(picture[row][col]);
-		}
-
-		putchar('\n');
-	}
-
-	fseek(infile, 0L, SEEK_END);   // 定位到文件末尾
-	putc('\n', infile);			   // 将结果存储到文本文件中
-
-	for (row = 0; row < ROWS; row++)
-	{
-		for (col = 0; col < COLS; col++)
-		{
-			fprintf(infile, "%c", picture[row][col]);
-		}
-		putc('\n', infile);
-	}
-
-	if (fclose(infile) != 0)
-	{
-		fprintf(stderr, "Can't close file %s\n", filename);
-	}
 
 	return 0;
 }
 
+int days(char* name)
+{
+	int i = 1;
+	int num = 0;
+	int total = 0;
+
+	name[0] = toupper(name[0]);
+
+	while (name[i]!='\0')
+	{
+		name[i] = towlower(name[i]);
+		i++;
+	}
+
+	for (i = 0; i < LEN; i++)
+	{
+		if (0 == strcmp(name, months[i].name))
+		{
+			//查找y用户输入的月份名是否存在
+			num = months[i].monnub;
+			break;
+		}
+	}
+
+	if (num == 0)
+	{
+		total = -1;  //用户输入不合法则总天数置为-1
+	}
+	else
+	{
+		for (i = 0; i < num; i++)
+		{
+			total += months[i].days;  //累加至用户输入月份的天数；
+		}
+	}
 
 
+	return total;
 
-
-
-
+}
