@@ -7999,17 +7999,125 @@
 // 一个简单的程序中测试该函数 
 //
 
+//#define LEN 12
+//
+//struct  month
+//{
+//	char name[10];
+//	char abbrev[4];
+//	int days;
+//	int monnub;
+//};
+//
+//const struct month months[LEN] =
+//{
+//	{"January","Jan",31,1},
+//	{"February","Feb",28,2},
+//	{"March","Mar",31,3},
+//	{"April","May",31,5},
+//	{"May", "May", 31, 5},
+//	{"June", "Jun", 30, 6},
+//	{"July", "Jul", 31, 7},
+//	{"August", "Aug", 31, 8},
+//	{"September", "Sep", 30, 9},
+//	{"October", "Oct", 31, 10},
+//	{"November", "Nov", 30, 11},
+//	{"December", "Dec", 31, 12}
+//};
+//
+//int days(char* name);
+//
+//int main(void)
+//{
+//	int daytotal;
+//	char input[LEN];
+//
+//	printf("Please enter the name of mouth (q to quit): ");
+//
+//	while (scanf("%11s", input) == 1 && input[0] != 'q')
+//	{
+//		daytotal = days(input);
+//
+//		if (daytotal > 0)
+//		{
+//			printf("There are %d days through %s.\n", daytotal, input);
+//		}
+//		else
+//		{
+//			printf("%s isn't a valid month!\n", input);
+//
+//		}
+//
+//		printf("You can enter again (q to quit): ");
+//
+//		while (getchar() != '\n')
+//		{
+//			continue;
+//		}
+//	}
+//
+//
+//
+//	return 0;
+//}
+//
+//int days(char* name)
+//{
+//	int i = 1;
+//	int num = 0;
+//	int total = 0;
+//
+//	name[0] = toupper(name[0]);
+//
+//	while (name[i]!='\0')
+//	{
+//		name[i] = towlower(name[i]);
+//		i++;
+//	}
+//
+//	for (i = 0; i < LEN; i++)
+//	{
+//		if (0 == strcmp(name, months[i].name))
+//		{
+//			//查找y用户输入的月份名是否存在
+//			num = months[i].monnub;
+//			break;
+//		}
+//	}
+//
+//	if (num == 0)
+//	{
+//		total = -1;  //用户输入不合法则总天数置为-1
+//	}
+//	else
+//	{
+//		for (i = 0; i < num; i++)
+//		{
+//			total += months[i].days;  //累加至用户输入月份的天数；
+//		}
+//	}
+//
+//
+//	return total;
+//
+//}
+
+
+//提示用户输入日、月和年。
+//月份可以是月份号、月份名或月份名缩写
+//然后 返回一年中到用户指定日子（包括这一天）的总天数
+
 #define LEN 12
 
-struct  month
+struct month
 {
 	char name[10];
 	char abbrev[4];
 	int days;
-	int monnub;
+	int monumb;
 };
 
-const struct month months[LEN] =
+struct month months[LEN]=
 {
 	{"January","Jan",31,1},
 	{"February","Feb",28,2},
@@ -8025,79 +8133,94 @@ const struct month months[LEN] =
 	{"December", "Dec", 31, 12}
 };
 
-int days(char* name);
 
-int main(void)
+void is_leap_year(int year)
 {
-	int daytotal;
-	char input[LEN];
-
-	printf("Please enter the name of mouth (q to quit): ");
-
-	while (scanf("%11s", input) == 1 && input[0] != 'q')
+	if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
 	{
-		daytotal = days(input);
-
-		if (daytotal > 0)
-		{
-			printf("There are %d days through %s.\n", daytotal, input);
-		}
-		else
-		{
-			printf("%s isn't a valid month!\n", input);
-
-		}
-
-		printf("You can enter again (q to quit): ");
-
-		while (getchar() != '\n')
-		{
-			continue;
-		}
+		months[1].days = 29;
 	}
 
-
-
-	return 0;
+	return;
 }
 
-int days(char* name)
+int days_result(char* month, int days)
 {
-	int i = 1;
-	int num = 0;
+	int i;
 	int total = 0;
+	int temp = atoi(month);
 
-	name[0] = toupper(name[0]);
-
-	while (name[i]!='\0')
+	if (days < 1 || days>31)
 	{
-		name[i] = towlower(name[i]);
-		i++;
+		return -1;
+	}
+
+	//用户输入的月份不是数字时要进行转换
+	if (0==temp)
+	{
+		month[0] = toupper(month[0]);
+
+		for (i = 1; month[i] != '\0';i++)
+		{
+			month[i] = tolower(month[i]);
+		}
+
 	}
 
 	for (i = 0; i < LEN; i++)
 	{
-		if (0 == strcmp(name, months[i].name))
+		if ((temp == months[i].monumb) || (strcmp(month, months[i].name) == 0) || strcmp(month, months[i].abbrev) == 0)
 		{
-			//查找y用户输入的月份名是否存在
-			num = months[i].monnub;
-			break;
+			if (days > months[i].days)
+			{
+				return -1;
+			}
+			else
+			{
+				return total + days;
+
+			}
+		}
+
+		else
+		{
+			total += months[i].days;
 		}
 	}
-
-	if (num == 0)
-	{
-		total = -1;  //用户输入不合法则总天数置为-1
-	}
-	else
-	{
-		for (i = 0; i < num; i++)
-		{
-			total += months[i].days;  //累加至用户输入月份的天数；
-		}
-	}
-
-
-	return total;
-
+	return -1;
 }
+int main()
+{
+	int n, val;
+	int day, year;
+	char month[LEN];
+
+	printf("Please enter day,month and year (q to quit): ");
+
+	while (scanf("%d %11s %d", &day, month, &year) == 3)
+	{
+		is_leap_year(year);
+		val = days_result(month, day);
+
+		if (val > 0)
+		{
+			printf("There are %d days from the beginning of %d to %s %d\n", val, year, month, day);
+		}
+		else
+		{
+			printf("You enter invalid datas!\n");
+		}
+
+		months[1].days = 28;
+		printf("You can enter day,month and year again (q to quit): ");
+
+	}
+	printf("Done.\n");
+
+	return 0;
+}
+
+
+
+
+
