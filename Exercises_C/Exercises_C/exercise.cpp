@@ -8107,118 +8107,266 @@
 //月份可以是月份号、月份名或月份名缩写
 //然后 返回一年中到用户指定日子（包括这一天）的总天数
 
-#define LEN 12
+//#define LEN 12
+//
+//struct month
+//{
+//	char name[10];
+//	char abbrev[4];
+//	int days;
+//	int monumb;
+//};
+//
+//struct month months[LEN]=
+//{
+//	{"January","Jan",31,1},
+//	{"February","Feb",28,2},
+//	{"March","Mar",31,3},
+//	{"April","May",31,5},
+//	{"May", "May", 31, 5},
+//	{"June", "Jun", 30, 6},
+//	{"July", "Jul", 31, 7},
+//	{"August", "Aug", 31, 8},
+//	{"September", "Sep", 30, 9},
+//	{"October", "Oct", 31, 10},
+//	{"November", "Nov", 30, 11},
+//	{"December", "Dec", 31, 12}
+//};
+//
+//
+//void is_leap_year(int year)
+//{
+//	if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
+//	{
+//		months[1].days = 29;
+//	}
+//
+//	return;
+//}
+//
+//int days_result(char* month, int days)
+//{
+//	int i;
+//	int total = 0;
+//	int temp = atoi(month);
+//
+//	if (days < 1 || days>31)
+//	{
+//		return -1;
+//	}
+//
+//	//用户输入的月份不是数字时要进行转换
+//	if (0==temp)
+//	{
+//		month[0] = toupper(month[0]);
+//
+//		for (i = 1; month[i] != '\0';i++)
+//		{
+//			month[i] = tolower(month[i]);
+//		}
+//
+//	}
+//
+//	for (i = 0; i < LEN; i++)
+//	{
+//		if ((temp == months[i].monumb) || (strcmp(month, months[i].name) == 0) || strcmp(month, months[i].abbrev) == 0)
+//		{
+//			if (days > months[i].days)
+//			{
+//				return -1;
+//			}
+//			else
+//			{
+//				return total + days;
+//
+//			}
+//		}
+//
+//		else
+//		{
+//			total += months[i].days;
+//		}
+//	}
+//	return -1;
+//}
+//int main()
+//{
+//	int n, val;
+//	int day, year;
+//	char month[LEN];
+//
+//	printf("Please enter day,month and year (q to quit): ");
+//
+//	while (scanf("%d %11s %d", &day, month, &year) == 3)
+//	{
+//		is_leap_year(year);
+//		val = days_result(month, day);
+//
+//		if (val > 0)
+//		{
+//			printf("There are %d days from the beginning of %d to %s %d\n", val, year, month, day);
+//		}
+//		else
+//		{
+//			printf("You enter invalid datas!\n");
+//		}
+//
+//		months[1].days = 28;
+//		printf("You can enter day,month and year again (q to quit): ");
+//
+//	}
+//	printf("Done.\n");
+//
+//	return 0;
+//}
 
-struct month
+
+#define MAXTITL 40
+#define MAXAUTL 40
+#define MAXBKS 100
+
+struct book
 {
-	char name[10];
-	char abbrev[4];
-	int days;
-	int monumb;
+    char title[MAXTITL];
+    char author[MAXAUTL];
+    float value;
 };
 
-struct month months[LEN]=
+char* s_gets(char* st, int n);
+void sort_title(struct book* pb[], int n);
+void sort_value(struct book* pb[], int n);
+
+int main(void)
 {
-	{"January","Jan",31,1},
-	{"February","Feb",28,2},
-	{"March","Mar",31,3},
-	{"April","May",31,5},
-	{"May", "May", 31, 5},
-	{"June", "Jun", 30, 6},
-	{"July", "Jul", 31, 7},
-	{"August", "Aug", 31, 8},
-	{"September", "Sep", 30, 9},
-	{"October", "Oct", 31, 10},
-	{"November", "Nov", 30, 11},
-	{"December", "Dec", 31, 12}
-};
+    struct book library[MAXBKS];
+    struct book* book[MAXBKS];
+    int count = 0;
+    int index;
 
+    printf("Please enter the book title.\n");
+    printf("Press [enter] at the start of a line to stop.\n");
+    while (count < MAXBKS && s_gets(library[count].title, MAXTITL) && library[count].title[0] != '\0')
+    {
+        printf("Now enter the author.\n");
+        s_gets(library[count].author, MAXAUTL);
+        printf("Now enter the value.\n");
+        scanf("%f", &library[count].value);
+        book[count] = &library[count];
+        count++;
+        while (getchar() != '\n')
+            continue;
+        if (count < MAXBKS)
+        {
+            printf("Enter the next title.\n");
+        }
+    }
 
-void is_leap_year(int year)
-{
-	if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
-	{
-		months[1].days = 29;
-	}
+    if (count > 0)
+    {
+        printf("Here is the list of your books:\n");
+        for (index = 0; index < count; index++)
+        {
+            printf("%s by %s: $%.2f\n", library[index].title,
+                library[index].author, library[index].value);
+        }
+        sort_title(book, count);
+        printf("\nHere is the list of your books sorted by title letters:\n");
+        for (index = 0; index < count; index++)
+        {
+            printf("%s by %s: $%.2f\n", book[index]->title,
+                book[index]->author, book[index]->value);
+        }
+        sort_value(book, count);
+        printf("\nHere is the list of your books sorted by value(from low to high):\n");
+        for (index = 0; index < count; index++)
+        {
+            printf("%s by %s: $%.2f\n", book[index]->title,
+                book[index]->author, book[index]->value);
+        }
+    }
+    else
+    {
+        printf("No books? Too bad.\n");
+    }
 
-	return;
+    return 0;
 }
 
-int days_result(char* month, int days)
+void sort_title(struct book* pb[], int n)
 {
-	int i;
-	int total = 0;
-	int temp = atoi(month);
+    int i, j;
+    struct book* temp;
 
-	if (days < 1 || days>31)
-	{
-		return -1;
-	}
-
-	//用户输入的月份不是数字时要进行转换
-	if (0==temp)
-	{
-		month[0] = toupper(month[0]);
-
-		for (i = 1; month[i] != '\0';i++)
-		{
-			month[i] = tolower(month[i]);
-		}
-
-	}
-
-	for (i = 0; i < LEN; i++)
-	{
-		if ((temp == months[i].monumb) || (strcmp(month, months[i].name) == 0) || strcmp(month, months[i].abbrev) == 0)
-		{
-			if (days > months[i].days)
-			{
-				return -1;
-			}
-			else
-			{
-				return total + days;
-
-			}
-		}
-
-		else
-		{
-			total += months[i].days;
-		}
-	}
-	return -1;
+    for (i = 0; i < n - 1; i++)
+    {
+        for (j = i + 1; j < n; j++)
+        {
+            if (strcmp(pb[j]->title, pb[i]->title) < 0)
+            {
+                temp = pb[j];
+                pb[j] = pb[i];
+                pb[i] = temp;
+            }
+        }
+    }
+    return;
 }
-int main()
+
+void sort_value(struct book* pb[], int n)
 {
-	int n, val;
-	int day, year;
-	char month[LEN];
+    int i, j;
+    struct book* temp;
 
-	printf("Please enter day,month and year (q to quit): ");
-
-	while (scanf("%d %11s %d", &day, month, &year) == 3)
-	{
-		is_leap_year(year);
-		val = days_result(month, day);
-
-		if (val > 0)
-		{
-			printf("There are %d days from the beginning of %d to %s %d\n", val, year, month, day);
-		}
-		else
-		{
-			printf("You enter invalid datas!\n");
-		}
-
-		months[1].days = 28;
-		printf("You can enter day,month and year again (q to quit): ");
-
-	}
-	printf("Done.\n");
-
-	return 0;
+    for (i = 0; i < n - 1; i++)
+    {
+        for (j = i + 1; j < n; j++)
+        {
+            if (pb[j]->value < pb[i]->value)
+            {
+                temp = pb[j];
+                pb[j] = pb[i];
+                pb[i] = temp;
+            }
+        }
+    }
+    return;
 }
+
+char* s_gets(char* st, int n)
+{
+    char* ret_val;
+    char* find;
+
+    ret_val = fgets(st, n, stdin);
+    if (ret_val)
+    {
+        find = strchr(st, '\n');
+        if (find)
+        {
+            *find = '\0';
+        }
+        else
+        {
+            while (getchar() != '\n')
+                continue;
+        }
+    }
+    return ret_val;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
