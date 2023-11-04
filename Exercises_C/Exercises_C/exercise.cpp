@@ -8221,138 +8221,398 @@
 //}
 
 
-#define MAXTITL 40
-#define MAXAUTL 40
-#define MAXBKS 100
+//#define MAXTITL 40
+//#define MAXAUTL 40
+//#define MAXBKS 100
+//
+//struct book
+//{
+//    char title[MAXTITL];
+//    char author[MAXAUTL];
+//    float value;
+//};
+//
+//char* s_gets(char* st, int n);
+//void sort_title(struct book* pb[], int n);
+//void sort_value(struct book* pb[], int n);
+//
+//int main(void)
+//{
+//    struct book library[MAXBKS];
+//    struct book* book[MAXBKS];
+//    int count = 0;
+//    int index;
+//
+//    printf("Please enter the book title.\n");
+//    printf("Press [enter] at the start of a line to stop.\n");
+//    while (count < MAXBKS && s_gets(library[count].title, MAXTITL) && library[count].title[0] != '\0')
+//    {
+//        printf("Now enter the author.\n");
+//        s_gets(library[count].author, MAXAUTL);
+//        printf("Now enter the value.\n");
+//        scanf("%f", &library[count].value);
+//        book[count] = &library[count];
+//        count++;
+//        while (getchar() != '\n')
+//            continue;
+//        if (count < MAXBKS)
+//        {
+//            printf("Enter the next title.\n");
+//        }
+//    }
+//
+//    if (count > 0)
+//    {
+//        printf("Here is the list of your books:\n");
+//        for (index = 0; index < count; index++)
+//        {
+//            printf("%s by %s: $%.2f\n", library[index].title,
+//                library[index].author, library[index].value);
+//        }
+//        sort_title(book, count);
+//        printf("\nHere is the list of your books sorted by title letters:\n");
+//        for (index = 0; index < count; index++)
+//        {
+//            printf("%s by %s: $%.2f\n", book[index]->title,
+//                book[index]->author, book[index]->value);
+//        }
+//        sort_value(book, count);
+//        printf("\nHere is the list of your books sorted by value(from low to high):\n");
+//        for (index = 0; index < count; index++)
+//        {
+//            printf("%s by %s: $%.2f\n", book[index]->title,
+//                book[index]->author, book[index]->value);
+//        }
+//    }
+//    else
+//    {
+//        printf("No books? Too bad.\n");
+//    }
+//
+//    return 0;
+//}
+//
+//void sort_title(struct book* pb[], int n)
+//{
+//    int i, j;
+//    struct book* temp;
+//
+//    for (i = 0; i < n - 1; i++)
+//    {
+//        for (j = i + 1; j < n; j++)
+//        {
+//            if (strcmp(pb[j]->title, pb[i]->title) < 0)
+//            {
+//                temp = pb[j];
+//                pb[j] = pb[i];
+//                pb[i] = temp;
+//            }
+//        }
+//    }
+//    return;
+//}
+//
+//void sort_value(struct book* pb[], int n)
+//{
+//    int i, j;
+//    struct book* temp;
+//
+//    for (i = 0; i < n - 1; i++)
+//    {
+//        for (j = i + 1; j < n; j++)
+//        {
+//            if (pb[j]->value < pb[i]->value)
+//            {
+//                temp = pb[j];
+//                pb[j] = pb[i];
+//                pb[i] = temp;
+//            }
+//        }
+//    }
+//    return;
+//}
+//
+//char* s_gets(char* st, int n)
+//{
+//    char* ret_val;
+//    char* find;
+//
+//    ret_val = fgets(st, n, stdin);
+//    if (ret_val)
+//    {
+//        find = strchr(st, '\n');
+//        if (find)
+//        {
+//            *find = '\0';
+//        }
+//        else
+//        {
+//            while (getchar() != '\n')
+//                continue;
+//        }
+//    }
+//    return ret_val;
+//}
 
-struct book
+
+//#define MAXLINE 20
+//int main()
+//{
+//	char line[MAXLINE];
+//
+//	while (fgets(line, MAXLINE, stdin) != NULL && line[0] != '\n')
+//	{
+//		fputs(line, stdout);
+//	}
+// 
+//	return 0;
+//}
+
+
+/* reverse --- 反序显示一个文件*/
+
+//#define CNTLZ '\032'  /* DOS文本文件中的文件结尾标记 */
+//#define SLEN 50
+//
+//int main()
+//{
+//	char file[SLEN];
+//	char ch;
+//	FILE* fp;
+//	long count, last;
+//
+//	puts("Enter the name of the file to be processed: ");
+//	gets_s(file);
+//
+//	if ((fp = fopen(file, "rb")) == NULL)
+//	{
+//		printf("reverse can't open %s\n", file);
+//		exit(1);
+//	}
+//
+//
+//	//把当前位置设置为从文件结尾处偏移0字节处，也就是将位置设定在文件结尾
+//	fseek(fp, 0L, SEEK_END);            // 定位到文件结尾处
+//	
+//	//把文件开始到文件结尾的字节数目赋给 last
+//	last = ftell(fp);
+//
+//	//接下来是一个循环：
+//	//第一次循环将程序定位到文件结尾前的第一个字符，即文件的最后一个字符。然后打印这个字符。
+//	//下一次循环将程序定位到前一个字符并打印
+//	//这中操作会一直持续到到达第一个字符并打印之。
+//
+//	for (count = 1L;count <= last; count++)
+//	{
+//		fseek(fp, -count, SEEK_END);    // 回退
+//		ch = getc(fp);
+//		
+//		// 针对DOS，在UNIX下也可工作
+//
+//		if (ch != CNTLZ && ch != '\r')
+//		{
+//			putchar(ch);
+//		}
+//
+//		// 针对Macintosh
+//		/* if(ch=='\r') putchar('\n');
+//			else
+//			{
+//				putchar(ch);
+//			}
+//		*/
+//
+//	}
+//
+//	putchar('\n');
+//	fclose(fp);
+//
+//	return 0;
+//}
+
+
+// 编写一个程序，创建一个有两个成员的结构模板：
+// a.第1个成员是社会保险号 ，第2个成员是一个有3个成员的结构：名、中间名和姓
+//   创建并初始化一个内含5个该类型结构的数组
+//   Dribble,Flossie M.
+//   如果有中间名，只打印它第一个字母，后面加一个点(.);
+//   如果没有中间名，则不用打印点
+// b.修改a部分，传递结构的值而不是结构的地址
+
+//#define MAXLEN 20
+//#define NUM 5
+//
+//
+//typedef struct PersonInfomation
+//{
+//	char name[MAXLEN];     //名
+//	char midname[MAXLEN];  //中间名
+//	char surname[MAXLEN];  //姓
+//
+//}PerInfor;
+//
+//typedef struct SocialInsurance
+//{
+//	int socialnumber;  // 社会保险号
+//	PerInfor person;
+//}SocIns;
+//
+////struct SocialInsurance PerInsure[NUM];  //5个结构体元素
+//
+//int main()
+//{
+//	
+//	SocIns PerInsure[NUM];  //5个结构体元素
+//	
+//	//initial
+//
+//	for (int i = 0; i < NUM; i++)
+//	{
+//		printf("Please input %d-th person number: \n", i + 1);
+//		scanf("%d", &(PerInsure[i].socialnumber));
+//
+//		printf("Please input %d-th person name: \n", i + 1);
+//		scanf("%s", &(PerInsure[i].person.name));
+//		while (getchar()!='\n')
+//		{
+//			continue;
+//		}
+//		
+//		scanf("%s", &(PerInsure[i].person.midname));
+//		while (getchar() != '\n')
+//		{
+//			continue;
+//		}
+//		scanf("%s",&(PerInsure[i].person.surname));
+//		while (getchar() != '\n')
+//		{
+//			continue;
+//		}
+//
+//	}
+//
+//	//print
+//	printf("Social person insurance list below:");
+//	for (int i = 0; i < NUM; i++)
+//	{
+//		printf("%d-th person: ", i + 1);
+//		printf("%s,", PerInsure[i].person.surname);
+//		printf("%s ", PerInsure[i].person.name);
+//		if (strlen(PerInsure[i].person.midname) != 0)
+//		{
+//			printf("%c.", PerInsure[i].person.midname);
+//		}
+//		printf(" -- %d\n", PerInsure[i].socialnumber);
+//	
+//	}
+//	return 0;
+//}
+
+
+#define N 15
+#define LEN 30
+
+struct names
 {
-    char title[MAXTITL];
-    char author[MAXAUTL];
-    float value;
+	char fname[N];
+	char mname[N];
+	char lname[N];
+
 };
 
-char* s_gets(char* st, int n);
-void sort_title(struct book* pb[], int n);
-void sort_value(struct book* pb[], int n);
-
-int main(void)
+struct messages
 {
-    struct book library[MAXBKS];
-    struct book* book[MAXBKS];
-    int count = 0;
-    int index;
-
-    printf("Please enter the book title.\n");
-    printf("Press [enter] at the start of a line to stop.\n");
-    while (count < MAXBKS && s_gets(library[count].title, MAXTITL) && library[count].title[0] != '\0')
-    {
-        printf("Now enter the author.\n");
-        s_gets(library[count].author, MAXAUTL);
-        printf("Now enter the value.\n");
-        scanf("%f", &library[count].value);
-        book[count] = &library[count];
-        count++;
-        while (getchar() != '\n')
-            continue;
-        if (count < MAXBKS)
-        {
-            printf("Enter the next title.\n");
-        }
-    }
-
-    if (count > 0)
-    {
-        printf("Here is the list of your books:\n");
-        for (index = 0; index < count; index++)
-        {
-            printf("%s by %s: $%.2f\n", library[index].title,
-                library[index].author, library[index].value);
-        }
-        sort_title(book, count);
-        printf("\nHere is the list of your books sorted by title letters:\n");
-        for (index = 0; index < count; index++)
-        {
-            printf("%s by %s: $%.2f\n", book[index]->title,
-                book[index]->author, book[index]->value);
-        }
-        sort_value(book, count);
-        printf("\nHere is the list of your books sorted by value(from low to high):\n");
-        for (index = 0; index < count; index++)
-        {
-            printf("%s by %s: $%.2f\n", book[index]->title,
-                book[index]->author, book[index]->value);
-        }
-    }
-    else
-    {
-        printf("No books? Too bad.\n");
-    }
-
-    return 0;
-}
-
-void sort_title(struct book* pb[], int n)
-{
-    int i, j;
-    struct book* temp;
-
-    for (i = 0; i < n - 1; i++)
-    {
-        for (j = i + 1; j < n; j++)
-        {
-            if (strcmp(pb[j]->title, pb[i]->title) < 0)
-            {
-                temp = pb[j];
-                pb[j] = pb[i];
-                pb[i] = temp;
-            }
-        }
-    }
-    return;
-}
-
-void sort_value(struct book* pb[], int n)
-{
-    int i, j;
-    struct book* temp;
-
-    for (i = 0; i < n - 1; i++)
-    {
-        for (j = i + 1; j < n; j++)
-        {
-            if (pb[j]->value < pb[i]->value)
-            {
-                temp = pb[j];
-                pb[j] = pb[i];
-                pb[i] = temp;
-            }
-        }
-    }
-    return;
-}
+	char ints_num[LEN];
+	struct names name;
+};
 
 char* s_gets(char* st, int n)
 {
-    char* ret_val;
-    char* find;
+	char* ret_val;
+	char* find;
 
-    ret_val = fgets(st, n, stdin);
-    if (ret_val)
-    {
-        find = strchr(st, '\n');
-        if (find)
-        {
-            *find = '\0';
-        }
-        else
-        {
-            while (getchar() != '\n')
-                continue;
-        }
-    }
-    return ret_val;
+	ret_val = fgets(st, n, stdin);
+	if (ret_val)
+	{
+		find = strchr(st, '\n');
+
+		if (find)
+		{
+			*find = '\0';
+		}
+		else
+		{
+			while (getchar() != '\n')
+			{
+				continue;
+			}
+		}
+
+	}
+
+	return ret_val;
 }
+
+void show(const struct messages pt[], int n)
+{
+	int i = 0;
+
+	for (i = 0; i < n; i++)
+	{
+		if (pt[i].name.mname[0] == '\0')
+		{
+			printf("%s, %s", pt[i].name.fname, pt[i].name.lname);
+			printf(" -- %s\n", pt[i].ints_num);
+		}
+		else
+		{
+			printf("%s, %s %c.", pt[i].name.fname, pt[i].name.lname, pt[i].name.mname[0]);
+			printf(" -- %s\n", pt[i].ints_num);
+		}
+
+	}
+
+	return;
+
+}
+
+int main()
+{
+	int count = 0;
+
+	struct messages m[5];
+	printf("Please enter the insurance number:\n");
+	printf("Press [enter] at the start of a line to stop.\n");
+
+	while (count<5&&s_gets(m[count].ints_num,LEN)&&m[count].ints_num[0])
+	{
+		printf("Now enter the former name.\n");
+		s_gets(m[count].name.fname, N);
+		printf("Now enter the middle name(Without, [enter] to the next).\n");
+		s_gets(m[count].name.mname, N);
+		printf("Now enter the last name.\n");
+		s_gets(m[count].name.lname, N);
+		if (count++<5)
+		{
+			printf("Enter the next insurance number:\n");
+		}
+	
+	}
+	if (count > 0)
+	{
+		show(m, count);
+	}
+	else
+	{
+		printf("No data!\n");
+	}
+
+
+	return 0;
+}
+
+
+
 
 
 
