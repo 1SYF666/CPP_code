@@ -8509,107 +8509,220 @@
 //}
 
 
-#define N 15
-#define LEN 30
+//#define N 15
+//#define LEN 30
+//
+//struct names
+//{
+//	char fname[N];
+//	char mname[N];
+//	char lname[N];
+//
+//};
+//
+//struct messages
+//{
+//	char ints_num[LEN];
+//	struct names name;
+//};
+//
+//char* s_gets(char* st, int n)
+//{
+//	char* ret_val;
+//	char* find;
+//
+//	ret_val = fgets(st, n, stdin);
+//	if (ret_val)
+//	{
+//		find = strchr(st, '\n');
+//
+//		if (find)
+//		{
+//			*find = '\0';
+//		}
+//		else
+//		{
+//			while (getchar() != '\n')
+//			{
+//				continue;
+//			}
+//		}
+//
+//	}
+//
+//	return ret_val;
+//}
+//
+//void show(const struct messages pt[], int n)
+//{
+//	int i = 0;
+//
+//	for (i = 0; i < n; i++)
+//	{
+//		if (pt[i].name.mname[0] == '\0')
+//		{
+//			printf("%s, %s", pt[i].name.fname, pt[i].name.lname);
+//			printf(" -- %s\n", pt[i].ints_num);
+//		}
+//		else
+//		{
+//			printf("%s, %s %c.", pt[i].name.fname, pt[i].name.lname, pt[i].name.mname[0]);
+//			printf(" -- %s\n", pt[i].ints_num);
+//		}
+//
+//	}
+//
+//	return;
+//
+//}
+//
+//int main()
+//{
+//	int count = 0;
+//
+//	struct messages m[5];
+//	printf("Please enter the insurance number:\n");
+//	printf("Press [enter] at the start of a line to stop.\n");
+//
+//	while (count<5&&s_gets(m[count].ints_num,LEN)&&m[count].ints_num[0])
+//	{
+//		printf("Now enter the former name.\n");
+//		s_gets(m[count].name.fname, N);
+//		printf("Now enter the middle name(Without, [enter] to the next).\n");
+//		s_gets(m[count].name.mname, N);
+//		printf("Now enter the last name.\n");
+//		s_gets(m[count].name.lname, N);
+//		if (count++<5)
+//		{
+//			printf("Enter the next insurance number:\n");
+//		}
+//	
+//	}
+//	if (count > 0)
+//	{
+//		show(m, count);
+//	}
+//	else
+//	{
+//		printf("No data!\n");
+//	}
+//
+//
+//	return 0;
+//}
 
-struct names
+//*******************2023/11/06 19:24*********************//
+
+// 文本文件：
+// 每一行数据：4 Jessie Joybat 5 2 1 1
+// 球员号：0-18；球员的名；球员的姓；上场次数；
+// 最后三项分别是：击中数 走垒数 和打点数(RBI)
+// C:\Users\PC\Desktop\C\test2.txt
+//
+
+
+#define LEN 19
+
+typedef struct
 {
-	char fname[N];
-	char mname[N];
-	char lname[N];
+	int id;				//球员的编号
+	char fname[LEN];	//球员的名
+	char lname[LEN];	//球员的姓
+	int stage_num;		//球员的上场次数;
+	int hit_num;		//球员的击中数;
+	int base_num;		//球员的走垒数;
+	int rbi;			//球员的打点;
+	double hit_rate;	//球员的安打率;
 
-};
+}TEAM;
 
-struct messages
+static TEAM players[LEN];
+
+int read_datas(TEAM platyers[], int n, FILE* fp)
 {
-	char ints_num[LEN];
-	struct names name;
-};
+	int count = 0;
+	char fname[LEN], lname[LEN];
+	int m, stage_num, hit_num, base_num, rbi;
 
-char* s_gets(char* st, int n)
-{
-	char* ret_val;
-	char* find;
-
-	ret_val = fgets(st, n, stdin);
-	if (ret_val)
+	while (7 == fscanf(fp, "%d %18s %18s %d %d %d %d",
+		&m, fname, lname, &stage_num, &hit_num, &base_num, &rbi)
+		&& !feof(fp) && count < n)
 	{
-		find = strchr(st, '\n');
-
-		if (find)
+		//球员信息为空则累计球员数量, 防止超出人数限制19人;
+		if (platyers[m].stage_num == 0)
 		{
-			*find = '\0';
+			++count;
 		}
-		else
-		{
-			while (getchar() != '\n')
-			{
-				continue;
-			}
-		}
+		strcpy(players[m].fname, fname);
+		strcpy(players[m].lname, lname);
 
+		players[m].id = m;
+		players[m].stage_num += stage_num;
+		platyers[m].hit_num += hit_num;
+		platyers[m].base_num += base_num;
+		players[m].rbi += rbi;
 	}
 
-	return ret_val;
+	return count;
 }
-
-void show(const struct messages pt[], int n)
+void count_hit_rate(TEAM platyers[], int n)
 {
-	int i = 0;
-
-	for (i = 0; i < n; i++)
+	for (int i = 0; i < n; i++)
 	{
-		if (pt[i].name.mname[0] == '\0')
-		{
-			printf("%s, %s", pt[i].name.fname, pt[i].name.lname);
-			printf(" -- %s\n", pt[i].ints_num);
-		}
-		else
-		{
-			printf("%s, %s %c.", pt[i].name.fname, pt[i].name.lname, pt[i].name.mname[0]);
-			printf(" -- %s\n", pt[i].ints_num);
-		}
+		players[i].hit_rate = 1.0 * players[i].hit_num / platyers[i].stage_num;
+	}
+}
+void show_messages(TEAM platyers[], int n)
+{
+	if (0 == n)
+	{
+		printf("No datas!\n");
+		return;
+	}
 
+	printf("Datas for all players:\n");
+	printf("Id First_name Last_name Stage Hit_rate Base_num RBI Hit_rate\n");
+
+	for (int i = 0; i < n; i++)
+	{
+		if (players[i].stage_num)
+		{
+			printf("%-4d %-12s %-10s %5d %7d %11d %8d %8.2f\n",
+
+				players[i].id, players[i].fname, players[i].lname,
+				players[i].stage_num, players[i].hit_num, platyers[i].base_num,
+				platyers[i].rbi, players[i].hit_rate);
+		}
 	}
 
 	return;
-
 }
-
-int main()
+int main(void)
 {
-	int count = 0;
+	FILE* fp;
 
-	struct messages m[5];
-	printf("Please enter the insurance number:\n");
-	printf("Press [enter] at the start of a line to stop.\n");
-
-	while (count<5&&s_gets(m[count].ints_num,LEN)&&m[count].ints_num[0])
+	if ((fp = fopen("C:\\Users\\PC\\Desktop\\C\\test2.txt", "r")) == NULL)
 	{
-		printf("Now enter the former name.\n");
-		s_gets(m[count].name.fname, N);
-		printf("Now enter the middle name(Without, [enter] to the next).\n");
-		s_gets(m[count].name.mname, N);
-		printf("Now enter the last name.\n");
-		s_gets(m[count].name.lname, N);
-		if (count++<5)
-		{
-			printf("Enter the next insurance number:\n");
-		}
-	
-	}
-	if (count > 0)
-	{
-		show(m, count);
-	}
-	else
-	{
-		printf("No data!\n");
+		fprintf(stderr, "Can't open file datas.txt.\n");
+		exit(EXIT_FAILURE);
 	}
 
+	//统计文件中不同球员的数量
+	int len = read_datas(players, LEN, fp);
+	count_hit_rate(players, len);
+	show_messages(players, len);
+
+	if (fclose(fp) != 0)
+	{
+		fprintf(stderr, "Can't close file test2.txt.\n");
+	}
 
 	return 0;
 }
+
+
+
+
 
 
 
