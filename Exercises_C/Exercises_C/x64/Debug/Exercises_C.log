@@ -6,4 +6,4 @@ C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\exercise.cpp(4198,1
 C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\exercise.cpp(5689,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
 C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\exercise.cpp(7129,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
 C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\exercise.cpp(8408,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-  Exercises_C.vcxproj -> C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\x64\Debug\Exercises_C.exe
+LINK : fatal error LNK1201: 写入程序数据库“C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\x64\Debug\Exercises_C.pdb”时出错；请检查是否是磁盘空间不足、路径无效或权限不够

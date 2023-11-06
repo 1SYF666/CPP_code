@@ -8621,104 +8621,214 @@
 //
 
 
-#define LEN 19
+//#define LEN 19
+//
+//typedef struct
+//{
+//	int id;				//球员的编号
+//	char fname[LEN];	//球员的名
+//	char lname[LEN];	//球员的姓
+//	int stage_num;		//球员的上场次数;
+//	int hit_num;		//球员的击中数;
+//	int base_num;		//球员的走垒数;
+//	int rbi;			//球员的打点;
+//	double hit_rate;	//球员的安打率;
+//
+//}TEAM;
+//
+//static TEAM players[LEN];
+//
+//int read_datas(TEAM platyers[], int n, FILE* fp)
+//{
+//	int count = 0;
+//	char fname[LEN], lname[LEN];
+//	int m, stage_num, hit_num, base_num, rbi;
+//
+//	while (7 == fscanf(fp, "%d %18s %18s %d %d %d %d",
+//		&m, fname, lname, &stage_num, &hit_num, &base_num, &rbi)
+//		&& !feof(fp) && count < n)
+//	{
+//		//球员信息为空则累计球员数量, 防止超出人数限制19人;
+//		if (platyers[m].stage_num == 0)
+//		{
+//
+//			++count;
+//
+//		}
+//
+//		strcpy(players[m].fname, fname);
+//		strcpy(players[m].lname, lname);
+//
+//		players[m].id = m;
+//		players[m].stage_num += stage_num;
+//		platyers[m].hit_num += hit_num;
+//		platyers[m].base_num += base_num;
+//		players[m].rbi += rbi;
+//
+//	}
+//
+//	return count;
+//}
+//void count_hit_rate(TEAM platyers[], int n)
+//{
+//	for (int i = 0; i < n; i++)
+//	{
+//		players[i].hit_rate = 1.0 * players[i].hit_num / platyers[i].stage_num;
+//	}
+//}
+//void show_messages(TEAM platyers[], int n)
+//{
+//	if (0 == n)
+//	{
+//		printf("No datas!\n");
+//		return;
+//	}
+//
+//	printf("Datas for all players:\n");
+//	printf("Id First_name Last_name Stage Hit_rate Base_num RBI Hit_rate\n");
+//
+//	for (int i = 0; i < n; i++)
+//	{
+//		if (players[i].stage_num)
+//		{
+//			printf("%-4d %-12s %-10s %5d %7d %11d %8d %8.2f\n",
+//
+//				players[i].id, players[i].fname, players[i].lname,
+//				players[i].stage_num, players[i].hit_num, platyers[i].base_num,
+//				platyers[i].rbi, players[i].hit_rate);
+//		}
+//	}
+//
+//	return;
+//}
+//int main(void)
+//{
+//	FILE* fp;
+//
+//	if ((fp = fopen("C:\\Users\\PC\\Desktop\\C\\test2.txt", "r")) == NULL)
+//	{
+//		fprintf(stderr, "Can't open file datas.txt.\n");
+//		exit(EXIT_FAILURE);
+//	}
+//
+//	//统计文件中不同球员的数量
+//	int len = read_datas(players, LEN, fp);
+//	count_hit_rate(players, len);
+//	show_messages(players, len);
+//
+//	if (fclose(fp) != 0)
+//	{
+//		fprintf(stderr, "Can't close file test2.txt.\n");
+//	}
+//
+//	return 0;
+//}
 
-typedef struct
+/* booksave.c -- 把结构体内容保存到文件中 */
+#define MAXTLTL 40
+#define MAXAUTL 40
+#define MAXBKS 10
+
+//建立 book 模板
+struct book  
 {
-	int id;				//球员的编号
-	char fname[LEN];	//球员的名
-	char lname[LEN];	//球员的姓
-	int stage_num;		//球员的上场次数;
-	int hit_num;		//球员的击中数;
-	int base_num;		//球员的走垒数;
-	int rbi;			//球员的打点;
-	double hit_rate;	//球员的安打率;
+	char title[MAXTLTL];
+	char author[MAXAUTL];
+	float value;
+};
 
-}TEAM;
 
-static TEAM players[LEN];
-
-int read_datas(TEAM platyers[], int n, FILE* fp)
-{
-	int count = 0;
-	char fname[LEN], lname[LEN];
-	int m, stage_num, hit_num, base_num, rbi;
-
-	while (7 == fscanf(fp, "%d %18s %18s %d %d %d %d",
-		&m, fname, lname, &stage_num, &hit_num, &base_num, &rbi)
-		&& !feof(fp) && count < n)
-	{
-		//球员信息为空则累计球员数量, 防止超出人数限制19人;
-		if (platyers[m].stage_num == 0)
-		{
-			++count;
-		}
-		strcpy(players[m].fname, fname);
-		strcpy(players[m].lname, lname);
-
-		players[m].id = m;
-		players[m].stage_num += stage_num;
-		platyers[m].hit_num += hit_num;
-		platyers[m].base_num += base_num;
-		players[m].rbi += rbi;
-	}
-
-	return count;
-}
-void count_hit_rate(TEAM platyers[], int n)
-{
-	for (int i = 0; i < n; i++)
-	{
-		players[i].hit_rate = 1.0 * players[i].hit_num / platyers[i].stage_num;
-	}
-}
-void show_messages(TEAM platyers[], int n)
-{
-	if (0 == n)
-	{
-		printf("No datas!\n");
-		return;
-	}
-
-	printf("Datas for all players:\n");
-	printf("Id First_name Last_name Stage Hit_rate Base_num RBI Hit_rate\n");
-
-	for (int i = 0; i < n; i++)
-	{
-		if (players[i].stage_num)
-		{
-			printf("%-4d %-12s %-10s %5d %7d %11d %8d %8.2f\n",
-
-				players[i].id, players[i].fname, players[i].lname,
-				players[i].stage_num, players[i].hit_num, platyers[i].base_num,
-				platyers[i].rbi, players[i].hit_rate);
-		}
-	}
-
-	return;
-}
 int main(void)
 {
-	FILE* fp;
+	struct book libraray[MAXBKS];  
+	int count = 0;
+	int index, filecount;
+	FILE* pbooks;
 
-	if ((fp = fopen("C:\\Users\\PC\\Desktop\\C\\test2.txt", "r")) == NULL)
+	int size = sizeof(struct book);
+
+	// a+ 部分允许程序读入整个文件，并向文件末尾添加数据
+	// b 是ANSI表示程序要使用二进制文件格式的方法
+	
+	if ((pbooks = fopen("book.dat", "a+b")) == NULL)
 	{
-		fprintf(stderr, "Can't open file datas.txt.\n");
-		exit(EXIT_FAILURE);
+		fputs("Can't open book.dat file\n", stderr);
+		exit(1);
 	}
 
-	//统计文件中不同球员的数量
-	int len = read_datas(players, LEN, fp);
-	count_hit_rate(players, len);
-	show_messages(players, len);
+	rewind(pbooks);
 
-	if (fclose(fp) != 0)
+	while (count < MAXBKS && fread(&libraray[count], size, 1, pbooks) == 1)
 	{
-		fprintf(stderr, "Can't close file test2.txt.\n");
+		if (count == 0)
+		{
+			puts("Current contents of book.dat： ");
+		}
+		printf("%s by %s: $%.2f\n ", 
+			   libraray[count].title,
+			   libraray[count].author,
+			   libraray[count].value);
+
+		count++;
 	}
+
+	filecount = count++;
+
+	if (count == MAXBKS)
+	{
+		fputs("The book.dat file is full.", stderr);
+		exit(2);
+	}
+
+	puts("Please add new book titles.");
+	puts("Press [enter] at the start of a line to stop. ");
+
+	while (count<MAXBKS && 
+		   gets_s(libraray[count].title)!=NULL &&
+		   libraray[count].title[0]!='\0')
+	{
+		puts("Now enter the author. ");
+		gets_s(libraray[count].author);
+		puts("Now enter the value. ");
+		scanf("%f", &libraray[count++].value);
+		while (getchar() != '\n')
+		{
+			continue;    //清空输入行
+		}
+
+		if (count < MAXBKS)
+		{
+			puts("Enter  the next title.");
+		}
+
+	}
+
+	if (count > 0)
+	{
+		puts("Here is the list of your books: ");
+
+		for (index = 0; index < count; index++)
+		{
+			printf("%s by %s; $%.2f\n", libraray[index].title,
+				libraray[index].author, libraray[index].value);
+
+		}
+
+		fwrite(&libraray[filecount], size, count - filecount, pbooks);
+	}
+	else
+	{
+		puts("No books? Too bad.\n");
+	}
+	puts("Bye.\n");
+
+	fclose(pbooks);
 
 	return 0;
 }
+
+
+
 
 
 
