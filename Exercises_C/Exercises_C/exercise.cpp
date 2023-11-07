@@ -8724,105 +8724,190 @@
 //	return 0;
 //}
 
-/* booksave.c -- 把结构体内容保存到文件中 */
-#define MAXTLTL 40
-#define MAXAUTL 40
-#define MAXBKS 10
+///* booksave.c -- 把结构体内容保存到文件中 */
+//#define MAXTLTL 40
+//#define MAXAUTL 40
+//#define MAXBKS 10
+//
+////建立 book 模板
+//struct book  
+//{
+//	char title[MAXTLTL];
+//	char author[MAXAUTL];
+//	float value;
+//};
+//
+//
+//int main(void)
+//{
+//	struct book libraray[MAXBKS];  
+//	int count = 0;
+//	int index, filecount;
+//	FILE* pbooks;
+//
+//	int size = sizeof(struct book);
+//
+//	// a+ 部分允许程序读入整个文件，并向文件末尾添加数据
+//	// b 是ANSI表示程序要使用二进制文件格式的方法
+//	
+//	if ((pbooks = fopen("book.dat", "a+b")) == NULL)
+//	{
+//		fputs("Can't open book.dat file\n", stderr);
+//		exit(1);
+//	}
+//
+//	rewind(pbooks);
+//
+//	while (count < MAXBKS && fread(&libraray[count], size, 1, pbooks) == 1)
+//	{
+//		if (count == 0)
+//		{
+//			puts("Current contents of book.dat： ");
+//		}
+//		printf("%s by %s: $%.2f\n ", 
+//			   libraray[count].title,
+//			   libraray[count].author,
+//			   libraray[count].value);
+//
+//		count++;
+//	}
+//
+//	filecount = count++;
+//
+//	if (count == MAXBKS)
+//	{
+//		fputs("The book.dat file is full.", stderr);
+//		exit(2);
+//	}
+//
+//	puts("Please add new book titles.");
+//	puts("Press [enter] at the start of a line to stop. ");
+//
+//	while (count<MAXBKS && 
+//		   gets_s(libraray[count].title)!=NULL &&
+//		   libraray[count].title[0]!='\0')
+//	{
+//		puts("Now enter the author. ");
+//		gets_s(libraray[count].author);
+//		puts("Now enter the value. ");
+//		scanf("%f", &libraray[count++].value);
+//		while (getchar() != '\n')
+//		{
+//			continue;    //清空输入行
+//		}
+//
+//		if (count < MAXBKS)
+//		{
+//			puts("Enter  the next title.");
+//		}
+//
+//	}
+//
+//	if (count > 0)
+//	{
+//		puts("Here is the list of your books: ");
+//
+//		for (index = 0; index < count; index++)
+//		{
+//			printf("%s by %s; $%.2f\n", libraray[index].title,
+//				libraray[index].author, libraray[index].value);
+//
+//		}
+//
+//		fwrite(&libraray[filecount], size, count - filecount, pbooks);
+//	}
+//	else
+//	{
+//		puts("No books? Too bad.\n");
+//	}
+//	puts("Bye.\n");
+//
+//	fclose(pbooks);
+//
+//	return 0;
+//}
 
-//建立 book 模板
-struct book  
+
+//*******************2023/11/07 20:33*********************//
+// 
+// 座位预订程序
+// 12个结构的数组 ，each struct include number、reserve?、person names and surnames of reservers
+// show menu();
+// choose d or e ui manipulate
+
+
+#define LEN 14
+#define SEATS 12
+
+typedef struct BOOKSEAT
 {
-	char title[MAXTLTL];
-	char author[MAXAUTL];
-	float value;
-};
+	int seatid;
+	bool status;
+	char last[LEN];
+	char first[LEN];
+}plane;
 
+int getmenu(void);
+int get_first(void);
+void eatline(void);
+int openings(const plane pl[], int n);  //dispaly the num of empty
+void show_empty_seats(const plane pl[], int n);
+void makelist(const plane pl[], char* str, int kind);
 
-int main(void)
+int main()
 {
-	struct book libraray[MAXBKS];  
-	int count = 0;
-	int index, filecount;
-	FILE* pbooks;
+	int i = 0;
+	int choice=0;
 
-	int size = sizeof(struct book);
+	plane plane_seat[SEATS];
+	plane* ps[SEATS];  //结构体指针---数组
 
-	// a+ 部分允许程序读入整个文件，并向文件末尾添加数据
-	// b 是ANSI表示程序要使用二进制文件格式的方法
+
+	for (i = 0; i < SEATS; i++)
+	{
+		ps[i] = &plane_seat[i];
+	}
 	
-	if ((pbooks = fopen("book.dat", "a+b")) == NULL)
+	for (i = 0; i < SEATS; i++)
 	{
-		fputs("Can't open book.dat file\n", stderr);
-		exit(1);
+		plane_seat[i].status = false;
+		plane_seat[i].seatid = i + 1;
 	}
 
-	rewind(pbooks);
-
-	while (count < MAXBKS && fread(&libraray[count], size, 1, pbooks) == 1)
+	while ((choice = getmenu()) != 'f')
 	{
-		if (count == 0)
+		switch (choice)
 		{
-			puts("Current contents of book.dat： ");
+		case 'a':
+		{
+			printf("There are %d empty seats.\n", openings(plane_seat, SEATS));
 		}
-		printf("%s by %s: $%.2f\n ", 
-			   libraray[count].title,
-			   libraray[count].author,
-			   libraray[count].value);
-
-		count++;
-	}
-
-	filecount = count++;
-
-	if (count == MAXBKS)
-	{
-		fputs("The book.dat file is full.", stderr);
-		exit(2);
-	}
-
-	puts("Please add new book titles.");
-	puts("Press [enter] at the start of a line to stop. ");
-
-	while (count<MAXBKS && 
-		   gets_s(libraray[count].title)!=NULL &&
-		   libraray[count].title[0]!='\0')
-	{
-		puts("Now enter the author. ");
-		gets_s(libraray[count].author);
-		puts("Now enter the value. ");
-		scanf("%f", &libraray[count++].value);
-		while (getchar() != '\n')
+		case 'b':
 		{
-			continue;    //清空输入行
+			show_empty_seats(plane_seat, SEATS);
+			break;
+		}
+		case 'c':
+		{
+			break;
+		}
+		case 'd':
+		{
+			break;
+		}
+		case 'e':
+		{
+			break;
 		}
 
-		if (count < MAXBKS)
-		{
-			puts("Enter  the next title.");
+		default:
+			break;
 		}
 
+		putchar('\n');
 	}
 
-	if (count > 0)
-	{
-		puts("Here is the list of your books: ");
-
-		for (index = 0; index < count; index++)
-		{
-			printf("%s by %s; $%.2f\n", libraray[index].title,
-				libraray[index].author, libraray[index].value);
-
-		}
-
-		fwrite(&libraray[filecount], size, count - filecount, pbooks);
-	}
-	else
-	{
-		puts("No books? Too bad.\n");
-	}
-	puts("Bye.\n");
-
-	fclose(pbooks);
+	puts("Bye from Colossus AirLines!");
 
 	return 0;
 }
@@ -8830,6 +8915,106 @@ int main(void)
 
 
 
+
+int getmenu(void)
+{
+	int ch;
+	puts("To choose a function, enter its letter label:");
+	puts("a) Show number of empty seats");
+	puts("b) Show list of empty seats");
+	puts("c) Show alphabetical list of seat");
+	puts("d) Assign a customer to a seat");
+	puts("e) Delete a seat assignment");
+	puts("f) Quit");
+	printf("Please you enter to choose: ");
+
+	while (ch=get_first(),NULL==strchr("abcdef",ch))
+	{
+		printf("Invalid data! Please you choose again: ");
+	}
+	
+	return ch;
+}
+
+int get_first(void)
+{
+	int ch;
+
+	do
+	{
+		// int tolower(int c) 把给定的字母转换为小写字母。
+		ch = tolower(getchar());
+
+		// int isspace(int c) 检查所传的字符是否是空白字符。
+		// 如果 c 是一个空白字符，则该函数返回非零值（true），否则返回 0（false）
+	} while (isspace(ch));
+
+	eatline();
+	return ch;
+}
+
+void eatline(void)
+{
+	while (getchar() != '\n')
+	{
+		continue;
+	}
+	return;
+}
+
+//dispaly the num of empty
+int openings(const plane pl[], int n) 
+{
+	int seat;
+	int count = 0;
+
+	for (seat = 0; seat < n; seat++)
+	{
+		if (pl[seat].status == false)
+		{
+			count++;
+		}
+	}
+
+	return count++;
+}
+
+//显示座位信息
+void show_empty_seats(const plane pl[], int n)
+{
+	char seating[3 * SEATS];
+
+	if (openings(pl, n) == 0)
+	{
+		puts("All seats are assigned");
+	}
+	else
+	{
+		makelist(pl, seating, false);
+		printf("The following seats are avalible: ");
+		puts(seating);
+	}
+
+}
+
+void makelist(const plane pl[], char* str, int kind)
+{
+	int seat;
+	char temp[LEN];
+	*str = '\0'; //clear the str
+	for (seat = 0; seat < SEATS; seat++)
+	{
+		if (pl[seat].status == kind)
+		{
+			//seat id -->temp -->str
+			// for manipulate
+			sprintf(temp, "%d", pl[seat].seatid);
+			
+			strcat(str, temp);
+		}
+	}
+	return;
+}
 
 
 
