@@ -6,5 +6,5 @@ C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\exercise.cpp(4198,1
 C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\exercise.cpp(5689,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
 C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\exercise.cpp(7129,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
 C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\exercise.cpp(8408,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\exercise.cpp(9007,26): warning C4805: “==”: 在操作中将类型“const bool”与类型“int”混合不安全
+C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\exercise.cpp(9016,26): warning C4805: “==”: 在操作中将类型“const bool”与类型“int”混合不安全
   Exercises_C.vcxproj -> C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\x64\Debug\Exercises_C.exe
