@@ -9389,170 +9389,219 @@
 // 例如 选择菜单中的 a, 将激活 由该数组第1个元素指向的函数
 //
 
-#define NUM 4
+//#define NUM 4
+//
+//double twice(double x);
+//double half(double x);
+//double square(double x);
+////double sqrt(double x);
+//
+//
+//int showmenu();
+//int get_first();
+//void eatline();
+//void show(int i, double x, double(*pf[NUM])(double));
+//
+//
+//int main()
+//{
+//	int choice;
+//	double number;
+//	double (*pf[NUM])(double) = { twice,half,square,sqrt };
+//
+//	while ((choice = showmenu()) != 'q')
+//	{
+//		printf("Please enter a number: ");
+//
+//		while (scanf("%lf", &number) != 1)
+//		{
+//			eatline();
+//			printf("Please enter again: ");
+//		}
+//
+//		switch (choice)
+//		{
+//		case 'a':
+//		{
+//			show(0, number, pf);
+//			break;
+//		}
+//		case 'b':
+//		{
+//			show(1, number, pf);
+//			break;
+//		}
+//		case 'c':
+//		{
+//			show(2, number, pf);
+//			break;
+//		}
+//		case 'd':
+//		{
+//			show(3, number, pf);
+//			break;
+//		}
+//
+//		default:
+//			break;
+//		}
+//
+//	}
+//
+//	printf("Done.\n");
+//
+//
+//	return 0;
+//}
+//
+//int showmenu()
+//{
+//	int ch;
+//	puts("+-------------------------------+");
+//	puts("|a) double               b) half|");
+//	puts("|c) square               d) sqrt|");
+//	puts("|q) quit                        |");
+//	puts("+-------------------------------+");
+//	printf("Please you choose: ");
+//
+//	while (ch = get_first(), NULL == strchr("abcdq", ch))
+//	{
+//		printf("Please enter a,b,c,d or q: ");
+//	}
+//
+//	return ch;
+//
+//}
+//
+//int get_first()
+//{
+//	int ch;
+//
+//	do
+//	{
+//		ch = tolower(getchar());
+//
+//	} while (isspace(ch));
+//	eatline();
+//
+//	return ch;
+//}
+//
+//void eatline()
+//{
+//	while (getchar() != '\n')
+//	{
+//		continue;
+//	}
+//
+//	return;
+//}
+//
+//void show(int i, double x, double(*pf[NUM])(double))
+//{
+//	x = (*pf[i])(x);
+//	printf("After operating: %g\n\n", x);
+//}
+//
+//double twice(double x)
+//{
+//	return 2.0 * x;
+//}
+//double half(double x)
+//{
+//	return x / 2.0;
+//}
+//double square(double x)
+//{
+//	return x * x;
+//}
+////double sqrt(double x)
+////{
+////	return 
+////}
 
-double twice(double x);
-double half(double x);
+// 编写一个名为transform()函数，接受4个参数，
+// 内含double类型数据的源数组名
+// 内含double类型数据的目标数组名
+// 一个表示数组元素个数的int类型参数
+// 函数名（或等价的函数指针）
+// transform() 函数把指定函数应用于源数组中的每一个元素，并把返回值存储在目标数组中
+// 
+// transform(source,target,100,sin);
+// 该声明会把target[0] 设置为sin(source[0]),等等，共有100个元素
+// 在一个程序中调用transfrom() 4次，以测试该函数。
+// 分别使用math.h函数库中的两个函数以及自定义的两个函数作为参数
+// 
+
+#define LEN 5
+
+void show_array(double temp[], int n);
+void transform(double x[], double y[], int n, double (*p)(double));
+
 double square(double x);
-//double sqrt(double x);
-
-
-int showmenu();
-int get_first();
-void eatline();
-void show(int i, double x, double(*pf[NUM])(double));
+double triple(double x);
 
 
 int main()
 {
-	int choice;
-	double number;
-	double (*pf[NUM])(double) = { twice,half,square,sqrt };
+	double x[LEN] = { 2.0,4.0,6.0,8.0,9.0 };
+	double y[LEN] = { 0.0 };
 
-	while ((choice = showmenu()) != 'q')
-	{
-		printf("Please enter a number: ");
+	printf("array:\n");
+	show_array(x, LEN);
 
-		while (scanf("%lf", &number) != 1)
-		{
-			eatline();
-			printf("Please enter again: ");
-		}
+	printf("target array:\n");
+	show_array(y, LEN);
 
-		switch (choice)
-		{
-		case 'a':
-		{
-			show(0, number, pf);
-			break;
-		}
-		case 'b':
-		{
-			show(1, number, pf);
-			break;
-		}
-		case 'c':
-		{
-			show(2, number, pf);
-			break;
-		}
-		case 'd':
-		{
-			show(3, number, pf);
-			break;
-		}
+	transform(x, y, LEN, sqrt);
+	printf("After square root:\n");
+	show_array(y, LEN);
 
-		default:
-			break;
-		}
+	transform(x, y, LEN, cbrt);
+	printf("After opening cube:\n");
+	show_array(y, LEN);
 
-	}
+	transform(x, y, LEN, square);
+	printf("After square :\n");
+	show_array(y, LEN);
 
-	printf("Done.\n");
-
+	transform(x, y, LEN, triple);
+	printf("After cube:\n");
+	show_array(y, LEN);
 
 	return 0;
 }
 
-int showmenu()
-{
-	int ch;
-	puts("+-------------------------------+");
-	puts("|a) double               b) half|");
-	puts("|c) square               d) sqrt|");
-	puts("|q) quit                        |");
-	puts("+-------------------------------+");
-	printf("Please you choose: ");
 
-	while (ch = get_first(), NULL == strchr("abcdq", ch))
+void show_array(double temp[], int n)
+{
+	for (int i = 0; i < n; i++)
 	{
-		printf("Please enter a,b,c,d or q: ");
+		printf("%g ", temp[i]);
 	}
 
-	return ch;
+	putchar('\n');
 
+	return;
 }
 
-int get_first()
+void transform(double x[], double y[], int n, double (*p)(double))
 {
-	int ch;
-
-	do
+	for (int i = 0; i < n; i++)
 	{
-		ch = tolower(getchar());
-
-	} while (isspace(ch));
-	eatline();
-
-	return ch;
-}
-
-void eatline()
-{
-	while (getchar() != '\n')
-	{
-		continue;
+		y[i] = p(x[i]);
 	}
 
 	return;
 }
 
-void show(int i, double x, double(*pf[NUM])(double))
-{
-	x = (*pf[i])(x);
-	printf("After operating: %g\n\n", x);
-}
-
-double twice(double x)
-{
-	return 2.0 * x;
-}
-double half(double x)
-{
-	return x / 2.0;
-}
 double square(double x)
 {
 	return x * x;
 }
-//double sqrt(double x)
-//{
-//	return 
-//}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+double triple(double x)
+{
+	return x * x * x;
+}
 
