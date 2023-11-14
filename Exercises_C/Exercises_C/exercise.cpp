@@ -9533,75 +9533,174 @@
 // 分别使用math.h函数库中的两个函数以及自定义的两个函数作为参数
 // 
 
-#define LEN 5
+//#define LEN 5
+//
+//void show_array(double temp[], int n);
+//void transform(double x[], double y[], int n, double (*p)(double));
+//
+//double square(double x);
+//double triple(double x);
+//
+//
+//int main()
+//{
+//	double x[LEN] = { 2.0,4.0,6.0,8.0,9.0 };
+//	double y[LEN] = { 0.0 };
+//
+//	printf("array:\n");
+//	show_array(x, LEN);
+//
+//	printf("target array:\n");
+//	show_array(y, LEN);
+//
+//	transform(x, y, LEN, sqrt);
+//	printf("After square root:\n");
+//	show_array(y, LEN);
+//
+//	transform(x, y, LEN, cbrt);
+//	printf("After opening cube:\n");
+//	show_array(y, LEN);
+//
+//	transform(x, y, LEN, square);
+//	printf("After square :\n");
+//	show_array(y, LEN);
+//
+//	transform(x, y, LEN, triple);
+//	printf("After cube:\n");
+//	show_array(y, LEN);
+//
+//	return 0;
+//}
+//
+//
+//void show_array(double temp[], int n)
+//{
+//	for (int i = 0; i < n; i++)
+//	{
+//		printf("%g ", temp[i]);
+//	}
+//
+//	putchar('\n');
+//
+//	return;
+//}
+//
+//void transform(double x[], double y[], int n, double (*p)(double))
+//{
+//	for (int i = 0; i < n; i++)
+//	{
+//		y[i] = p(x[i]);
+//	}
+//
+//	return;
+//}
+//
+//double square(double x)
+//{
+//	return x * x;
+//}
+//
+//double triple(double x)
+//{
+//	return x * x * x;
+//}
 
-void show_array(double temp[], int n);
-void transform(double x[], double y[], int n, double (*p)(double));
+//*******************2023/11/14 18:54*********************//
+// 把二进制字符串转换为一个数值
+//
 
-double square(double x);
-double triple(double x);
+//int convert(const char* str);
+//
+//int main()
+//{
+//	const char* pbin = "01001001";
+//
+//	printf("binary %s is decimal %d\n", pbin, convert(pbin));
+//
+//	return 0;
+//}
+//
+//int convert(const char* str)
+//{
+//	int sum = 0, len = strlen(str);
+//
+//	for (int i = len - 1, exp = 1; i >= 0; --i, exp *= 2)
+//	{
+//		sum += (str[i] - '0') * exp;
+//	}
+//	return sum;
+//}
 
-
-int main()
+// 命令行读取两个二进制字符串，对这两个二进制数使用~运算符、&运算符、
+// |运算符和^运算符，并以二进制字符串形式打印结果
+// 
+int bstr_to_dec(const char* str);
+char* itobs(int n, char* str);
+int main(int argc, char* argv[])
 {
-	double x[LEN] = { 2.0,4.0,6.0,8.0,9.0 };
-	double y[LEN] = { 0.0 };
+	char bstr[8 * sizeof(int) + 1];
 
-	printf("array:\n");
-	show_array(x, LEN);
+	if (argc != 3)
+	{
+		fprintf(stderr, "Usage:%s binarynum1 binarynum2\n", argv[0]);
+		exit(EXIT_FAILURE);
+	}
 
-	printf("target array:\n");
-	show_array(y, LEN);
+	int v1 = bstr_to_dec(argv[1]);
+	int v2 = bstr_to_dec(argv[2]);
 
-	transform(x, y, LEN, sqrt);
-	printf("After square root:\n");
-	show_array(y, LEN);
-
-	transform(x, y, LEN, cbrt);
-	printf("After opening cube:\n");
-	show_array(y, LEN);
-
-	transform(x, y, LEN, square);
-	printf("After square :\n");
-	show_array(y, LEN);
-
-	transform(x, y, LEN, triple);
-	printf("After cube:\n");
-	show_array(y, LEN);
+	printf("~%s=%s\n", argv[1], itobs(~v1, bstr));
+	printf("~%s=%s\n", argv[2], itobs(~v2, bstr));
+	printf("%s & %s=%s\n", argv[1], argv[2], itobs(v1 & v2, bstr));
+	printf("%s | %s=%s\n", argv[1], argv[2], itobs(v1 | v2, bstr));
+	printf("%s ^ %s=%s\n", argv[1], argv[2], itobs(v1 ^ v2, bstr));
 
 	return 0;
+
 }
 
-
-void show_array(double temp[], int n)
+int bstr_to_dec(const char* str)
 {
-	for (int i = 0; i < n; i++)
+	int val = 0;
+
+	while (*str)
 	{
-		printf("%g ", temp[i]);
+		val = val * 2 + (*str++) - '0';
 	}
-
-	putchar('\n');
-
-	return;
+	return val;
 }
 
-void transform(double x[], double y[], int n, double (*p)(double))
+char* itobs(int n, char* str)
 {
-	for (int i = 0; i < n; i++)
+	int sz = 8 * sizeof(int);
+
+	for (int i = sz - 1; i >= 0; --i, n >>= 1)
 	{
-		y[i] = p(x[i]);
+		str[i] = (n & 1) + '0';
 	}
-
-	return;
+	str[sz] = '\0';
+	return str;
 }
 
-double square(double x)
-{
-	return x * x;
-}
 
-double triple(double x)
-{
-	return x * x * x;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
