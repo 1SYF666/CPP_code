@@ -9831,11 +9831,170 @@
 // 斜体：开（1）或闭（0）；
 // 
 
+typedef unsigned int unit;
+typedef struct
+{
+	unit id : 8;
+	unit sz : 7;
+	unit at : 2;
+	unit b : 1;
+	unit i : 1;
+	unit u : 1;
+}font;
+
+static font ft = { 1,12,0,0,0,0 };
+const char* state[4] = { "off","on" };
+const char* alignment[4] = { "left","center","right" };
+
+void eatline()
+{
+	while (getchar() != '\n')
+	{
+		continue;
+	}
+}
+
+int get_first()
+{
+	int ch;
+
+	do
+	{
+		ch = getchar();
+	} while (isspace(ch));
+
+	eatline();
+
+	return ch;
+}
+
+int get_choice()
+{
+	int ch;
+
+	printf("ID    SIZE    ALIGNMENT      B       I       U\n");
+	printf("%-7u%-9u%-12s", ft.id, ft.sz, alignment[ft.at]);
+	printf("%-8s%-8s%-8s\n", state[ft.b], state[ft.i], state[ft.u]);
+	printf("f) change font        s) change size        a) change alignment\n");
+	printf("b) toggle bold        i) toggle italic      u) toggle underline\n");
+	printf("q) quit\n");
+
+	while (ch = get_first(), NULL == strchr("fsabiuq", ch))
+	{
+		printf("Please enter with f,s,a,b,i,u or q: ");
+	}
+
+	return ch;
+}
+
+void change_font()
+{
+	int ch;
+	unit id;
+
+	printf("Enter font id (0-255): ");
+
+	while (scanf("%u", &id) != 1)
+	{
+		while ((ch = getchar()) != '\n')
+		{
+			putchar(ch);
+		}
+		printf(" is not a id.\n");
+		printf("Please enter a number such as 0,5 or 255: ");
+	}
+	ft.id = id & 0xFF;
+}
+
+void change_size()
+{
+	int ch; 
+	unit sz;
+
+	printf("Enter font sz (0-127): ");
+
+	while (scanf("%u",&sz)!=1)
+	{
+		while ((ch=getchar())!='\n')
+		{
+			putchar(ch);
+		}
+		printf(" is not a size.\n");
+		printf("Please enter a number such as 0,5 or,127: ");
+	}
+	ft.sz = sz & 0x7F;
+}
+
+void change_alignment()
+{
+	int ch;
+
+	printf("Select alignment: \n");
+
+	printf("l) left		c)center	r)right\n");
+
+	while (ch=get_first(),NULL==strchr("lcr",ch))
+	{
+		printf("Please enter with l,c,or r: ");
+	}
+	ft.at = (ch == 'l' ? 0 : ch == 'c' ? 1 : 2);
+}
+
+void  change_toggle(int ch)
+{
+	if (ch == 'b')
+	{
+		ft.b ^= 1;
+	}
+	else if (ch == 'i')
+	{
+		ft.i ^= 1;
+	}
+	else
+	{
+		ft.u ^= 1;
+	}
+
+}
 
 int main()
 {
+	int ch;
 
+	while ((ch = get_choice()) != 'q')
+	{
+		switch (ch)
+		{
+		case 'f':
+		{
+			change_font();
+			break;
+		}
+		case 's':
+		{
+			change_size();
+			break;
+		}
+		case 'a':
+		{
+			change_alignment();
+			break;
+		}
+		case 'b':
+		case 'i':
+		case 'u':
+		{
+			change_toggle(ch);
+			break;
+		}
 
+		default:
+			break;
+		}
+		putchar('\n');
+	}
+
+	printf("Bye!\n");
 
 	return 0;
 }
