@@ -9733,46 +9733,133 @@
 // 如果指定位的位置为1，该函数返回1，否则返回0
 // 在一个程序中测试该函数
 //
+//
+//#define TEST_NUM 13
+//
+//int test_bit(int x, int pos);
+//char* itobs(int n, char* str);
+//
+//int main(int argc,char* argv[])
+//{
+//	int x = TEST_NUM;
+//	int sz = 8 * sizeof(int);
+//	char bstr[8 * sizeof(int) + 1];
+//
+//	printf("%d(%s):\n", x, itobs(x, bstr));
+//
+//	for (int i = sz - 1; i >= 0; --i)
+//	{
+//		printf("The position %d is %d\n", i + 1, test_bit(x, i));
+//	}
+//
+//	return 0;
+//}
+//
+//int test_bit(int x, int pos)
+//{
+//	return (x >> pos) & 1;
+//
+//}
+//char* itobs(int n, char* str)
+//{
+//	int sz = 8 * sizeof(int);
+//
+//	for (int i = sz - 1; i >= 0; --i, n >>= 1)
+//	{
+//		str[i] = (n & 1) + '0';
+//	}
+//	str[sz] = '\0';
+//
+//	return str;
+//
+//}
 
-#define TEST_NUM 13
 
-int test_bit(int x, int pos);
-char* itobs(int n, char* str);
+//*******************2023/11/117 11:12*********************//
 
-int main(int argc,char* argv[])
+// 5.编写一个函数，把一个unsigned int 类型值中的所有位向左旋转指定数量的位。
+// 例如，rotate_1(x,4)把x中所有位向左移动4个位置，而且从最左端移出的位会重新出现在右端
+// 即 把高阶位移出的位放入低阶位
+// 
+
+//#define TEST_NUM 13
+//#define ROTATE_BITS 4
+//
+//char* itobs(int n, char* str)
+//{
+//	int sz = 8 * sizeof(int);
+//
+//	for (int i = sz - 1; i >= 0; --i, n >> 1)
+//	{
+//		str[i] = (n & 1) + '0';
+//	}
+//
+//	str[sz] = '\0';
+//
+//	return str;
+//}
+//unsigned int rotate_l(unsigned int n, unsigned int b)
+//{
+//	static const int size = 8 * sizeof(int);
+//
+//	b %= size;
+//
+//	return (n << b) | (n >> (size - b));
+//}
+//
+//int main(int argc, char* argv[])
+//{
+//	unsigned int val = TEST_NUM;
+//
+//	unsigned int rot = rotate_l(val, ROTATE_BITS);			//可更改宏定义改变反转的位
+//
+//	char bstr1[8 * sizeof(int) + 1];
+//
+//	char bstr2[8 * sizeof(int) + 1];
+//
+//	printf("%u rotated is %u.\n", val, rot);
+//	printf("%s rotated is %s.\n", itobs(val, bstr1), itobs(rot, bstr2));
+//
+//	return 0;
+//}
+
+// 6.设计一个位字段结构以存储下面信息
+// 字体ID：0-255之间的一个数
+// 字体大小：0-127之间的一个数
+// 对齐：0-2之间的一个数，表示左对齐、居中、右对齐
+// 加粗：开（1）或闭（0）；
+// 斜体：开（1）或闭（0）；
+// 
+
+
+int main()
 {
-	int x = TEST_NUM;
-	int sz = 8 * sizeof(int);
-	char bstr[8 * sizeof(int) + 1];
 
-	printf("%d(%s):\n", x, itobs(x, bstr));
 
-	for (int i = sz - 1; i >= 0; --i)
-	{
-		printf("The position %d is %d\n", i + 1, test_bit(x, i));
-	}
 
 	return 0;
 }
 
-int test_bit(int x, int pos)
-{
-	return (x >> pos) & 1;
 
-}
-char* itobs(int n, char* str)
-{
-	int sz = 8 * sizeof(int);
 
-	for (int i = sz - 1; i >= 0; --i, n >>= 1)
-	{
-		str[i] = (n & 1) + '0';
-	}
-	str[sz] = '\0';
 
-	return str;
 
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
