@@ -9775,7 +9775,7 @@
 //}
 
 
-//*******************2023/11/117 11:12*********************//
+//*******************2023/11/17 11:12*********************//
 
 // 5.编写一个函数，把一个unsigned int 类型值中的所有位向左旋转指定数量的位。
 // 例如，rotate_1(x,4)把x中所有位向左移动4个位置，而且从最左端移出的位会重新出现在右端
@@ -9831,33 +9831,204 @@
 // 斜体：开（1）或闭（0）；
 // 
 
-typedef unsigned int unit;
-typedef struct
-{
-	unit id : 8;
-	unit sz : 7;
-	unit at : 2;
-	unit b : 1;
-	unit i : 1;
-	unit u : 1;
-}font;
+//typedef unsigned int unit;
+//typedef struct
+//{
+//	unit id : 8;
+//	unit sz : 7;
+//	unit at : 2;
+//	unit b : 1;
+//	unit i : 1;
+//	unit u : 1;
+//}font;
+//
+//static font ft = { 1,12,0,0,0,0 };
+//const char* state[4] = { "off","on" };
+//const char* alignment[4] = { "left","center","right" };
+//
+//void eatline()
+//{
+//	while (getchar() != '\n')
+//	{
+//		continue;
+//	}
+//}
+//
+//int get_first()
+//{
+//	int ch;
+//
+//	do
+//	{
+//		ch = getchar();
+//	} while (isspace(ch));
+//
+//	eatline();
+//
+//	return ch;
+//}
+//
+//int get_choice()
+//{
+//	int ch;
+//
+//	printf("ID    SIZE    ALIGNMENT      B       I       U\n");
+//	printf("%-7u%-9u%-12s", ft.id, ft.sz, alignment[ft.at]);
+//	printf("%-8s%-8s%-8s\n", state[ft.b], state[ft.i], state[ft.u]);
+//	printf("f) change font        s) change size        a) change alignment\n");
+//	printf("b) toggle bold        i) toggle italic      u) toggle underline\n");
+//	printf("q) quit\n");
+//
+//	while (ch = get_first(), NULL == strchr("fsabiuq", ch))
+//	{
+//		printf("Please enter with f,s,a,b,i,u or q: ");
+//	}
+//
+//	return ch;
+//}
+//
+//void change_font()
+//{
+//	int ch;
+//	unit id;
+//
+//	printf("Enter font id (0-255): ");
+//
+//	while (scanf("%u", &id) != 1)
+//	{
+//		while ((ch = getchar()) != '\n')
+//		{
+//			putchar(ch);
+//		}
+//		printf(" is not a id.\n");
+//		printf("Please enter a number such as 0,5 or 255: ");
+//	}
+//	ft.id = id & 0xFF;
+//}
+//
+//void change_size()
+//{
+//	int ch; 
+//	unit sz;
+//
+//	printf("Enter font sz (0-127): ");
+//
+//	while (scanf("%u",&sz)!=1)
+//	{
+//		while ((ch=getchar())!='\n')
+//		{
+//			putchar(ch);
+//		}
+//		printf(" is not a size.\n");
+//		printf("Please enter a number such as 0,5 or,127: ");
+//	}
+//	ft.sz = sz & 0x7F;
+//}
+//
+//void change_alignment()
+//{
+//	int ch;
+//
+//	printf("Select alignment: \n");
+//
+//	printf("l) left		c)center	r)right\n");
+//
+//	while (ch=get_first(),NULL==strchr("lcr",ch))
+//	{
+//		printf("Please enter with l,c,or r: ");
+//	}
+//	ft.at = (ch == 'l' ? 0 : ch == 'c' ? 1 : 2);
+//}
+//
+//void  change_toggle(int ch)
+//{
+//	if (ch == 'b')
+//	{
+//		ft.b ^= 1;
+//	}
+//	else if (ch == 'i')
+//	{
+//		ft.i ^= 1;
+//	}
+//	else
+//	{
+//		ft.u ^= 1;
+//	}
+//
+//}
+//
+//int main()
+//{
+//	int ch;
+//
+//	while ((ch = get_choice()) != 'q')
+//	{
+//		switch (ch)
+//		{
+//		case 'f':
+//		{
+//			change_font();
+//			break;
+//		}
+//		case 's':
+//		{
+//			change_size();
+//			break;
+//		}
+//		case 'a':
+//		{
+//			change_alignment();
+//			break;
+//		}
+//		case 'b':
+//		case 'i':
+//		case 'u':
+//		{
+//			change_toggle(ch);
+//			break;
+//		}
+//
+//		default:
+//			break;
+//		}
+//		putchar('\n');
+//	}
+//
+//	printf("Bye!\n");
+//
+//	return 0;
+//}
+//
 
-static font ft = { 1,12,0,0,0,0 };
+//*******************2023/11/18 11:12*********************//
+//
+// 使用unsigned long 类型的变量存储字体信息
+// 并且使用按位运算符而不是位成员来管理这些信息
+// 
+//
+
+
+typedef unsigned long ulong;
+static ulong ft = 0x00001180;  //题目初始状态
+// 从右往左数，第一位表示U，第二位表示I，第三位表示B，第四至五位表示ALIGNMENT,
+// 第六至第十二位表示size，第13至20位表示ID
+//
 const char* state[4] = { "off","on" };
-const char* alignment[4] = { "left","center","right" };
+const char* alignment[7] = { "left","center","right" };
+
 
 void eatline()
 {
-	while (getchar() != '\n')
+	while (getchar()!='\n')
 	{
 		continue;
 	}
+	return;
 }
 
 int get_first()
 {
 	int ch;
-
 	do
 	{
 		ch = getchar();
@@ -9873,13 +10044,13 @@ int get_choice()
 	int ch;
 
 	printf("ID    SIZE    ALIGNMENT      B       I       U\n");
-	printf("%-7u%-9u%-12s", ft.id, ft.sz, alignment[ft.at]);
-	printf("%-8s%-8s%-8s\n", state[ft.b], state[ft.i], state[ft.u]);
+	printf("%-7u%-9u%-12s", (ft >> 12) & 0XFF, (ft >> 5) & 0x7F, alignment[(ft >> 3) & 0x03]);
+	printf("%-8s%-8s%-8s\n", state[(ft >> 2) & 1], state[(ft >> 1) & 1], state[ft & 1]);
 	printf("f) change font        s) change size        a) change alignment\n");
 	printf("b) toggle bold        i) toggle italic      u) toggle underline\n");
 	printf("q) quit\n");
 
-	while (ch = get_first(), NULL == strchr("fsabiuq", ch))
+	while (ch=get_first(),NULL==strchr("fsabiuq",ch))
 	{
 		printf("Please enter with f,s,a,b,i,u or q: ");
 	}
@@ -9887,42 +10058,61 @@ int get_choice()
 	return ch;
 }
 
-void change_font()
+void change_frot()
 {
 	int ch;
-	unit id;
+	ulong id;
 
 	printf("Enter font id (0-255): ");
 
-	while (scanf("%u", &id) != 1)
+	while (scanf("%lu",&id)!=1)
 	{
-		while ((ch = getchar()) != '\n')
+		while ((ch=getchar())!='\n')
 		{
 			putchar(ch);
 		}
-		printf(" is not a id.\n");
-		printf("Please enter a number such as 0,5 or 255: ");
+		printf(" is not a id\n");
+		printf("Please enter a number such as 0,5,or 255");
+
 	}
-	ft.id = id & 0xFF;
+	id &= 0xFF, id <<= 12;
+
+	for (int i = 12; i < 20; ++i)
+	{
+		ft &= ~(ulong)(1 << i);
+	}
+
+	ft |= id;
+
+	return ;
 }
 
 void change_size()
 {
-	int ch; 
-	unit sz;
+	int ch;
+	ulong sz;
 
-	printf("Enter font sz (0-127): ");
+	printf("Enter font sz(0-127): ");
 
-	while (scanf("%u",&sz)!=1)
+	while (scanf("%lu",&sz)!=1)
 	{
 		while ((ch=getchar())!='\n')
 		{
 			putchar(ch);
 		}
 		printf(" is not a size.\n");
-		printf("Please enter a number such as 0,5 or,127: ");
+		printf("Please enter a number such as 0,5 or 127: ");
 	}
-	ft.sz = sz & 0x7F;
+	sz &= 0x7F, sz <<= 5;
+
+	for (int i = 5; i < 12; i++)
+	{
+		ft &= ~(ulong)(1 << i);
+	}
+
+	ft |= sz;
+
+	return;
 }
 
 void change_alignment()
@@ -9930,50 +10120,78 @@ void change_alignment()
 	int ch;
 
 	printf("Select alignment: \n");
-
-	printf("l) left		c)center	r)right\n");
+	printf("l)left		c)center		r)right\n");
 
 	while (ch=get_first(),NULL==strchr("lcr",ch))
 	{
-		printf("Please enter with l,c,or r: ");
+		printf("Please enter with l,c or r: ");
 	}
-	ft.at = (ch == 'l' ? 0 : ch == 'c' ? 1 : 2);
+
+	ft &= ~(ulong)(1 << 3), ft &= ~(ulong)(1 << 4);
+	ft = ft | (ch == 'c' ? (ulong)(1 << 3) : ch == 'r' ? (ulong)(1 << 4) : 0);
+
+
+	return;
 }
 
-void  change_toggle(int ch)
+void change_toggle(int ch)
 {
 	if (ch == 'b')
 	{
-		ft.b ^= 1;
+		if (ft & 0x04)
+		{
+			ft &= ~(ulong)(0x04);
+		}
+		else
+		{
+			ft |= (ulong)(0x04);
+		}
 	}
 	else if (ch == 'i')
 	{
-		ft.i ^= 1;
+		if (ft & 0x02)
+		{
+			ft &= ~(ulong)(0x02);
+		}
+		else
+		{
+			ft |= (ulong)(0x02);
+		}
 	}
 	else
 	{
-		ft.u ^= 1;
+		if (ft & 0x01)
+		{
+			ft &= ~(ulong)(0x01);
+		}
+		else
+		{
+			ft |= (ulong)(0x01);
+		}
 	}
-
+	return;
 }
+
+
 
 int main()
 {
 	int ch;
 
-	while ((ch = get_choice()) != 'q')
+	while ((ch=get_choice())!='q')
 	{
 		switch (ch)
 		{
 		case 'f':
 		{
-			change_font();
+			change_frot();
 			break;
 		}
 		case 's':
 		{
 			change_size();
 			break;
+
 		}
 		case 'a':
 		{
@@ -9998,6 +10216,10 @@ int main()
 
 	return 0;
 }
+
+
+
+
 
 
 
