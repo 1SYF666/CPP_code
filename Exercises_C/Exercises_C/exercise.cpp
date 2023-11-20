@@ -10004,217 +10004,376 @@
 //
 // 使用unsigned long 类型的变量存储字体信息
 // 并且使用按位运算符而不是位成员来管理这些信息
-// 
+//typedef unsigned long ulong;
+//static ulong ft = 0x00001180;  //题目初始状态
+//// 从右往左数，第一位表示U，第二位表示I，第三位表示B，第四至五位表示ALIGNMENT,
+//// 第六至第十二位表示size，第13至20位表示ID
+////
+//const char* state[4] = { "off","on" };
+//const char* alignment[7] = { "left","center","right" };
 //
-
-
-typedef unsigned long ulong;
-static ulong ft = 0x00001180;  //题目初始状态
-// 从右往左数，第一位表示U，第二位表示I，第三位表示B，第四至五位表示ALIGNMENT,
-// 第六至第十二位表示size，第13至20位表示ID
 //
-const char* state[4] = { "off","on" };
-const char* alignment[7] = { "left","center","right" };
+//void eatline()
+//{
+//	while (getchar()!='\n')
+//	{
+//		continue;
+//	}
+//	return;
+//}
+//
+//int get_first()
+//{
+//	int ch;
+//	do
+//	{
+//		ch = getchar();
+//	} while (isspace(ch));
+//
+//	eatline();
+//
+//	return ch;
+//}
+//
+//int get_choice()
+//{
+//	int ch;
+//
+//	printf("ID    SIZE    ALIGNMENT      B       I       U\n");
+//	printf("%-7u%-9u%-12s", (ft >> 12) & 0XFF, (ft >> 5) & 0x7F, alignment[(ft >> 3) & 0x03]);
+//	printf("%-8s%-8s%-8s\n", state[(ft >> 2) & 1], state[(ft >> 1) & 1], state[ft & 1]);
+//	printf("f) change font        s) change size        a) change alignment\n");
+//	printf("b) toggle bold        i) toggle italic      u) toggle underline\n");
+//	printf("q) quit\n");
+//
+//	while (ch=get_first(),NULL==strchr("fsabiuq",ch))
+//	{
+//		printf("Please enter with f,s,a,b,i,u or q: ");
+//	}
+//
+//	return ch;
+//}
+//
+//void change_frot()
+//{
+//	int ch;
+//	ulong id;
+//
+//	printf("Enter font id (0-255): ");
+//
+//	while (scanf("%lu",&id)!=1)
+//	{
+//		while ((ch=getchar())!='\n')
+//		{
+//			putchar(ch);
+//		}
+//		printf(" is not a id\n");
+//		printf("Please enter a number such as 0,5,or 255");
+//
+//	}
+//	id &= 0xFF, id <<= 12;
+//
+//	for (int i = 12; i < 20; ++i)
+//	{
+//		ft &= ~(ulong)(1 << i);
+//	}
+//
+//	ft |= id;
+//
+//	return ;
+//}
+//
+//void change_size()
+//{
+//	int ch;
+//	ulong sz;
+//
+//	printf("Enter font sz(0-127): ");
+//
+//	while (scanf("%lu",&sz)!=1)
+//	{
+//		while ((ch=getchar())!='\n')
+//		{
+//			putchar(ch);
+//		}
+//		printf(" is not a size.\n");
+//		printf("Please enter a number such as 0,5 or 127: ");
+//	}
+//	sz &= 0x7F, sz <<= 5;
+//
+//	for (int i = 5; i < 12; i++)
+//	{
+//		ft &= ~(ulong)(1 << i);
+//	}
+//
+//	ft |= sz;
+//
+//	return;
+//}
+//
+//void change_alignment()
+//{
+//	int ch;
+//
+//	printf("Select alignment: \n");
+//	printf("l)left		c)center		r)right\n");
+//
+//	while (ch=get_first(),NULL==strchr("lcr",ch))
+//	{
+//		printf("Please enter with l,c or r: ");
+//	}
+//
+//	ft &= ~(ulong)(1 << 3), ft &= ~(ulong)(1 << 4);
+//	ft = ft | (ch == 'c' ? (ulong)(1 << 3) : ch == 'r' ? (ulong)(1 << 4) : 0);
+//
+//
+//	return;
+//}
+//
+//void change_toggle(int ch)
+//{
+//	if (ch == 'b')
+//	{
+//		if (ft & 0x04)
+//		{
+//			ft &= ~(ulong)(0x04);
+//		}
+//		else
+//		{
+//			ft |= (ulong)(0x04);
+//		}
+//	}
+//	else if (ch == 'i')
+//	{
+//		if (ft & 0x02)
+//		{
+//			ft &= ~(ulong)(0x02);
+//		}
+//		else
+//		{
+//			ft |= (ulong)(0x02);
+//		}
+//	}
+//	else
+//	{
+//		if (ft & 0x01)
+//		{
+//			ft &= ~(ulong)(0x01);
+//		}
+//		else
+//		{
+//			ft |= (ulong)(0x01);
+//		}
+//	}
+//	return;
+//}
+//
+//
+//
+//int main()
+//{
+//	int ch;
+//
+//	while ((ch=get_choice())!='q')
+//	{
+//		switch (ch)
+//		{
+//		case 'f':
+//		{
+//			change_frot();
+//			break;
+//		}
+//		case 's':
+//		{
+//			change_size();
+//			break;
+//
+//		}
+//		case 'a':
+//		{
+//			change_alignment();
+//			break;
+//		}
+//		case 'b':
+//		case 'i':
+//		case 'u':
+//		{
+//			change_toggle(ch);
+//			break;
+//		}
+//
+//		default:
+//			break;
+//		}
+//		putchar('\n');
+//	}
+//
+//	printf("Bye!\n");
+//
+//	return 0;
+//}
 
+//*******************2023/11/18 11:12*********************//
+// friend.c --- 嵌套结构例子
 
-void eatline()
+//#define LEN 20
+//
+////const char* msgs[5] =
+////{
+////	" Thank you for the wonderful evening, ",
+////	"You certainly prove thar a ",
+////	"is a special kind of guy. We must get together ",
+////	"over a delicious ",
+////	" and have a few laughs"
+////};
+//
+//struct names				// first struct
+//{
+//	char first[LEN];
+//	char last[LEN];
+//};
+//
+//struct guy					// second struct
+//{
+//	struct names handle;
+//	char favfood[LEN];
+//	char job[LEN];
+//	float income;
+//};
+//
+//
+//int main()
+//{
+//	struct guy fellow[2] =
+//	{
+//		{
+//			{"Ewen","Villard"},
+//			"grilled salmon",
+//			"personality coach",
+//			58112.00
+//		},
+//		{
+//			{"Rodney","Swillbelly"},
+//			"tripe",
+//			"tabloid editor",
+//			232400.00
+//		}
+//	};
+//
+//	struct guy* him; //这是一个指向结构体得指针
+//	printf("address #1: %p #2:%p\n", &fellow[0], &fellow[1]);
+//	
+//	him = &fellow[0]; //告诉该指针它要指向的地址
+//
+//	printf("pointer #1: %p #2: %p\n", him, him + 1);
+//	printf("him->income is $%.2f: (*him).income is $%.2f\n", him->income, (*him).income);
+//	him++;
+//	printf("him->favfood is %s: him->income.last is %s\n", him->favfood, him->handle.last);
+//
+//	return 0;
+//}
+
+/* funds1.c -- 把结构成员作为参数传递 */
+
+//#define FUNDLEN 50
+//struct funds
+//{
+//	char bank[FUNDLEN];
+//	double bankfund;
+//	char save[FUNDLEN];
+//	double savefund;
+//};
+//
+//double sum(struct funds moolah); /* 参数是一个结构 */
+//
+//int main()
+//{
+//	struct funds stan =
+//	{
+//		"Garlic-Melon bank",
+//		3024.72,
+//		"Lucky's Savings and Loan",
+//		9237.11
+//	};
+//
+//	printf("Stan has a total of $%.2f.\n", sum(stan));
+//
+//	return 0;
+//}
+//
+///* 对两个double 数值求和 */
+//double sum(struct funds money)
+//{
+//	return (money.bankfund + money.savefund);
+//}
+
+struct namect
 {
-	while (getchar()!='\n')
-	{
-		continue;
-	}
-	return;
-}
+	char fname[20];
+	char lname[20];
+	int letters;
+};
 
-int get_first()
-{
-	int ch;
-	do
-	{
-		ch = getchar();
-	} while (isspace(ch));
+//void getinfo(struct namect*);
+//void makeinfo(struct namect*);
+//void showinfo(const struct namect*);
 
-	eatline();
-
-	return ch;
-}
-
-int get_choice()
-{
-	int ch;
-
-	printf("ID    SIZE    ALIGNMENT      B       I       U\n");
-	printf("%-7u%-9u%-12s", (ft >> 12) & 0XFF, (ft >> 5) & 0x7F, alignment[(ft >> 3) & 0x03]);
-	printf("%-8s%-8s%-8s\n", state[(ft >> 2) & 1], state[(ft >> 1) & 1], state[ft & 1]);
-	printf("f) change font        s) change size        a) change alignment\n");
-	printf("b) toggle bold        i) toggle italic      u) toggle underline\n");
-	printf("q) quit\n");
-
-	while (ch=get_first(),NULL==strchr("fsabiuq",ch))
-	{
-		printf("Please enter with f,s,a,b,i,u or q: ");
-	}
-
-	return ch;
-}
-
-void change_frot()
-{
-	int ch;
-	ulong id;
-
-	printf("Enter font id (0-255): ");
-
-	while (scanf("%lu",&id)!=1)
-	{
-		while ((ch=getchar())!='\n')
-		{
-			putchar(ch);
-		}
-		printf(" is not a id\n");
-		printf("Please enter a number such as 0,5,or 255");
-
-	}
-	id &= 0xFF, id <<= 12;
-
-	for (int i = 12; i < 20; ++i)
-	{
-		ft &= ~(ulong)(1 << i);
-	}
-
-	ft |= id;
-
-	return ;
-}
-
-void change_size()
-{
-	int ch;
-	ulong sz;
-
-	printf("Enter font sz(0-127): ");
-
-	while (scanf("%lu",&sz)!=1)
-	{
-		while ((ch=getchar())!='\n')
-		{
-			putchar(ch);
-		}
-		printf(" is not a size.\n");
-		printf("Please enter a number such as 0,5 or 127: ");
-	}
-	sz &= 0x7F, sz <<= 5;
-
-	for (int i = 5; i < 12; i++)
-	{
-		ft &= ~(ulong)(1 << i);
-	}
-
-	ft |= sz;
-
-	return;
-}
-
-void change_alignment()
-{
-	int ch;
-
-	printf("Select alignment: \n");
-	printf("l)left		c)center		r)right\n");
-
-	while (ch=get_first(),NULL==strchr("lcr",ch))
-	{
-		printf("Please enter with l,c or r: ");
-	}
-
-	ft &= ~(ulong)(1 << 3), ft &= ~(ulong)(1 << 4);
-	ft = ft | (ch == 'c' ? (ulong)(1 << 3) : ch == 'r' ? (ulong)(1 << 4) : 0);
-
-
-	return;
-}
-
-void change_toggle(int ch)
-{
-	if (ch == 'b')
-	{
-		if (ft & 0x04)
-		{
-			ft &= ~(ulong)(0x04);
-		}
-		else
-		{
-			ft |= (ulong)(0x04);
-		}
-	}
-	else if (ch == 'i')
-	{
-		if (ft & 0x02)
-		{
-			ft &= ~(ulong)(0x02);
-		}
-		else
-		{
-			ft |= (ulong)(0x02);
-		}
-	}
-	else
-	{
-		if (ft & 0x01)
-		{
-			ft &= ~(ulong)(0x01);
-		}
-		else
-		{
-			ft |= (ulong)(0x01);
-		}
-	}
-	return;
-}
+struct namect getinfo(void);
+struct namect makeinfo(struct namect);
+void showinfo(struct namect);
 
 
 
 int main()
 {
-	int ch;
+	struct namect person;
 
-	while ((ch=get_choice())!='q')
-	{
-		switch (ch)
-		{
-		case 'f':
-		{
-			change_frot();
-			break;
-		}
-		case 's':
-		{
-			change_size();
-			break;
-
-		}
-		case 'a':
-		{
-			change_alignment();
-			break;
-		}
-		case 'b':
-		case 'i':
-		case 'u':
-		{
-			change_toggle(ch);
-			break;
-		}
-
-		default:
-			break;
-		}
-		putchar('\n');
-	}
-
-	printf("Bye!\n");
+	person =getinfo();
+	person = makeinfo(person);
+	showinfo(person);
 
 	return 0;
+}
+
+//void getinfo(struct namect* pst)
+//{
+//	printf("Please enter your first name.\n");
+//	gets_s(pst->fname);
+//	printf("Please enter your last name.\n");
+//	gets_s(pst->lname);
+//	return;
+//}
+//
+//void makeinfo(struct namect* pst)
+//{
+//	pst->letters = strlen(pst->fname) + strlen(pst->lname);
+//	return;
+//}
+//
+//void showinfo(const struct namect* pst)
+//{
+//	printf("%s %s,your name contains %d letters.\n", pst->fname, pst->lname,pst->letters);
+//	return;
+//}
+
+struct namect getinfo(void)
+{
+	struct namect temp;
+	printf("Please enter your first name.\n");
+	gets_s(temp.fname);
+	printf("Please enter your last name.\n");
+	gets_s(temp.lname);
+
+	return temp;
+}
+struct namect makeinfo(struct namect info)
+{
+	info.letters = strlen(info.fname) + strlen(info.lname);
+	return info;
+}
+void showinfo(struct namect info)
+{
+	printf("%s %s,your name contains %d letters.\n ", info.fname, info.lname, info.letters);
 }
 
 
