@@ -10307,33 +10307,31 @@
 //	return (money.bankfund + money.savefund);
 //}
 
-struct namect
-{
-	char fname[20];
-	char lname[20];
-	int letters;
-};
-
-//void getinfo(struct namect*);
-//void makeinfo(struct namect*);
-//void showinfo(const struct namect*);
-
-struct namect getinfo(void);
-struct namect makeinfo(struct namect);
-void showinfo(struct namect);
-
-
-
-int main()
-{
-	struct namect person;
-
-	person =getinfo();
-	person = makeinfo(person);
-	showinfo(person);
-
-	return 0;
-}
+//struct namect
+//{
+//	char fname[20];
+//	char lname[20];
+//	int letters;
+//};
+//
+////void getinfo(struct namect*);
+////void makeinfo(struct namect*);
+////void showinfo(const struct namect*);
+//
+//struct namect getinfo(void);
+//struct namect makeinfo(struct namect);
+//void showinfo(struct namect);
+//
+//int main()
+//{
+//	struct namect person;
+//
+//	person =getinfo();
+//	person = makeinfo(person);
+//	showinfo(person);
+//
+//	return 0;
+//}
 
 //void getinfo(struct namect* pst)
 //{
@@ -10356,40 +10354,240 @@ int main()
 //	return;
 //}
 
-struct namect getinfo(void)
+//struct namect getinfo(void)
+//{
+//	struct namect temp;
+//	printf("Please enter your first name.\n");
+//	gets_s(temp.fname);
+//	printf("Please enter your last name.\n");
+//	gets_s(temp.lname);
+//
+//	return temp;
+//}
+//struct namect makeinfo(struct namect info)
+//{
+//	info.letters = strlen(info.fname) + strlen(info.lname);
+//	return info;
+//}
+//void showinfo(struct namect info)
+//{
+//	printf("%s %s,your name contains %d letters.\n ", info.fname, info.lname, info.letters);
+//}
+
+//*******************2023/11/21 11:07*********************//
+//struct namect
+//{
+//	char* fname;
+//	char* lname;
+//	int letters;
+//};
+//
+//void getinfo(struct namect*); //分配内存
+//void makeinfo(struct namect*);
+//void showinfo(const struct namect*);
+//void cleanup(struct namect*);
+//
+//int main()
+//{
+//	struct namect person;
+//
+//	getinfo(&person);
+//	makeinfo(&person);
+//	showinfo(&person);
+//	cleanup(&person);
+//
+//	return 0;
+//}
+//void getinfo(struct namect* pst) //分配内存
+//{
+//	char temp[81];
+//
+//	printf("Please enter your first name.\n");
+//
+//	gets_s(temp);
+//	//分配用来存放名字的内存
+//	pst->fname = (char*)malloc(strlen(temp) + 1);
+//
+//	//把名字复制到已分配的内存中
+//
+//	strcpy(pst->fname, temp);
+//
+//	printf("Please enter your last name.\n");
+//
+//	gets_s(temp);
+//
+//	pst->lname = (char*)malloc(strlen(temp) + 1);
+//
+//	strcpy(pst->lname, temp);
+//
+//}
+//
+//void makeinfo(struct namect* pst)
+//{
+//	pst->letters = strlen(pst->fname) + strlen(pst->lname);
+//}
+//
+//void showinfo(const struct namect* pst)
+//{
+//	printf("%s %s,your name contains %d letters.\n", pst->fname, pst->lname, pst->letters);
+//}
+//
+//void cleanup(struct namect* pst)
+//{
+//	free(pst->fname);
+//	free(pst->lname);
+//}
+//
+
+/* complit.c -- 复合文字 */
+
+//#define MAXTITL 41
+//#define MAXAUTL 31
+//
+//struct book
+//{
+//	char title[MAXTITL];
+//	char author[MAXAUTL];
+//	float value;
+//};
+//
+//int main()
+//{
+//	struct book readfirst;
+//
+//	int score;
+//
+//	printf("Enter test score: ");
+//	scanf("%d", &score);
+//
+//	if (score >= 84)
+//	{
+//		readfirst = { "Crime and Punishment","Fyodor Dostoyevsky",9.99 };
+//	}
+//	else
+//	{
+//		readfirst = { "Crime and Punishment","Fyodor Dostoyevsky",9.99 };
+//	}
+//
+//	printf("Your assigned reading:\n");
+//	printf("%s by %s: $%.2f\n", readfirst.title, readfirst.author, readfirst.value);
+//
+//
+//
+//	return 0;
+//}            
+
+/* flexmemb.c -- 伸缩型数组成员 */
+
+//struct flex
+//{
+//	int count;
+//	double average;
+//	double scores[]; //伸缩性数组成员
+//};
+//
+//void showFlex(const struct flex* p);
+//
+//int main()
+//{
+//	struct flex* pf1, * pf2;
+//	int n = 5;
+//	int i;
+//	int tot = 0;
+//
+//	//为结构和数组分配存储空间
+//	pf1 = (struct flex*)malloc(sizeof(struct flex) + n * sizeof(double));
+//	pf1->count = n;
+//
+//	for (i = 0; i < n; i++)
+//	{
+//		pf1->scores[i] = 20.0 - i;
+//		tot += pf1->scores[i];
+//	}
+//	pf1->average = tot / n;
+//
+//	showFlex(pf1);
+//
+//	n = 9;
+//
+//	pf2 = (struct flex*)malloc(sizeof(struct flex) + n * sizeof(double));
+//	pf2->count = n;
+//
+//	for (i = 0; i < n; i++)
+//	{
+//		pf2->scores[i] = 20.0 - i/2.0;
+//		tot += pf2->scores[i];
+//	}
+//	pf2->average = tot / n;
+//
+//	showFlex(pf2);
+//
+//	free(pf1);
+//	free(pf2);
+//	return 0;
+//}
+//
+//void showFlex(const struct flex* p)
+//{
+//	int i;
+//	printf("Scores: ");
+//	for (i = 0; i < p->count; i++)
+//	{
+//		printf("%g", p->scores[i]);
+//	}
+//	printf("\nAverage:%g\n", p->average);
+//}
+
+/* funds4.c -- 向函数传递一个结构数组 */
+
+#define FUNDLEN 50
+#define N 2
+
+struct funds
 {
-	struct namect temp;
-	printf("Please enter your first name.\n");
-	gets_s(temp.fname);
-	printf("Please enter your last name.\n");
-	gets_s(temp.lname);
+	char bank[FUNDLEN];
+	double bankfund;
+	char save[FUNDLEN];
+	double savefund;
+};
 
-	return temp;
-}
-struct namect makeinfo(struct namect info)
+double sum(const struct funds money[], int n);
+
+int main()
 {
-	info.letters = strlen(info.fname) + strlen(info.lname);
-	return info;
+	struct funds jones[N] =
+	{
+		{
+			"Garlic-Melon Bank",
+			3024.72,
+			"Lucky's Savings and Loan",
+			9237.11
+		},
+		{
+			"Honest Jack's Bank",
+			3435.28,
+			"Party Time Savings",
+			3203.89
+		}
+	};
+
+	printf("The Joneses have a total of $%.2f.\n", sum(jones, N));
+
+	return 0;
 }
-void showinfo(struct namect info)
+
+double sum(const struct funds money[], int n)
 {
-	printf("%s %s,your name contains %d letters.\n ", info.fname, info.lname, info.letters);
+	double total;
+	int i;
+	
+	for (i = 0, total = 0; i < n; i++)
+	{
+		total += money[i].bankfund + money[i].savefund;
+	}
+
+	return total;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
