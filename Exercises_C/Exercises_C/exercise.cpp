@@ -10540,56 +10540,277 @@
 
 /* funds4.c -- 向函数传递一个结构数组 */
 
-#define FUNDLEN 50
-#define N 2
+//#define FUNDLEN 50
+//#define N 2
+//
+//struct funds
+//{
+//	char bank[FUNDLEN];
+//	double bankfund;
+//	char save[FUNDLEN];
+//	double savefund;
+//};
+//
+//double sum(const struct funds money[], int n);
+//
+//int main()
+//{
+//	struct funds jones[N] =
+//	{
+//		{
+//			"Garlic-Melon Bank",
+//			3024.72,
+//			"Lucky's Savings and Loan",
+//			9237.11
+//		},
+//		{
+//			"Honest Jack's Bank",
+//			3435.28,
+//			"Party Time Savings",
+//			3203.89
+//		}
+//	};
+//
+//	printf("The Joneses have a total of $%.2f.\n", sum(jones, N));
+//
+//	return 0;
+//}
+//
+//double sum(const struct funds money[], int n)
+//{
+//	double total;
+//	int i;
+//	
+//	for (i = 0, total = 0; i < n; i++)
+//	{
+//		total += money[i].bankfund + money[i].savefund;
+//	}
+//
+//	return total;
+//}
 
-struct funds
+//*******************2023/11/23 11:12*********************//
+/* enum.c -- 使用枚举值 */
+
+//enum spectrum
+//{
+//	red,
+//	orange,
+//	yellow,
+//	green,
+//	blue,
+//	violet
+//};
+//
+//const char* colors[] =
+//{
+//	"red",
+//	"orange",
+//	"yellow",
+//	"green",
+//	"blue",
+//	"violet"
+//};
+//
+//#define LEN 30
+//
+//int main()
+//{
+//	char choice[LEN];
+//	enum spectrum color;
+//	bool color_is_found = false;
+//
+//	puts("Enter a color (empty line to quit): ");
+//
+//	while (gets_s(choice)!=NULL&&choice[0]!='\0')
+//	{
+//		for (color = red; color <= violet; color++)
+//		{
+//			if (strcmp(choice, colors[color]) == 0)
+//			{
+//				color_is_found = true;
+//				break;
+//			}
+//		}
+//
+//		if (color_is_found)
+//		{
+//			switch (color)
+//			{
+//			case red: 
+//			{
+//				puts("Roses are red."); 
+//				break;
+//			}
+//			case orange:
+//			{
+//				puts("Poppies are orange.");
+//				break;
+//			}
+//			case yellow:
+//			{
+//				puts("Sunflowers are yellow.");
+//				break;
+//			}
+//			case green:
+//			{
+//				puts("Grass is green.");
+//				break;
+//			}
+//			case blue:
+//			{
+//				puts("Bluebells are blue.");
+//				break;
+//			}
+//			case violet:
+//			{
+//				puts("Violets are violet.");
+//				break;
+//			}
+//
+//
+//			}
+//
+//		}
+//		else
+//		{
+//			printf("I don't know about the color %s.\n", choice);
+//		}
+//		color_is_found = false;
+//		puts("Next color,please (empty line to quit): ");
+//	}
+//
+//	puts("Goodbye");
+//
+//	return 0;
+//}
+
+// func_ptr.c -- 使用函数指针
+void eatline()
 {
-	char bank[FUNDLEN];
-	double bankfund;
-	char save[FUNDLEN];
-	double savefund;
-};
+	while (getchar()!='\n')
+	{
+		continue;
+	}
+	return;
+}
 
-double sum(const struct funds money[], int n);
+char showmenu()
+{
+	char ans;
+	puts("Enter menu choice: ");
+	puts("u)upperacse l)lowercase");
+	puts("t)transposed acse 0)original case");
+	puts("n)next string");
+
+	ans = getchar();
+	ans = towlower(ans);
+	eatline();
+	while (strchr("ulton",ans)==NULL)
+	{
+		puts("Please enter a u,l,t,o,or n: ");
+		ans = towlower(getchar());
+		eatline();
+	}
+
+	return ans;
+
+}
+
+void ToUpper(char* str)
+{
+	while (*str)
+	{
+		*str = toupper(*str);
+		str++;
+	}
+}
+
+void ToLower(char* str)
+{
+	while (*str)
+	{
+		*str = towlower(*str);
+		str++;
+	}
+}
+
+void Transpose(char* str)
+{
+	while (*str)
+	{
+		if (islower(*str))
+		{
+			*str = toupper(*str);
+		}
+		else if (isupper(*str))
+		{
+			*str = tolower(*str);
+		}
+		str++;
+	}
+}
+
+void Dummy(char* str)
+{
+	// 不改变字符串
+}
+
+void show(void(*fp)(char*), char* str)
+{
+	(*fp)(str);		// 把用户选择的函数作用于str
+	puts(str);		// 显示结果
+}
+
 
 int main()
 {
-	struct funds jones[N] =
-	{
-		{
-			"Garlic-Melon Bank",
-			3024.72,
-			"Lucky's Savings and Loan",
-			9237.11
-		},
-		{
-			"Honest Jack's Bank",
-			3435.28,
-			"Party Time Savings",
-			3203.89
-		}
-	};
+	char line[81];
+	char copy[81];
+	char choice;
 
-	printf("The Joneses have a total of $%.2f.\n", sum(jones, N));
+	void(*pfun)(char*); // 指向一个函数，该函数接受一个char* 参数，并且没有返回值
+	pfun = NULL;
+	puts("Enter a string (empty line to quit): ");
+
+	while (gets_s(line)!=NULL&&line[0]!='\0')
+	{
+		while ((choice=showmenu())!='n')
+		{
+			switch (choice)
+			{
+			case 'u':
+			{
+				pfun = ToUpper;
+				break;
+			}
+			case 'l':
+			{
+				pfun = ToLower;
+				break;
+			}
+			case 't':
+			{
+				pfun = Transpose;
+				break;
+			}
+			case 'o':
+			{
+				pfun = Dummy;
+				break;
+			}
+			default:
+				break;
+			}
+			strcpy(copy, line);  // 为show()制作一份拷贝
+			show(pfun, copy);    // 使用用户选择的函数
+		}
+		puts("Enter a string (empty line to quit): ");
+	}
+	puts("Bye! ");
 
 	return 0;
 }
-
-double sum(const struct funds money[], int n)
-{
-	double total;
-	int i;
-	
-	for (i = 0, total = 0; i < n; i++)
-	{
-		total += money[i].bankfund + money[i].savefund;
-	}
-
-	return total;
-}
-
-
 
 
 
