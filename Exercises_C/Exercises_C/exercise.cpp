@@ -10686,131 +10686,242 @@
 //}
 
 // func_ptr.c -- 使用函数指针
-void eatline()
-{
-	while (getchar()!='\n')
-	{
-		continue;
-	}
-	return;
-}
+//void eatline()
+//{
+//	while (getchar()!='\n')
+//	{
+//		continue;
+//	}
+//	return;
+//}
+//
+//char showmenu()
+//{
+//	char ans;
+//	puts("Enter menu choice: ");
+//	puts("u)upperacse l)lowercase");
+//	puts("t)transposed acse 0)original case");
+//	puts("n)next string");
+//
+//	ans = getchar();
+//	ans = towlower(ans);
+//	eatline();
+//	while (strchr("ulton",ans)==NULL)
+//	{
+//		puts("Please enter a u,l,t,o,or n: ");
+//		ans = towlower(getchar());
+//		eatline();
+//	}
+//
+//	return ans;
+//
+//}
+//
+//void ToUpper(char* str)
+//{
+//	while (*str)
+//	{
+//		*str = toupper(*str);
+//		str++;
+//	}
+//}
+//
+//void ToLower(char* str)
+//{
+//	while (*str)
+//	{
+//		*str = towlower(*str);
+//		str++;
+//	}
+//}
+//
+//void Transpose(char* str)
+//{
+//	while (*str)
+//	{
+//		if (islower(*str))
+//		{
+//			*str = toupper(*str);
+//		}
+//		else if (isupper(*str))
+//		{
+//			*str = tolower(*str);
+//		}
+//		str++;
+//	}
+//}
+//
+//void Dummy(char* str)
+//{
+//	// 不改变字符串
+//}
+//
+//void show(void(*fp)(char*), char* str)
+//{
+//	(*fp)(str);		// 把用户选择的函数作用于str
+//	puts(str);		// 显示结果
+//}
+//
+//
+//int main()
+//{
+//	char line[81];
+//	char copy[81];
+//	char choice;
+//
+//	void(*pfun)(char*); // 指向一个函数，该函数接受一个char* 参数，并且没有返回值
+//	pfun = NULL;
+//	puts("Enter a string (empty line to quit): ");
+//
+//	while (gets_s(line)!=NULL&&line[0]!='\0')
+//	{
+//		while ((choice=showmenu())!='n')
+//		{
+//			switch (choice)
+//			{
+//			case 'u':
+//			{
+//				pfun = ToUpper;
+//				break;
+//			}
+//			case 'l':
+//			{
+//				pfun = ToLower;
+//				break;
+//			}
+//			case 't':
+//			{
+//				pfun = Transpose;
+//				break;
+//			}
+//			case 'o':
+//			{
+//				pfun = Dummy;
+//				break;
+//			}
+//			default:
+//				break;
+//			}
+//			strcpy(copy, line);  // 为show()制作一份拷贝
+//			show(pfun, copy);    // 使用用户选择的函数
+//		}
+//		puts("Enter a string (empty line to quit): ");
+//	}
+//	puts("Bye! ");
+//
+//	return 0;
+//}
 
-char showmenu()
-{
-	char ans;
-	puts("Enter menu choice: ");
-	puts("u)upperacse l)lowercase");
-	puts("t)transposed acse 0)original case");
-	puts("n)next string");
+//void delay(const double second);
+//
+//int main(void)
+//{
+//	double n;
+//
+//	printf("please enter a number (<0 or q to quit): ");
+//
+//	while (scanf("%lf",&n)==1)
+//	{
+//		delay(n);
+//		
+//		printf("You can enter again(<0 or q to quit): ");
+//	}
+//
+//	puts("Done.");
+//	
+//	return 0;
+//}
+//
+//void delay(const double second)
+//{
+//	clock_t start = clock();
+//	clock_t end = clock();
+//
+//	while (((double)(end - start) / CLOCKS_PER_SEC) < second)
+//	{
+//		end = clock();
+//	}
+//	printf("Delay %g seconds.\n", (double)(end - start) / CLOCKS_PER_SEC);
+//
+//	return;
+//}
+//
 
-	ans = getchar();
-	ans = towlower(ans);
-	eatline();
-	while (strchr("ulton",ans)==NULL)
-	{
-		puts("Please enter a u,l,t,o,or n: ");
-		ans = towlower(getchar());
-		eatline();
-	}
+#define LEN 30
+#define PICK 6
 
-	return ans;
 
-}
-
-void ToUpper(char* str)
-{
-	while (*str)
-	{
-		*str = toupper(*str);
-		str++;
-	}
-}
-
-void ToLower(char* str)
-{
-	while (*str)
-	{
-		*str = towlower(*str);
-		str++;
-	}
-}
-
-void Transpose(char* str)
-{
-	while (*str)
-	{
-		if (islower(*str))
-		{
-			*str = toupper(*str);
-		}
-		else if (isupper(*str))
-		{
-			*str = tolower(*str);
-		}
-		str++;
-	}
-}
-
-void Dummy(char* str)
-{
-	// 不改变字符串
-}
-
-void show(void(*fp)(char*), char* str)
-{
-	(*fp)(str);		// 把用户选择的函数作用于str
-	puts(str);		// 显示结果
-}
-
+void random_pick(int ar[], int picks);
 
 int main()
 {
-	char line[81];
-	char copy[81];
-	char choice;
+	int i, ch;
 
-	void(*pfun)(char*); // 指向一个函数，该函数接受一个char* 参数，并且没有返回值
-	pfun = NULL;
-	puts("Enter a string (empty line to quit): ");
+	int choices[LEN];
 
-	while (gets_s(line)!=NULL&&line[0]!='\0')
+	for (i = 0; i < LEN; i++)
 	{
-		while ((choice=showmenu())!='n')
-		{
-			switch (choice)
-			{
-			case 'u':
-			{
-				pfun = ToUpper;
-				break;
-			}
-			case 'l':
-			{
-				pfun = ToLower;
-				break;
-			}
-			case 't':
-			{
-				pfun = Transpose;
-				break;
-			}
-			case 'o':
-			{
-				pfun = Dummy;
-				break;
-			}
-			default:
-				break;
-			}
-			strcpy(copy, line);  // 为show()制作一份拷贝
-			show(pfun, copy);    // 使用用户选择的函数
-		}
-		puts("Enter a string (empty line to quit): ");
+		choices[i] = i + 1;
 	}
-	puts("Bye! ");
+
+	do
+	{
+		random_pick(choices, PICK);
+
+		printf("Can you do again(y/n)? ");
+
+		ch = getchar();
+
+		while (getchar()!='\n')
+		{
+			continue;
+		}
+
+	} while ('y'==ch||'Y'==ch);
+
+	puts("Done.");
 
 	return 0;
 }
+
+void random_pick(int ar[], int picks)
+{
+	int count = 0;
+
+	int i, br[LEN];
+
+	memcpy(br, ar, LEN * sizeof(int));
+	srand((unsigned int)time(0));
+
+	printf("Pick %d numbers:\n", picks);
+
+	while (picks>0)
+	{
+		i = rand() % LEN;
+
+		if (0 == br[i])
+		{
+			continue;
+		}
+		else
+		{
+			printf("%-8d", br[i]);
+			br[i] = 0;
+			--picks;
+		}
+		if (++count % 10 == 0)
+		{
+			putchar('\n');
+		}
+
+	}
+
+	putchar('\n');
+
+	return;
+}
+
+
 
 
 
