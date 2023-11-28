@@ -6,6 +6,7 @@
 #include<time.h>
 #include"function.h"
 #include<math.h>
+#include<stdarg.h>
 
 
 
@@ -10847,105 +10848,286 @@
 //}
 //
 
-#define LEN 30
-#define PICK 6
+//#define LEN 30
+//#define PICK 6
+//
+//void random_pick(int ar[], int picks);
+//
+//int main()
+//{
+//	int i, ch;
+//
+//	int choices[LEN];
+//
+//	for (i = 0; i < LEN; i++)
+//	{
+//		choices[i] = i + 1;
+//	}
+//
+//	do
+//	{
+//		random_pick(choices, PICK);
+//
+//		printf("Can you do again(y/n)? ");
+//
+//		ch = getchar();
+//
+//		while (getchar()!='\n')
+//		{
+//			continue;
+//		}
+//
+//	} while ('y'==ch||'Y'==ch);
+//
+//	puts("Done.");
+//
+//	return 0;
+//}
+//
+//void random_pick(int ar[], int picks)
+//{
+//	int count = 0;
+//
+//	int i, br[LEN];
+//
+//	memcpy(br, ar, LEN * sizeof(int));
+//	srand((unsigned int)time(0));
+//
+//	printf("Pick %d numbers:\n", picks);
+//
+//	while (picks>0)
+//	{
+//		i = rand() % LEN;
+//
+//		if (0 == br[i])
+//		{
+//			continue;
+//		}
+//		else
+//		{
+//			printf("%-8d", br[i]);
+//			br[i] = 0;
+//			--picks;
+//		}
+//		if (++count % 10 == 0)
+//		{
+//			putchar('\n');
+//		}
+//
+//	}
+//
+//	putchar('\n');
+//
+//	return;
+//}
 
 
-void random_pick(int ar[], int picks);
+//#define LEN 40
+//#define SLEN 5
+//
+//struct names
+//{
+//	char first[LEN];
+//
+//	char last[LEN];
+//};
+//
+//int comp(const void* p1, const void* p2);
+//void show_names(const struct names* begin, int n);
+//
+//int main()
+//{
+//	struct names staff[SLEN]
+//	{
+//		{"Francy","card"},
+//		{"Coffee","cancy"},
+//		{"Stephen","lory"},
+//		{"Jack,rosery"},
+//		{"Black,clover"}
+//	};
+//
+//	puts("Random list: ");
+//	show_names(staff, SLEN);
+//
+//	qsort(staff, SLEN, sizeof(struct names), comp);
+//
+//	puts("\nSorted list: ");
+//
+//	show_names(staff, SLEN);
+//
+//
+//	return 0;
+//}
+//
+//int comp(const void* p1, const void* p2)
+//{
+//
+//	const struct names* ps1 = (const struct names*)p1;
+//	const struct names* ps2 = (const struct names*)p2;
+//
+//	if (strcmp(ps1->last, ps2->last) != 0)
+//	{
+//		return res;
+//	}
+//	else
+//	{
+//		return strcmp(ps1->first, ps2->first);
+//	}
+//
+//}
+//
+//void show_names(const struct names* begin, int n)
+//{
+//	const struct names* end = begin + n;
+//
+//	while (begin<end)
+//	{
+//		printf("%s %s\n", begin->first, begin->last);
+//		++begin;
+//	}
+//
+//	return;
+//}
+
+//
+//void show_array(const double ar[], int n);
+//double* new_d_array(int n, ...);
+//
+//int main()
+//{
+//	double* p1;
+//	double* p2;
+//
+//	p1 = new_d_array(5, 1.2, 2.3, 3.4, 4.5, 5.6);
+//	p2 = new_d_array(4, 100.0, 20.00, 8.08, -1890.0);
+//
+//	show_array(p1, 5);
+//	show_array(p2, 4);
+//
+//	free(p1);
+//	
+//	free(p2);
+//
+//	return 0;
+//}
+//
+//void show_array(const double ar[], int n)
+//{
+//	int i;
+//	printf("%d elements: \n");
+//	for (i = 0; i < n; i++)
+//	{
+//		printf("%-8g", ar[i]);
+//	}
+//	putchar('\n');
+//
+//	return;
+//}
+//
+//double* new_d_array(int n, ...)
+//{
+//	int i;
+//
+//	va_list ap;
+//
+//	double* pt;
+//
+//	va_start(ap, n);
+//
+//	pt = (double*)malloc(n * sizeof(double));
+//
+//	for (i = 0; i < n; i++)
+//	{
+//		pt[i] = va_arg(ap, double);
+//	}
+//
+//	va_end(ap);
+//
+//	return pt;
+//}
+
+/* binbit.c -- 使用位运算显示二进制数 */
+
+char* itobs(int, char*);
+
+void show_bstr(const char*);
+
+int invert_end(int, int);
 
 int main()
 {
-	int i, ch;
+	char bin_str[8 * sizeof(int) + 1];
 
-	int choices[LEN];
+	int number;
 
-	for (i = 0; i < LEN; i++)
+	puts("Enter integers and see them in binary.");
+	puts("Non-numeric input terminates program.");
+
+	while (scanf("%d",&number)==1)
 	{
-		choices[i] = i + 1;
+		itobs(number, bin_str);
+		printf("%d is ", number);
+		show_bstr(bin_str);
+		putchar('\n');
+
+		number = invert_end(number, 4);
+
+		printf("Inverting the last 4 bits gives\n");
+
+		show_bstr(itobs(number, bin_str));
+
+		putchar('\n');
+
 	}
 
-	do
-	{
-		random_pick(choices, PICK);
-
-		printf("Can you do again(y/n)? ");
-
-		ch = getchar();
-
-		while (getchar()!='\n')
-		{
-			continue;
-		}
-
-	} while ('y'==ch||'Y'==ch);
-
-	puts("Done.");
+	puts("bye!");
 
 	return 0;
 }
 
-void random_pick(int ar[], int picks)
+char* itobs(int n, char* ps)
 {
-	int count = 0;
+	int i;
 
-	int i, br[LEN];
+	static int size = 8 * sizeof(int);
 
-	memcpy(br, ar, LEN * sizeof(int));
-	srand((unsigned int)time(0));
-
-	printf("Pick %d numbers:\n", picks);
-
-	while (picks>0)
+	for (i = size - 1; i >= 0; i--, n >>= 1)
 	{
-		i = rand() % LEN;
-
-		if (0 == br[i])
-		{
-			continue;
-		}
-		else
-		{
-			printf("%-8d", br[i]);
-			br[i] = 0;
-			--picks;
-		}
-		if (++count % 10 == 0)
-		{
-			putchar('\n');
-		}
-
+		ps[i] = (01 & n) + '0';
 	}
 
-	putchar('\n');
+	ps[size] = '\0';
 
-	return;
+	return ps;
 }
 
+/* 四位一组显示二进制字符串 */
+void show_bstr(const char* str)
+{
+	int i = 0;
 
+	while (str[i])
+	{
+		putchar(str[i]);
+		if (++i % 4 == 0 && str[i])
+		{
+			putchar(' ');
+		}
+	}
 
+}
 
+int invert_end(int num, int bits)
+{
+	int mask = 0;
+	
+	int bitval = 1;
 
+	while (bits-->0)
+	{
+		mask |= bitval;
+		bitval <<= 1;
+	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	return num ^ mask;
+}
