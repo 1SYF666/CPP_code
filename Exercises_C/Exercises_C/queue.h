@@ -122,23 +122,23 @@ int QueueItemCount(const Queue* pq);
 /* 操作后：如果队列未满，item被添加到 */
 /*        队列尾部，函数返回True;否则 */
 /*        不改变队列，函数返回False */
-int EnQueue(Item item, Queue* pq);
+bool EnQueue(Item item, Queue* pq);
 
 /* 操作：向队列首端删除项目 */
 /* 操作前：pd指向一个先前已初始化过的队列 */
-/* 操作后：如果队列未满，item被添加到 */
-/*        队列尾部，函数返回True;否则 */
+/* 操作后：如果队列非空，队列首端的项目被 */
+/*        复制到*pitem,并被从队列中删除 */
+/*        函数返回True,如果这个操作使得 */
+/*        队列为空，把队列重置为空队列 */
+/*        如果队列开始时为空， */
 /*        不改变队列，函数返回False */
-/*        item要添加到队列尾端的项目 */
-int EnQueue(Item item, Queue* pq);
-
-
+bool DeQueue(Item *pitem, Queue* pq);
 
 
 /* 操作：清空队列 */
 /* 操作前：pd指向一个先前已初始化过的队列 */
 /* 操作后：队列被清空 */
-int EmptyTheQueue(const Queue* pq);
+void EmptyTheQueue(Queue* pq);
 
 #endif // !_QUEUE_H_
 

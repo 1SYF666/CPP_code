@@ -130,50 +130,150 @@
 
 #include"queue.h"
 
-// the initial of queue
-Status InitQueue(SqQueue& Q) {
+//// the initial of queue
+//Status InitQueue(SqQueue& Q) {
+//	
+//	//Q.base = new QElemType[MAXQSIZE];
+//	Q.base = (QElemType*)malloc(MAXQSIZE * sizeof(QElemType));
+//
+//	if (!Q.base)exit(OVERFLOW);
+//	Q.front = Q.rear = 0;
+//	return OK;
+//}
+//
+////get the length of queue
+//int QueueLength(SqQueue Q) {
+//
+//	return((Q.rear - Q.front + MAXQSIZE) % MAXQSIZE);
+//
+//}
+//
+////push in the queue 
+//Status ENQueue(SqQueue& Q, QElemType e) {
+//
+//	if ((Q.rear + 1) % MAXQSIZE == Q.front) return ERROR;  //the full of queue
+//
+//	Q.base[Q.rear] = e;                                    // add the back of queue
+//	Q.rear = (Q.rear + 1) % MAXQSIZE;                      // 
+//	return OK;
+//
+//}
+//
+//
+////pop in the queue 
+//Status DeQueue(SqQueue& Q, QElemType e) {
+//
+//	if (Q.front == Q.rear) return ERROR; //the queue is empty
+//	e = Q.base[Q.front];
+//	Q.front = (Q.front + 1) % MAXQSIZE;
+//	
+//	return OK;
+//}
+//
+////get the head element of queue
+//QElemType GetHead(SqQueue Q) {
+//	if (Q.front != Q.rear)   //if queue is no empty
+//		return Q.base[Q.front];
+//}
+
+static void CopyToNode(Item item, Node* pn);
+static void CopyToItem(Node* pn, Item* pi );
+
+void InitializeQueue(Queue* pq)
+{
+	pq->front = pq->rear = NULL;
+	pq->items = 0;
+}
+
+bool QueueIsFull(const Queue* pq)
+{
+	return pq->items == MAXQUEUE;
+}
+
+bool QueueIsEmpty(const Queue* pq)
+{
+	return pq->items == 0;
+}
+
+int QueueItemCount(const Queue* pq)
+{
+	return pq->items;
+}
+
+bool EnQueue(Item item, Queue* pq)
+{
+	Node* pnew;
+
+	if (QueueIsFull(pq))
+	{
+		return false;
+	}
+
+	pnew = (Node*)malloc(sizeof(Node));
+	if (pnew == NULL)
+	{
+		fprintf(stderr, "Unable to allocate memory!\n");
+		exit(1);
+	}
+	CopyToNode(item, pnew);
+	pnew->next = NULL;
+
+	if (QueueIsEmpty(pq))
+	{
+		pq->front = pnew;
+	}
+	else
+	{
+		pq->rear->next = pnew;
+	}
+
+	pq->rear = pnew;
+	pq->items++;
 	
-	//Q.base = new QElemType[MAXQSIZE];
-	Q.base = (QElemType*)malloc(MAXQSIZE * sizeof(QElemType));
-
-	if (!Q.base)exit(OVERFLOW);
-	Q.front = Q.rear = 0;
-	return OK;
-}
-
-//get the length of queue
-int QueueLength(SqQueue Q) {
-
-	return((Q.rear - Q.front + MAXQSIZE) % MAXQSIZE);
+	return true;
 
 }
 
-//push in the queue 
-Status ENQueue(SqQueue& Q, QElemType e) {
+bool DeQueue(Item* pitem, Queue* pq)
+{
+	Node* pt;
 
-	if ((Q.rear + 1) % MAXQSIZE == Q.front) return ERROR;  //the full of queue
+	if (QueueIsEmpty(pq))
+	{
+		return false;
+	}
+	CopyToItem(pq->front, pitem);
 
-	Q.base[Q.rear] = e;                                    // add the back of queue
-	Q.rear = (Q.rear + 1) % MAXQSIZE;                      // 
-	return OK;
+	pt = pq->front;
 
+	pq->front = pq->front->next;
+	free(pt);
+	pq->items--;
+
+	if (pq->items == 0)
+		pq->rear = NULL;
+
+	return true;
 }
 
+void EmptyTheQueue(Queue* pq)
+{
+	Item dummy;
+	while (!QueueIsEmpty(pq))
+	{
+		DeQueue(&dummy, pq);
+	}
 
-//pop in the queue 
-Status DeQueue(SqQueue& Q, QElemType e) {
-
-	if (Q.front == Q.rear) return ERROR; //the queue is empty
-	e = Q.base[Q.front];
-	Q.front = (Q.front + 1) % MAXQSIZE;
-	
-	return OK;
+	return;
 }
 
-//get the head element of queue
-QElemType GetHead(SqQueue Q) {
-	if (Q.front != Q.rear)   //if queue is no empty
-		return Q.base[Q.front];
-
+static void CopyToNode(Item item, Node* pn)
+{
+	pn->item = item;
 
 }
+static void CopyToItem(Node* pn, Item* pi)
+{
+	*pi = pn->item;
+}
+
