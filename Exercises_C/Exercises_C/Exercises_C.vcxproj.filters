@@ -42,6 +42,9 @@
     <ClCompile Include="BmpRot.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="mall.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="function.h">

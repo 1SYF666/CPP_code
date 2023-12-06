@@ -81,7 +81,13 @@
 #define _QUEUE_H_
 
 #define MAXQUEUE 10
-typedef int Item;
+//typedef int Item;
+typedef struct item
+{
+	long arrive;      /* 一位顾客加入队列的时间  */
+	int processtime;  /* 该顾客需要的咨询时间    */
+}Item;
+
 typedef struct node
 {
 	Item item;

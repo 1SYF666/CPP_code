@@ -145,6 +145,7 @@
     <ClCompile Include="function.cpp" />
     <ClCompile Include="Linked_stack.cpp" />
     <ClCompile Include="Linked_queue.cpp" />
+    <ClCompile Include="mall.cpp" />
     <ClCompile Include="queue.cpp" />
     <ClCompile Include="Singly_Linked_List.cpp" />
     <ClCompile Include="SqList.cpp" />
