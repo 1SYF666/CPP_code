@@ -8,6 +8,7 @@
 #include<math.h>
 #include<stdarg.h>
 #include<assert.h>
+#include<iostream>
 
 
 
@@ -11703,12 +11704,84 @@
 
 
 
-//******************* 2023/12/19 20:15 *********************//
+//******************* 2023/12/24 20:15 *********************//
 
-
-
-
-
-
+//class ilist_item
+//{
+//public:
+//	ilist_item(int value, ilist_item* item_to_link_to = 0);
+//	int value() { return _value; }
+//	ilist_item* next() { return _next; }
+//	void next(ilist_item* link) { _next = link; }
+//	void value(int new_value) { _value = new_value; }
+//
+//private:
+//	int _value;
+//	ilist_item* next;
+//
+//};
+//
+//
+//class ilist
+//{
+//public:
+//	void display(ostream& os = cout);
+//	// ...
+//
+//};
+//
+//void ilist::display(ostream& os)
+//{
+//	os << "\n（" << _size << ")(";
+//	ilist_item* ptr = _at_front;
+//
+//	while (ptr)
+//	{
+//		os << ptr->value() << " ";
+//		ptr = ptr->next();
+//	}
+//
+//	os << ")\n";
+//}
+//
+//int main()
+//{
+//	ilist mylist;
+//
+//	for (int ix = 0; ix < 10; ++ix)
+//	{
+//		mylist.insert_front(ix);
+//		mylist.insert_end(ix);
+//	}
+//
+//	cout << "OK: after insert_front() and insert_end()\n";
+//
+//	mylist.display();
+//	ilist_item* it = mylist.find(8);
+//
+//	cout << "\n"
+//		<< "Searching for the value 8: found it<<"
+//		<< (it << "yes!\n":"no!\n");
+//	mylist.insert(it, 1024);
+//
+//	cout << "\n"
+//	   	 << "Inserting element 1024 following the value 8\n";
+//	mylist.display();
+//
+//	int elem_cnt = mylist.remove(8);
+//
+//	cout << "\n"
+//		<< "Remove" << elem_cnt << "of the value 8\n";
+//	mylist.display();
+//
+//	cout << "\n" << "Removed front element\n";
+//
+//	mylist.remove_front(); mylist.display();
+//
+//	cout << "\n" << "Remove all element\n";
+//
+//	mylist.remove_all(); mylist.display();
+//
+//}
 
 
