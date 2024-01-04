@@ -11784,4 +11784,44 @@
 //
 //}
 
+//******************* 2024/1/4 20:51 *********************//
+//#include <iostream>
+//#include <string>
+//
+//int main() {
+//	std::string myString = "Hello, world!";
+//	std::string::size_type stringSize = myString.size();
+//
+//	std::cout << "Length of string: " << stringSize << std::endl;
+//
+//	return 0;
+//}
+
+
+class Screen {
+
+public:
+	typedef std::string::size_type pos;
+
+	Screen() = default;  // 因为Screen 有另一个构造函数，
+						 // 所以本函数是必需的
+	
+    // cursor 被其类内初始值初始化为0
+	Screen(pos ht, pos wd, char c);
+
+
+
+private:
+	pos cursor = 0;
+	pos height = 0, width = 0;
+	std::string contents;
+
+
+};
+
+
+
+
+
+
 
