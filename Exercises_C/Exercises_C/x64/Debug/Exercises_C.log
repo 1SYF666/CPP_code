@@ -1,12 +1,14 @@
-﻿  exercise.cpp
-C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\exercise.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\exercise.cpp(1426,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\exercise.cpp(2725,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\exercise.cpp(4195,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\exercise.cpp(5692,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\exercise.cpp(7132,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\exercise.cpp(8409,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\exercise.cpp(9829,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\exercise.cpp(11375,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-MSVCRTD.lib(exe_main.obj) : error LNK2019: 无法解析的外部符号 main，函数 "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ) 中引用了该符号
-C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\x64\Debug\Exercises_C.exe : fatal error LNK1120: 1 个无法解析的外部命令
+﻿  function.cpp
+C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\SqList.h(58,1): warning C4005: “OVERFLOW”: 宏重定义
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_math.h(965): message : 参见“OVERFLOW”的前一个定义
+C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\function.cpp(196,9): warning C4476: "printf": 格式说明符中的类型字段字符“\xe8”未知
+C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\function.cpp(197,9): warning C4476: "printf": 格式说明符中的类型字段字符“\xe8”未知
+C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\function.cpp(198,9): warning C4476: "printf": 格式说明符中的类型字段字符“\xe8”未知
+C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\function.cpp(199,9): warning C4476: "printf": 格式说明符中的类型字段字符“\xe8”未知
+C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\function.cpp(304,22): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\function.cpp(307,22): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\function.cpp(351,26): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\function.cpp(389,26): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\function.cpp(391,26): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\Exercises_C\function.cpp(414): warning C4715: “KMP”: 不是所有的控件路径都返回值
+  Exercises_C.vcxproj -> C:\Users\PC\Desktop\C\code1\CPP_code\Exercises_C\x64\Debug\Exercises_C.exe
