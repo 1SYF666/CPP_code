@@ -663,57 +663,60 @@ void quickSort(int* arr, int left, int right)
 
 
 //*******************2023/10/25 14:41*********************//
-static unsigned long int next = 1;			/*种子*/
 
-int rand0(void)
-{
-	/*产生伪随机数的魔术般的公式*/
-	next = next * 1103515245 + 12345;
-	return (unsigned int)(next / 65536) % 32768;
-}
-
-
-int rand1(void)
-{
-	/*产生伪随机数的魔术般的公式*/
-	next = next * 1103515245 + 12345;
-	return (unsigned int)(next / 65536) % 32768;
-
-}
-
-void srand1(unsigned int seed)
-{
-	next = seed;
-}
+//static unsigned long int next = 1;			/*种子*/
+//
+//int rand0(void)
+//{
+//	/*产生伪随机数的魔术般的公式*/
+//	next = next * 1103515245 + 12345;
+//	return (unsigned int)(next / 65536) % 32768;
+//}
+//
+//
+//int rand1(void)
+//{
+//	/*产生伪随机数的魔术般的公式*/
+//	next = next * 1103515245 + 12345;
+//	return (unsigned int)(next / 65536) % 32768;
+//
+//}
+//
+//void srand1(unsigned int seed)
+//{
+//	next = seed;
+//}
 
 
 //*******************2024/1/18 14:41*********************//
-#include <iostream>
-using namespace std;
+//#include <iostream>
+//using namespace std;
+//
+//const int HOUR_PER_DAY = 24;
+//const int MINUTE_PER_HOUR = 60;
+//const int SECOND_PER_MINUTE = 60;
+//
+//int main()
+//{
+//	long long second;
+//
+//	cout << "Enter the number of seconds: ";
+//	cin >> second;
+//
+//	cout << second << " seconds = ";
+//	cout << second / (HOUR_PER_DAY * MINUTE_PER_HOUR * SECOND_PER_MINUTE);
+//	cout << " days, ";
+//	cout << second / (SECOND_PER_MINUTE * MINUTE_PER_HOUR) % HOUR_PER_DAY;
+//	cout << " hours, ";
+//	cout << second % (SECOND_PER_MINUTE * MINUTE_PER_HOUR) / SECOND_PER_MINUTE;
+//	cout << " minutes, ";
+//	cout << second % SECOND_PER_MINUTE;
+//	cout << " seconds" << endl;
+//
+//	return 0;
+//}
 
-const int HOUR_PER_DAY = 24;
-const int MINUTE_PER_HOUR = 60;
-const int SECOND_PER_MINUTE = 60;
 
-int main()
-{
-	long long second;
-
-	cout << "Enter the number of seconds: ";
-	cin >> second;
-
-	cout << second << " seconds = ";
-	cout << second / (HOUR_PER_DAY * MINUTE_PER_HOUR * SECOND_PER_MINUTE);
-	cout << " days, ";
-	cout << second / (SECOND_PER_MINUTE * MINUTE_PER_HOUR) % HOUR_PER_DAY;
-	cout << " hours, ";
-	cout << second % (SECOND_PER_MINUTE * MINUTE_PER_HOUR) / SECOND_PER_MINUTE;
-	cout << " minutes, ";
-	cout << second % SECOND_PER_MINUTE;
-	cout << " seconds" << endl;
-
-	return 0;
-}
 
 
 
