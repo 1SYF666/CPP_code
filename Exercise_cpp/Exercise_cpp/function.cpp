@@ -69,3 +69,53 @@ void function_6_2(void)
 	}
 
 }
+
+void show_menu()
+{
+	cout << "Please enter one of the following choices: " << endl;
+	cout << "c)carnivore p)pianist" << endl;
+	cout << "t)tree      g)game" << endl;
+}
+void function_6_3(void)
+{
+	char ch;
+	show_menu();
+
+	while (cin >> ch)
+	{
+		switch (ch)
+		{
+		case 'c':
+		{
+			cout << "Pandas are also carnovores." << endl;
+			break;
+		}
+		case 'p':
+		{
+			cout << "Mozart is an excellent pianist." << endl;
+			break;
+		}
+		case 't':
+		{
+			cout << "A maple is a tree" << endl;
+			break;
+		}
+		case 'g':
+		{
+			cout << "Playing game can relax yourself." << endl;
+			break;
+		}
+		default:
+		{
+			cout << "Please enter c,p,t,or g: ";
+			break;
+		}
+		}
+
+		if ('c' == ch || 'p' == ch || 't' == ch || 'g' == ch)
+		{
+			break;
+		}
+	}
+
+}
