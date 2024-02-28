@@ -29,3 +29,27 @@ void function_6_2(void);
 	然后，该程序使用一条switch语句，根据用户的选择执行一个简单操作。该程序的运行情况如下
 */
 void function_6_3(void);
+
+/*
+	6.4．
+	加入Benevolent Order of Programmer后，在BOP大会上，人们便
+	可以通过加入者的真实姓名、头衔或秘密BOP姓名来了解他（她）。请
+	编写一个程序，可以使用真实姓名、头衔、秘密姓名或成员偏好来列出
+	成员。编写该程序时，请使用下面的结构：
+	......
+	该程序创建一个由上述结构组成的小型数组，并将其初始化为适当
+	的值。另外，该程序使用一个循环，让用户在下面的选项中进行选择：
+
+*/
+
+const int NUM = 5;
+const int strsize = 20;
+struct bop
+{
+	char fullname[strsize];
+	char title[strsize];
+	char bopname[strsize];
+	int perference;
+};
+
+void function_6_4(void);

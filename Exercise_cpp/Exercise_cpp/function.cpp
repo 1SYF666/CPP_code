@@ -70,7 +70,7 @@ void function_6_2(void)
 
 }
 
-void show_menu()
+void show_menu_6_3()
 {
 	cout << "Please enter one of the following choices: " << endl;
 	cout << "c)carnivore p)pianist" << endl;
@@ -79,7 +79,7 @@ void show_menu()
 void function_6_3(void)
 {
 	char ch;
-	show_menu();
+	show_menu_6_3();
 
 	while (cin >> ch)
 	{
@@ -117,5 +117,97 @@ void function_6_3(void)
 			break;
 		}
 	}
+
+}
+
+
+
+
+
+void show_menu_6_4()
+{
+	cout << "Benevolent Order of programmers Report" << endl;
+	cout << "a. display by name	b. display by title " << endl;
+	cout << "c. display by bopname	d. display by preference" << endl;
+	cout << "q. quit" << endl;
+}
+
+void function_6_4(void)
+{
+	char ch;
+	bop people[NUM] =
+	{
+		{"Wimp Macho","Teacher","WMA",0},
+		{"Raki Rhodes","Junior Programmer","RHES",1},
+		{"Celia Laiter","Professor","MIPS",2},
+		{"Hoppy Hipman","Analyst Trainee","HPAN",1},
+		{"Pat Hand","Animal Keeper","LOOPY",2},
+
+	};
+	show_menu_6_4();
+	cout << "Enter your choice: ";
+	while (cin >> ch && ch != 'q')
+	{
+		switch (ch)
+		{
+		case 'a':
+		{
+			for (int i = 0; i < NUM; i++)
+			{
+				cout << people[i].fullname << endl;
+			}
+			break;
+		}
+		case 'b':
+		{
+			for (int i = 0; i < NUM; i++)
+			{
+				cout << people[i].title << endl;
+			}
+			break;
+		}
+		case 'c':
+		{
+			for (int i = 0; i < NUM; i++)
+			{
+				cout << people[i].bopname << endl;
+			}
+			break;
+		}
+		case 'd':
+		{
+			for (int i = 0; i < NUM; i++)
+			{
+				switch (people[i].perference)
+				{
+				case 0:
+				{
+					cout << people[i].fullname << endl;
+					break;
+				}
+				case 1:
+				{
+					cout << people[i].title << endl;
+					break;
+				}
+				case 2:
+				{
+					cout << people[i].bopname << endl;
+					break;
+				}
+				}
+			}
+		}
+
+		default:
+		{
+			cout << "Illegal input!" << endl;
+			break;
+		}
+		}
+		cout << "Next choice: ";
+	}
+	cout << "Bye!" << endl;
+
 
 }
