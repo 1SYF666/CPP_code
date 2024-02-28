@@ -2,6 +2,7 @@
 #include<iostream>
 #include<cctype>
 #include<array>
+#include<string> //getline
 using namespace std;
 
 
@@ -53,3 +54,39 @@ struct bop
 };
 
 void function_6_4(void);
+
+
+/*
+	6.5
+	例如，收入为38000 tvarps时，所得税为5000 0.00 + 10000 0.10 +
+	20000 0.15 + 3000 0.20，即4600 tvarps。请编写一个程序，使用循环来
+	要求用户输入收入，并报告所得税。当用户输入负数或非数字时，循环
+	将结束。
+
+*/
+void function_6_5(void);
+
+
+/*
+	6.6．
+	编写一个程序，记录捐助给“维护合法权利团体”的资金。该程
+	序要求用户输入捐献者数目，然后要求用户输入每一个捐献者的姓名和
+	款项。这些信息被储存在一个动态分配的结构数组中。每个结构有两个
+	成员：用来储存姓名的字符数组（或string对象）和用来存储款项的
+	double成员。读取所有的数据后，程序将显示所有捐款超过10000的捐
+	款者的姓名及其捐款数额。该列表前应包含一个标题，指出下面的捐款
+	者是重要捐款人（Grand Patrons）。然后，程序将列出其他的捐款者，
+	该列表要以Patrons开头。如果某种类别没有捐款者，则程序将打印单
+	词“none”。该程序只显示这两种类别，而不进行排序。
+
+*/
+
+const int HIGH_MONEY = 10000;
+
+struct corporation
+{
+	string name;
+	double money;
+};
+
+void function_6_6(void);

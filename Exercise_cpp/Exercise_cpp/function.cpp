@@ -211,3 +211,112 @@ void function_6_4(void)
 
 
 }
+
+const double TVARPS_5000 = 0.0;
+const double TVARPS_5001_to_15000 = 0.1;
+const double TVARPS_15001_to_35000 = 0.15;
+const double TVARPS_35000 = 0.2;
+
+void function_6_5(void)
+{
+	double wage, tax;
+	cout << "Please enter your wage (q or <0 to quit): ";
+	while (cin >> wage && wage > 0)
+	{
+		cout << "You wage: " << wage << " tvarps.\n";
+		if (wage < 5000)
+		{
+			tax = 0.0;
+		}
+		else if (wage < 15000)
+		{
+			tax = (wage - 5000) * TVARPS_5001_to_15000;
+		}
+		else if (wage < 35000)
+		{
+			tax = (wage - 15000) * TVARPS_15001_to_35000 + 10000 * TVARPS_5001_to_15000;
+		}
+		else
+		{
+			tax = (wage - 35000) * TVARPS_35000 + 20000 * TVARPS_15001_to_35000 + 10000 * TVARPS_5001_to_15000;
+		}
+		cout << "Your tax: " << tax << " tvarps.\n";
+		cout << "Next wage (q or <0 to quit): ";
+	}
+	cout << "Bye." << endl;
+
+
+}
+
+
+
+
+
+void function_6_6(void)
+{
+	int i, num;
+	unsigned int patrons = 0;
+	unsigned int grand_patrons = 0;
+
+	cout << "Please enter the number of donators: ";
+	(cin >> num).get();
+	corporation* people = new corporation[num];
+
+	for (i = 0; i < num; i++)
+	{
+		cout << "Please enter name #" << i + 1 << ": ";
+		getline(cin, people[i].name);
+		cout << "Please enter the amount of donation #" << i + 1 << ": ";
+		while (!(cin >> people[i].money))
+		{
+			cin.clear();
+			while (cin.get() != '\n')
+			{
+				continue;
+			}
+			cout << "Please enter a number: ";
+		}
+		cin.get();
+	}
+
+	for (i = 0; i < num; i++)
+	{
+		(HIGH_MONEY < people[i].money) ? ++grand_patrons : ++patrons;
+	}
+	cout << "\nGrand Patrons:" << endl;
+	if (grand_patrons != 0)
+	{
+		for (i = 0; i < num; i++)
+		{
+			if (people[i].money > HIGH_MONEY)
+			{
+				cout << "Name: " << people[i].name;
+				cout << "\nMoney: " << people[i].money << endl;
+
+			}
+		}
+	}
+	else
+	{
+		cout << "none" << endl;
+	}
+	cout << "\nPatrons:" << endl;
+	if (patrons != 0)
+	{
+		for (i = 0; i < num; i++)
+		{
+			if (people[i].money < HIGH_MONEY)
+			{
+				cout << "Name: " << people[i].name;
+				cout << "\nMoney: " << people[i].money << endl;
+			}
+		}
+	}
+	else
+	{
+		cout << "none" << endl;
+	}
+	delete[] people;
+
+
+}
