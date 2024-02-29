@@ -320,3 +320,167 @@ void function_6_6(void)
 
 
 }
+
+
+void function_6_7(void)
+{
+	string words;
+	unsigned int vowels = 0;
+	unsigned int consonants = 0;
+	unsigned int others = 0;
+
+	cout << "Enter words (q to quit): " << endl;
+	while (cin >> words, words != "q")
+	{
+		if (isalpha(words[0]))
+		{
+			switch (tolower(words[0]))
+			{
+			case 'a':
+			case 'b':
+			case 'i':
+			case 'o':
+			case 'u':
+			{
+				++vowels;
+				break;
+			}
+			default:
+			{
+				++consonants;
+				break;
+			}
+
+			}
+		}
+		else
+		{
+			++others;
+		}
+
+	}
+	cout << vowels << "words beginning with vowels" << endl;
+	cout << consonants << "words beginning with consonants" << endl;
+	cout << others << "others" << endl;
+
+}
+
+
+void function_6_8(void)
+{
+	char ch;
+	ifstream infile;
+	string filename;
+	unsigned int count = 0;
+	cout << "Please enter name of data file: ";
+	getline(cin, filename);
+	infile.open(filename);
+
+	if (!infile.is_open())
+	{
+		cout << "Could not open the file " << filename << endl;
+		cout << "Program terminating. " << endl;
+		exit(EXIT_FAILURE);
+	}
+	while (infile.get(ch), infile.good())
+	{
+		++count;
+		cout.put(ch);
+	}
+	if (count > 0)
+	{
+		cout << count << " characters in the file " << filename << endl;
+	}
+	else
+	{
+		cout << "No data processed." << endl;
+	}
+
+	infile.close();
+
+}
+
+
+void function_6_9(void)
+{
+	int i, num;
+	string filename;
+	ifstream infile;
+	unsigned int patrons = 0;
+	unsigned int grand_patrons = 0;
+
+	cout << "Please enter name of data file: ";
+	getline(cin, filename);
+	infile.open(filename);
+
+	if (!infile.is_open())
+	{
+		cout << "Could not open the file " << filename << endl;
+		cout << "Program terminating." << endl;
+		exit(EXIT_FAILURE);
+	}
+
+	(infile >> num).get();
+
+	corporation* people = new corporation[num];
+
+	for (i = 0; i < num && infile.good(); i++)
+	{
+		getline(infile, people[i].name);
+		while (!(infile >> people[i].money))
+		{
+			infile.clear();
+			while (infile.get() != '\n')
+			{
+				continue;
+			}
+
+		}
+		while (infile.get() != '\n')
+		{
+			continue;
+		}
+	}
+	infile.close();
+
+	for (i = 0; i < num; i++)
+	{
+		(HIGH_MONEY < people[i].money) ? ++grand_patrons : ++patrons;
+	}
+	cout << "\nGrand Patrins:" << endl;
+
+	if (grand_patrons != 0)
+	{
+		for (i = 0; i < num; i++)
+		{
+			if (people[i].money > HIGH_MONEY)
+			{
+				cout << "Name: " << people[i].name;
+				cout << "\nMoney: " << people[i].money << endl;
+			}
+		}
+	}
+	else
+	{
+		cout << "none" << endl;
+	}
+	cout << "\nPatrins:" << endl;
+
+	if (patrons != 0)
+	{
+		for (i = 0; i < num; i++)
+		{
+			if (people[i].money < HIGH_MONEY)
+			{
+				cout << "Name: " << people[i].name;
+				cout << "\nMoney: " << people[i].money << endl;
+			}
+		}
+	}
+	else
+	{
+		cout << "none" << endl;
+	}
+
+
+}
