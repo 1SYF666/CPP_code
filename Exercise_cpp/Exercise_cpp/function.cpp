@@ -484,3 +484,75 @@ void function_6_9(void)
 
 
 }
+
+double harmonic_mean_7_1(double x, double y)
+{
+	return 2.0 * x * y / (x + y);
+}
+void function_7_1(void)
+{
+	double a, b;
+	cout << "Please enter two numbers(0 to quit): ";
+	while (cin >> a >> b && a && b)
+	{
+		cout << "The harmonic mean of " << a;
+		cout << " and " << b << " is ";
+		cout << harmonic_mean_7_1(a, b) << endl;
+		cout << "Next two numbers (0 to quit): ";
+	}
+	cout << "Bye." << endl;
+
+}
+
+const int ArSize_7_2 = 10;
+int initiliza_array(double arr[], int n);
+void show_array_7_2(const double arr[], int n);
+void count_average_7_2(const double arr[], int n);
+
+void function_7_2(void)
+{
+	double golf[ArSize_7_2];
+	int n = initiliza_array(golf, ArSize_7_2);
+	show_array_7_2(golf, n);
+	count_average_7_2(golf, n);
+	cout << "Bye." << endl;
+
+}
+
+int initiliza_array(double arr[], int n)
+{
+	int i = 0;
+	cout << "You can enter up to " << ArSize_7_2;
+	cout << " golf scores (q to terminate)." << endl;
+	cout << "Golf scores #1: ";
+	while (i<n && cin >> arr[i])
+	{
+		if (++i < ArSize_7_2)
+		{
+			cout << "Golf scores #" << i + 1 << ": ";
+		}
+	}
+	return i;
+}
+
+void show_array_7_2(const double arr[], int n)
+{
+	cout << "All golf scores:" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << arr[i] << ' ';
+	}
+	cout << endl;
+}
+
+
+void count_average_7_2(const double arr[], int n)
+{
+	double aver = 0.0;
+	for (int i = 0; i < n; i++)
+	{
+		aver += arr[i];
+	}
+	aver /= n;
+	cout << "Average golf scores: " << aver << endl;
+}
