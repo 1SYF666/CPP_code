@@ -556,3 +556,132 @@ void count_average_7_2(const double arr[], int n)
 	aver /= n;
 	cout << "Average golf scores: " << aver << endl;
 }
+
+void value_show_box(box temp);
+void address_show_box(box* temp);
+void function_7_3(void)
+{
+	box smallbox = { "Cute box",20,10,30,50 };
+	value_show_box(smallbox);
+	address_show_box(&smallbox);
+	value_show_box(smallbox);
+
+}
+
+void value_show_box(box temp)
+{
+	cout << "Box informations: " << endl;
+	cout << "Name: " << temp.maker << endl;
+	cout << "height: " << temp.height << endl;
+	cout << "width: " << temp.width << endl;
+	cout << "length: " << temp.length << endl;
+	cout << "volume: " << temp.volume << endl;
+}
+
+void address_show_box(box* temp)
+{
+	temp->volume = temp->height * temp->width * temp->length;
+
+}
+
+long double probability(unsigned numbers, unsigned picks);
+void function_7_4(void)
+{
+	unsigned total, choices, temp;
+	cout << "Enter the total number of choices on the game card and\n";
+	cout << "the number of picks allowed and the second section(<= total number):" << endl;
+
+	while ((cin >> total >> choices >> temp) && choices <= total && temp <= total)
+	{
+
+		cout << "You have one chance in ";
+		cout << probability(total, choices) * probability(temp, 1);
+		cout << " of winning.\n";
+		cout << "Next three numbers (q to quit): ";
+	}
+
+}
+
+long double probability(unsigned numbers, unsigned picks)
+{
+	long double result = 1.0;
+	long double n;
+	unsigned p;
+
+	for (n = numbers, p = picks; p > 0; n--, p--)
+	{
+		result *= n / p;
+	}
+	return result;
+
+}
+
+long long factorial(long long n)
+{
+	return n > 0 ? n * factorial(n - 1) : 1;
+}
+
+void function_7_5(void)
+{
+	long long temp;
+	cout << "Please enter a number (<0 or q to quit): ";
+	while (cin >> temp && temp >= 0)
+	{
+		cout << temp << "! = " << factorial(temp) << endl;
+		cout << "Next number (<0 or q to quit ): ";
+	}
+	cout << "Bye." << endl;
+
+}
+
+const int ArSize_7_6 = 10;
+
+int Fill_array_7_6(double arr[], int n)
+{
+	int i = 0;
+	cout << "You can enter up to " << ArSize_7_6;
+	cout << " numbers(q to terminate)." << endl;
+	cout << "Number #1: ";
+	while (i<n && cin >> arr[i])
+	{
+		if (++i < ArSize_7_6)
+		{
+			cout << "Number #" << i + 1 << ": ";
+		}
+	}
+
+	return i;
+}
+
+void Show_array_7_6(const double arr[], int n)
+{
+	cout << "All numbers: " << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << arr[i] << ' ';
+	}
+
+	cout << endl;
+}
+
+void Resver_array_7_6(double arr[], int n)
+{
+	for (int i = 0, j = n - 1; i < j; i++, j--)
+	{
+		swap(arr[i], arr[j]);
+	}
+}
+
+void function_7_6(void)
+{
+	double arr[ArSize_7_6];
+	int n = Fill_array_7_6(arr, ArSize_7_6);
+	Show_array_7_6(arr, n);
+	Resver_array_7_6(arr, n);
+	Show_array_7_6(arr, n);
+	Resver_array_7_6(arr + 1, n - 2);
+	Show_array_7_6(arr, n);
+
+	cout << "Bye." << endl;
+
+}
