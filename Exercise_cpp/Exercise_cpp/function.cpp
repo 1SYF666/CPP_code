@@ -685,3 +685,82 @@ void function_7_6(void)
 	cout << "Bye." << endl;
 
 }
+
+double* fill_array_7_7(double* begin, double* end)
+{
+	int i;
+	double temp;
+	double* ptr = nullptr;
+
+	for (i = 0, ptr = begin; ptr < end; i++, ptr++)
+	{
+		cout << "Enter value #" << (i + 1) << ": ";
+		cin >> temp;
+		if (!cin)
+		{
+			cin.clear();
+			while (cin.get() != '\n')
+			{
+				continue;
+			}
+			cout << "Bad input;input process terminated.\n";
+			break;
+		}
+		else if (temp < 0)
+		{
+			break;
+		}
+		*ptr = temp;
+	}
+	return begin + i;
+}
+
+void show_array_7_7(const double* begin, double* end)
+{
+	int i;
+	const double* ptr = nullptr;
+
+	for (i = 0, ptr = begin; ptr < end; i++, ptr++)
+	{
+		cout << "Property #" << (i + 1) << ": $";
+	}
+
+}
+
+void revalue_7_7(double r, double* begin, double* end)
+{
+	for (double* pos = begin; pos < end; pos++)
+	{
+		*pos = r;
+	}
+
+}
+
+void function_7_7(void)
+{
+	double properties[Max];
+
+	double* size = fill_array_7_7(properties, properties + Max);
+	show_array_7_7(properties, size);
+
+	if (size - properties > 0)
+	{
+		cout << "Enter revaluation factor: ";
+		double factor;
+		while (!(cin >> factor))
+		{
+			cin.clear();
+			while (cin.get() != '\n')
+			{
+				continue;
+			}
+			cout << "Bad input;Please enter a number: ";
+		}
+		revalue_7_7(factor, properties, size);
+
+		show_array_7_7(properties, size);
+
+	}
+
+	cout << "Done.\n";
+}

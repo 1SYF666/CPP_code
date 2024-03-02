@@ -203,3 +203,19 @@ void function_7_5(void);
 */
 
 void function_7_6(void);
+
+
+/*
+	7.7
+	修改程序清单7.7中的3个数组处理函数，使之使用两个指针参
+	数来表示区间。fill_array( )函数不返回实际读取了多少个数字，而是返
+	回一个指针，该指针指向最后被填充的位置；其他的函数可以将该指针
+	作为第二个参数，以标识数据结尾。
+*/
+
+const int Max = 5;
+
+double* fill_array_7_7(double* begin, double* end);
+void show_array_7_7(const double* begin, double* end);
+void revalue_7_7(double r, double* begin, double* end);
+void function_7_7(void);
