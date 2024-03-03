@@ -219,3 +219,50 @@ double* fill_array_7_7(double* begin, double* end);
 void show_array_7_7(const double* begin, double* end);
 void revalue_7_7(double r, double* begin, double* end);
 void function_7_7(void);
+
+
+
+/*
+	7.8
+	在不使用array类的情况下完成程序清单7.15所做的工作。编写
+	两个这样的版本：
+	a．使用const char *数组存储表示季度名称的字符串，并使用double
+	数组存储开支。
+	b．使用const char *数组存储表示季度名称的字符串，并使用一个
+	结构，该结构只有一个成员——一个用于存储开支的double数组。这种
+	设计与使用array类的基本设计类似。
+*/
+const int Seasons = 4;
+
+struct epending
+{
+	double expenses[Seasons];
+};
+
+void function_7_8_a(void);
+void function_7_8_b(void);
+
+/*
+	7.9
+	这个练习让您编写处理数组和结构的函数。下面是程序的框
+	架，请提供其中描述的函数，以完成该程序
+*/
+
+const int SLEN = 30;
+
+struct student
+{
+	char fullname[SLEN];
+	char hobby[SLEN];
+	int ooplevel;
+};
+void function_7_9(void);
+
+/*
+	7.10
+	设计一个名为calculate()的函数，它接受两个double值和一个指
+	向函数的指针，而被指向的函数接受两个double参数，并返回一个
+	double值。calculate()函数的类型也是double，并返回被指向的函数使用
+	calculate()的两个double参数计算得到的值。
+*/
+void function_7_10(void);

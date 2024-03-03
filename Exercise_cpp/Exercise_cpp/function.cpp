@@ -764,3 +764,208 @@ void function_7_7(void)
 
 	cout << "Done.\n";
 }
+
+
+const char* Snames[Seasons] = { "Spring","Summer","Fall","Winter" };
+void fill_7_8_a(double pa[], int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		std::cout << "Enter " << Snames[i] << " expenses: ";
+		std::cin >> pa[i];
+	}
+}
+void show_7_8_a(const double pa[], int n)
+{
+	double total = 0.0;
+	std::cout << "EXPENSES\n";
+	for (int i = 0; i < n; i++)
+	{
+		std::cout << Snames[i] << ":$" << pa[i] << endl;
+		total += pa[i];
+	}
+	std::cout << "Total: $" << total << '\n';
+}
+
+
+void function_7_8_a(void)
+{
+	double expenses[Seasons];
+	fill_7_8_a(expenses, Seasons);
+	show_7_8_a(expenses, Seasons);
+}
+
+
+void fill_7_8_b(epending* temp)
+{
+	for (int i = 0; i < Seasons; i++)
+	{
+		std::cout << "Enter " << Snames[i] << " expenses: ";
+		std::cin >> temp->expenses[i];
+	}
+
+}
+void show_7_8_b(epending* temp)
+{
+	double total = 0.0;
+	std::cout << "EXPENSES\n";
+
+	for (int i = 0; i < Seasons; i++)
+	{
+		std::cout << Snames[i] << ": $" << temp->expenses[i] << endl;
+		total += temp->expenses[i];
+	}
+	std::cout << "Total: $" << total << endl;
+}
+
+void function_7_8_b(void)
+{
+	epending temp;
+	fill_7_8_b(&temp);
+}
+
+
+int getinfo_7_9(student pa[], int n)
+{
+	int i;
+
+	cout << "You can enter up to " << n;
+	cout << " students' messages (enter to terminate)." << endl;
+
+	for (i = 0; i < n; i++)
+	{
+		cout << "Student #" << i + 1 << ": " << endl;
+		cout << "Enter the fullname(a blank Line to quit): ";
+		cin.getline(pa[i].fullname, SLEN);
+		if ('\0' == pa[i].fullname[0])
+		{
+			break;
+		}
+		cout << "Enter the hobby: ";
+		cin.getline(pa[i].hobby, SLEN);
+		cout << "Enter the ooplevel: ";
+		while (!(cin >> pa[i].ooplevel))
+		{
+			cin.clear();
+			while (cin.get() != '\n')
+			{
+				continue;
+			}
+			cout << "Please enter an number: ";
+		}
+		cin.get();
+	}
+
+	return i;
+}
+
+
+void display1_7_9(student st)
+{
+	cout << "\nName: " << st.fullname << endl;
+	cout << "Hobby: " << st.hobby << endl;
+	cout << "Ooplevel: " << st.ooplevel << endl;
+}
+void display2_7_9(const student* ps)
+{
+	cout << "\nName: " << ps->fullname << endl;
+	cout << "Hobby: " << ps->hobby << endl;
+	cout << "Ooplevel: " << ps->ooplevel << endl;
+
+}
+void display3_7_9(const student pa[], int n)
+{
+	if (n > 0)
+	{
+		cout << "\nAll students' information: " << endl;
+		for (int i = 0; i < n; i++)
+		{
+			cout << "\nName: " << pa[i].fullname << endl;
+			cout << "Hobby: " << pa[i].hobby << endl;
+			cout << "Ooplevel: " << pa[i].ooplevel << endl;
+		}
+	}
+}
+
+void function_7_9(void)
+{
+	cout << "Enter class size: ";
+	int class_size = 0;
+	cin >> class_size;
+	while (cin.get() != '\n')
+	{
+		continue;
+	}
+
+	student* ptr_stu = new student[class_size];
+
+	int entered = getinfo_7_9(ptr_stu, class_size);
+
+	for (int i = 0; i < entered; i++)
+	{
+		display1_7_9(ptr_stu[i]);
+		display2_7_9(&ptr_stu[i]);
+	}
+	display3_7_9(ptr_stu, entered);
+	cout << "Done\n";
+
+	delete[] ptr_stu;
+
+
+}
+
+
+double calculate(double a, double b, double(*p)(double a, double b))
+{
+	return (*p)(a, b);
+}
+double add(double a, double b)
+{
+	return a + b;
+}
+double subtract(double a, double b)
+{
+	return a - b;
+}
+double multiply(double a, double b)
+{
+	return a * b;
+}
+
+
+
+void function_7_10(void)
+{
+	double a, b;
+	double(*pf[3])(double a, double b) = { add,subtract,multiply };
+
+	cout << "Enter two numbers (q to quit): ";
+	while (cin >> a >> b)
+	{
+		for (int i = 0; i < 3; i++)
+		{
+			switch (i)
+			{
+			case 0:
+			{
+				cout << "The " << a << " + " << b << " answer is: " << (*pf[i])(a, b) << endl;
+				break;
+			}
+			case 1:
+			{
+				cout << "The " << a << " - " << b << " answer is: " << (*pf[i])(a, b) << endl;
+				break;
+			}
+			case 2:
+			{
+				cout << "The " << a << " * " << b << " answer is: " << (*pf[i])(a, b) << endl;
+				break;
+			}
+			}
+		}//for
+		cout << "Next two numbers (q to quit) : ";
+
+	}//while
+
+	cout << "Done!" << endl;
+}
