@@ -969,3 +969,76 @@ void function_7_10(void)
 
 	cout << "Done!" << endl;
 }
+
+
+void print_string(const char* str, int n = 0)
+{
+	static int count = 1;
+
+	for (int i = 0; i < count; i++)
+	{
+		cout << str << endl;
+	}
+
+	++count;
+}
+
+void function_8_1(void)
+{
+	const char* str = "This is a test.";
+	cout << "Only one parameter,print 1 times:" << endl;
+	print_string(str);
+	cout << "Having two parameter,can print 2 times:" << endl;
+	print_string(str, 3);
+	cout << "Bye." << endl;
+}
+
+void initialize_candybar(CandyBar& temp, const char* str = "Millennium Munch", double w = 2.85, int c = 350);
+void show_candybar(const CandyBar& temp);
+
+void function_8_2(void)
+{
+	CandyBar mycandybar;
+
+	initialize_candybar(mycandybar);
+	show_candybar(mycandybar);
+}
+
+void initialize_candybar(CandyBar& temp, const char* str, double w, int c)
+{
+	strcpy(temp.brand, str);
+	temp.weight = w;
+	temp.calorie = c;
+}
+
+void show_candybar(const CandyBar& temp)
+{
+	cout << "CandyBar information:" << endl;
+	cout << "Brand: " << temp.brand << endl;
+	cout << "Weight: " << temp.weight << endl;
+	cout << "Calorie: " << temp.calorie << endl;
+}
+
+void print_upper_string(string& str)
+{
+	for (int i = 0; i < str.size(); i++)
+	{
+		str[i] = toupper(str[i]);
+	}
+}
+
+
+void function_8_3(void)
+{
+	string str;
+
+	cout << "Enter a string (q to quit): ";
+	while (getline(cin, str) && str != "q")
+	{
+		print_upper_string(str);
+		cout << str << endl;
+		cout << "Next string (q to quit): ";
+	}
+	cout << "Bye." << endl;
+
+}
