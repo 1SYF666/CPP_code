@@ -1042,3 +1042,109 @@ void function_8_3(void)
 	cout << "Bye." << endl;
 
 }
+
+void function_8_5(void)
+{
+	int test1[5] = { 1,3,5,7,9 };
+	double test2[5] = { 10.0,20.0,15.0,12.0,30.0 };
+	cout << "The max of int array is :" << max5(test1) << endl;
+	cout << "The max of double array is :" << max5(test2) << endl;
+}
+
+template<typename T>
+T max5(const T* array)
+{
+	T maxv = array[0];
+
+	for (int i = 1; i < 5; i++)
+	{
+		maxv = max(maxv, array[i]);
+	}
+
+	return maxv;
+}
+
+
+void function_8_6(void)
+{
+	int test1[6] = { 1,3,5,7,9,11 };
+	double test2[4] = { 10.0,20.0,15.0,12.0 };
+	const char* test3[5] = { "123","12345","123456","abcdefg","xio" };
+
+	cout << "The max of int array is: " << maxn(test1, 6) << endl;
+	cout << "The max of double array is: " << maxn(test2, 4) << endl;
+	cout << "The max of string array is: " << maxn(test3, 5) << endl;
+}
+
+template<typename T>
+T maxn(T* arr, int n)
+{
+	T maxv = arr[0];
+	for (int i = 0; i < n; i++)
+	{
+		maxv = max(maxv, arr[i]);
+	}
+	return maxv;
+}
+
+template<>
+const char* maxn(const char* str[], int n)
+{
+	const char* maxv = *str;
+
+	for (int i = 1; i < n; i++)
+	{
+		if (strlen(maxv) < strlen(str[i]))
+			maxv = str[i];
+	}
+
+	return maxv;
+}
+
+void function_8_7(void)
+{
+	int things[6] = { 13,31,103,301,310,130 };
+	struct debts mr_E[3] =
+	{
+		{"Ima Wolfe",2400.0},
+		{"Ura Foxe",1300.0},
+		{"Iby Stout",1800.0},
+	};
+
+	double* pd[3];
+	for (int i = 0; i < 3; i++)
+	{
+		pd[i] = &mr_E[i].amount;
+	}
+	cout << "Listing Mr.E's total of things:\n";
+
+	cout << SumArray(things, 6) << endl;
+	cout << "Listing Mr.E's total of debts:\n";
+
+	cout << SumArray(pd, 3) << endl;
+}
+
+template <typename T>
+T SumArray(T arr[], int n)
+{
+	cout << "template A\n";
+	double sum = 0.0;
+
+	for (int i = 0; i < n; i++)
+	{
+		sum += arr[i];
+	}
+	return sum;
+}
+
+template <typename T>
+T SumArray(T* arr[], int n)
+{
+	cout << "template B\n";
+	double sum = 0.0;
+	for (int i = 0; i < n; i++)
+	{
+		sum += *arr[i];
+	}
+	return sum;
+}

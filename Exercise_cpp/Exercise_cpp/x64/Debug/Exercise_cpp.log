@@ -1,4 +1,14 @@
 ﻿  function.cpp
+C:\Users\PC\Desktop\C\code1\CPP_code\Exercise_cpp\Exercise_cpp\function.cpp(1137,9): warning C4244: “return”: 从“double”转换到“T”，可能丢失数据
+          with
+          [
+              T=int
+          ]
+C:\Users\PC\Desktop\C\code1\CPP_code\Exercise_cpp\Exercise_cpp\function.cpp(1121): message : 查看对正在编译的函数 模板 实例化“T SumArray<int>(T [],int)”的引用
+          with
+          [
+              T=int
+          ]
   test.cpp
   正在生成代码...
   Exercise_cpp.vcxproj -> C:\Users\PC\Desktop\C\code1\CPP_code\Exercise_cpp\x64\Debug\Exercise_cpp.exe

@@ -307,3 +307,53 @@ void function_8_2(void);
 */
 
 void function_8_3(void);
+
+/*
+	8.5
+	编写模板函数max5( )，它将一个包含5个T类型元素的数组作为
+	参数，并返回数组中最大的元素（由于长度固定，因此可以在循环中使
+	用硬编码，而不必通过参数来传递）。在一个程序中使用该函数，将T
+	替换为一个包含5个int值的数组和一个包含5个dowble值的数组，以测试
+	该函数。
+*/
+template<typename T>
+T max5(const T* array);
+void function_8_5(void);
+
+/*
+	8.6
+	编写模板函数maxn( )，它将由一个T类型元素组成的数组和一
+	个表示数组元素数目的整数作为参数，并返回数组中最大的元素。在程
+	序对它进行测试，该程序使用一个包含6个int元素的数组和一个包含4个
+	double元素的数组来调用该函数。程序还包含一个具体化，它将char指
+	针数组和数组中的指针数量作为参数，并返回最长的字符串的地址。如
+	果有多个这样的字符串，则返回其中第一个字符串的地址。使用由5个
+	字符串指针组成的数组来测试该具体化。
+
+*/
+template<typename T>
+T maxn(T* arr, int n);
+
+template<>
+const char* maxn(const char* str[], int n);
+void function_8_6(void);
+
+/*
+	8.7
+	修改程序清单 8.14，使其使用两个名为 SumArray()的模板函数
+	来返回数组元素的总和，而不是显示数组的内容。程序应显示thing的总
+	和以及所有debt的总和
+*/
+
+struct debts
+{
+	char name[50];
+	double amount;
+};
+
+template<typename T>
+T SumArray(T arr[], int n);
+
+template<typename T>
+T SumArray(T* arr[], int n);
+void function_8_7(void);
