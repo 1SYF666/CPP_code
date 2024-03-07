@@ -357,3 +357,33 @@ T SumArray(T arr[], int n);
 template<typename T>
 T SumArray(T* arr[], int n);
 void function_8_7(void);
+
+
+/*
+	9.2
+	修改程序清单9.9：用string对象代替字符数组。这样，该程序将
+	不再需要检查输入的字符串是否过长，同时可以将输入字符串同字符
+	串“”进行比较，以判断是否为空行。
+*/
+void strcount(const string& str);
+void function_9_2(void);
+
+
+/*
+	9.3
+	下面是一个结构声明：
+	编写一个程序，使用定位new运算符将一个包含两个这种结构的数
+	组放在一个缓冲区中。然后，给结构的成员赋值（对于char数组，使用
+	函数strcpy( )），并使用一个循环来显示内容。一种方法是像程序清单
+	9.10那样将一个静态数组用作缓冲区；另一种方法是使用常规new运算
+	符来分配缓冲区。
+*/
+
+const int BUF = 512;
+static char buffer[BUF];
+struct chaff
+{
+	char dross[20];
+	int slag;
+};
+void function_9_3(void);
