@@ -1206,3 +1206,85 @@ void function_9_3(void)
 
 
 }
+
+void function_10_1(void)
+{
+	using std::cout;
+	using std::endl;
+
+	BankAccount temp("MZZDX", "1002", 666);
+
+	cout << "Information of depositors:" << endl;
+	temp.show();
+	cout << "\nDeposit -1 dollar:" << endl;
+	temp.deposit(-1);
+	cout << "\nDeposit 100 dollars:" << endl;
+	temp.deposit(100);
+	cout << "\nWithdraw 6666 dollars:" << endl;
+	temp.withdraw(6666);
+	cout << "\nWithdraw 99 dollars:" << endl;
+	temp.withdraw(99);
+	cout << "\nNow information of depositors:" << endl;
+	temp.show();
+	cout << "Bye." << endl;
+
+
+}
+
+
+BankAccount::BankAccount()//默认构造函数
+{
+	name = "no name";
+	acctnum = "no acctnum";
+	balance = 0.0;
+}
+
+BankAccount::BankAccount(const std::string& client, const std::string& num, double bal) //用户构造函数
+{
+	name = client;
+	acctnum = num;
+	balance = bal;
+}
+
+void BankAccount::show()const
+{
+	using std::cout;
+	using std::endl;
+
+	cout << "Name: " << name << endl;
+	cout << "Acctum: " << acctnum << endl;
+	cout << "Balance: " << balance << endl;
+}
+
+void BankAccount::deposit(double cash)
+{
+	using std::cout;
+	using std::endl;
+
+	if (cash <= 0)
+	{
+		cout << "Your deposit amount can't be less than 0!" << endl;
+		return;
+	}
+	balance += cash;
+	cout << "You deposit $" << cash << " successfully." << endl;
+}
+
+void BankAccount::withdraw(double cash)
+{
+	using std::cout;
+	using std::endl;
+
+	if (balance < cash)  // 取款数大于当前账户金额时的情况
+	{
+		cout << "You can't withdraw more than your deposit!" << endl;
+		return;
+	}
+	else if (cash <= 0)
+	{
+		cout << "Your witdrawal amount can't be less than 0!" << endl;
+		return;
+	}
+	balance -= cash;
+	cout << "You withdraw $" << cash << " successfully." << endl;
+}

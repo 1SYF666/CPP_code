@@ -387,3 +387,33 @@ struct chaff
 	int slag;
 };
 void function_9_3(void);
+
+/*
+	10.1
+	它使用了一个string对象和一个字符数组，让您能够比较它们的用
+	法。请提供未定义的方法的代码，以完成这个类的实现。再编写一个使
+	用这个类的程序，它使用了三种可能的构造函数调用（没有参数、一个
+	参数和两个参数）以及两种显示方法。下面是一个使用这些构造函数和
+	方法的例子：
+*/
+#ifndef BANKACCOUNT_H_
+#define BANKACCOUNT_H_
+
+class BankAccount
+{
+private:
+	std::string name;
+	std::string acctnum;
+	double balance;
+
+public:
+	BankAccount();
+	BankAccount(const std::string& client, const std::string& num, double bal = 0.0);
+	void show()const;
+	void deposit(double cash);
+	void withdraw(double cash);
+
+};
+
+#endif // !BANKACCOUNT_H_
+void function_10_1(void);
