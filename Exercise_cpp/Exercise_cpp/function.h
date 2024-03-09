@@ -389,12 +389,9 @@ struct chaff
 void function_9_3(void);
 
 /*
-	10.1
-	它使用了一个string对象和一个字符数组，让您能够比较它们的用
-	法。请提供未定义的方法的代码，以完成这个类的实现。再编写一个使
-	用这个类的程序，它使用了三种可能的构造函数调用（没有参数、一个
-	参数和两个参数）以及两种显示方法。下面是一个使用这些构造函数和
-	方法的例子：
+    10.1
+	为复习题5描述的类提供方法定义，并编写一个小程序来演示所
+	有的特性
 */
 #ifndef BANKACCOUNT_H_
 #define BANKACCOUNT_H_
@@ -417,3 +414,63 @@ public:
 
 #endif // !BANKACCOUNT_H_
 void function_10_1(void);
+
+/*
+	10.2
+	它使用了一个string对象和一个字符数组，让您能够比较它们的用
+	法。请提供未定义的方法的代码，以完成这个类的实现。再编写一个使
+	用这个类的程序，它使用了三种可能的构造函数调用（没有参数、一个
+	参数和两个参数）以及两种显示方法。下面是一个使用这些构造函数和
+	方法的例子：
+*/
+
+#ifndef PERSON_H_
+#define PERSON_H_
+using namespace std;
+
+class Person
+{
+public:
+	Person();
+	Person(const string& ln, const char* fn = "Heyyou");
+	void show_10_2() const;
+	void FormalShow_10_2()const;
+private:
+	static const int LIMIT = 25;
+	string lname;
+	char fname[LIMIT];
+};
+#endif // !PERSON_H_
+
+void function_10_2(void);
+
+
+/*
+	10.3
+	完成第9章的编程练习1，但要用正确的golf类声明替换那里的代
+	码。用带合适参数的构造函数替换setgolf（golf &, const char *, int），
+	以提供初始值。保留setgolf( )的交互版本，但要用构造函数来实现它
+	（例如，setgolf( )的代码应该获得数据，将数据传递给构造函数来创建
+	一个临时对象，并将其赋给调用对象，即*this）。
+*/
+void function_10_3(void);
+
+#ifndef GOLF_H_
+#define GOLF_H_
+
+class Golf
+{
+public:
+	Golf(const char* name, int hc);
+	Golf();
+	void set_handicap(int hc);
+	void showgolf()const;
+private:
+	static const int Len = 40;
+	char fullname[Len];
+	int handicap;
+};
+
+
+#endif // !GOLF_H_
+

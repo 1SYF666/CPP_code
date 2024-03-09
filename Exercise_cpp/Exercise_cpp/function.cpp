@@ -1288,3 +1288,121 @@ void BankAccount::withdraw(double cash)
 	balance -= cash;
 	cout << "You withdraw $" << cash << " successfully." << endl;
 }
+
+
+
+Person::Person()
+{
+	lname = "";
+	fname[0] = '\0';
+}
+
+
+
+Person::Person(const string& ln, const char* fn)
+{
+	lname = ln;
+	strcpy(fname, fn);
+}
+
+void Person::show_10_2()const
+{
+	std::cout << "The name format is:" << endl;
+	std::cout << fname << "(firstname),";
+	std::cout << lname << "(lastname).";
+}
+
+void Person::FormalShow_10_2()const
+{
+	std::cout << "The name format is:" << endl;
+	std::cout << lname << "(lastname),";
+	std::cout << fname << "(firstname)." << endl;;
+}
+
+void function_10_2(void)
+{
+	using std::cout;
+	using std::endl;
+
+	Person one;
+	Person two("Smythecraft");
+	Person three("Dimwiddy", "Sam");
+
+	one.show_10_2();
+	cout << endl;
+	one.FormalShow_10_2();
+
+	two.show_10_2();
+	cout << endl;
+	two.FormalShow_10_2();
+
+	three.show_10_2();
+	cout << endl;
+	three.FormalShow_10_2();
+
+}
+
+Golf::Golf(const char* name, int hc)
+{
+	strncpy(this->fullname, name, 40);
+	this->fullname[39] = '\0';
+	this->handicap = hc;
+}
+
+Golf::Golf()
+{
+	using std::cout;
+	using std::cin;
+	char tempname[40];
+	int temphandicap;
+
+	cout << "Please enter the fullname(enter to quit): ";
+	cin.getline(tempname, Len);
+	cout << "Please enter the handicap: ";
+	while (!(cin >> temphandicap))
+	{
+		cin.clear();
+		while (cin.get() != '\n')
+		{
+			continue;
+		}
+		cout << "Please enter an number: ";
+	}
+	cin.get();
+	*this = Golf(tempname, temphandicap);
+
+}
+
+void Golf::set_handicap(int hc)
+{
+	this->handicap = hc;
+}
+
+void Golf::showgolf()const
+{
+	using namespace std;
+	cout << "Name: " << this->fullname << endl;
+	cout << "Handicap: " << this->handicap << endl;
+
+}
+void function_10_3(void)
+{
+	using std::cout;
+	using std::endl;
+
+	Golf temp1;
+	Golf temp2("MZZDX", 666);
+
+	cout << "The starting information1:" << endl;
+	temp1.showgolf();
+	temp1.set_handicap(998);
+	cout << "After changing the handicap1:" << endl;
+	temp1.showgolf();
+	cout << "The starting information2:" << endl;
+	temp2.showgolf();
+	temp2.set_handicap(888);
+	cout << "After changing the handicap2:" << endl;
+	temp2.showgolf();
+}
+
+
