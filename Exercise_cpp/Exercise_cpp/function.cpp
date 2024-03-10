@@ -1406,3 +1406,212 @@ void function_10_3(void)
 }
 
 
+namespace SALES
+{
+	Sales::Sales(double ar[], int n)
+	{
+		double total = 0.0, max = ar[0], min = ar[0];
+		for (int i = 1; i < n; i++)
+		{
+			this->sales[i] = ar[i],
+				total += ar[i];
+			max = ar[i] > max ? ar[i] : max;
+			min = ar[i] < min ? ar[i] : min;
+		}
+		this->min = min;
+		this->max = max;
+		this->average = total / n;
+	}
+
+	Sales::Sales()
+	{
+		using namespace std;
+		int len;
+		cout << "Enter the length of sales(<=4 and >0): ";
+		while (!(cin >> len) || len > 4 || len <= 0)
+		{
+			cin.clear();
+			while (cin.get() != '\n')
+			{
+				continue;
+			}
+			cout << "Please enter a number (<=4 and >0):";
+		}
+
+		double* temp = new double[len];
+		cout << "Please enter the sales:" << endl;
+
+		for (int i = 0; i < len; i++)
+		{
+			cout << "Please enter the content #" << i + 1 << ":";
+			while (!(cin >> temp[i]))
+			{
+				cin.clear();
+				while (cin.get() != '\n')
+				{
+					continue;
+				}
+				cout << "Please enter a number: ";
+			}
+		}
+
+		*this = Sales(temp, len);
+		delete[] temp;
+	}
+
+
+	void Sales::show_sales()const
+	{
+		std::cout << "Sales average:" << this->average << std::endl;
+		std::cout << "Sales max:" << this->max << std::endl;
+		std::cout << "Sales min:" << this->min << std::endl;
+	}
+
+}
+
+
+void function_10_4(void)
+{
+	using namespace SALES;
+	double temp[4] = { 1.0,2.0,3.0,4.0 };
+	Sales objects[2] =
+	{
+		Sales(temp,4),Sales()
+	}; //首元素默认初始化，次元素用户初始化
+
+	std::cout << "The first object information:" << endl;
+	objects[0].show_sales();
+	std::cout << "The second object information:" << endl;
+	objects[1].show_sales();
+	std::cout << "Bye." << std::endl;
+
+
+}
+
+
+Stack::Stack()
+{
+	top = 0;
+}
+
+bool Stack::isempty()const
+{
+	return 0 == top;
+}
+
+bool Stack::isfull()const
+{
+	return MAX == top;
+}
+
+bool Stack::push(const Item& item)
+{
+	if (top < MAX)
+	{
+		items[top++] = item;
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool Stack::pop(Item& item)
+{
+	if (top > 0)
+	{
+		item = items[--top];
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+
+}
+
+
+void function_10_5(void)
+{
+	using namespace std;
+	char ch;
+	Stack st;
+	Item temp;
+	double total = 0.0;
+
+	cout << "a to add a customer." << endl;
+	cout << "d to delete a customer." << endl;
+	cout << "q to exit a customer." << endl;
+	cout << "Please enter your choice: ";
+
+	while (cin >> ch && tolower(ch) != 'q')
+	{
+		while (cin.get() != '\n')
+		{
+			continue;
+		}
+		if (tolower(ch) != 'a' && tolower(ch) != 'd')
+		{
+			cout << "Please enter a,d,or q: ";
+			continue;
+		}
+
+		switch (tolower(ch))
+		{
+		case 'a':
+		{
+			cout << "Enter the customer's fullname: ";
+			cin.getline(temp.fullname, 35);
+			cout << "Enter the customer's payment: ";
+			while (!(cin >> temp.payment))
+			{
+				cin.clear();
+				while (cin.get() != '\n')
+				{
+					continue;
+				}
+				cout << "Please enter an number: ";
+			}
+
+			if (st.isfull())
+			{
+				cout << "Can't add new customer." << endl;
+			}
+			else
+			{
+				st.push(temp);
+			}
+			break;
+		}
+
+		case 'd':
+		{
+			if (st.isempty())
+			{
+				cout << "No any customer.\n";
+			}
+			else
+			{
+				st.pop(temp);
+				total += temp.payment;
+				cout << "Customer " << temp.fullname << "will quit." << endl;
+				cout << "Now the total payment are: " << total << endl;
+			}
+			break;
+		}
+
+		default:
+			break;
+		}
+
+		cout << "\n\n\n";
+		cout << "a to add a customer." << endl;
+		cout << "d to delete a customer." << endl;
+		cout << "q to exit the menu." << endl;
+		cout << "Please enter your choice: ";
+	}
+
+	cout << "Bye." << endl;
+
+}

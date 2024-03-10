@@ -471,6 +471,73 @@ private:
 	int handicap;
 };
 
-
 #endif // !GOLF_H_
 
+/*
+	10.4
+	完成第9章的编程练习4，但将Sales结构及相关的函数转换为一
+	个类及其方法。用构造函数替换setSales（sales &，double [ ]，int）函
+	数。用构造函数实现setSales（Sales &）方法的交互版本。将类保留在
+	名称空间SALES中。
+*/
+
+#ifndef SALES_H_
+#define SALES_H_
+
+namespace SALES
+{
+	class Sales
+	{
+	public:
+		Sales(double ar[], int n = 0);
+		Sales();
+		void show_sales()const;
+
+	private:
+		static const int QUARTERS = 4;
+		double sales[QUARTERS];
+		double average;
+		double max;
+		double min;
+
+	};
+
+}
+
+#endif // !SALES_H_
+
+void function_10_4(void);
+
+/*
+	10.5
+	考虑下面的结构声明：
+	编写一个程序，它从栈中添加和删除customer结构（栈用Stack类声
+	明表示）。每次customer结构被删除时，其payment的值都被加入到总数
+	中，并报告总数。注意：应该可以直接使用Stack类而不作修改；只需
+	修改typedef声明，使Item的类型为customer，而不是unsigned long即可。
+*/
+
+#ifndef STACK_H_
+#define STACK_H_
+typedef struct customer
+{
+	char fullname[35];
+	double payment;
+}Item;
+
+class Stack
+{
+public:
+	Stack();
+	bool isempty()const;
+	bool isfull()const;
+	bool push(const Item& item);
+	bool pop(Item& item);
+
+private:
+	enum { MAX = 10 };
+	Item items[MAX];
+	int top;
+};
+#endif // !STACK_H_
+void function_10_5(void);
