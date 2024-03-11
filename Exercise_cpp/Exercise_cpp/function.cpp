@@ -1615,3 +1615,228 @@ void function_10_5(void)
 	cout << "Bye." << endl;
 
 }
+
+
+Move::Move(double a, double b)
+{
+	x = a, y = b;
+}
+
+void Move::showmove()const
+{
+	std::cout << "x=" << x << std::endl;
+	std::cout << "y=" << y << std::endl;
+}
+
+
+Move Move::add(const Move& m)const
+{
+	return Move(m.x + x, m.y + y);
+}
+
+void Move::reset(double a, double b)
+{
+	x = a, y = b;
+}
+
+
+void function_10_6(void)
+{
+	using std::cout;
+	using std::endl;
+
+	Move temp;
+
+	cout << "Starting values:" << endl;
+	temp.showmove();
+	cout << "After x=2,y+5:" << endl;
+	temp.reset(2, 5);
+	temp.showmove();
+	cout << "After adding new object value:" << endl;
+	temp = temp.add(temp);
+	temp.showmove();
+
+}
+
+
+
+Plorg::Plorg()
+{
+	strcpy(fullname, "Plorga");
+}
+
+void ::Plorg::reset_ci()
+{
+	using std::cin;
+	using std::cout;
+
+	int my_ci;
+
+	cout << "Please enter an new ci number: ";
+
+	while (!(cin >> my_ci))
+	{
+		cin.clear();
+		while (cin.get() != '\n')
+		{
+			continue;
+		}
+		cout << "Please enter an number: ";
+	}
+	this->ci = my_ci;
+}
+
+void Plorg::show_plorg()const
+{
+	using std::cout;
+	using std::endl;
+
+	cout << "The plorg name is: " << this->fullname << endl;
+	cout << "The plorg ci is: " << this->ci << endl;
+}
+
+
+void Plorg::creat_new_plorg(const char* newname)
+{
+	strncpy(fullname, newname, 19);
+	fullname[19] = '\0';
+	this->ci = 50;
+}
+
+void function_10_7(void)
+{
+	using std::cout;
+	using std::endl;
+	Plorg temp;
+
+	cout << "The starting plorg information: " << endl;
+	temp.show_plorg();
+	temp.creat_new_plorg("MZZDX");
+
+	cout << "\nAfter changing name and ci:" << endl;
+	temp.show_plorg();
+	temp.reset_ci();
+
+	cout << "\nAfter changing ci:" << endl;
+	temp.show_plorg();
+	cout << "Bye." << endl;
+}
+
+
+List::List()
+{
+	index = 0;
+}
+
+void List::add_data(Item1 Item)
+{
+	Item1s[index++] = Item;
+}
+
+bool List::is_empty()
+{
+	return 0 == index;
+}
+
+bool List::is_full()
+{
+	return MAX == index;
+}
+
+void List::visit(void (*pf)(Item1&))
+{
+	for (int i = 0; i < this->index; i++)
+	{
+		(*pf)(this->Item1s[i]);
+	}
+
+}
+
+void traverse(Item1& Item)
+{
+	std::cout << Item << ' ';
+}
+
+void function_10_8(void)
+{
+	using namespace std;
+	char ch;
+	Item1 temp;
+	List mylist;
+
+	cout << "The list include following functions:" << endl;
+	cout << "a to add an number." << endl;
+	cout << "v to visit every number." << endl;
+	cout << "q to exit the menu." << endl;
+	cout << "Please enter your choice: ";
+
+	while (cin >> ch && tolower(ch) != 'q')
+	{
+		while (cin.get() != '\n')
+		{
+			continue;
+		}
+
+		if (tolower(ch) != 'a' && tolower(ch) != 'v')
+		{
+			cout << "Please enter a,v,or q: ";
+			continue;
+		}
+
+		switch (tolower(ch))
+		{
+		case 'a':
+		{
+			cout << "Please enter an number: ";
+			while (!(cin >> temp))
+			{
+				cin.clear();
+				while (cin.get() != '\n')
+				{
+					continue;
+				}
+				cout << "Please enter an number again:";
+			}
+			if (mylist.is_full())
+			{
+				cout << "The list is full. Can't add new number." << endl;
+			}
+			else
+			{
+				mylist.add_data(temp);
+				cout << "Add number " << temp << " successfuly." << endl;
+			}
+			break;
+		}
+
+		case 'v':
+		{
+			if (mylist.is_empty())
+			{
+				cout << "No number.\n";
+			}
+			else
+			{
+				cout << "Visit every number:" << endl;
+				mylist.visit(traverse);
+			}
+			break;
+		}
+
+		default:
+			break;
+		}
+
+
+		cout << "\n\n\n";
+		cout << "The list include following functions:" << endl;
+		cout << "a to add an number." << endl;
+		cout << "v to visit every number." << endl;
+		cout << "q to exit the menu." << endl;
+		cout << "Please enter your choice: ";
+	}
+
+	cout << "Bye." << endl;
+
+
+}

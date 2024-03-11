@@ -541,3 +541,117 @@ private:
 };
 #endif // !STACK_H_
 void function_10_5(void);
+
+
+/*
+	10.6
+	下面是一个类声明：
+	请提供成员函数的定义和测试这个类的程序。
+*/
+void function_10_6(void);
+
+#ifndef MOVE_H_
+#define MOVE_H_
+class Move
+{
+public:
+	Move(double a = 0.0, double b = 0.0);
+	void showmove()const;
+	Move add(const Move& m) const;
+	void reset(double a = 0.0, double b = 0.0);
+
+private:
+
+	double x;
+	double y;
+};
+#endif // !MOVE_H_
+
+
+/*
+	10.7
+	Betelgeusean plorg有这些特征。
+	数据：
+	plorg的名称不超过19个字符；
+	plorg有满意指数（CI），这是一个整数。
+	操作：
+	新的plorg将有名称，其CI值为50；
+	plorg的CI可以修改；
+	plorg可以报告其名称和CI；
+	plorg的默认名称为“Plorga”。
+	请编写一个Plorg类声明（包括数据成员和成员函数原型）来表示
+	plorg，并编写成员函数的函数定义。然后编写一个小程序，以演示
+	Plorg类的所有特性。
+
+*/
+
+#ifndef PLORG_H_
+#define PLORG_H_
+
+class Plorg
+{
+public:
+	Plorg();
+	void reset_ci();
+	void show_plorg()const;
+	void creat_new_plorg(const char* newname);
+
+private:
+	char fullname[20];
+	int ci;
+
+};
+
+#endif // !PLORG_H_
+
+void function_10_7(void);
+
+/*
+	10.8
+	可以将简单列表描述成下面这样：
+	可存储0或多个某种类型的列表；
+	可创建空列表；
+	可在列表中添加数据项；
+	可确定列表是否为空；
+	可确定列表是否为满；
+	可访问列表中的每一个数据项，并对它执行某种操作。
+	可以看到，这个列表确实很简单，例如，它不允许插入或删除数据
+	项。
+	请设计一个List类来表示这种抽象类型。您应提供头文件list.h和实
+	现文件list.cpp，前者包含类定义，后者包含类方法的实现。您还应创建
+	一个简短的程序来使用这个类。
+	该列表的规范很简单，这主要旨在简化这个编程练习。可以选择使
+	用数组或链表来实现该列表，但公有接口不应依赖于所做的选择。也就
+	是说，公有接口不应有数组索引、节点指针等。应使用通用概念来表达
+	创建列表、在列表中添加数据项等操作。对于访问数据项以及执行操
+	作，通常应使用将函数指针作为参数的函数来处理：
+	其中，pf指向一个将Item1引用作为参数的函数（不是成员函数），
+	Item1是列表中数据项的类型。visit( )函数将该函数用于列表中的每个数
+	据项
+*/
+
+void function_10_8(void);
+
+#ifndef LIST_H_
+#define LIST_H_
+
+typedef int Item1;
+
+class List
+{
+public:
+	List();
+	void add_data(Item1 Item);
+	bool is_empty();
+	bool is_full();
+	void visit(void (*pf)(Item1&));
+
+private:
+	static const int MAX = 10;
+	Item1 Item1s[MAX];
+	int index;
+
+};
+
+#endif // !LIST_H_
+
