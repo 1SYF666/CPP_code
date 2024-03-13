@@ -1840,3 +1840,234 @@ void function_10_8(void)
 
 
 }
+
+
+using std::atan;
+using std::atan2;
+using std::cos;
+using std::cout;
+using std::sin;
+using std::sqrt;
+
+namespace VECTOR
+{
+	const double Rad_to_deg = 45.0 / atan(1.0);
+
+	void Vector::set_mag()
+	{
+		mag = sqrt(x * x + y * y);
+	}
+
+	void Vector::set_ang()
+	{
+		if (x == 0.0 && y == 0.0)
+		{
+			ang = 0.0;
+		}
+		else
+		{
+			ang = atan2(y, x);
+		}
+
+	}
+
+	void Vector::set_x()
+	{
+		x = mag * cos(ang);
+	}
+
+	void Vector::set_y()
+	{
+		y = mag * sin(ang);
+	}
+
+	Vector::Vector()
+	{
+		x = y = mag = ang = 0.0;
+		mode = RECT;
+	}
+
+	Vector::Vector(double n1, double n2, Mode form)
+	{
+		mode = form;
+		if (form == RECT)
+		{
+			x = n1;
+			y = n2;
+			set_mag();
+			set_ang();
+		}
+		else if (form == POL)
+		{
+			mag = n1;
+			ang = n2 / Rad_to_deg;
+			set_x();
+			set_y();
+		}
+		else
+		{
+			cout << "Incorrect 3rd argument to vector() --";
+			cout << "vector set to 0\n";
+			x = y = mag = ang = 0.0;
+			mode = RECT;
+		}
+
+	}
+
+	void Vector::reset(double n1, double n2, Mode form)
+	{
+		mode = form;
+		if (form == RECT)
+		{
+			x = n1;
+			y = n1;
+			set_mag();
+			set_ang();
+		}
+		else if (form == POL)
+		{
+			mag = n1;
+			ang = n2 / Rad_to_deg;
+			set_x();
+			set_y();
+		}
+		else
+		{
+			cout << "Incorrect 3rd argument to Vector() --";
+			cout << "vector set to 0\n";
+			x = y = mag = ang = 0.0;
+			mode = RECT;
+		}
+	}
+
+	Vector::~Vector()
+	{
+
+	}
+
+	void Vector::polar_mode()
+	{
+		mode = POL;
+	}
+
+	void Vector::rect_mode()
+	{
+		mode = RECT;
+	}
+
+	Vector Vector::operator+(const Vector& b)const
+	{
+		return Vector(x + b.x, y + b.y);
+
+	}
+
+	Vector Vector::operator-(const Vector& b)const
+	{
+		return Vector(x - b.x, y - b.y);
+
+	}
+
+	Vector Vector::operator-()const
+	{
+		return Vector(-x, -y);
+	}
+
+	Vector Vector::operator*(double n)const
+	{
+		return Vector(n * x, n * y);
+	}
+
+	Vector operator*(double n, const Vector& a)
+	{
+		return a * n;
+	}
+
+	std::ostream& operator<<(std::ostream& os, const Vector& v)
+	{
+		if (v.mode == Vector::RECT)
+		{
+			os << "(x,y) = (" << v.x << ", " << v.y << ")";
+		}
+		else if (v.mode == Vector::POL)
+		{
+			os << "(m,a)=(" << v.mag << ", ";
+			os << v.ang * Rad_to_deg << ")";
+
+		}
+		else
+		{
+			os << "Vector object mode is invalid";
+		}
+
+		return os;
+	}
+
+}
+void function_11_1(void)
+{
+	using namespace std;
+	using VECTOR::Vector;
+	srand(time(0));
+
+	double direction;
+	Vector step;
+	Vector result(0.0, 0.0);
+
+	unsigned long steps = 0;
+	double target;
+	double dstep;
+	ofstream fout;
+
+	fout.open("temp.txt");
+	cout << "Enter target distance(q to quit):";
+	while (cin >> target)
+	{
+		cout << "Enter step length: ";
+		if (!(cin >> dstep))
+		{
+			break;
+		}
+		fout << "Target Distance: " << target;
+		fout << ",Step Size: " << dstep << endl;
+		fout << "0: " << result << endl;
+
+		while (result.magval() < target)
+		{
+			direction = rand() % 360;
+			step.reset(dstep, direction, Vector::POL);
+			result = result + step;
+			steps++;
+			fout << steps << ": " << result << endl;
+		}
+		fout << "After " << steps << "steps,the subject ";
+		fout << "has the following location:\n ";
+		fout << result << endl;
+
+		result.polar_mode();
+		fout << " or\n";
+		fout << result << endl;
+		fout << "Average outward distance per step = ";
+		fout << result.magval() / steps << endl;
+		fout << endl;
+
+		cout << "After " << steps << " steps,the subject ";
+		cout << "has the following location:\n";
+		cout << result << endl;
+		result.polar_mode();
+		cout << " or\n";
+		cout << result << endl;
+		cout << "Average outward distance per step = ";
+		cout << result.magval() / steps << endl;
+		steps = 0;
+		result.reset(0.0, 0.0);
+		cout << "Enter target distance (q to quit):";
+	}
+
+	cin.clear();
+	while (cin.get() != '\n')
+	{
+		continue;
+	}
+	fout.close();
+	cout << "Bye!\n";
+}
