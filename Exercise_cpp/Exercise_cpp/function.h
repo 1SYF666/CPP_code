@@ -663,6 +663,14 @@ private:
 	下面类似
 */
 
+/*
+	11.3
+	修改程序清单11.15，使之报告N次测试中的最高、最低和平均
+	步数（其中N是用户输入的整数），而不是报告每次测试的结果。
+
+*/
+
+
 #ifndef VECT_H_
 #define VECT_H_
 
@@ -705,9 +713,44 @@ namespace VECTOR
 
 		friend Vector operator*(double n, const Vector& a);
 		friend std::ostream& operator<<(std::ostream& os, const Vector& v);
-
 	};
-
 }
 #endif // !VECT_H_
 void function_11_1(void);
+void function_11_3(void);
+
+/*
+	11.4
+	重新编写最后的Time类示例（程序清单11.10、程序清单11.11和
+	程序清单11.12），使用友元函数来实现所有的重载运算符。
+*/
+
+#ifndef MYTIME3_H_
+#define MYTIME3_H_
+
+class Time
+{
+public:
+	Time();
+	Time(int h, int m = 0);
+	void AddMin(int m);
+	void AddHr(int h);
+	void Reset(int h = 0, int m = 0);
+	friend Time operator+(const Time& a, const Time& b);
+	friend Time operator-(const Time& a, const Time& b);
+	friend Time operator*(const Time& t, double n);
+	friend Time operator*(double m, const Time& t) { return t * m; }
+	friend std::ostream& operator<<(std::ostream& os, const Time& t);
+
+private:
+	int hours;
+	int minutes;
+
+};
+
+#endif // !MYTIME3_H_
+
+void function_11_4(void);
+
+
+

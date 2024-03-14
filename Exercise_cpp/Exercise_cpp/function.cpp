@@ -2071,3 +2071,143 @@ void function_11_1(void)
 	fout.close();
 	cout << "Bye!\n";
 }
+
+void function_11_3(void)
+{
+	using namespace std;
+	using VECTOR::Vector;
+	srand(time(0));
+	double direction;
+	Vector step;
+	Vector result(0.0, 0.0);
+
+	unsigned long steps = 0;
+	double target = 50.0;
+	double dstep = 2.0;
+	unsigned long i, n, maxv, minv;
+	double average = 0.0;
+
+	cout << "target distance :" << target << endl;;
+	cout << "Step length: " << dstep << endl;
+	cout << "Please you enter running time:";
+
+	while (!(cin >> n))
+	{
+		cin.clear();
+		while (cin.get() != '\n')
+		{
+			continue;
+		}
+		cout << "Please enter an number: ";
+	}
+
+	i = 0, maxv = 0, minv = ULONG_MAX;
+
+	while (i < n)
+	{
+		while (result.magval() < target)
+		{
+			direction = rand() % 360;
+			step.reset(dstep, direction, Vector::POL);
+			result = result + step;
+			steps++;
+		}
+
+		maxv = maxv < steps ? steps : maxv;
+		minv = minv > steps ? steps : minv;
+		average += steps;
+
+		cout << "Time #" << i + 1 << ':' << endl;
+		cout << "After " << steps << " steps, the subject ";
+		cout << "has the following location:\n";
+		cout << result << endl;
+		result.polar_mode();
+		cout << " or\n";
+		cout << result << endl;
+		cout << "Average outward distance per step = ";
+		cout << result.magval() / steps << endl;
+		steps = 0;
+		result.reset(0.0, 0.0);
+		++i;
+
+	}
+
+	cout << "The maximum steps are: " << maxv << endl;
+	cout << "The minimum steps are: " << minv << endl;
+	cout << "The average steps are: " << average / n << endl;
+	cout << "Bye!\n";
+}
+
+Time::Time()
+{
+	hours = minutes = 0;
+}
+
+Time::Time(int h, int m)
+{
+	hours = h;
+	minutes = m;
+}
+
+void Time::AddMin(int m)
+{
+	minutes += m;
+	hours += minutes / 60;
+	minutes %= 60;
+}
+void Time::AddHr(int h)
+{
+	hours += h;
+}
+void Time::Reset(int h, int m)
+{
+	hours = h;
+	minutes = m;
+}
+Time operator+(const Time& a, const Time& b)
+{
+	Time sum;
+	sum.minutes = a.minutes + b.minutes;
+	sum.hours = a.hours + b.hours + sum.minutes / 60;
+	sum.minutes %= 60;
+	return sum;
+}
+Time operator-(const Time& a, const Time& b)
+{
+	Time diff;
+	int tot1, tot2;
+	tot1 = a.minutes + 60 * a.hours;
+	tot2 = b.minutes + 60 * b.hours;
+	diff.minutes = (tot2 - tot1) % 60;
+	diff.hours = (tot2 - tot1) / 60;
+	return diff;
+}
+Time operator*(const Time& t, double mult)
+{
+	Time result;
+	long totalminutes = t.hours * mult * 60 + t.minutes * mult;
+	result.hours = totalminutes / 60;
+	result.minutes = totalminutes % 60;
+	return result;
+}
+
+std::ostream& operator<<(std::ostream& os, const Time& t)
+{
+	os << t.hours << "hours," << t.minutes << "minutes";
+	return os;
+}
+
+void function_11_4(void)
+{
+	Time aida(3, 35);
+	Time tosca(2, 48);
+	Time temp;
+
+	cout << "Aida and Tosca:\n";
+	cout << aida << ";" << tosca << endl;
+	temp = aida + tosca;
+	cout << "Aida+Tosca: " << temp << endl;
+	temp = aida * 1.17;
+	cout << "Aida*1.17: " << temp << endl;
+	cout << "10.0*tosca: " << 10.0 * tosca << endl;
+}
