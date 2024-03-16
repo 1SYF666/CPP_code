@@ -753,4 +753,62 @@ private:
 void function_11_4(void);
 
 
+/*
+	11.5
+	重新编写Stonewt类（程序清单11.16和程序清单11.17），使它
+	有一个状态成员，由该成员控制对象应转换为英石格式、整数磅格式还
+	是浮点磅格式。重载<<运算符，使用它来替换show_stn( )和show_lbs( )
+	方法。重载加法、减法和乘法运算符，以便可以对Stonewt值进行加、
+	减、乘运算。编写一个使用所有类方法和友元的小程序，来测试这个
+	类
+*/
 
+#ifndef STONEWT_H_
+#define STONEWT_H_
+
+class Stonewt
+{
+public:
+	enum Mode
+	{
+		STONE,
+		INT_POUND,
+		DOUBLE_POUND
+	};
+
+private:
+	enum
+	{
+		Lbs_per_stn = 14 //一英石等于14英镑
+	};
+	int stone;
+	double pds_left;
+	double pounds;
+	int pounds_int;
+	Mode mode;
+	void set_stone(); // 设置stone英石变量
+	void set_pounds(); // 设置pounds英镑变量
+	void set_pounds_int(); // 设置pounds整型英镑变量
+
+
+public:
+	Stonewt(double lbs, Mode form);
+	Stonewt(int stn, double lbs, Mode form);
+	Stonewt();
+	~Stonewt();
+
+	void set_stone_mode();			// 设置英石格式
+	void set_pounds_mode();			// 设置整数磅格式
+	void set_int_pounds_mode();		// 设置浮点磅格式
+	Stonewt operator+(const Stonewt& st) const;  // 重载‘+’运算符；
+	Stonewt operator-(const Stonewt& st) const;	 // 重载‘-’运算符；	
+	Stonewt operator*(double n) const;			 // 重载‘*’运算符；
+	//友元函数重载“*”运算符可以令对象在“*”右边进行操作
+	friend Stonewt operator*(double n, const Stonewt& st);
+	friend std::ostream& operator<<(std::ostream& os, const Stonewt& st);
+
+};
+
+#endif // !STONEWT_H_
+
+void function_11_5(void);

@@ -2211,3 +2211,169 @@ void function_11_4(void)
 	cout << "Aida*1.17: " << temp << endl;
 	cout << "10.0*tosca: " << 10.0 * tosca << endl;
 }
+
+
+void Stonewt::set_stone()
+{
+	stone = int(pounds) / Lbs_per_stn;  // 设置stone英石变量	
+	// 设置pounds磅剩余变量
+	pds_left = int(pounds) % Lbs_per_stn + pounds - int(pounds);
+}
+
+void Stonewt::set_pounds()
+{
+	pounds = stone * Lbs_per_stn + pds_left;  // 设置pounds英镑变量
+}
+
+void Stonewt::set_pounds_int()
+{
+	pounds_int = int(pounds + 0.5);  // 设置pounds英镑整型四舍五入变量
+}
+
+Stonewt::Stonewt(double lbs, Mode form)
+{
+	mode = form;
+	if (mode == STONE)
+	{
+		stone = int(lbs) / Lbs_per_stn;
+		pds_left = int(lbs) % Lbs_per_stn + lbs - int(lbs);
+		set_pounds();    //  调用函数设置Stonewt类剩余数据
+		set_pounds_int(); // 同上
+	}
+	else if (mode == INT_POUND)
+	{
+		pounds_int = int(lbs);
+		pounds = lbs;
+		set_stone();
+	}
+	else if (mode == DOUBLE_POUND)
+	{
+		pounds = lbs;
+		set_pounds_int();
+		set_stone();
+	}
+	else
+	{
+		cout << "Incorrect mode!" << endl;
+		cout << "Stonewt set to 0!" << endl;
+		stone = pounds = pds_left = 0.0;
+		mode = STONE;
+	}
+}
+
+Stonewt::Stonewt(int stn, double lbs, Mode form)
+{
+	mode = form;
+	if (mode == STONE)
+	{
+		stone = stn;
+		pds_left = lbs;
+		set_pounds();    //  调用函数设置Stonewt类剩余数据
+		set_pounds_int(); // 同上
+	}
+	else if (mode == INT_POUND)
+	{
+		pounds_int = int(stn * Lbs_per_stn + lbs);
+		pounds = stn * Lbs_per_stn + lbs;
+		set_stone();
+	}
+	else if (mode == DOUBLE_POUND)
+	{
+		pounds = stn * Lbs_per_stn + lbs;
+		set_pounds_int();
+		set_stone();
+	}
+	else
+	{
+		cout << "Incorrect mode!" << endl;
+		cout << "Stonewt set to 0!" << endl;
+		stone = pounds = pds_left = 0.0;
+		mode = STONE;
+	}
+
+}
+
+Stonewt::Stonewt()
+{
+	stone = pounds = pds_left = 0.0;
+	mode = STONE;
+}
+Stonewt::~Stonewt()
+{
+
+}
+
+
+void Stonewt::set_stone_mode()			// 设置英石格式
+{
+	mode = STONE;
+
+}
+void Stonewt::set_pounds_mode()			// 设置整数磅格式
+{
+	mode = DOUBLE_POUND;
+}
+void Stonewt::set_int_pounds_mode()		// 设置浮点磅格式
+{
+	mode = INT_POUND;
+}
+
+Stonewt Stonewt::operator+(const Stonewt& st) const  // 重载‘+’运算符；
+{
+	// 调用构造函数进行加法操作并重新设置mode模式
+	return Stonewt(pounds + st.pounds, st.mode);
+}
+Stonewt Stonewt::operator-(const Stonewt& st) const	 // 重载‘-’运算符；
+{
+	// 调用构造函数进行减法法操作并重新设置mode模式
+	return Stonewt(pounds - st.pounds, st.mode);
+}
+Stonewt Stonewt::operator*(double n) const			 // 重载‘*’运算符；
+{
+	return Stonewt(pounds * n, mode);
+}
+
+//友元函数重载“*”运算符可以令对象在“*”右边进行操作
+Stonewt operator*(double n, const Stonewt& st)
+{
+	return Stonewt(n * st.pounds, st.mode);
+}
+std::ostream& operator<<(std::ostream& os, const Stonewt& st)
+{
+	if (st.mode == Stonewt::STONE)
+	{
+		os << st.stone << " stone, " << st.pds_left << " pounds" << endl;
+	}
+	else if (st.mode == Stonewt::INT_POUND)
+	{
+		os << st.pounds_int << " pounds(int)" << endl;
+	}
+	else if (st.mode == Stonewt::DOUBLE_POUND)
+	{
+		os << st.pounds << " pounds(double)" << endl;
+	}
+	else
+	{
+		os << "Incorrect mode!" << endl;
+	}
+	return os;
+}
+
+void function_11_5(void)
+{
+	Stonewt incognito(275, Stonewt::DOUBLE_POUND);
+	Stonewt wolfe(285.7, Stonewt::STONE);
+	Stonewt taft(21, 8, Stonewt::INT_POUND);
+
+	cout << "Here are the tsets: " << endl;
+	cout << "The celebrity weighed ";
+	cout << incognito;
+	cout << "The detective weighed ";
+	cout << wolfe;
+	cout << "The President weighed ";
+	cout << taft;
+	cout << "incognito + wolfe = " << incognito + wolfe;
+	cout << "wolfe - incognito = " << wolfe - incognito;
+	cout << "taft * 10.0 = " << taft * 10.0;
+	cout << "10.0 * taft = " << 10.0 * taft;
+}
