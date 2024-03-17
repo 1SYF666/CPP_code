@@ -2212,91 +2212,20 @@ void function_11_4(void)
 	cout << "10.0*tosca: " << 10.0 * tosca << endl;
 }
 
-
-void Stonewt::set_stone()
+Stonewt::Stonewt(double lbs)
 {
-	stone = int(pounds) / Lbs_per_stn;  // 设置stone英石变量	
-	// 设置pounds磅剩余变量
-	pds_left = int(pounds) % Lbs_per_stn + pounds - int(pounds);
+	stone = int(lbs) / Lbs_per_stn;
+	pds_left = int(lbs) % Lbs_per_stn + lbs - int(lbs);
+	pounds = lbs;
 }
-
-void Stonewt::set_pounds()
+Stonewt::Stonewt(int stn, double lbs)
 {
-	pounds = stone * Lbs_per_stn + pds_left;  // 设置pounds英镑变量
+	stone = stn, pds_left = lbs;
+	pounds = stn * Lbs_per_stn;
 }
-
-void Stonewt::set_pounds_int()
-{
-	pounds_int = int(pounds + 0.5);  // 设置pounds英镑整型四舍五入变量
-}
-
-Stonewt::Stonewt(double lbs, Mode form)
-{
-	mode = form;
-	if (mode == STONE)
-	{
-		stone = int(lbs) / Lbs_per_stn;
-		pds_left = int(lbs) % Lbs_per_stn + lbs - int(lbs);
-		set_pounds();    //  调用函数设置Stonewt类剩余数据
-		set_pounds_int(); // 同上
-	}
-	else if (mode == INT_POUND)
-	{
-		pounds_int = int(lbs);
-		pounds = lbs;
-		set_stone();
-	}
-	else if (mode == DOUBLE_POUND)
-	{
-		pounds = lbs;
-		set_pounds_int();
-		set_stone();
-	}
-	else
-	{
-		cout << "Incorrect mode!" << endl;
-		cout << "Stonewt set to 0!" << endl;
-		stone = pounds = pds_left = 0.0;
-		mode = STONE;
-	}
-}
-
-Stonewt::Stonewt(int stn, double lbs, Mode form)
-{
-	mode = form;
-	if (mode == STONE)
-	{
-		stone = stn;
-		pds_left = lbs;
-		set_pounds();    //  调用函数设置Stonewt类剩余数据
-		set_pounds_int(); // 同上
-	}
-	else if (mode == INT_POUND)
-	{
-		pounds_int = int(stn * Lbs_per_stn + lbs);
-		pounds = stn * Lbs_per_stn + lbs;
-		set_stone();
-	}
-	else if (mode == DOUBLE_POUND)
-	{
-		pounds = stn * Lbs_per_stn + lbs;
-		set_pounds_int();
-		set_stone();
-	}
-	else
-	{
-		cout << "Incorrect mode!" << endl;
-		cout << "Stonewt set to 0!" << endl;
-		stone = pounds = pds_left = 0.0;
-		mode = STONE;
-	}
-
-}
-
 Stonewt::Stonewt()
 {
-	stone = pounds = pds_left = 0.0;
-	mode = STONE;
+	stone = pounds = pds_left = 0;
 }
 Stonewt::~Stonewt()
 {
@@ -2304,76 +2233,143 @@ Stonewt::~Stonewt()
 }
 
 
-void Stonewt::set_stone_mode()			// 设置英石格式
+bool Stonewt::operator<(const Stonewt& st)const
 {
-	mode = STONE;
-
+	return pounds < st.pounds;
 }
-void Stonewt::set_pounds_mode()			// 设置整数磅格式
+bool Stonewt::operator>(const Stonewt& st)const
 {
-	mode = DOUBLE_POUND;
+	return pounds > st.pounds;
 }
-void Stonewt::set_int_pounds_mode()		// 设置浮点磅格式
+bool Stonewt::operator<=(const Stonewt& st)const
 {
-	mode = INT_POUND;
+	return pounds <= st.pounds;
 }
-
-Stonewt Stonewt::operator+(const Stonewt& st) const  // 重载‘+’运算符；
+bool Stonewt::operator>=(const Stonewt& st)const
 {
-	// 调用构造函数进行加法操作并重新设置mode模式
-	return Stonewt(pounds + st.pounds, st.mode);
+	return pounds >= st.pounds;
 }
-Stonewt Stonewt::operator-(const Stonewt& st) const	 // 重载‘-’运算符；
+bool Stonewt::operator==(const Stonewt& st)const
 {
-	// 调用构造函数进行减法法操作并重新设置mode模式
-	return Stonewt(pounds - st.pounds, st.mode);
+	return pounds == st.pounds;
 }
-Stonewt Stonewt::operator*(double n) const			 // 重载‘*’运算符；
+bool Stonewt::operator!=(const Stonewt& st)const
 {
-	return Stonewt(pounds * n, mode);
+	return pounds != st.pounds;
 }
 
-//友元函数重载“*”运算符可以令对象在“*”右边进行操作
-Stonewt operator*(double n, const Stonewt& st)
-{
-	return Stonewt(n * st.pounds, st.mode);
-}
 std::ostream& operator<<(std::ostream& os, const Stonewt& st)
 {
-	if (st.mode == Stonewt::STONE)
-	{
-		os << st.stone << " stone, " << st.pds_left << " pounds" << endl;
-	}
-	else if (st.mode == Stonewt::INT_POUND)
-	{
-		os << st.pounds_int << " pounds(int)" << endl;
-	}
-	else if (st.mode == Stonewt::DOUBLE_POUND)
-	{
-		os << st.pounds << " pounds(double)" << endl;
-	}
-	else
-	{
-		os << "Incorrect mode!" << endl;
-	}
+	os << st.pounds << " pounds.\n";
 	return os;
 }
 
-void function_11_5(void)
-{
-	Stonewt incognito(275, Stonewt::DOUBLE_POUND);
-	Stonewt wolfe(285.7, Stonewt::STONE);
-	Stonewt taft(21, 8, Stonewt::INT_POUND);
 
-	cout << "Here are the tsets: " << endl;
-	cout << "The celebrity weighed ";
-	cout << incognito;
-	cout << "The detective weighed ";
-	cout << wolfe;
-	cout << "The President weighed ";
-	cout << taft;
-	cout << "incognito + wolfe = " << incognito + wolfe;
-	cout << "wolfe - incognito = " << wolfe - incognito;
-	cout << "taft * 10.0 = " << taft * 10.0;
-	cout << "10.0 * taft = " << 10.0 * taft;
+void function_11_5_6(void)
+{
+	using std::cin;
+	using std::cout;
+	using std::endl;
+
+	double val;
+	Stonewt minv, maxv;
+	Stonewt temp(11, 0.0);
+	Stonewt wt[6] = { Stonewt(285.7),Stonewt(21,8),Stonewt(12.0) };
+
+	int count = 0;
+
+	for (int i = 3; i < 6; i++)
+	{
+		cout << "Please enter an number for pounds: ";
+		while (!(cin>>val))
+		{
+			cin.clear();
+			while (cin.get()!='\n')
+			{
+				continue;
+			}
+			cout << "Illegal input! Enter an number: ";
+		}
+		wt[i] = Stonewt(i + 1, val);
+	}
+	minv = maxv = wt[0];
+	for (int i = 0; i < 6; i++)
+	{
+		minv = wt[i] < minv ? wt[i] : minv;
+		maxv = wt[i] > maxv ? wt[i] : maxv;
+		count += wt[i] >= temp;
+	}
+
+	cout << "The minimum pounds are: " << minv;
+	cout << "The maximum pounds are: " << maxv;
+	cout << "There are " << count << " elements more than 11 stones." << endl;
+
+}
+
+
+complex::complex(double r, double i)
+{
+	real = r, imag = i;
+}
+complex::~complex()
+{
+
+}
+complex complex::operator+(const complex& t)const
+{
+	return complex(real + t.real, imag + t.imag);
+}
+complex complex::operator-(const complex& t)const
+{
+	return complex(real - t.real, imag - t.imag);
+}
+complex complex::operator*(const complex& t)const
+{
+	return complex(real * t.real - imag * t.imag, real * t.imag + imag * t.imag);
+}
+complex complex::operator*(double x)const
+{
+	return complex(x * real, x * imag);
+}
+complex complex::operator~()const
+{
+	return complex(real, -imag);
+}
+
+
+std::istream& operator>>(std::istream& is, complex& t)
+{
+	std::cout << "real";
+	if (is >> t.real)
+	{
+		std::cout << "imaginary:";
+		is >> t.imag;
+	}
+	return is;
+}
+std::ostream& operator<<(std::ostream& os, const complex& t)
+{
+	os << "(" << t.real << "," << t.imag << ")" << endl;
+	return os;
+}
+
+void function_11_7(void)
+{
+	complex a(3.0, 4.0);
+	complex c;
+
+	cout << "Enter a complex number (q to quit):\n";
+
+	while (cin >> c)
+	{
+		cout << "c is " << c << '\n';
+		cout << "complex connjugate is " << ~c << '\n';
+		cout << "a is" << a << '\n';
+		cout << "a + c is" << a + c << '\n';
+		cout << "a - c is " << a - c << '\n';
+		cout << "a * c is " << a * c << '\n';
+		cout << "2 * c is " << 2 * c << '\n';
+		cout << "Enter a complex number (q to quit):\n";
+	}
+	cout << "Done!\n";
 }

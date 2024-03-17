@@ -763,18 +763,24 @@ void function_11_4(void);
 	类
 */
 
+/*
+	11.6
+	重新编写Stonewt类（程序清单11.16和程序清单11.17），重载
+	全部6个关系运算符。运算符对pounds成员进行比较，并返回一个bool
+	值。编写一个程序，它声明一个包含6个Stonewt对象的数组，并在数组
+	声明中初始化前3个对象。然后使用循环来读取用于设置剩余3个数组元
+	素的值。接着报告最小的元素、最大的元素以及大于或等于11英石的元
+	素的数量（最简单的方法是创建一个Stonewt对象，并将其初始化为11
+	英石，然后将其同其他对象进行比较）。
+*/
+
+
 #ifndef STONEWT_H_
 #define STONEWT_H_
 
 class Stonewt
 {
 public:
-	enum Mode
-	{
-		STONE,
-		INT_POUND,
-		DOUBLE_POUND
-	};
 
 private:
 	enum
@@ -785,30 +791,66 @@ private:
 	double pds_left;
 	double pounds;
 	int pounds_int;
-	Mode mode;
-	void set_stone(); // 设置stone英石变量
-	void set_pounds(); // 设置pounds英镑变量
-	void set_pounds_int(); // 设置pounds整型英镑变量
-
 
 public:
-	Stonewt(double lbs, Mode form);
-	Stonewt(int stn, double lbs, Mode form);
+
+	explicit Stonewt(double lbs);
+	Stonewt(int stn, double lbs);
 	Stonewt();
 	~Stonewt();
+	
 
-	void set_stone_mode();			// 设置英石格式
-	void set_pounds_mode();			// 设置整数磅格式
-	void set_int_pounds_mode();		// 设置浮点磅格式
-	Stonewt operator+(const Stonewt& st) const;  // 重载‘+’运算符；
-	Stonewt operator-(const Stonewt& st) const;	 // 重载‘-’运算符；	
-	Stonewt operator*(double n) const;			 // 重载‘*’运算符；
-	//友元函数重载“*”运算符可以令对象在“*”右边进行操作
-	friend Stonewt operator*(double n, const Stonewt& st);
+	bool operator<(const Stonewt& st)const;
+	bool operator>(const Stonewt& st)const;
+	bool operator<=(const Stonewt& st)const;
+	bool operator>=(const Stonewt& st)const;
+	bool operator==(const Stonewt& st)const;
+	bool operator!=(const Stonewt& st)const;
+
 	friend std::ostream& operator<<(std::ostream& os, const Stonewt& st);
-
 };
 
 #endif // !STONEWT_H_
 
-void function_11_5(void);
+void function_11_5_6(void);
+
+/*
+	11.7
+	复数有两个部分组成：实数部分和虚数部分。复数的一种书写
+	方式是：（3.0，4.0），其中，3.0是实数部分，4.0是虚数部分。假设a
+	= (A, Bi)，c = (C, Di)，则下面是一些复数运算。
+	加法：a + c = (A+C, (B+D)i)。
+	减法：a – c = (A−C, (B−D)i)。
+	乘法：a * c = (A*C−B*D, (A*D + B*C)i)。
+	乘法::x*c = (x * C, x *Di)，其中x为实数。
+	共轭：~a = (A, −Bi)。
+	请定义一个复数类，以便下面的程序可以使用它来获得正确的结
+	果
+*/
+
+void function_11_7(void);
+
+#ifndef COMPLEX0_H_
+#define COMPLEX0_H_
+
+class complex
+{
+private:
+	double real;
+	double imag;
+
+public:
+	complex(double r = 0, double i = 0);
+	~complex();
+	complex operator+(const complex& t)const;
+	complex operator-(const complex& t)const;
+	complex operator*(const complex& t)const;
+	complex operator*(double x)const;
+	complex operator~()const;
+
+	friend complex operator*(double x, const complex& t) { return t * x; }
+	friend std::istream& operator>>(std::istream& is, complex& t);
+	friend std::ostream& operator<<(std::ostream& os, const complex& t);
+};
+
+#endif // !COMPLEX0_H_
