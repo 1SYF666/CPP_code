@@ -92,3 +92,80 @@ public:
 #endif // !STRING2_H_
 
 void function_12_2(void);
+
+/*
+	12.3
+	新编写程序清单10.7和程序清单10.8描述的Stock类，使之使用
+	动态分配的内存，而不是string类对象来存储股票名称。另外，使用重
+	载的operator < <()定义代替show()成员函数。再使用程序清单10.9测试新
+	的定义程序。
+*/
+void function_12_3(void);
+
+#ifndef stock20_h_
+#define stock20_h_
+
+class Stock
+{
+public:
+	Stock();
+	Stock(const char* s, long n = 0, double pr = 0.0);
+	~Stock();
+	void buy(long num, double price);
+	void sell(long num, double price);
+	void update(double price);
+	friend std::ostream& operator<<(std::ostream& os, const Stock& st);
+	const Stock& topval(const Stock& s)const;
+
+private:
+	char* company;
+	int shares;
+	double share_val;
+	double total_val;
+	void set_hot()
+	{
+		total_val = shares * share_val;
+	}
+
+};
+
+#endif // !stock20_h_
+
+/*
+	12.4．
+	请看下面程序清单10.10定义的Stack1类的变量：
+	正如私有成员表明的，这个类使用动态分配的数组来保存栈项。请
+	重新编写方法，以适应这种新的表示法，并编写一个程序来演示所有的
+	方法，包括复制构造函数和赋值运算符
+*/
+
+
+#ifndef Stack1_H_
+#define Stack1_H_
+typedef unsigned long Item2;
+
+class Stack1
+{
+public:
+	Stack1(int n = MAX);
+	Stack1(const Stack1& st);
+	~Stack1();
+	bool isempty()const;
+	bool isfull()const;
+	bool push(const Item2& Item2);
+	bool pop(Item2& Item2);
+	Stack1& operator=(const Stack1& st);
+	friend std::ostream& operator<<(std::ostream& os, const Stack1& st);
+private:
+	enum
+	{
+		MAX = 10
+	};
+	Item2* pItem2s;
+	int size;
+	int top;
+};
+
+#endif // !Stack1_H_
+
+void function_12_4(void);

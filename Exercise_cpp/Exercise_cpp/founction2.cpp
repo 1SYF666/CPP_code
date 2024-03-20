@@ -264,3 +264,232 @@ void function_12_2(void)
 	}
 	cout << "Bye\n";
 }
+
+
+Stock::Stock()
+{
+	company = new char[1];
+	company[0] = '\0';
+	shares = 0;
+	share_val = 0.0;
+	total_val = 0.0;
+}
+Stock::Stock(const char* s, long n, double pr)
+{
+	company = new char[strlen(s) + 1];
+	std::strcpy(company, s);
+	if (n < 0)
+	{
+		std::cout << "Number of students can't be nagative;";
+		std::cout << company << " shares set to 0.\n";
+		shares = 0;
+	}
+	else
+	{
+		shares = n;
+	}
+	share_val = pr;
+	set_hot();
+}
+
+Stock::~Stock()
+{
+	delete[] company;
+}
+void Stock::buy(long num, double price)
+{
+	if (num < 0)
+	{
+		std::cout << "Number of shares purchased can't be negative.";
+		std::cout << "Transaction is aborted.\n";
+	}
+	else
+	{
+		shares += num;
+		share_val = price;
+		set_hot();
+	}
+}
+void Stock::sell(long num, double price)
+{
+	using std::cout;
+	if (num < 0)
+	{
+		cout << "Number of shares sold can't be negative.";
+		cout << "Transaction is aborted.\n";
+	}
+	else if (num > shares)
+	{
+		cout << "You can't sell more than you have!";
+		cout << "Transaction is aborted.\n";
+	}
+	else
+	{
+		shares -= num;
+		share_val = price;
+		set_hot();
+	}
+}
+void Stock::update(double price)
+{
+	share_val = price;
+	set_hot();
+}
+
+std::ostream& operator<<(std::ostream& os, const Stock& st)
+{
+	os << "Company:" << st.company << std::endl;
+	os << "Shares:" << st.shares << std::endl;
+	os << "Share Price: " << st.share_val << std::endl;
+	os << "Total Worth: " << st.total_val << std::endl;
+	return os;
+}
+
+const Stock& Stock::topval(const Stock& s)const
+{
+	return s.total_val > total_val ? s : *this;
+}
+
+
+const int STKS = 4;
+void function_12_3(void)
+{
+	Stock stock[STKS] =
+	{
+		Stock("NanoSmart",12,20.0),
+		Stock("Boffo Object",200.0,2.0),
+		Stock("Monolithic Obelisks",130,3.25),
+		Stock("Fleep Enterprises",60,6.5)
+	};
+	std::cout << "Stock holdings;\n";
+	for (int st = 0; st < STKS; st++)
+	{
+		std::cout << stock[st] << std::endl;
+	}
+	const Stock* top = &stock[0];
+	for (int st = 1; st < STKS; st++)
+	{
+		top = &top->topval(stock[st]);
+	}
+	std::cout << "\nMost valuable holding:\n";
+	std::cout << *top;
+}
+
+
+Stack1::Stack1(int n)
+{
+	top = 0;
+	if (n > MAX)
+	{
+		cout << "The length of Stack1 can't exceed 10.\n";
+		cout << "So initialize the length to 10.\n";
+		size = MAX;
+	}
+	else if (n < 0)
+	{
+		cout << "The length of Stack1 can't less than 0.\n";
+		cout << "So initialize the length to 10.\n";
+		size = MAX;
+	}
+	else
+	{
+		size = n;
+	}
+	pItem2s = new Item2[size];
+}
+
+Stack1::Stack1(const Stack1& st)
+{
+	size = st.size, top = st.top;
+	pItem2s = new Item2[size];
+	for (int i = 0; i < top; i++)
+	{
+		pItem2s[i] = st.pItem2s[i];
+	}
+}
+Stack1::~Stack1()
+{
+	delete[] pItem2s;
+}
+
+bool Stack1::isempty()const
+{
+	return top == 0;
+}
+bool Stack1::isfull()const
+{
+	return top == size;
+}
+bool Stack1::push(const Item2& Item2)
+{
+	if (top < size)
+	{
+		pItem2s[top++] = Item2;
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+bool Stack1::pop(Item2& Item2)
+{
+	if (top > 0)
+	{
+		Item2 = pItem2s[--top];
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+
+}
+Stack1& Stack1::operator=(const Stack1& st)
+{
+	if (this == &st)
+	{
+		return *this;
+	}
+	delete[]pItem2s;
+	size = st.size;
+	top = st.top;
+	pItem2s = new Item2[size];
+	for (int i = 0; i < top; i++)
+	{
+		pItem2s[i] = st.pItem2s[i];
+	}
+	return *this;
+}
+std::ostream& operator<<(std::ostream& os, const Stack1& st)
+{
+	for (int i = st.top - 1; i >= 0; i--)
+	{
+		os << st.pItem2s[i] << std::endl;
+	}
+	return os;
+}
+
+void function_12_4(void)
+{
+	using namespace std;
+	Stack1 st;
+	Item2 temp = 1000UL;
+	st.push(temp);
+	temp = 2000UL;
+	st.push(temp);
+	temp = 3000UL;
+	st.push(temp);
+	Stack1 st1(st);
+	Stack1 st2;
+	st2 = st1;
+	cout << "Here are some Stack1 countents:" << endl;
+	cout << "Stack1 st:" << endl;
+	cout << st;
+	cout << "Stack1 st1:" << endl;
+	cout << st1;
+	cout << "Stack1 st2:" << endl;
+	cout << st2;
+	cout << "Bye\n";
+
+}

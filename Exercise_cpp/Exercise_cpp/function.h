@@ -517,8 +517,8 @@ void function_10_4(void);
 	修改typedef声明，使Item的类型为customer，而不是unsigned long即可。
 */
 
-#ifndef STACK_H_
-#define STACK_H_
+#ifndef STACK1_H_
+#define STACK1_H_
 typedef struct customer
 {
 	char fullname[35];
@@ -539,7 +539,7 @@ private:
 	Item items[MAX];
 	int top;
 };
-#endif // !STACK_H_
+#endif // !STACK1_H_
 void function_10_5(void);
 
 
