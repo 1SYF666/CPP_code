@@ -493,3 +493,186 @@ void function_12_4(void)
 	cout << "Bye\n";
 
 }
+
+
+Queue::Queue(int qs) :qsize(qs)
+{
+	front = rear = NULL;
+	items = 0;
+}
+Queue::~Queue()
+{
+	Node* temp;
+	while (front != NULL)
+	{
+		temp = front;
+		front = front->next;
+		delete temp;
+	}
+}
+bool Queue::isempty()const
+{
+	return items == 0;
+}
+bool Queue::isfull()const
+{
+	return items == qsize;
+}
+int Queue::queuecount()const
+{
+	return items;
+}
+bool Queue::enqueue(const Item3& item)
+{
+	if (isfull())
+	{
+		return false;
+	}
+	Node* add = new Node;
+	add->item = item;
+	add->next = NULL;
+	items++;
+	if (front == NULL)
+	{
+		front = add;
+	}
+	else
+	{
+		rear->next = add;
+	}
+	rear = add;
+	return true;
+}
+bool Queue::dequeue(Item3& item)
+{
+	if (front == NULL)
+	{
+		return false;
+	}
+	item = front->item;
+	items--;
+	Node* temp = front;
+	front = front->next;
+	delete temp;
+	if (items == 0)
+	{
+		rear = NULL;
+	}
+	return true;
+}
+
+void Customer::set(long when)
+{
+	processtime = std::rand() % 3 + 1;
+	arrive;
+}
+
+using namespace std;
+const int MIN_PER_HR = 60;
+bool newcustomer(double x)
+{
+	return (std::rand() * x / RAND_MAX < 1);
+}
+
+void function_12_5(void)
+{
+	srand(time(0));
+
+	cout << "Cse Study:Bank of Heather Automatic Teller\n";
+	cout << "Enter maximum size of queue: ";
+	int qs;
+	cin >> qs;
+	Queue line1(qs);	//构造第一台ATM机
+	Queue line2(qs);	//构造第二台ATM机
+
+	cout << "Enter the number of simulation hours:";
+	int hours;
+	cin >> hours;
+	long cyclelimit = MIN_PER_HR * hours;
+
+	cout << "Enter the average number of customers per hour: ";
+	double perhour;
+	cin >> perhour;
+	double min_per_cust;
+	min_per_cust = MIN_PER_HR / perhour;
+
+	long turnaways = 0;
+	long customers = 0;
+	long served = 0;
+	long sum_line = 0;
+	long wait_time1 = 0; // 第一台ATM机的等待时间
+	long wait_time2 = 0; // 第二台ATM机的等待时间
+	long line_wait = 0;
+
+	for (int cycle = 0; cycle < cyclelimit; cycle++)
+	{
+		Item3 temp;
+		if (newcustomer(min_per_cust))
+		{
+			if (line1.isfull() && line2.isfull())
+			{
+				turnaways++;
+			}
+			else
+			{
+				customers++;
+				temp.set(cycle);
+				if (line1.queuecount() < line2.queuecount())
+				{
+					line1.enqueue(temp);
+				}
+				else
+				{
+					line2.enqueue(temp);
+				}
+			}
+		}
+
+		if (wait_time1 <= 0 && !line1.isempty())
+		{
+			line1.dequeue(temp);
+			wait_time1 = temp.ptime();
+			line_wait += cycle - temp.when();
+			served++;
+		}
+
+		if (wait_time1 > 0)
+		{
+			wait_time1--;
+		}
+
+		sum_line += line1.queuecount();
+
+		if (wait_time2 <= 0 && !line2.isempty())
+		{
+			line2.dequeue(temp);
+			wait_time2 = temp.ptime();
+			line_wait += cycle - temp.when();
+			served++;
+		}
+		if (wait_time2 > 0)
+		{
+			wait_time2--;
+		}
+		sum_line += line2.queuecount();
+	}
+
+	if (customers > 0)
+	{
+		cout << "customers accepted: " << customers << endl;
+		cout << "  customers served: " << served << endl;
+		cout << "         turnaways: " << turnaways << endl;
+		cout << "average queue size: ";
+		cout.precision(2);
+		cout.setf(ios_base::fixed, ios_base::floatfield);
+		cout << (double)sum_line / cyclelimit << endl;
+		cout << " average wait time: ";
+		cout << (double)line_wait / served << " minutes\n";
+	}
+	else
+	{
+		cout << "No customers!\n";
+	}
+
+	cout << "Done!\n";
+}

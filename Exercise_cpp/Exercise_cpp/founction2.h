@@ -169,3 +169,70 @@ private:
 #endif // !Stack1_H_
 
 void function_12_4(void);
+
+/*
+	12.5
+	Heather银行进行的研究表明，ATM客户不希望排队时间不超过
+	1分钟。使用程序清单12.10中的模拟，找出要使平均等候时间为1分
+	钟，每小时到达的客户数应为多少（试验时间不短于100小时）？
+
+	12.6
+	Heather银行想知道，如果再开设一台ATM，情况将如何。请对
+	模拟进行修改，以包含两个队列。假设当第一台ATM前的排队人数少
+	于第二台ATM时，客户将排在第一队，否则将排在第二队。然后再找
+	出要使平均等候时间为1分钟，每小时到达的客户数应该为多少（注
+	意，这是一个非线性问题，即将ATM数量加倍，并不能保证每小时处
+	理的客户数量也翻倍，并确保客户等候的时间少于1分钟）
+*/
+
+#ifndef QUEUE_H_
+#define QUEUE_H_
+
+class Customer
+{
+public:
+	Customer() :arrive(0L), processtime(0) {};
+	void set(long when);
+	long when()const { return arrive; }
+	int ptime()const { return processtime; }
+
+private:
+	long arrive;
+	int processtime;
+
+};
+typedef Customer Item3;
+
+class Queue
+{
+public:
+	Queue(int qs = Q_SIZE);
+	~Queue();
+	bool isempty()const;
+	bool isfull()const;
+	int queuecount()const;
+	bool enqueue(const Item3& item3);
+	bool dequeue(Item3& item3);
+
+private:
+	struct Node
+	{
+		Item3 item;
+		struct Node* next;
+	};
+	enum
+	{
+		Q_SIZE = 10
+	};
+	Node* front;
+	Node* rear;
+	int items;
+	const int qsize;
+	Queue(const Queue& q) :qsize(0) {}
+	Queue& operator=(const Queue& q) { return *this; }
+
+};
+
+
+#endif // !QUEUE_H_
+void function_12_5(void);
