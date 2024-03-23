@@ -676,3 +676,88 @@ void function_12_5(void)
 
 	cout << "Done!\n";
 }
+
+Cd::Cd(const char* s1, const char* s2, int n, double x)
+{
+	std::strncpy(performers, s1, 50);
+	performers[49] = '\0';
+	strncpy(labels, s2, 20);
+	labels[19] = '\0';
+	selections = n;
+	playtime = x;
+}
+Cd::Cd(const Cd& d)
+{
+	strncpy(performers, d.performers, 50);
+	performers[49] = '\0';
+	strncpy(labels, d.labels, 50);
+	labels[49] = '\0';
+	selections = d.selections;
+	playtime = d.playtime;
+}
+Cd::Cd()
+{
+	performers[0] = '\0';
+	labels[0] = '\0';
+	selections = 0;
+	playtime = 0.0;
+}
+Cd::~Cd()
+{
+
+}
+void Cd::Report()const
+{
+	cout << "Performers: " << performers << endl;
+	cout << "Label: " << labels << endl;
+	cout << "Selections: " << selections << endl;
+	cout << "Performers: " << playtime << endl;
+}
+Cd& Cd::operator=(const Cd& d)
+{
+	if (this == &d)
+	{
+		return *this;
+	}
+	strncpy(performers, d.performers, 50);
+	performers[49] = '\0';
+	strncpy(labels, d.labels, 20);
+	performers[19] = '\0';
+	selections = d.selections;
+	playtime = d.playtime;
+	return *this;
+}
+
+
+
+Classic::Classic(const char* s, const char* s1, const char* s2, int n, double x)
+{
+	strncpy(cdstr, s, 50);
+	cdstr[49] = '\0';
+}
+Classic::Classic(const char* s, const Cd& d) :Cd(d)
+{
+	strncpy(cdstr, s, 50);
+	cdstr[49] = '\0';
+}
+Classic::~Classic()
+{
+
+}
+void Classic::Report()const
+{
+	Cd::Report();
+	cout << "Major acticle in the CD is: " << cdstr << endl;
+	cout.put('\n');
+}
+Classic& Classic::operator=(const Classic& cs)
+{
+	if (this == &cs)
+	{
+		return *this;
+	}
+	Cd::operator=(cs);
+	strncpy(cdstr, cs.cdstr, 50);
+	cdstr[49] = '\0';
+	return *this;
+}

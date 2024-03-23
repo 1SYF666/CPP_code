@@ -236,3 +236,56 @@ private:
 
 #endif // !QUEUE_H_
 void function_12_5(void);
+
+
+/*
+	13.1
+	派生出一个Classic类，并添加一组char成员，用于存储指出CD中主
+	要作品的字符串。修改上述声明，使基类的所有函数都是虚的。如果上
+	述定义声明的某个方法并不需要，则请删除它。使用下面的程序测试您
+	的产品
+*/
+#ifndef CD_H_
+#define CD_H_
+
+class Cd
+{
+public:
+	Cd(const char* s1, const char* s2, int n, double x);
+	Cd(const Cd& d);
+	Cd();
+	virtual ~Cd();
+	virtual void Report()const;
+	Cd& operator=(const Cd& d);
+
+private:
+	char performers[50];
+	char labels[20];
+	int selections;
+	double playtime;
+
+};
+
+#endif // !CD_H_
+
+#ifndef CLASSIC_H_
+#define CLASSIC_H_
+class Classic :public Cd
+{
+public:
+	Classic() :Cd() { cdstr[0] = '\0'; }
+	Classic(const char* s, const char* s1, const char* s2, int n, double x);
+	Classic(const char* s, const Cd& d);
+	~Classic();
+	virtual void Report()const;
+	Classic& operator=(const Classic& cs);
+
+private:
+	char cdstr[50];
+};
+
+#endif // !CLASS_H_
+
+
+
+void function_13_1(void);
