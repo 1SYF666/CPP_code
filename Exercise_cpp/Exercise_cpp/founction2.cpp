@@ -679,32 +679,35 @@ void function_12_5(void)
 
 Cd::Cd(const char* s1, const char* s2, int n, double x)
 {
-	std::strncpy(performers, s1, 50);
-	performers[49] = '\0';
-	strncpy(labels, s2, 20);
-	labels[19] = '\0';
+	performers = new char[std::strlen(s1) + 1];
+	std::strcpy(performers, s1);
+	labels = new char[std::strlen(s2) + 1];
+	strcpy(labels, s2);
 	selections = n;
 	playtime = x;
 }
 Cd::Cd(const Cd& d)
 {
-	strncpy(performers, d.performers, 50);
-	performers[49] = '\0';
-	strncpy(labels, d.labels, 50);
-	labels[49] = '\0';
+	performers = new char[strlen(d.performers) + 1];
+	strcpy(performers, d.performers);
+	labels = new char[strlen(d.labels) + 1];
+	strcpy(labels, d.labels);
 	selections = d.selections;
 	playtime = d.playtime;
 }
 Cd::Cd()
 {
+	performers = new char[1];
 	performers[0] = '\0';
+	labels = new char[1];
 	labels[0] = '\0';
 	selections = 0;
 	playtime = 0.0;
 }
 Cd::~Cd()
 {
-
+	delete[] performers;
+	delete[] labels;
 }
 void Cd::Report()const
 {
@@ -713,36 +716,42 @@ void Cd::Report()const
 	cout << "Selections: " << selections << endl;
 	cout << "Performers: " << playtime << endl;
 }
-Cd& Cd::operator=(const Cd& d)
+Cd& Cd::operator=(const Cd& d)  // 重新赋值运算符
 {
 	if (this == &d)
 	{
 		return *this;
 	}
-	strncpy(performers, d.performers, 50);
-	performers[49] = '\0';
-	strncpy(labels, d.labels, 20);
-	performers[19] = '\0';
+	delete[] performers;		// 释放原有已分配的内存空间
+	delete[] labels;		    // 释放原有已分配的内存空间
+	performers = new char[std::strlen(d.performers) + 1];
+	strcpy(performers, d.performers);
+	labels = new char[std::strlen(d.labels) + 1];
+	strcpy(labels, d.labels);
 	selections = d.selections;
 	playtime = d.playtime;
 	return *this;
 }
 
-
+Classic::Classic() :Cd()
+{
+	cdstr = new char[1];
+	cdstr[0] = '\0';
+}
 
 Classic::Classic(const char* s, const char* s1, const char* s2, int n, double x)
 {
-	strncpy(cdstr, s, 50);
-	cdstr[49] = '\0';
+	cdstr = new char[std::strlen(s) + 1];
+	strcpy(cdstr, s);
 }
 Classic::Classic(const char* s, const Cd& d) :Cd(d)
 {
-	strncpy(cdstr, s, 50);
-	cdstr[49] = '\0';
+	cdstr = new char[strlen(s) + 1];
+	strcpy(cdstr, s);
 }
 Classic::~Classic()
 {
-
+	delete[] cdstr;
 }
 void Classic::Report()const
 {
@@ -756,8 +765,42 @@ Classic& Classic::operator=(const Classic& cs)
 	{
 		return *this;
 	}
+	delete[] cdstr;
 	Cd::operator=(cs);
-	strncpy(cdstr, cs.cdstr, 50);
-	cdstr[49] = '\0';
+	cdstr = new char[std::strlen(cs.cdstr) + 1];
+	cdstr = strcpy(cdstr, cs.cdstr);
 	return *this;
+}
+
+void Bravo(const Cd& disk)
+{
+	disk.Report();
+}
+
+
+void function_13_1(void)
+{
+	Cd c1("Beatles", "Capitol", 14, 35.5);
+	Classic c2 = Classic("Piano Sonata in B flat,Fantasia in C", "Alfred Brendel", "Philips", 2, 57.17);
+
+	Cd* pcd = &c1;
+
+	cout << "Using object directly:\n";
+	c1.Report();
+	c2.Report();
+
+	cout << "Using type cd*pointer to objects:\n";
+	pcd->Report();
+	pcd = &c2;
+	pcd->Report();
+
+	cout << "Calling a function with a Cd reference argument:\n";
+	Bravo(c1);
+	Bravo(c2);
+
+	cout << "Testing assignment:\n";
+	Classic copy;
+	copy = c2;
+	copy.Report();
+
 }

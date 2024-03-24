@@ -259,8 +259,8 @@ public:
 	Cd& operator=(const Cd& d);
 
 private:
-	char performers[50];
-	char labels[20];
+	char *performers;
+	char *labels;
 	int selections;
 	double playtime;
 
@@ -273,19 +273,17 @@ private:
 class Classic :public Cd
 {
 public:
-	Classic() :Cd() { cdstr[0] = '\0'; }
-	Classic(const char* s, const char* s1, const char* s2, int n, double x);
+	Classic();
+	Classic(const char* s1, const char* s2, const char* s3, int n, double x);
 	Classic(const char* s, const Cd& d);
 	~Classic();
 	virtual void Report()const;
 	Classic& operator=(const Classic& cs);
 
 private:
-	char cdstr[50];
+	char *cdstr;
 };
 
 #endif // !CLASS_H_
-
-
 
 void function_13_1(void);
