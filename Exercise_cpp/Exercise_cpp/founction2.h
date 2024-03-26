@@ -245,6 +245,13 @@ void function_12_5(void);
 	述定义声明的某个方法并不需要，则请删除它。使用下面的程序测试您
 	的产品
 */
+
+/*
+	13.2
+	完成练习1，但让两个类使用动态内存分配而不是长度固定的数
+	组来记录字符串。
+*/
+
 #ifndef CD_H_
 #define CD_H_
 
@@ -287,3 +294,4 @@ private:
 #endif // !CLASS_H_
 
 void function_13_1(void);
+void function_13_2(void);
