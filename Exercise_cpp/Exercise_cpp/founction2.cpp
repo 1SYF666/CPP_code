@@ -829,3 +829,217 @@ void function_13_2(void)
 	copy = c2;
 	copy.Report();
 }
+
+
+DMA::DMA(const char* cn)
+{
+	classname = new char[strlen(cn) + 1];
+	std::strcpy(classname, cn);
+}
+DMA::DMA(const DMA& rs)
+{
+	classname = new char[strlen(rs.classname) + 1];
+	std::strcpy(classname, rs.classname);
+}
+DMA& DMA:: operator=(const DMA& rs)
+{
+	if (this == &rs)
+	{
+		return *this;
+	}
+	delete[]classname;
+	classname = new char[strlen(rs.classname) + 1];
+	std::strcpy(classname, rs.classname);
+	return *this;
+}
+DMA::~DMA()
+{
+	delete[] classname;
+}
+
+
+baseDMA::baseDMA(const char* l, int r, const char* cn) :DMA(cn)
+{
+	label = new char[strlen(l) + 1];
+	std::strcpy(label, l);
+	rating = r;
+}
+
+baseDMA::baseDMA(const char* l, int r, const DMA& rs) :DMA(rs)
+{
+	label = new char[strlen(l) + 1];
+	std::strcpy(label, l);
+	rating = r;
+}
+baseDMA::baseDMA(const baseDMA& rs) :DMA(rs)
+{
+	label = new char[strlen(rs.label) + 1];
+	std::strcpy(label, rs.label);
+	rating = rs.rating;
+}
+baseDMA::~baseDMA()
+{
+	delete[]label;
+}
+baseDMA& baseDMA:: operator=(const baseDMA& rs)
+{
+	if (this == &rs)
+	{
+		return *this;
+	}
+	delete[]label;
+	DMA::operator=(rs);
+	label = new char[strlen(rs.label) + 1];
+	std::strcpy(label, rs.label);
+	rating = rs.rating;
+	return *this;
+}
+void baseDMA::View() const
+{
+	std::cout << "Classname: " << show_classname() << std::endl; //调用基类protected中的show_classname方法显示基类数据成员;
+	std::cout << "Label: " << label << std::endl;
+	std::cout << "Rating: " << rating << std::endl;
+}
+
+
+lacksDMA::lacksDMA(const char* c, const char* cn) :DMA(cn)
+{
+	strncpy(color, c, COL_LEN - 1);
+	color[COL_LEN] = '\0';
+
+}
+lacksDMA::lacksDMA(const char* c, const DMA& rs) :DMA(rs)
+{
+	strncpy(color, c, COL_LEN - 1);
+	color[COL_LEN - 1] = '\0';
+}
+lacksDMA::lacksDMA(const lacksDMA& rs) : DMA(rs)
+{
+	strncpy(color, rs.color, COL_LEN - 1);
+	color[COL_LEN - 1] = '\0';
+
+}
+lacksDMA::~lacksDMA()
+{
+
+}
+lacksDMA& lacksDMA:: operator=(const lacksDMA& rs)
+{
+	if (this == &rs)
+	{
+		return *this;
+	}
+	DMA::operator=(rs); //调用基类DMA的赋值运算符方法初始化派生类lackDMA的基类数据成员
+	strncpy(color, rs.color, COL_LEN - 1);
+	color[COL_LEN - 1] = '\0';
+	return *this;
+}
+
+void lacksDMA::View()const
+{
+	std::cout << "Classname: " << show_classname() << std::endl; //调用基类protected中的show_classname方法显示基类数据成员;
+	std::cout << "Color: " << color << std::endl;
+}
+
+
+hasDMA::hasDMA(const char* s, const char* cn) :DMA(cn)
+{
+	style = new char[strlen(s) + 1];
+	std::strcpy(style, s);
+
+}
+
+hasDMA::hasDMA(const char* s, const DMA& rs) :DMA(rs)
+{
+	style = new char[strlen(s) + 1];
+	std::strcpy(style, s);
+}
+
+hasDMA::hasDMA(const hasDMA& rs) :DMA(rs)
+{
+	style = new char[strlen(rs.style) + 1];
+	std::strcpy(style, rs.style);
+}
+
+hasDMA::~hasDMA()
+{
+	delete[] style;
+}
+hasDMA& hasDMA:: operator=(const hasDMA& rs)
+{
+	if (this == &rs)
+	{
+		return *this;
+	}
+	delete[]style;
+	DMA::operator=(rs);
+	style = new char[strlen(rs.style) + 1];
+	std::strcpy(style, rs.style);
+	return *this;
+}
+void hasDMA::View()const
+{
+	std::cout << "Classname: " << show_classname() << std::endl; //调用基类protected中的show_classname方法显示基类数据成员;
+	std::cout << "Style: " << style << std::endl;
+}
+
+
+const int LEN = 3;
+
+void function_13_3(void)
+{
+	DMA* temp[LEN];
+	char label[50];
+	int rating;
+	char color[40];
+	char style[50];
+	char kind;
+
+	cout << "Here are the process for creating 3 objects" << endl;
+	for (int i = 0; i < LEN; i++)
+	{
+		cout << "Enter 1 for baseDMA,2 for lacksDMA or 3 for hasDMA:";
+		while (cin >> kind && (kind != '1' && kind != '2' && kind != '3'))
+		{
+			cin.clear();
+			while (cin.get() != '\n')
+			{
+				continue;
+			}
+			cout << "Please enter 1,2 or 3: ";
+		}
+		if (kind == '1')
+		{
+			cout << "Please enter the label: ";
+			cin >> label;
+			cout << "Please enter the rating:";
+			cin >> rating;
+			temp[i] = new baseDMA(label, rating, "baseDMA");
+		}
+		else if (kind == '2')
+		{
+			cout << "Please enter the color: ";
+			cin >> color;
+			temp[i] = new lacksDMA(color, "lacksDMA");
+		}
+		else
+		{
+			cout << "Please enter the style:";
+			cin >> style;
+			temp[i] = new hasDMA(style, "hasDMA");
+		}
+	}
+
+	cout << "\nThe results after creating 3 objects" << endl;
+	for (int i = 0; i < LEN; i++)
+	{
+		temp[i]->View();
+	}
+
+	for (int i = 0; i < LEN; i++)
+	{
+		delete temp[i];
+	}
+	cout << "Done.\n";
+
+}

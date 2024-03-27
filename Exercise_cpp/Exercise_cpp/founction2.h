@@ -295,3 +295,90 @@ private:
 
 void function_13_1(void);
 void function_13_2(void);
+
+/*
+	13.3
+	修改baseDMA-lacksDMA-hasDMA类层次，让三个类都从一个
+	ABC派生而来，然后使用与程序清单13.10相似的程序对结果进行测
+	试。也就是说，它应使用ABC指针数组，并让用户决定要创建的对象类
+	型。在类定义中添加virtual View( )方法以处理数据显示。
+
+*/
+
+
+#ifndef DMA_H_
+#define DMA_H_
+
+class DMA
+{
+public:
+	DMA(const char* cn = "null");     // 声明基类DMA的默认构造函数;
+	DMA(const DMA& rs);			    // 声明基类DMA的复制构造函数;
+	DMA& operator=(const DMA& rs);	// 声明为基类DMA的重载赋值运算符;
+	virtual ~DMA();					// 声明为基类DMA的虚析构函数;
+	virtual void View()const = 0;	// 声明为基类DMA的纯虚数;
+
+private:
+	char* classname; // 基类成员设为一个char指针方便分配内存空间保存派生类的类名
+
+protected:
+	const char* show_classname()const
+	{
+		return classname;
+	}
+};
+
+class  baseDMA :public DMA
+{
+public:
+	baseDMA(const char* l = "null", int r = 0, const char* cn = "null");  // 声明派生类baseDMA的默认构造函数
+	baseDMA(const char* l, int r, const DMA& rs);						  // 声明派生类baseDMA的用户定义构造函数
+	baseDMA(const baseDMA& rs);											  // 声明派生类baseDMA的复制构造函数
+	~baseDMA();														  // 声明派生类baseDMA的析构函数
+	baseDMA& operator=(const baseDMA& rs);								  // 声明为派生类baseDMA重载复制运算符；
+	virtual void View() const;											  // 声明为派生类baseDMA定义基类虚函数		
+
+private:
+	char* label;
+	int rating;
+};
+
+class lacksDMA :public DMA
+{
+public:
+	lacksDMA(const char* c = "blank", const char* cn = "null");          // 声明派生类lacksDMA的默认构造函数
+	lacksDMA(const char* c, const DMA& rs);								 // 声明派生类lacksDMA的用户定义构造函数				
+	lacksDMA(const lacksDMA& rs);										 // 声明派生类lacksDMA的复制构造函数
+	~lacksDMA();														 // 声明派生类lacksDMA的析构函数	
+	lacksDMA& operator=(const lacksDMA& rs);							 // 声明派生类lacksDMA重载赋值运算符 		
+	virtual void View()const;											 // 声明为派生类lacksDMA定义
+
+private:
+	enum
+	{
+		COL_LEN = 40
+	};
+	char color[COL_LEN];
+
+};
+
+class hasDMA :public DMA
+{
+public:
+	hasDMA(const char* s = "none", const char* cn = "null");			 // 声明派生类hasDMA的默认构造函数
+	hasDMA(const char* s, const DMA& rs);							     // 声明派生类hasDMA的用户定义构造函数
+	hasDMA(const hasDMA& rs);											 // 声明派生类hasDMA的复制构造函数
+	~hasDMA();															 // 声明派生类hasDMA的析构函数
+	hasDMA& operator=(const hasDMA& rs);								 // 声明派生类hasDMA重载赋值运算符
+	virtual void View()const;
+
+private:
+	char* style;
+
+};
+
+#endif // !DMA_H_
+
+
+
+void function_13_3(void);
