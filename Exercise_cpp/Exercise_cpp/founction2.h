@@ -382,3 +382,52 @@ private:
 
 
 void function_13_3(void);
+
+/*
+	13.4
+	Benevolent Order of Programmers用来维护瓶装葡萄酒箱。为描
+	述它，BOP Portmaster设置了一个Port类，其声明如下
+*/
+#ifndef PORT_H_
+
+class Port
+{
+public:
+	Port(const char* br = "none", const char* st = "none", int b = 0);
+	Port(const Port& p);
+
+	virtual~Port() { delete[] brand; }
+	Port& operator=(const Port& p);
+	Port& operator+=(int b);
+	Port& operator-=(int b);
+	int BottleCount()const { return bottles; }
+	virtual void Show()const;
+	friend ostream& operator<<(ostream& os, const Port& p);
+
+private:
+	char* brand;
+	char style[20];
+	int bottles;
+
+};
+
+#endif // !PORT_H_
+
+class VintagePort :public Port
+{
+public:
+	VintagePort();
+	VintagePort(const char* br, int b, const char* nn, int y);
+	VintagePort(const VintagePort& vp);
+	~VintagePort() { delete[] nickname; }
+	VintagePort& operator=(const VintagePort& vp);
+	void Show()const;
+	friend ostream& operator<<(ostream& os, const VintagePort& vp);
+
+private:
+	char* nickname;
+	int year;
+};
+
+
+void function_13_4(void);

@@ -1043,3 +1043,135 @@ void function_13_3(void)
 	cout << "Done.\n";
 
 }
+
+
+
+
+Port::Port(const char* br, const char* st, int b)
+{
+	brand = new char[strlen(br) + 1];
+	strcpy(brand, br);
+	strncpy(style, st, 20);
+	style[19] = '\0';    //保证字符串是等效的
+	bottles = b;
+}
+Port::Port(const Port& p)
+{
+	brand = new char[strlen(p.brand) + 1];
+	strcpy(brand, p.brand);
+	strncpy(style, p.style, 20);
+	style[19] = '\0';
+	bottles = p.bottles;
+}
+
+Port& Port::operator=(const Port& p)
+{
+	if (this == &p)
+	{
+		return *this;
+	}
+	delete[] brand;
+	brand = new char[strlen(p.brand) + 1];
+	strcpy(brand, p.brand);
+	strncpy(style, p.style, 20);
+	style[19] = '\0';
+	bottles = p.bottles;
+	return *this;
+}
+Port& Port:: operator+=(int b)
+{
+	bottles += b;
+	return *this;//返回调用对象的引用
+}
+Port& Port:: operator-=(int b)
+{
+	bottles -= b;
+	return *this; //返回调用对象的引用
+}
+
+void Port::Show()const
+{
+	cout << "Brand: " << brand << endl;
+	cout << "Kind: " << style << endl;
+	cout << "Bottles: " << bottles << endl;
+}
+ostream& operator<<(ostream& os, const Port& p)
+{
+	os << p.brand << "," << p.style << "," << p.bottles;
+	return os;
+}
+
+
+VintagePort::VintagePort() :Port("none", "vintage", 0)
+{
+	nickname = new char[1];
+	nickname[0] = '\0';
+	year = 0;
+}
+VintagePort::VintagePort(const char* br, int b, const char* nn, int y) :Port(br, "vintage", b)
+{
+	nickname = new char[strlen(nn) + 1];
+	strcpy(nickname, nn);
+	year = y;
+}
+VintagePort::VintagePort(const VintagePort& vp) :Port(vp)
+{
+	nickname = new char[strlen(vp.nickname) + 1];
+	strcpy(nickname, vp.nickname);
+	year = vp.year;
+}
+
+VintagePort& VintagePort:: operator=(const VintagePort& vp)
+{
+	if (this == &vp)
+	{
+		return *this;
+	}
+	delete[]nickname;
+	Port::operator=(vp);
+	nickname = new char[strlen(vp.nickname) + 1];
+	strcpy(nickname, vp.nickname);
+	year = vp.year;
+	return *this;
+}
+void VintagePort::Show()const
+{
+	Port::Show();
+	cout << "Nickname: " << nickname << endl;
+	cout << "Year:" << year << endl;
+}
+ostream& operator<<(ostream& os, const VintagePort& vp)
+{
+	os << (const Port&)vp;
+	os << "," << vp.nickname << "," << vp.year;
+	return os;
+}
+
+void function_13_4(void)
+{
+	Port wine1("Gallo", "tawny", 20);
+	VintagePort wine2("Lafei", 10, "strong wine", 1876);
+	VintagePort wine3("Merlot", 50, "middle wine", 1976);
+	cout << "Here is the Port object:\n";
+	wine1.Show();          //调用基类Show方法;
+	cout << wine1 << endl; //调用基类重载输出流运算符;
+
+	cout << "\nHere are the VintagePort objects:\n";
+	wine2.Show();          //调用派生类Show方法;
+	cout << wine2 << endl; //调用派生类重载输出流运算符;
+	wine3.Show();          //调用派生类Show方法;
+	cout << wine3 << endl; //调用派生类重载输出流运算符;
+
+	cout << "\nGallo add 20 bottles:\n";
+	wine1 += 20; //调用基类重载+=运算符;
+	wine1.Show();
+
+	cout << "\nLafei add 10 bottles:\n";
+	wine2 += 10; //调用派生类重载+=运算符;
+	wine2.Show();
+
+	cout << "\nMerlot minus 10 bottles:\n";
+	wine3 -= 10; //调用派生类重载-=运算符;
+	wine3.Show();
+
+}
