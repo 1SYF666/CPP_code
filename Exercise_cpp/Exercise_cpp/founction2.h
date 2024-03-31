@@ -4,6 +4,7 @@
 #include<array>
 #include<string> //getline
 #include<fstream> //ifstream
+#include<valarray>
 using namespace std;
 
 /*
@@ -431,3 +432,94 @@ private:
 
 
 void function_13_4(void);
+
+
+/*
+	14.1
+	Wine类有一个string类对象成员（参见第4章）和一个Pair对象
+	（参见本章）；其中前者用于存储葡萄酒的名称，而后者有2个
+	valarray<int>对象（参见本章），这两个valarray<int>对象分别保存了葡
+	萄酒的酿造年份和该年生产的瓶数。例如，Pair的第1个valarray<int>对
+	象可能为1988、1992和1996年，第2个valarray<int>对象可能为24、48和
+	144瓶。Wine最好有1个int成员用于存储年数。另外，一些typedef可能
+	有助于简化编程工作：
+
+	这样，PairArray表示的是类型Pair<std::valarray<int>,
+	std::valarray<int> >。使用包含来实现Wine类，并用一个简单的程序对其
+	进行测试。Wine类应该有一个默认构造函数以及如下构造函数：
+
+	Wine类应该有一个GetBottles( )方法，它根据Wine对象能够存储几
+	种年份（y），提示用户输入年份和瓶数。方法Label( )返回一个指向葡
+	萄酒名称的引用。sum( )方法返回Pair对象中第二个valarray<int>对象中
+	的瓶数总和。
+
+	测试程序应提示用户输入葡萄酒名称、元素个数以及每个元素存储
+	的年份和瓶数等信息。程序将使用这些数据来构造一个Wine对象，然后
+	显示对象中保存的信息
+*/
+
+#ifndef WINEC_H_
+
+template <typename T1, typename T2>
+class Pair
+{
+public:
+	Pair() {};
+	Pair(const T1& yr, const T2& bt) :year(yr), bottles(bt) {};
+	void Set(const T1& yr, const T2& bt);
+	int Sum()const;
+	void Show(int y)const;
+
+
+private:
+	T1 year;
+	T2 bottles;
+
+};
+
+template<typename T1, typename T2>
+void Pair<T1, T2>::Set(const T1& yr, const T2& bt)
+{
+	year = yr;
+	bottles = bt;
+}
+
+template<typename T1, typename T2>
+int Pair<T1, T2>::Sum()const
+{
+	return bottles.sum();
+}
+
+template<typename T1, typename T2>
+void Pair<T1, T2>::Show(int y)const
+{
+	for (int i = 0; i < y; i++)
+	{
+		cout << "\t" << year[i] << "\t" << bottles[i] << endl;
+	}
+}
+
+typedef valarray<int> ArrayInt;
+
+typedef Pair<ArrayInt, ArrayInt> PairArray;
+
+class Wine
+{
+public:
+	Wine(const char* l, int y);
+	Wine(const char* l, int y, const int yr[], const int bot[]);
+	~Wine();
+	void GetBottles();
+	string& Label();
+	int sum()const;
+	void Show()const;
+
+private:
+	string wine_name;
+	PairArray year_and_bottle;
+	int year;
+};
+
+#endif // !WINEC_H_
+
+void function_14_1(void);

@@ -1175,3 +1175,76 @@ void function_13_4(void)
 	wine3.Show();
 
 }
+
+
+Wine::Wine(const char* l, int y)
+{
+	wine_name = 1;
+	year_and_bottle.Set(ArrayInt(y), ArrayInt(y));
+	year = y;
+}
+Wine::Wine(const char* l, int y, const int yr[], const int bot[])
+{
+	wine_name = l;
+	year_and_bottle.Set(ArrayInt(yr, y), ArrayInt(bot, y));
+	year = y;
+}
+Wine::~Wine()
+{
+
+}
+void Wine::GetBottles()
+{
+	ArrayInt yr(year);
+	ArrayInt bt(year);
+
+	cout << "Enter " << wine_name;
+	cout << "data for " << year << " year(s):" << endl;
+
+	for (int i = 0; i > year; i++)
+	{
+		cout << "Enter year: ";
+		cin >> yr[i];
+		cout << "Enter bottles for that year: ";
+		cin >> bt[i];
+	}
+	year_and_bottle.Set(yr, bt);
+}
+string& Wine::Label()
+{
+	return wine_name;
+}
+int Wine::sum()const
+{
+	return year_and_bottle.Sum();
+}
+void Wine::Show()const
+{
+	cout << "Wine: " << wine_name << endl;
+	cout << "\tYear\tBottles" << endl;
+	year_and_bottle.Show(year);
+}
+
+void function_14_1(void)
+{
+	cout << "Enter name of wine: ";
+	char lab[50];
+	cin.getline(lab, 50);
+	cout << "Enter number of years: ";
+	int yrs;
+	cin >> yrs;
+
+	Wine holding(lab, yrs);
+	holding.GetBottles();
+	holding.Show();
+
+	const int YRS = 3;
+	int y[YRS] = { 1993,1995,1998 };
+	int b[YRS] = { 48,60,72 };
+
+	Wine more("Gushing Grape Red", YRS, y, b);
+	more.Show();
+	cout << "Total bottles for " << more.Label();
+	cout << ": " << more.sum() << endl;
+	cout << "Bye\n";
+}

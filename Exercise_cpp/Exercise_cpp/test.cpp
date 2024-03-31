@@ -2,13 +2,15 @@
 #include"function.h"
 #include"founction2.h"
 #include<cmath>
+#include<valarray>
 
 using namespace std;
 
 
 int main()
 {
-	
+
+
 
 	return 0;
 }
