@@ -1177,16 +1177,21 @@ void function_13_4(void)
 }
 
 
-Wine::Wine(const char* l, int y)
+Wine::Wine(const char* l, int y):string(l)
 {
-	wine_name = 1;
-	year_and_bottle.Set(ArrayInt(y), ArrayInt(y));
+	//wine_name = 1;
+	//year_and_bottle.Set(ArrayInt(y), ArrayInt(y));
+	//使用隐式运算符调用私有对象构造函数进行初始化
+	PairArray::operator=(PairArray(ArrayInt(y), ArrayInt(y)));
 	year = y;
 }
-Wine::Wine(const char* l, int y, const int yr[], const int bot[])
+Wine::Wine(const char* l, int y, const int yr[], const int bot[]):string(l)
 {
-	wine_name = l;
-	year_and_bottle.Set(ArrayInt(yr, y), ArrayInt(bot, y));
+	//wine_name = l;
+	//year_and_bottle.Set(ArrayInt(yr, y), ArrayInt(bot, y));
+	// 使用隐式赋值运算符调用私有对象构造函数进行初始化
+	PairArray::operator=(PairArray(ArrayInt(yr, y), ArrayInt(bot, y)));
+
 	year = y;
 }
 Wine::~Wine()
@@ -1198,7 +1203,8 @@ void Wine::GetBottles()
 	ArrayInt yr(year);
 	ArrayInt bt(year);
 
-	cout << "Enter " << wine_name;
+	//cout << "Enter " << wine_name;
+	cout << "Enter " << (const string&)*this;
 	cout << "data for " << year << " year(s):" << endl;
 
 	for (int i = 0; i > year; i++)
@@ -1208,24 +1214,27 @@ void Wine::GetBottles()
 		cout << "Enter bottles for that year: ";
 		cin >> bt[i];
 	}
-	year_and_bottle.Set(yr, bt);
+	//year_and_bottle.Set(yr, bt);
+	PairArray::operator=(PairArray(yr, bt));
 }
 string& Wine::Label()
 {
-	return wine_name;
+	//return wine_name;
+	return (string&)*this;
 }
 int Wine::sum()const
 {
-	return year_and_bottle.Sum();
+	//return year_and_bottle.Sum();
+	return PairArray::Sum();
 }
 void Wine::Show()const
 {
-	cout << "Wine: " << wine_name << endl;
+	cout << "Wine: " << (const string&)(*this) << endl;
 	cout << "\tYear\tBottles" << endl;
-	year_and_bottle.Show(year);
+	PairArray::Show(year);
 }
 
-void function_14_1(void)
+void function_14_1_2(void)
 {
 	cout << "Enter name of wine: ";
 	char lab[50];
@@ -1247,4 +1256,100 @@ void function_14_1(void)
 	cout << "Total bottles for " << more.Label();
 	cout << ": " << more.sum() << endl;
 	cout << "Bye\n";
+}
+
+
+Worker::~Worker()
+{
+
+}
+
+void Worker::Set()
+{
+	cout << "Enter worker's name: ";
+	getline(cin, fullname);
+	cout << "Enter worker's ID";
+	cin >> id;
+	while (cin.get() != '\n')
+	{
+		continue;
+	}
+}
+
+
+void Worker::Show()const
+{
+	cout << "Worker name: " << fullname << endl;
+	cout << "Worker ID: " << id << endl;
+}
+
+const int SIZE = 5;
+
+void function_14_3(void)
+{
+	int ct;
+	Worker* temp;
+	QueueTp<Worker*>lolas(SIZE);
+
+	for (ct = 0; ct < SIZE; ct++)
+	{
+		char choice;
+		cout << "Enter the menu order:" << endl;
+		cout << "a:add a worker to queue." << endl;
+		cout << "d: delete a worker from queue." << endl;
+		cout << "q: quit." << endl;
+		cin >> choice;
+		while (NULL == strchr("adq", choice))
+		{
+			cout << "Please enter a,d,or q: ";
+			cin >> choice;
+		}
+		if ('q' == choice)
+		{
+			break;
+		}
+		switch (choice)
+		{
+		case 'a':
+		{
+			temp = new Worker;
+			cin.get();
+			if (lolas.isfull()) //若是队列已满则打印信息并释放new分配的内存;
+			{
+				cout << "Queue is full!" << endl;
+				delete temp;
+			}
+			else
+			{
+				temp->Set();
+				lolas.enqueue(temp);
+			}
+			break;
+		}
+		case 'd':
+		{
+			if (lolas.isempty())
+			{
+				cout << "Queue is empty!" << endl;
+			}
+			else
+			{
+				lolas.dequeue(temp);
+			}
+			break;
+		}
+		default:
+			break;
+		}
+	}
+	ct = lolas.queuecount();
+	cout << "\nHere is " << ct << " worker(s) in queue:" << endl;
+
+	for (int i = 0; i < ct; i++)
+	{
+		lolas.dequeue(temp);
+		temp->Show();
+	}
+
+	cout << "Done.\n";
 }

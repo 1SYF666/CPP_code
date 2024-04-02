@@ -458,6 +458,15 @@ void function_13_4(void);
 	显示对象中保存的信息
 */
 
+/*
+	14.2
+	采用私有继承而不是包含来完成编程练习1。同样，一些typedef
+	可能会有所帮助，另外，您可能还需要考虑诸如下面这样的语句的含
+	义：
+	您设计的类应该可以使用编程练习1中的测试程序进行测试。
+
+*/
+
 #ifndef WINEC_H_
 
 template <typename T1, typename T2>
@@ -466,7 +475,7 @@ class Pair
 public:
 	Pair() {};
 	Pair(const T1& yr, const T2& bt) :year(yr), bottles(bt) {};
-	void Set(const T1& yr, const T2& bt);
+	//void Set(const T1& yr, const T2& bt);
 	int Sum()const;
 	void Show(int y)const;
 
@@ -477,12 +486,12 @@ private:
 
 };
 
-template<typename T1, typename T2>
-void Pair<T1, T2>::Set(const T1& yr, const T2& bt)
-{
-	year = yr;
-	bottles = bt;
-}
+//template<typename T1, typename T2>
+//void Pair<T1, T2>::Set(const T1& yr, const T2& bt)
+//{
+//	year = yr;
+//	bottles = bt;
+//}
 
 template<typename T1, typename T2>
 int Pair<T1, T2>::Sum()const
@@ -503,7 +512,7 @@ typedef valarray<int> ArrayInt;
 
 typedef Pair<ArrayInt, ArrayInt> PairArray;
 
-class Wine
+class Wine: private string, private PairArray
 {
 public:
 	Wine(const char* l, int y);
@@ -515,11 +524,166 @@ public:
 	void Show()const;
 
 private:
-	string wine_name;
-	PairArray year_and_bottle;
+	//string wine_name;
+	//PairArray year_and_bottle;
 	int year;
 };
 
 #endif // !WINEC_H_
 
-void function_14_1(void);
+void function_14_1_2(void);
+
+
+/*
+	14.3
+	定义一个QueueTp模板。然后在一个类似于程序清单14.12的程
+	序中创建一个指向Worker的指针队列（参见程序清单14.10中的定
+	义），并使用该队列来测试它。
+*/
+
+#ifndef QUEUETP_H_
+#define QUEUETP_H_
+
+template <typename Item>
+
+class QueueTp
+{
+public:
+	QueueTp(int qs = Q_SIZE);
+	~QueueTp();
+	bool isempty()const;
+	bool isfull()const;
+	int queuecount()const;
+	bool enqueue(const Item& item);
+	bool dequeue(Item& item);
+
+private:
+	enum
+	{
+		Q_SIZE = 10
+	};
+	struct Node
+	{
+		Item item;
+		struct Node* next;
+	};
+	Node* front;
+	Node* rear;
+	int items;
+
+	const int qsize;
+
+	QueueTp(const QueueTp& q) :qsize(0) {};
+
+	QueueTp& operator=(const QueueTp& q) { return *this; }
+
+};
+
+template<typename Item>
+QueueTp<Item>::QueueTp(int qs) :qsize(qs)
+{
+	front = rear = nullptr;
+	items = 0;
+}
+
+template<typename Item>
+QueueTp<Item>::~QueueTp()
+{
+	Node* temp;
+
+	while (front != nullptr)
+	{
+		temp = front;
+		front = front->next;
+		delete temp;
+	}
+}
+
+template <typename Item>
+bool QueueTp<Item>::isempty()const
+{
+	return 0 == items;
+}
+
+template <typename Item>
+bool QueueTp<Item>::isfull()const
+{
+	return qsize == items;
+}
+
+template <typename Item>
+int QueueTp<Item>::queuecount()const
+{
+	return items;
+}
+
+template <typename Item>
+bool QueueTp<Item>::enqueue(const Item& item)
+{
+	if (isfull())
+	{
+		return false;
+	}
+	Node* add = new Node;
+	add->item = item;
+	add->next = nullptr;
+	++items;
+
+	if (nullptr == front)
+	{
+		front = add;
+	}
+	else
+	{
+		rear->next = add;
+	}
+
+	rear = add;
+	return true;
+}
+
+template <typename Item>
+bool QueueTp<Item>::dequeue(Item& item)
+{
+	if (isempty())
+	{
+		return false;
+	}
+
+	item = front->item;
+	--items;
+	Node* temp = front;
+	front = front->next;
+	delete temp;
+
+	if (0 == items)
+	{
+		rear = nullptr;
+	}
+	return true;
+
+}
+
+#endif // !QUEUETP_H_
+
+#ifndef WORKER_H_
+#define WORKER_H_
+class Worker
+{
+public:
+	Worker() :fullname("no one"), id(0L) {}
+	Worker(const std::string& s, long n) :fullname(s), id(n) {}
+	~Worker();
+	void Set();
+	void Show()const;
+
+private:
+	std::string fullname;
+	long id;
+};
+
+#endif // !WORKER_H_
+
+
+void function_14_3(void);
+
