@@ -687,3 +687,97 @@ private:
 
 void function_14_3(void);
 
+/*
+	14.4
+	Person类保存人的名和姓。除构造函数外，它还有Show( )方
+	法，用于显示名和姓。Gunslinger类以Person类为虚基类派生而来，它包
+	含一个Draw( )成员，该方法返回一个double值，表示枪手的拔枪时间。
+	这个类还包含一个int成员，表示枪手枪上的刻痕数。最后，这个类还包
+	含一个Show( )函数，用于显示所有这些信息。
+*/
+
+#ifndef PERSONMI_H_
+#define PERSONMI_H_
+using std::string;
+
+class Person
+{
+public:
+	Person() :firstname("no"), lastname("one") {}
+	Person(const string& fname, const string& lname) :firstname(fname), lastname(lname) {}
+	virtual~Person() = 0;
+	virtual void Set() = 0;
+	virtual void Show()const = 0;
+
+private:
+	string firstname;
+	string lastname;
+protected:
+	virtual void Data() const;  // 虚保护方法打印基类成员信息，使得派生类可以间接访问
+	virtual void Get();		// 虚保护方法打印基类成员信息，使得派生类可以间接访问
+
+};
+
+class Gunslinger :virtual public Person
+{
+public:
+	Gunslinger() :Person(), nicks(0) {}
+	Gunslinger(const string& f, const string& l, int n) :Person(f, l), nicks(n) {}
+	Gunslinger(const Person& p, int n) :Person(p), nicks(n) {}
+
+	void Set();
+	void Show() const;
+	double Draw() const;    // 打印枪手的拔枪时间
+
+
+private:
+	int nicks;
+
+protected:
+	void Data() const;  // 重新定义保护方法
+	void Get();
+};
+
+class PokerPlayer :virtual public Person
+{
+public:
+	PokerPlayer() :Person("no", "one") {}
+	PokerPlayer(const string& f, const string& l) :Person(f, l) {}
+	PokerPlayer(const Person& p) :Person(p) {}
+	void Set();
+	void Show()const;
+	int Draw()const;  //表示扑克牌的值
+
+private:
+
+protected:
+	void Data()const;  //重新定义保护方法
+
+};
+
+class BadDude :public Gunslinger, public PokerPlayer
+{
+public:
+	BadDude() {}
+	BadDude(const string& f, const string& l, int n) :Person(f, l), Gunslinger(f, l, n), PokerPlayer(f, l) {}
+	BadDude(const Person& p, int n) :Person(p), Gunslinger(p, n), PokerPlayer(p) {}
+	BadDude(const Gunslinger& g) :Person(g), Gunslinger(g), PokerPlayer(g) {}
+	BadDude(const PokerPlayer& p, int n) :Person(p), Gunslinger(p, n), PokerPlayer(p) {}
+	void Set();
+	void Show()const;
+	double Gdraw()const;  // 打印坏蛋拔枪的时间
+	int Cdraw()const;	  // 打印下一张扑克牌的值
+
+private:
+
+protected:
+	void Data()const;     // 重新定义保护方法
+	void Get();
+
+};
+
+
+#endif // !PERSONMI_H_
+
+
+void function_14_4(void);

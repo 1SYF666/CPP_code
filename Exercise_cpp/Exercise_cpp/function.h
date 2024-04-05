@@ -424,15 +424,15 @@ void function_10_1(void);
 	方法的例子：
 */
 
-#ifndef PERSON_H_
-#define PERSON_H_
+#ifndef Person1_H_
+#define Person1_H_
 using namespace std;
 
-class Person
+class Person1
 {
 public:
-	Person();
-	Person(const string& ln, const char* fn = "Heyyou");
+	Person1();
+	Person1(const string& ln, const char* fn = "Heyyou");
 	void show_10_2() const;
 	void FormalShow_10_2()const;
 private:
@@ -440,7 +440,7 @@ private:
 	string lname;
 	char fname[LIMIT];
 };
-#endif // !PERSON_H_
+#endif // !Person1_H_
 
 void function_10_2(void);
 

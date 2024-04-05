@@ -1291,7 +1291,7 @@ void BankAccount::withdraw(double cash)
 
 
 
-Person::Person()
+Person1::Person1()
 {
 	lname = "";
 	fname[0] = '\0';
@@ -1299,20 +1299,20 @@ Person::Person()
 
 
 
-Person::Person(const string& ln, const char* fn)
+Person1::Person1(const string& ln, const char* fn)
 {
 	lname = ln;
 	strcpy(fname, fn);
 }
 
-void Person::show_10_2()const
+void Person1::show_10_2()const
 {
 	std::cout << "The name format is:" << endl;
 	std::cout << fname << "(firstname),";
 	std::cout << lname << "(lastname).";
 }
 
-void Person::FormalShow_10_2()const
+void Person1::FormalShow_10_2()const
 {
 	std::cout << "The name format is:" << endl;
 	std::cout << lname << "(lastname),";
@@ -1324,9 +1324,9 @@ void function_10_2(void)
 	using std::cout;
 	using std::endl;
 
-	Person one;
-	Person two("Smythecraft");
-	Person three("Dimwiddy", "Sam");
+	Person1 one;
+	Person1 two("Smythecraft");
+	Person1 three("Dimwiddy", "Sam");
 
 	one.show_10_2();
 	cout << endl;
