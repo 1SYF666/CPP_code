@@ -1469,3 +1469,77 @@ int BadDude::Cdraw()const
 {
 	return PokerPlayer::Draw();
 }
+
+const int SIZE1 = 5;
+void function_14_4(void)
+{
+	using std::cin;
+	using std::cout;
+	using std::endl;
+	using std::strchr;
+
+	int i, ct;
+	Person* people[SIZE1];
+
+	for (ct = 0; ct < SIZE1; ct++)
+	{
+		char choice;
+		cout << "Enter the person category:" << endl;
+		cout << "g: gunslinger" << endl;
+		cout << "p: pokerplayer" << endl;
+		cout << "b: baddude" << endl;
+		cout << "q: quit" << endl;
+		cin >> choice;
+
+		while (NULL==strchr("bgpq",choice))
+		{
+			cout << "Please enter b , g , p or q: ";
+			cin >> choice;
+		}
+
+		if ('q' == choice)
+		{
+			break;
+		}
+		switch (choice)
+		{
+			case 'b':
+			{
+				people[ct] = new BadDude;
+				break;
+			}
+			case 'g':
+			{
+				people[ct] = new Gunslinger;
+				break;
+			}
+			case 'p':
+			{
+				people[ct] = new PokerPlayer;
+				break;
+			}
+
+			default:
+				break;
+		}
+
+		cin.get();
+		people[ct]->Set();
+
+	}
+
+	cout << "\nHere is your message for some people:" << endl;
+
+	for (i = 0; i < ct; i++)
+	{
+		cout << endl;
+		people[i]->Show();
+	}
+
+	for (i = 0; i < ct; i++)
+	{
+		delete people[i];
+	}
+	cout << "Bye.\n";
+
+}
