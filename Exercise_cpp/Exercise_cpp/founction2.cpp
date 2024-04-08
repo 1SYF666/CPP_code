@@ -1713,3 +1713,109 @@ void highfink::SetAll()
 	cout << "Please enter a string for reportsto: ";
 	getline(cin, ReportsTo());
 }
+
+void function_14_5(void)
+{
+	employee em("Trip", "Harris", "Thumper");
+	cout << em << endl;
+	em.ShowAll();
+	manager ma("Amorphia", "Spindragon", "Nuancer", 5);
+	cout << ma << endl;
+
+	ma.ShowAll();
+
+	fink fi("Matt", "Oggs", "Olier", "Juno Barr");
+	cout << fi << endl;
+
+	fi.ShowAll();
+	highfink hf(ma, "Curly Kew");
+	hf.ShowAll();
+
+
+	cout << "Press a key for next phase:\n";
+	cin.get();
+
+	highfink hf2;
+	hf2.SetAll();
+
+
+	cout << "Using an abstr_emp * pointer:\n";
+	abstr_emp* tri[4] = { &em,&fi,&hf,&hf2 };
+
+	for (int i = 0; i < 4; i++)
+	{
+		tri[i]->ShowAll();
+	}
+}
+
+
+bool Tv::volup()
+{
+	if (volume < MaxVal)
+	{
+		volume++;
+		return true;
+	}
+	return false;
+}
+bool Tv::voldown()
+{
+	if (volume > MinVal)
+	{
+		volume--;
+		return true;
+	}
+	return false;
+
+}
+void Tv::chanup()
+{
+	channel = channel < maxchannel ? 1 + channel : 1;
+}
+void Tv::chandown()
+{
+	channel = channel > 1 ? channel - 1 : maxchannel;
+}
+void Tv::settings()const
+{
+	cout << "TV is " << (state == Off ? "Off" : "On") << endl;
+	if (state == On)
+	{
+		cout << "Volume setting = " << volume << endl;
+		cout << "Channel setting = " << channel << endl;
+		cout << "Mode = ";
+		cout << (mode == Antenna ? "antenna" : "cable") << endl;
+		cout << "Input == ";
+		cout << (input == TV ? "TV" : "DVD") << endl;
+	}
+
+}
+
+
+void function_15_1(void)
+{
+	Tv s42;
+	cout << "Initial settings for 42\"TV:\n";
+	s42.settings();
+	s42.onoff();
+	s42.chanup();
+	cout << "\nAdjusted setting for 42\"TV:\n";
+	s42.settings();
+
+	Remote grey;
+	grey.set_chan(s42, 10);
+	grey.volup(s42);
+	grey.volup(s42);
+	s42.set_status(grey);
+	cout << "\n42\" settings after using remote:\n";
+	s42.settings();
+	grey.show_status();
+
+	Tv s58(Tv::On);
+	s58.set_mode();
+	grey.set_chan(s58, 28);
+	s58.set_status(grey);
+	cout << "\n58\" settings :\n";
+	s58.settings();
+	grey.show_status();
+}
