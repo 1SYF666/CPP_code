@@ -978,3 +978,31 @@ inline void Remote::show_status()const
 
 void function_15_1(void);
 
+/*
+	15.2
+	修改程序清单15.11，使两种异常类型都是从头文件<stdexcept>
+	提供的logic_error类派生出来的类。让每个what( )方法都报告函数名和
+	问题的性质。异常对象不用存储错误的参数值，而只需支持what( )方
+	法。
+
+*/
+
+#ifndef EXC_MEAN_H_
+#define EXC_MEAN_H_
+#include <stdexcept>
+
+class bad_hmean :public logic_error
+{
+public:
+	bad_hmean(const string& s = "Error in bad_humean object\nhumean() arguments should be a != -b\n") :logic_error(s) {}
+
+};
+
+class bad_gmean :public logic_error
+{
+public:
+	explicit bad_gmean(const string& s = "Error in bad_humean object\ngmean() arguments should be >= 0\n") :logic_error(s) {}
+};
+#endif // !EXC_MEAN_H_
+
+void function_15_2(void);
