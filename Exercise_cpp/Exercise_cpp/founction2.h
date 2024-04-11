@@ -267,8 +267,8 @@ public:
 	Cd& operator=(const Cd& d);
 
 private:
-	char *performers;
-	char *labels;
+	char* performers;
+	char* labels;
 	int selections;
 	double playtime;
 
@@ -289,7 +289,7 @@ public:
 	Classic& operator=(const Classic& cs);
 
 private:
-	char *cdstr;
+	char* cdstr;
 };
 
 #endif // !CLASS_H_
@@ -512,7 +512,7 @@ typedef valarray<int> ArrayInt;
 
 typedef Pair<ArrayInt, ArrayInt> PairArray;
 
-class Wine: private string, private PairArray
+class Wine : private string, private PairArray
 {
 public:
 	Wine(const char* l, int y);
@@ -985,24 +985,58 @@ void function_15_1(void);
 	问题的性质。异常对象不用存储错误的参数值，而只需支持what( )方
 	法。
 
+	15.3
+	这个练习与编程练习2相同，但异常类是从一个这样的基类派生
+	而来的：它是从logic_error派生而来的，并存储两个参数值。异常类应
+	该有一个这样的方法：报告这些值以及函数名。程序使用一个catch块来
+	捕获基类异常，其中任何一种从该基类异常派生而来的异常都将导致循
+	环结束。
+
 */
 
 #ifndef EXC_MEAN_H_
 #define EXC_MEAN_H_
 #include <stdexcept>
 
-class bad_hmean :public logic_error
+class mean :public logic_error
 {
 public:
-	bad_hmean(const string& s = "Error in bad_humean object\nhumean() arguments should be a != -b\n") :logic_error(s) {}
+	mean(const string& s = "none", double a = 0.0, double b = 0.0) :logic_error(s), v1(a), v2(b) {}
+	const double& val1()const { return v1; }
+	const double& val2()const { return v2; }
+
+private:
+	double v1;
+	double v2;
+};
+
+class bad_hmean :public mean
+{
+public:
+	bad_hmean(const string& s = "none", double a = 0.0, double b = 0.0) :mean(s, a, b) {}
+	void mesg()const;
 
 };
 
-class bad_gmean :public logic_error
+inline void bad_hmean::mesg()const
+{
+	cout << "hmean(" << val1() << "," << val2() << "):" << endl;
+	cout << "hmean() argument should be a != b" << endl;
+}
+class bad_gmean :public mean
 {
 public:
-	explicit bad_gmean(const string& s = "Error in bad_humean object\ngmean() arguments should be >= 0\n") :logic_error(s) {}
+	bad_gmean(const string& s = "none", double a = 0.0, double b = 0.0) :mean(s, a, b) {}
+	void mesg()const;
 };
+
+inline void bad_gmean::mesg()const
+{
+	cout << "gmean(" << val1() << "," << val2() << "):" << endl;
+	cout << "gmean() arguments should be >=0" << endl;
+}
+
+
 #endif // !EXC_MEAN_H_
 
-void function_15_2(void);
+void function_15_2_3(void);

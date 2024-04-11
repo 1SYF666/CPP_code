@@ -1825,7 +1825,9 @@ double hmean(double a, double b)
 {
 	if (a == -b)
 	{
-		throw bad_hmean();
+		bad_hmean temp("hmean", a, b);
+		temp.mesg();
+		throw temp;
 	}
 	return 2.0 * a * b / (a + b);
 }
@@ -1834,12 +1836,14 @@ double gmean(double a, double b)
 {
 	if (a < 0 || b < 0)
 	{
-		throw bad_gmean();
+		bad_gmean temp("gmean", a, b);
+		temp.mesg();
+		throw temp;
 	}
 	return sqrt(a * b);
 }
 
-void function_15_2(void)
+void function_15_2_3(void)
 {
 	double x, y, z;
 
@@ -1857,16 +1861,9 @@ void function_15_2(void)
 			cout << " is " << z << endl;
 			cout << "Enter next set of numbers <q to quit>: ";
 		}
-		catch (bad_hmean& bg)
-		{
-			cout << bg.what(); //调用what 方法打印hmean中的异常
-			cout << "Try again.\n";
-			continue;
-		}
 
-		catch (bad_gmean& hg)
+		catch (mean& m)
 		{
-			cout << hg.what(); //调用what 方法打印gmean中的异常
 			cout << "Sorry,you don't get to play and more.\n";
 			break;
 		}
