@@ -1040,3 +1040,79 @@ inline void bad_gmean::mesg()const
 #endif // !EXC_MEAN_H_
 
 void function_15_2_3(void);
+
+
+/*
+
+	15.4
+	程序清单15.16在每个try后面都使用两个catch块，以确保
+	nbad_index异常导致方法label_val( )被调用。请修改该程序，在每个try
+	块后面只使用一个catch块，并使用RTTI来确保合适时调用label_val( )
+
+*/
+
+#ifndef SALES2_H_
+#define SALES2_H_
+#include <stdexcept>
+
+class Salestwo
+{
+public:
+	enum { MONTHS = 12 };
+	class bad_index :public std::logic_error
+	{
+	public:
+		explicit bad_index(int ix, const string& s = "Index error in Sales object\n");
+		int bi_val()const { return bi; }
+		virtual ~bad_index()throw() {}
+
+	private:
+		int bi;
+	};
+
+	explicit Salestwo(int yy = 0);
+	Salestwo(int yy, const double* gr, int n);
+	virtual ~Salestwo() {}
+	int Year()const { return year; }
+	virtual double operator[](int i)const;
+	virtual double& operator[](int i);
+
+
+private:
+	double gross[MONTHS];
+	int year;
+
+
+};
+
+class LabeledSales :public Salestwo
+{
+public:
+
+	class nbad_index :public Salestwo::bad_index
+	{
+	public:
+
+		nbad_index(const string& lb, int ix, const string& s = "Index error in LabeledSales object\n");
+		const string& label_val()const { return lbl; }
+		virtual ~nbad_index() throw() {}
+	private:
+		string lbl;
+	};
+
+	explicit LabeledSales(const string& lb = "none", int yy = 0);
+	LabeledSales(const string& lb, int yy, const double* gr, int n);
+	virtual ~LabeledSales() {}
+	const string& Label()const { return label; }
+	virtual double operator[](int i)const;
+	virtual double& operator[](int i);
+
+private:
+	string label;
+
+};
+
+
+#endif // !SALES_H_
+
+void function_15_4(void);
