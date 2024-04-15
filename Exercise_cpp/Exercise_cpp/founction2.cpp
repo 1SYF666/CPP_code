@@ -2035,3 +2035,53 @@ void function_15_4(void)
 	cout << "done\n";
 }
 
+
+bool ispalindrome(const string& s)
+{
+	return s == string(s.rbegin(), s.rend());
+}
+
+void function_16_1(void)
+{
+	string s;
+	cout << "Please enter a string (q to quit):";
+	while (getline(cin, s) && s != "q")
+	{
+		cout << "\"" << s << "\"";
+		cout << (ispalindrome(s) ? " is " : " isn't ");
+		cout << "a palindrome string." << endl;
+		cout << "You can enter again (q to quit):";
+	}
+	cout << "Done." << endl;
+}
+
+
+string ToLower(string& st)
+{
+	string s;
+	for (auto& x : st)
+	{
+		if (!isspace(x) && !ispunct(x))
+		{
+			s += tolower(x);
+		}
+	}
+	return s;
+}
+
+void function_16_2(void)
+{
+	string s;
+
+	cout << "Please enter a string (q to quit): ";
+	while (getline(cin, s) && s != "q")
+	{
+		s = ToLower(s);
+		cout << "\"" << s << "\"";
+		cout << (ispalindrome(s) ? " is " : " isn't ");
+		cout << "a palindrome string." << endl;
+		cout << "You can enter again (q to quit):";
+	}
+
+	cout << "Done." << endl;
+}
