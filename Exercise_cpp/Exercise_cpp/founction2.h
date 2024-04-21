@@ -5,6 +5,7 @@
 #include<string> //getline
 #include<fstream> //ifstream
 #include<valarray>
+#include<vector>
 using namespace std;
 
 /*
@@ -1143,5 +1144,15 @@ string ToLower(string& st);
 void function_16_2(void);
 
 
+/*
+	16.3
+	修改程序清单16.3，使之从文件中读取单词。一种方案是，使
+	用vector<string>对象而不是string数组。这样便可以使用push_back( )将
+	数据文件中的单词复制到vector<string>对象中，并使用size( )来确定单
+	词列表的长度。由于程序应该每次从文件中读取一个单词，因此应使用
+	运算符>>而不是getline( )。文件中包含的单词应该用空格、制表符或换
+	行符分隔。
+*/
+void function_16_3(void);
 
 
