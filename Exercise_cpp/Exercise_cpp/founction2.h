@@ -1156,3 +1156,9 @@ void function_16_2(void);
 void function_16_3(void);
 
 
+/*
+	remark 20240430
+	for —≠ª∑ π”√
+*/
+void for_practise(void);
+

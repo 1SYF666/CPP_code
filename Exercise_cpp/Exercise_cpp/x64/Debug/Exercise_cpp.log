@@ -14,4 +14,5 @@ C:\Users\PC\Desktop\C\code1\CPP_code\Exercise_cpp\Exercise_cpp\founction2.cpp(21
 C:\Users\PC\Desktop\C\code1\CPP_code\Exercise_cpp\Exercise_cpp\founction2.cpp(2177,18): warning C4244: “=”: 从“wint_t”转换到“char”，可能丢失数据
   test.cpp
   正在生成代码...
+  LINK : 没有找到 C:\Users\PC\Desktop\C\code1\CPP_code\Exercise_cpp\x64\Debug\Exercise_cpp.exe 或上一个增量链接没有生成它；正在执行完全链接
   Exercise_cpp.vcxproj -> C:\Users\PC\Desktop\C\code1\CPP_code\Exercise_cpp\x64\Debug\Exercise_cpp.exe

@@ -2180,3 +2180,11 @@ void function_16_3(void)
 	cout << "Bye\n";
 
 }
+
+void for_practise(void)
+{
+	for (int i = 0; i < 100; i = i + 10)
+	{
+		printf("%d\n", i);
+	}
+}
