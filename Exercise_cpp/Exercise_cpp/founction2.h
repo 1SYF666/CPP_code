@@ -6,6 +6,7 @@
 #include<fstream> //ifstream
 #include<valarray>
 #include<vector>
+#include<algorithm>
 using namespace std;
 
 /*
@@ -1162,3 +1163,17 @@ void function_16_3(void);
 */
 void for_practise(void);
 
+
+/*
+	16.4
+	编写一个具有老式风格接口的函数，其原型如下：
+	实参应是数组名和数组中的元素个数。该函数对数组进行排序，删
+	除重复的值，返回缩减后数组中的元素数目。请使用STL函数编写该函
+	数（如果决定使用通用的unique( )函数，请注意它将返回结果区间的结
+	尾）。使用一个小程序测试该函数。
+*/
+void function_16_4(void);
+
+int reduce(long ar[], int n);
+
+void print_array(long ar[], int n);
