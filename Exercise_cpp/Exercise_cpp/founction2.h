@@ -1177,3 +1177,17 @@ void function_16_4(void);
 int reduce(long ar[], int n);
 
 void print_array(long ar[], int n);
+
+
+/*
+	16.5
+	问题与编程练习4相同，但要编写一个模板函数：
+	在一个使用long实例和string实例的小程序中测试该函数。
+*/
+void function_16_5(void);
+
+template <typename T>
+int reduce1(T ar[], int n);
+
+template <typename T>
+void print_array1(T ar[], int n);

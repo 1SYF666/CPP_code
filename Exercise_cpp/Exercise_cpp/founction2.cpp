@@ -2213,3 +2213,36 @@ void function_16_4(void)
 	cout << "Print  array after sorting and removing repetitive values:" << endl;
 	print_array(ar, reduce(ar, sizeof(ar) / sizeof(ar[0])));
 }
+
+
+template <typename T>
+int reduce1(T ar[], int n)
+{
+	sort(ar, ar + n);
+	return static_cast<int>(unique(ar, ar + n) - ar);
+}
+
+template <typename T>
+void print_array1(T ar[], int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << ar[i] << " ";
+	}
+	cout << endl;
+}
+
+void function_16_5(void)
+{
+	long ar[] = { 1L,2L,4L,8L,6L,6L,4L,2L,4L,6L,5L };
+	string s[] = { "vector","set","map","multiset","multimap","set","map","vector" };
+
+	cout << "Print array before sorting and removing repetitive values(long):" << endl;
+	print_array1(ar, sizeof(ar) / sizeof(ar[0]));
+	cout << "Print array before sorting and removing repetitive values(string):" << endl;
+	print_array1(s, sizeof(s) / sizeof(s[0]));
+	cout << "Print array after sorting and removing repetitive values(long):" << endl;
+	print_array1(ar, reduce1(ar, sizeof(ar) / sizeof(ar[0])));
+	cout << "Print array after sorting and removing repetitive values(string):" << endl;
+	print_array1(s, reduce1(s, sizeof(s) / sizeof(s[0])));
+}
