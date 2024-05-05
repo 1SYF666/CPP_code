@@ -2246,3 +2246,115 @@ void function_16_5(void)
 	cout << "Print array after sorting and removing repetitive values(string):" << endl;
 	print_array1(s, reduce1(s, sizeof(s) / sizeof(s[0])));
 }
+
+void function_16_6(void)
+{
+	srand(time(0));
+
+	cout << "cast Study:Bank of Heather Automatic Teller\n";
+	cout << "Enter maximum size of queue: ";
+	int qs;
+	cin >> qs;		// 队列容量的最大值;
+	queue<Item_L> line; // 声明一个queue模板类型为Item;
+
+	cout << "Enter the number of simulation hours: ";
+	int hours;
+	cin >> hours;
+	long cyclelimit = MIN_PER_HR_L * hours;
+
+	cout << "Enter the average nuumber of customers per hour: ";
+	double perhour;
+	cin >> perhour;
+	double min_per_cust;
+	min_per_cust = MIN_PER_HR_L / perhour;
+
+	Item_L temp;
+	long turnways = 0L;
+	long customers = 0L;
+	long served = 0L;
+	long sum_line = 0L;
+	long wait_time = 0L;
+	long line_wait = 0L;
+
+	for (int cycle = 0; cycle < cyclelimit; cyclelimit)
+	{
+		if (newcustomer(min_per_cust))
+		{
+			if (line.size() == qs)  // 容量达到最大值；
+			{
+				turnways++;
+			}
+			else
+			{
+				customers++;
+				temp.set(cycle);
+				line.push(temp); // 入队
+			}
+		}
+		if (wait_time <= 0 && !line.empty())
+		{
+			temp = line.front(); //获取队头元素
+			line.pop();
+			wait_time = temp.ptime();
+			line_wait += cycle - temp.when();
+			served++;
+		}
+		if (wait_time > 0)
+		{
+			wait_time--;
+		}
+		sum_line += line.size();  // 改为获取队列当前长度
+	}
+
+	if (customers > 0)
+	{
+		cout << "customers accepted: " << customers << endl;
+		cout << "  customers served: " << served << endl;
+		cout << "         turnaways: " << turnways << endl;
+		cout << "average queue size: ";
+		cout.precision(2);
+		cout.setf(ios_base::fixed, ios_base::floatfield);
+		cout << (double)sum_line / cyclelimit << endl;
+		cout << " average wait time: ";
+		cout << (double)line_wait / served << " minutes\n";
+	}
+	else
+	{
+		cout << "No customers!\n";
+	}
+	cout << "Done!\n";
+}
+
+vector<int> Lotto(int dot_len, int random_choice)
+{
+	vector<int>temp(dot_len);
+	vector<int>num(random_choice);
+
+	for (int i = 0; i < dot_len; i++)
+	{
+		temp[i] = i + 1;
+	}
+	random_shuffle(temp.begin(), temp.end());
+	num.assign(temp.begin(), temp.begin() + random_choice);
+	return num;
+}
+
+void function_16_7(void)
+{
+	vector<int>winners;
+	int dot_len, random_choice;
+
+	cout << "Please enter two numbers" << endl;
+	cout << "First for the number of dots on the lottery card and the number" << endl;
+	cout << "Second for the number of dots randomly selected (q to quit): ";
+
+	while (cin >> dot_len >> random_choice && random_choice <= dot_len)
+	{
+		winners = Lotto(dot_len, random_choice);
+		cout << "There are " << dot_len << "spots on the lottery card." << endl;
+		cout << "Here are the randomly selected " << random_choice << " lottery dots numbers:" << endl;
+		copy(winners.begin(), winners.end(), ostream_iterator<int, char>(cout, " "));
+		cout << "\nYou can enter two numbers again (q to quit): ";
+	}
+	cout << "Done." << endl;
+}

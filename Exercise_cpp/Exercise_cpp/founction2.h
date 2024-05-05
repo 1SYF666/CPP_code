@@ -7,6 +7,7 @@
 #include<valarray>
 #include<vector>
 #include<algorithm>
+#include<queue>
 using namespace std;
 
 /*
@@ -1191,3 +1192,53 @@ int reduce1(T ar[], int n);
 
 template <typename T>
 void print_array1(T ar[], int n);
+
+
+/*
+	16.6
+	使用STL queue模板类而不是第12章的Queue类，重新编写程序
+	清单12.12所示的示例。
+*/
+
+const int  MIN_PER_HR_L = 60;
+
+class Customer1  // 类声明及定义放置在此
+{
+public:
+	Customer1() { arrive = processtime = 0; }
+	void set(long when)
+	{
+		processtime = rand() % 3 + 1, arrive = when;
+	}
+	long when()const
+	{
+		return arrive;
+	}
+	int ptime()const { return processtime; }
+
+private:
+	long arrive;
+	int processtime;
+
+};
+
+using Item_L = Customer1; //Item 类型为Customer;
+
+void function_16_6(void);
+
+/*
+	16.7
+	彩票卡是一个常见的游戏。卡片上是带编号的圆点，其中一些
+	圆点被随机选中。编写一个lotto( )函数，它接受两个参数。第一个参数
+	是彩票卡上圆点的个数，第二个参数是随机选择的圆点个数。该函数返
+	回一个vector<int>对象，其中包含（按排列后的顺序）随机选择的号
+	码。例如，可以这样使用该函数：
+	这样将把一个矢量赋给winner，该矢量包含1～51中随机选定的6个
+	数字。注意，仅仅使用rand( )无法完成这项任务，因它会生成重复的
+	值。提示：让函数创建一个包含所有可能值的矢量，使用
+	random_shuffle( )，然后通过打乱后的矢量的第一个值来获取值。编写
+	一个小程序来测试这个函数。
+*/
+
+vector<int> Lotto(int dot_len, int random_choice);
+void function_16_7(void);
