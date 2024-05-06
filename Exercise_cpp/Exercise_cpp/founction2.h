@@ -8,6 +8,7 @@
 #include<vector>
 #include<algorithm>
 #include<queue>
+#include<set>
 using namespace std;
 
 /*
@@ -1242,3 +1243,18 @@ void function_16_6(void);
 
 vector<int> Lotto(int dot_len, int random_choice);
 void function_16_7(void);
+
+/*
+	16.8
+	Mat和Pat希望邀请他们的朋友来参加派对。他们要编写一个程
+	序完成下面的任务。
+	让Mat输入他朋友的姓名列表。姓名存储在一个容器中，然后按排
+	列后的顺序显示出来。
+	让Pat输入她朋友的姓名列表。姓名存储在另一个容器中，然后按
+	排列后的顺序显示出来。
+	创建第三个容器，将两个列表合并，删除重复的部分，并显示这个
+	容器的内容。
+*/
+
+void function_16_8(void);
+
