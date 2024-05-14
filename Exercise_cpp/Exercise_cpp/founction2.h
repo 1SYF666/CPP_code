@@ -1290,3 +1290,19 @@ void test_sort(long n);
 
 void function_16_9(void);
 
+
+// 输入数据input
+// 输出数据output
+// 采样率变换倍数step = fs_after / fs_before
+// 输入信号长度lengthin
+// 输出信号长度lengthout
+
+
+typedef struct
+{
+	float IData;
+	float QData;
+}Complex;
+
+void Downfs(Complex* input, Complex* output, double step, int lengthin, int* lengthout);
+

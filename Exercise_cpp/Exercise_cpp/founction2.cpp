@@ -2440,3 +2440,50 @@ void function_16_9(void)
 	}
 	cout << "Done." << endl;
 }
+
+
+
+void Downfs(Complex* input, Complex* output, double step, int lengthin, int* lengthout)
+{
+	int i = 0;
+	int j = 0;
+	int k = 0;
+	static double step_temp = 0;
+	while (1)
+	{
+		while (1)
+		{
+			step_temp += step;
+
+			if (step_temp >= 1)
+			{
+				step_temp -= 1;
+				i += j;
+				j = 1;
+				break;
+			}
+			else
+			{
+				j++;
+
+				if ((i + j) > lengthin)
+				{
+					break;
+				}
+			}
+		}
+		if ((i + j) > lengthin)
+		{
+			break;
+		}
+		else
+		{
+			//output[k] = input[k];
+			output[k].IData = input[i - 1].IData;
+			output[k].QData = input[i - 1].QData;
+			k++;
+		}
+	}
+
+	*lengthout = k;
+}
