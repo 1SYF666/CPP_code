@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include<iostream>
 #include<cctype>
 #include<array>
@@ -14,8 +14,8 @@ using namespace std;
 
 /*
 	12.1
-	¶ÔÓÚÏÂÃæµÄÀàÉùÃ÷£º
-	¸øÕâ¸öÀàÌá¹©ÊµÏÖ£¬²¢±àÐ´Ò»¸öÊ¹ÓÃËùÓÐ³ÉÔ±º¯ÊýµÄÐ¡³ÌÐò¡£
+	å¯¹äºŽä¸‹é¢çš„ç±»å£°æ˜Žï¼š
+	ç»™è¿™ä¸ªç±»æä¾›å®žçŽ°ï¼Œå¹¶ç¼–å†™ä¸€ä¸ªä½¿ç”¨æ‰€æœ‰æˆå‘˜å‡½æ•°çš„å°ç¨‹åºã€‚
 */
 #ifndef COW_H_
 #define COW_H_
@@ -42,16 +42,16 @@ void function_12_1(void);
 
 /*
 	12.2
-	Í¨¹ýÍê³ÉÏÂÃæµÄ¹¤×÷À´¸Ä½øStringÀàÉùÃ÷£¨¼´½«String1.hÉý¼¶Îª
-	String2.h£©¡£
-	a£®¶Ô+ÔËËã·û½øÐÐÖØÔØ£¬Ê¹Ö®¿É½«Á½¸ö×Ö·û´®ºÏ²¢³É1¸ö¡£
-	b£®Ìá¹©Ò»¸öStringlow( )³ÉÔ±º¯Êý£¬½«×Ö·û´®ÖÐËùÓÐµÄ×ÖÄ¸×Ö·û×ª
-	»»ÎªÐ¡Ð´£¨±ðÍüÁËcctypeÏµÁÐ×Ö·ûº¯Êý£©¡£
-	c£®Ìá¹©String( )³ÉÔ±º¯Êý£¬½«×Ö·û´®ÖÐËùÓÐ×ÖÄ¸×Ö·û×ª»»³É´óÐ´¡£
-	d£®Ìá¹©Ò»¸öÕâÑùµÄ³ÉÔ±º¯Êý£¬Ëü½ÓÊÜÒ»¸öchar²ÎÊý£¬·µ»Ø¸Ã×Ö·û
-	ÔÚ×Ö·û´®ÖÐ³öÏÖµÄ´ÎÊý¡£
-	Ê¹ÓÃÏÂÃæµÄ³ÌÐòÀ´²âÊÔÄúµÄ¹¤×÷£º
-	Êä³öÓ¦ÓëÏÂÃæÏàËÆ£º
+	é€šè¿‡å®Œæˆä¸‹é¢çš„å·¥ä½œæ¥æ”¹è¿›Stringç±»å£°æ˜Žï¼ˆå³å°†String1.hå‡çº§ä¸º
+	String2.hï¼‰ã€‚
+	aï¼Žå¯¹+è¿ç®—ç¬¦è¿›è¡Œé‡è½½ï¼Œä½¿ä¹‹å¯å°†ä¸¤ä¸ªå­—ç¬¦ä¸²åˆå¹¶æˆ1ä¸ªã€‚
+	bï¼Žæä¾›ä¸€ä¸ªStringlow( )æˆå‘˜å‡½æ•°ï¼Œå°†å­—ç¬¦ä¸²ä¸­æ‰€æœ‰çš„å­—æ¯å­—ç¬¦è½¬
+	æ¢ä¸ºå°å†™ï¼ˆåˆ«å¿˜äº†cctypeç³»åˆ—å­—ç¬¦å‡½æ•°ï¼‰ã€‚
+	cï¼Žæä¾›String( )æˆå‘˜å‡½æ•°ï¼Œå°†å­—ç¬¦ä¸²ä¸­æ‰€æœ‰å­—æ¯å­—ç¬¦è½¬æ¢æˆå¤§å†™ã€‚
+	dï¼Žæä¾›ä¸€ä¸ªè¿™æ ·çš„æˆå‘˜å‡½æ•°ï¼Œå®ƒæŽ¥å—ä¸€ä¸ªcharå‚æ•°ï¼Œè¿”å›žè¯¥å­—ç¬¦
+	åœ¨å­—ç¬¦ä¸²ä¸­å‡ºçŽ°çš„æ¬¡æ•°ã€‚
+	ä½¿ç”¨ä¸‹é¢çš„ç¨‹åºæ¥æµ‹è¯•æ‚¨çš„å·¥ä½œï¼š
+	è¾“å‡ºåº”ä¸Žä¸‹é¢ç›¸ä¼¼ï¼š
 */
 
 #ifndef STRING2_H_
@@ -101,10 +101,10 @@ void function_12_2(void);
 
 /*
 	12.3
-	ÐÂ±àÐ´³ÌÐòÇåµ¥10.7ºÍ³ÌÐòÇåµ¥10.8ÃèÊöµÄStockÀà£¬Ê¹Ö®Ê¹ÓÃ
-	¶¯Ì¬·ÖÅäµÄÄÚ´æ£¬¶ø²»ÊÇstringÀà¶ÔÏóÀ´´æ´¢¹ÉÆ±Ãû³Æ¡£ÁíÍâ£¬Ê¹ÓÃÖØ
-	ÔØµÄoperator < <()¶¨Òå´úÌæshow()³ÉÔ±º¯Êý¡£ÔÙÊ¹ÓÃ³ÌÐòÇåµ¥10.9²âÊÔÐÂ
-	µÄ¶¨Òå³ÌÐò¡£
+	æ–°ç¼–å†™ç¨‹åºæ¸…å•10.7å’Œç¨‹åºæ¸…å•10.8æè¿°çš„Stockç±»ï¼Œä½¿ä¹‹ä½¿ç”¨
+	åŠ¨æ€åˆ†é…çš„å†…å­˜ï¼Œè€Œä¸æ˜¯stringç±»å¯¹è±¡æ¥å­˜å‚¨è‚¡ç¥¨åç§°ã€‚å¦å¤–ï¼Œä½¿ç”¨é‡
+	è½½çš„operator < <()å®šä¹‰ä»£æ›¿show()æˆå‘˜å‡½æ•°ã€‚å†ä½¿ç”¨ç¨‹åºæ¸…å•10.9æµ‹è¯•æ–°
+	çš„å®šä¹‰ç¨‹åºã€‚
 */
 void function_12_3(void);
 
@@ -138,11 +138,11 @@ private:
 #endif // !stock20_h_
 
 /*
-	12.4£®
-	Çë¿´ÏÂÃæ³ÌÐòÇåµ¥10.10¶¨ÒåµÄStack1ÀàµÄ±äÁ¿£º
-	ÕýÈçË½ÓÐ³ÉÔ±±íÃ÷µÄ£¬Õâ¸öÀàÊ¹ÓÃ¶¯Ì¬·ÖÅäµÄÊý×éÀ´±£´æÕ»Ïî¡£Çë
-	ÖØÐÂ±àÐ´·½·¨£¬ÒÔÊÊÓ¦ÕâÖÖÐÂµÄ±íÊ¾·¨£¬²¢±àÐ´Ò»¸ö³ÌÐòÀ´ÑÝÊ¾ËùÓÐµÄ
-	·½·¨£¬°üÀ¨¸´ÖÆ¹¹Ôìº¯ÊýºÍ¸³ÖµÔËËã·û
+	12.4ï¼Ž
+	è¯·çœ‹ä¸‹é¢ç¨‹åºæ¸…å•10.10å®šä¹‰çš„Stack1ç±»çš„å˜é‡ï¼š
+	æ­£å¦‚ç§æœ‰æˆå‘˜è¡¨æ˜Žçš„ï¼Œè¿™ä¸ªç±»ä½¿ç”¨åŠ¨æ€åˆ†é…çš„æ•°ç»„æ¥ä¿å­˜æ ˆé¡¹ã€‚è¯·
+	é‡æ–°ç¼–å†™æ–¹æ³•ï¼Œä»¥é€‚åº”è¿™ç§æ–°çš„è¡¨ç¤ºæ³•ï¼Œå¹¶ç¼–å†™ä¸€ä¸ªç¨‹åºæ¥æ¼”ç¤ºæ‰€æœ‰çš„
+	æ–¹æ³•ï¼ŒåŒ…æ‹¬å¤åˆ¶æž„é€ å‡½æ•°å’Œèµ‹å€¼è¿ç®—ç¬¦
 */
 
 
@@ -178,17 +178,17 @@ void function_12_4(void);
 
 /*
 	12.5
-	HeatherÒøÐÐ½øÐÐµÄÑÐ¾¿±íÃ÷£¬ATM¿Í»§²»Ï£ÍûÅÅ¶ÓÊ±¼ä²»³¬¹ý
-	1·ÖÖÓ¡£Ê¹ÓÃ³ÌÐòÇåµ¥12.10ÖÐµÄÄ£Äâ£¬ÕÒ³öÒªÊ¹Æ½¾ùµÈºòÊ±¼äÎª1·Ö
-	ÖÓ£¬Ã¿Ð¡Ê±µ½´ïµÄ¿Í»§ÊýÓ¦Îª¶àÉÙ£¨ÊÔÑéÊ±¼ä²»¶ÌÓÚ100Ð¡Ê±£©£¿
+	Heatheré“¶è¡Œè¿›è¡Œçš„ç ”ç©¶è¡¨æ˜Žï¼ŒATMå®¢æˆ·ä¸å¸Œæœ›æŽ’é˜Ÿæ—¶é—´ä¸è¶…è¿‡
+	1åˆ†é’Ÿã€‚ä½¿ç”¨ç¨‹åºæ¸…å•12.10ä¸­çš„æ¨¡æ‹Ÿï¼Œæ‰¾å‡ºè¦ä½¿å¹³å‡ç­‰å€™æ—¶é—´ä¸º1åˆ†
+	é’Ÿï¼Œæ¯å°æ—¶åˆ°è¾¾çš„å®¢æˆ·æ•°åº”ä¸ºå¤šå°‘ï¼ˆè¯•éªŒæ—¶é—´ä¸çŸ­äºŽ100å°æ—¶ï¼‰ï¼Ÿ
 
 	12.6
-	HeatherÒøÐÐÏëÖªµÀ£¬Èç¹ûÔÙ¿ªÉèÒ»Ì¨ATM£¬Çé¿ö½«ÈçºÎ¡£Çë¶Ô
-	Ä£Äâ½øÐÐÐÞ¸Ä£¬ÒÔ°üº¬Á½¸ö¶ÓÁÐ¡£¼ÙÉèµ±µÚÒ»Ì¨ATMÇ°µÄÅÅ¶ÓÈËÊýÉÙ
-	ÓÚµÚ¶þÌ¨ATMÊ±£¬¿Í»§½«ÅÅÔÚµÚÒ»¶Ó£¬·ñÔò½«ÅÅÔÚµÚ¶þ¶Ó¡£È»ºóÔÙÕÒ
-	³öÒªÊ¹Æ½¾ùµÈºòÊ±¼äÎª1·ÖÖÓ£¬Ã¿Ð¡Ê±µ½´ïµÄ¿Í»§ÊýÓ¦¸ÃÎª¶àÉÙ£¨×¢
-	Òâ£¬ÕâÊÇÒ»¸ö·ÇÏßÐÔÎÊÌâ£¬¼´½«ATMÊýÁ¿¼Ó±¶£¬²¢²»ÄÜ±£Ö¤Ã¿Ð¡Ê±´¦
-	ÀíµÄ¿Í»§ÊýÁ¿Ò²·­±¶£¬²¢È·±£¿Í»§µÈºòµÄÊ±¼äÉÙÓÚ1·ÖÖÓ£©
+	Heatheré“¶è¡Œæƒ³çŸ¥é“ï¼Œå¦‚æžœå†å¼€è®¾ä¸€å°ATMï¼Œæƒ…å†µå°†å¦‚ä½•ã€‚è¯·å¯¹
+	æ¨¡æ‹Ÿè¿›è¡Œä¿®æ”¹ï¼Œä»¥åŒ…å«ä¸¤ä¸ªé˜Ÿåˆ—ã€‚å‡è®¾å½“ç¬¬ä¸€å°ATMå‰çš„æŽ’é˜Ÿäººæ•°å°‘
+	äºŽç¬¬äºŒå°ATMæ—¶ï¼Œå®¢æˆ·å°†æŽ’åœ¨ç¬¬ä¸€é˜Ÿï¼Œå¦åˆ™å°†æŽ’åœ¨ç¬¬äºŒé˜Ÿã€‚ç„¶åŽå†æ‰¾
+	å‡ºè¦ä½¿å¹³å‡ç­‰å€™æ—¶é—´ä¸º1åˆ†é’Ÿï¼Œæ¯å°æ—¶åˆ°è¾¾çš„å®¢æˆ·æ•°åº”è¯¥ä¸ºå¤šå°‘ï¼ˆæ³¨
+	æ„ï¼Œè¿™æ˜¯ä¸€ä¸ªéžçº¿æ€§é—®é¢˜ï¼Œå³å°†ATMæ•°é‡åŠ å€ï¼Œå¹¶ä¸èƒ½ä¿è¯æ¯å°æ—¶å¤„
+	ç†çš„å®¢æˆ·æ•°é‡ä¹Ÿç¿»å€ï¼Œå¹¶ç¡®ä¿å®¢æˆ·ç­‰å€™çš„æ—¶é—´å°‘äºŽ1åˆ†é’Ÿï¼‰
 */
 
 #ifndef QUEUE_H_
@@ -246,16 +246,16 @@ void function_12_5(void);
 
 /*
 	13.1
-	ÅÉÉú³öÒ»¸öClassicÀà£¬²¢Ìí¼ÓÒ»×échar³ÉÔ±£¬ÓÃÓÚ´æ´¢Ö¸³öCDÖÐÖ÷
-	Òª×÷Æ·µÄ×Ö·û´®¡£ÐÞ¸ÄÉÏÊöÉùÃ÷£¬Ê¹»ùÀàµÄËùÓÐº¯Êý¶¼ÊÇÐéµÄ¡£Èç¹ûÉÏ
-	Êö¶¨ÒåÉùÃ÷µÄÄ³¸ö·½·¨²¢²»ÐèÒª£¬ÔòÇëÉ¾³ýËü¡£Ê¹ÓÃÏÂÃæµÄ³ÌÐò²âÊÔÄú
-	µÄ²úÆ·
+	æ´¾ç”Ÿå‡ºä¸€ä¸ªClassicç±»ï¼Œå¹¶æ·»åŠ ä¸€ç»„charæˆå‘˜ï¼Œç”¨äºŽå­˜å‚¨æŒ‡å‡ºCDä¸­ä¸»
+	è¦ä½œå“çš„å­—ç¬¦ä¸²ã€‚ä¿®æ”¹ä¸Šè¿°å£°æ˜Žï¼Œä½¿åŸºç±»çš„æ‰€æœ‰å‡½æ•°éƒ½æ˜¯è™šçš„ã€‚å¦‚æžœä¸Š
+	è¿°å®šä¹‰å£°æ˜Žçš„æŸä¸ªæ–¹æ³•å¹¶ä¸éœ€è¦ï¼Œåˆ™è¯·åˆ é™¤å®ƒã€‚ä½¿ç”¨ä¸‹é¢çš„ç¨‹åºæµ‹è¯•æ‚¨
+	çš„äº§å“
 */
 
 /*
 	13.2
-	Íê³ÉÁ·Ï°1£¬µ«ÈÃÁ½¸öÀàÊ¹ÓÃ¶¯Ì¬ÄÚ´æ·ÖÅä¶ø²»ÊÇ³¤¶È¹Ì¶¨µÄÊý
-	×éÀ´¼ÇÂ¼×Ö·û´®¡£
+	å®Œæˆç»ƒä¹ 1ï¼Œä½†è®©ä¸¤ä¸ªç±»ä½¿ç”¨åŠ¨æ€å†…å­˜åˆ†é…è€Œä¸æ˜¯é•¿åº¦å›ºå®šçš„æ•°
+	ç»„æ¥è®°å½•å­—ç¬¦ä¸²ã€‚
 */
 
 #ifndef CD_H_
@@ -304,10 +304,10 @@ void function_13_2(void);
 
 /*
 	13.3
-	ÐÞ¸ÄbaseDMA-lacksDMA-hasDMAÀà²ã´Î£¬ÈÃÈý¸öÀà¶¼´ÓÒ»¸ö
-	ABCÅÉÉú¶øÀ´£¬È»ºóÊ¹ÓÃÓë³ÌÐòÇåµ¥13.10ÏàËÆµÄ³ÌÐò¶Ô½á¹û½øÐÐ²â
-	ÊÔ¡£Ò²¾ÍÊÇËµ£¬ËüÓ¦Ê¹ÓÃABCÖ¸ÕëÊý×é£¬²¢ÈÃÓÃ»§¾ö¶¨Òª´´½¨µÄ¶ÔÏóÀà
-	ÐÍ¡£ÔÚÀà¶¨ÒåÖÐÌí¼Óvirtual View( )·½·¨ÒÔ´¦ÀíÊý¾ÝÏÔÊ¾¡£
+	ä¿®æ”¹baseDMA-lacksDMA-hasDMAç±»å±‚æ¬¡ï¼Œè®©ä¸‰ä¸ªç±»éƒ½ä»Žä¸€ä¸ª
+	ABCæ´¾ç”Ÿè€Œæ¥ï¼Œç„¶åŽä½¿ç”¨ä¸Žç¨‹åºæ¸…å•13.10ç›¸ä¼¼çš„ç¨‹åºå¯¹ç»“æžœè¿›è¡Œæµ‹
+	è¯•ã€‚ä¹Ÿå°±æ˜¯è¯´ï¼Œå®ƒåº”ä½¿ç”¨ABCæŒ‡é’ˆæ•°ç»„ï¼Œå¹¶è®©ç”¨æˆ·å†³å®šè¦åˆ›å»ºçš„å¯¹è±¡ç±»
+	åž‹ã€‚åœ¨ç±»å®šä¹‰ä¸­æ·»åŠ virtual View( )æ–¹æ³•ä»¥å¤„ç†æ•°æ®æ˜¾ç¤ºã€‚
 
 */
 
@@ -318,14 +318,14 @@ void function_13_2(void);
 class DMA
 {
 public:
-	DMA(const char* cn = "null");     // ÉùÃ÷»ùÀàDMAµÄÄ¬ÈÏ¹¹Ôìº¯Êý;
-	DMA(const DMA& rs);			    // ÉùÃ÷»ùÀàDMAµÄ¸´ÖÆ¹¹Ôìº¯Êý;
-	DMA& operator=(const DMA& rs);	// ÉùÃ÷Îª»ùÀàDMAµÄÖØÔØ¸³ÖµÔËËã·û;
-	virtual ~DMA();					// ÉùÃ÷Îª»ùÀàDMAµÄÐéÎö¹¹º¯Êý;
-	virtual void View()const = 0;	// ÉùÃ÷Îª»ùÀàDMAµÄ´¿ÐéÊý;
+	DMA(const char* cn = "null");     // å£°æ˜ŽåŸºç±»DMAçš„é»˜è®¤æž„é€ å‡½æ•°;
+	DMA(const DMA& rs);			    // å£°æ˜ŽåŸºç±»DMAçš„å¤åˆ¶æž„é€ å‡½æ•°;
+	DMA& operator=(const DMA& rs);	// å£°æ˜Žä¸ºåŸºç±»DMAçš„é‡è½½èµ‹å€¼è¿ç®—ç¬¦;
+	virtual ~DMA();					// å£°æ˜Žä¸ºåŸºç±»DMAçš„è™šæžæž„å‡½æ•°;
+	virtual void View()const = 0;	// å£°æ˜Žä¸ºåŸºç±»DMAçš„çº¯è™šæ•°;
 
 private:
-	char* classname; // »ùÀà³ÉÔ±ÉèÎªÒ»¸öcharÖ¸Õë·½±ã·ÖÅäÄÚ´æ¿Õ¼ä±£´æÅÉÉúÀàµÄÀàÃû
+	char* classname; // åŸºç±»æˆå‘˜è®¾ä¸ºä¸€ä¸ªcharæŒ‡é’ˆæ–¹ä¾¿åˆ†é…å†…å­˜ç©ºé—´ä¿å­˜æ´¾ç”Ÿç±»çš„ç±»å
 
 protected:
 	const char* show_classname()const
@@ -337,12 +337,12 @@ protected:
 class  baseDMA :public DMA
 {
 public:
-	baseDMA(const char* l = "null", int r = 0, const char* cn = "null");  // ÉùÃ÷ÅÉÉúÀàbaseDMAµÄÄ¬ÈÏ¹¹Ôìº¯Êý
-	baseDMA(const char* l, int r, const DMA& rs);						  // ÉùÃ÷ÅÉÉúÀàbaseDMAµÄÓÃ»§¶¨Òå¹¹Ôìº¯Êý
-	baseDMA(const baseDMA& rs);											  // ÉùÃ÷ÅÉÉúÀàbaseDMAµÄ¸´ÖÆ¹¹Ôìº¯Êý
-	~baseDMA();														  // ÉùÃ÷ÅÉÉúÀàbaseDMAµÄÎö¹¹º¯Êý
-	baseDMA& operator=(const baseDMA& rs);								  // ÉùÃ÷ÎªÅÉÉúÀàbaseDMAÖØÔØ¸´ÖÆÔËËã·û£»
-	virtual void View() const;											  // ÉùÃ÷ÎªÅÉÉúÀàbaseDMA¶¨Òå»ùÀàÐéº¯Êý		
+	baseDMA(const char* l = "null", int r = 0, const char* cn = "null");  // å£°æ˜Žæ´¾ç”Ÿç±»baseDMAçš„é»˜è®¤æž„é€ å‡½æ•°
+	baseDMA(const char* l, int r, const DMA& rs);						  // å£°æ˜Žæ´¾ç”Ÿç±»baseDMAçš„ç”¨æˆ·å®šä¹‰æž„é€ å‡½æ•°
+	baseDMA(const baseDMA& rs);											  // å£°æ˜Žæ´¾ç”Ÿç±»baseDMAçš„å¤åˆ¶æž„é€ å‡½æ•°
+	~baseDMA();														  // å£°æ˜Žæ´¾ç”Ÿç±»baseDMAçš„æžæž„å‡½æ•°
+	baseDMA& operator=(const baseDMA& rs);								  // å£°æ˜Žä¸ºæ´¾ç”Ÿç±»baseDMAé‡è½½å¤åˆ¶è¿ç®—ç¬¦ï¼›
+	virtual void View() const;											  // å£°æ˜Žä¸ºæ´¾ç”Ÿç±»baseDMAå®šä¹‰åŸºç±»è™šå‡½æ•°		
 
 private:
 	char* label;
@@ -352,12 +352,12 @@ private:
 class lacksDMA :public DMA
 {
 public:
-	lacksDMA(const char* c = "blank", const char* cn = "null");          // ÉùÃ÷ÅÉÉúÀàlacksDMAµÄÄ¬ÈÏ¹¹Ôìº¯Êý
-	lacksDMA(const char* c, const DMA& rs);								 // ÉùÃ÷ÅÉÉúÀàlacksDMAµÄÓÃ»§¶¨Òå¹¹Ôìº¯Êý				
-	lacksDMA(const lacksDMA& rs);										 // ÉùÃ÷ÅÉÉúÀàlacksDMAµÄ¸´ÖÆ¹¹Ôìº¯Êý
-	~lacksDMA();														 // ÉùÃ÷ÅÉÉúÀàlacksDMAµÄÎö¹¹º¯Êý	
-	lacksDMA& operator=(const lacksDMA& rs);							 // ÉùÃ÷ÅÉÉúÀàlacksDMAÖØÔØ¸³ÖµÔËËã·û 		
-	virtual void View()const;											 // ÉùÃ÷ÎªÅÉÉúÀàlacksDMA¶¨Òå
+	lacksDMA(const char* c = "blank", const char* cn = "null");          // å£°æ˜Žæ´¾ç”Ÿç±»lacksDMAçš„é»˜è®¤æž„é€ å‡½æ•°
+	lacksDMA(const char* c, const DMA& rs);								 // å£°æ˜Žæ´¾ç”Ÿç±»lacksDMAçš„ç”¨æˆ·å®šä¹‰æž„é€ å‡½æ•°				
+	lacksDMA(const lacksDMA& rs);										 // å£°æ˜Žæ´¾ç”Ÿç±»lacksDMAçš„å¤åˆ¶æž„é€ å‡½æ•°
+	~lacksDMA();														 // å£°æ˜Žæ´¾ç”Ÿç±»lacksDMAçš„æžæž„å‡½æ•°	
+	lacksDMA& operator=(const lacksDMA& rs);							 // å£°æ˜Žæ´¾ç”Ÿç±»lacksDMAé‡è½½èµ‹å€¼è¿ç®—ç¬¦ 		
+	virtual void View()const;											 // å£°æ˜Žä¸ºæ´¾ç”Ÿç±»lacksDMAå®šä¹‰
 
 private:
 	enum
@@ -371,11 +371,11 @@ private:
 class hasDMA :public DMA
 {
 public:
-	hasDMA(const char* s = "none", const char* cn = "null");			 // ÉùÃ÷ÅÉÉúÀàhasDMAµÄÄ¬ÈÏ¹¹Ôìº¯Êý
-	hasDMA(const char* s, const DMA& rs);							     // ÉùÃ÷ÅÉÉúÀàhasDMAµÄÓÃ»§¶¨Òå¹¹Ôìº¯Êý
-	hasDMA(const hasDMA& rs);											 // ÉùÃ÷ÅÉÉúÀàhasDMAµÄ¸´ÖÆ¹¹Ôìº¯Êý
-	~hasDMA();															 // ÉùÃ÷ÅÉÉúÀàhasDMAµÄÎö¹¹º¯Êý
-	hasDMA& operator=(const hasDMA& rs);								 // ÉùÃ÷ÅÉÉúÀàhasDMAÖØÔØ¸³ÖµÔËËã·û
+	hasDMA(const char* s = "none", const char* cn = "null");			 // å£°æ˜Žæ´¾ç”Ÿç±»hasDMAçš„é»˜è®¤æž„é€ å‡½æ•°
+	hasDMA(const char* s, const DMA& rs);							     // å£°æ˜Žæ´¾ç”Ÿç±»hasDMAçš„ç”¨æˆ·å®šä¹‰æž„é€ å‡½æ•°
+	hasDMA(const hasDMA& rs);											 // å£°æ˜Žæ´¾ç”Ÿç±»hasDMAçš„å¤åˆ¶æž„é€ å‡½æ•°
+	~hasDMA();															 // å£°æ˜Žæ´¾ç”Ÿç±»hasDMAçš„æžæž„å‡½æ•°
+	hasDMA& operator=(const hasDMA& rs);								 // å£°æ˜Žæ´¾ç”Ÿç±»hasDMAé‡è½½èµ‹å€¼è¿ç®—ç¬¦
 	virtual void View()const;
 
 private:
@@ -391,8 +391,8 @@ void function_13_3(void);
 
 /*
 	13.4
-	Benevolent Order of ProgrammersÓÃÀ´Î¬»¤Æ¿×°ÆÏÌÑ¾ÆÏä¡£ÎªÃè
-	ÊöËü£¬BOP PortmasterÉèÖÃÁËÒ»¸öPortÀà£¬ÆäÉùÃ÷ÈçÏÂ
+	Benevolent Order of Programmersç”¨æ¥ç»´æŠ¤ç“¶è£…è‘¡è„é…’ç®±ã€‚ä¸ºæ
+	è¿°å®ƒï¼ŒBOP Portmasterè®¾ç½®äº†ä¸€ä¸ªPortç±»ï¼Œå…¶å£°æ˜Žå¦‚ä¸‹
 */
 #ifndef PORT_H_
 
@@ -441,34 +441,34 @@ void function_13_4(void);
 
 /*
 	14.1
-	WineÀàÓÐÒ»¸östringÀà¶ÔÏó³ÉÔ±£¨²Î¼ûµÚ4ÕÂ£©ºÍÒ»¸öPair¶ÔÏó
-	£¨²Î¼û±¾ÕÂ£©£»ÆäÖÐÇ°ÕßÓÃÓÚ´æ´¢ÆÏÌÑ¾ÆµÄÃû³Æ£¬¶øºóÕßÓÐ2¸ö
-	valarray<int>¶ÔÏó£¨²Î¼û±¾ÕÂ£©£¬ÕâÁ½¸övalarray<int>¶ÔÏó·Ö±ð±£´æÁËÆÏ
-	ÌÑ¾ÆµÄÄðÔìÄê·ÝºÍ¸ÃÄêÉú²úµÄÆ¿Êý¡£ÀýÈç£¬PairµÄµÚ1¸övalarray<int>¶Ô
-	Ïó¿ÉÄÜÎª1988¡¢1992ºÍ1996Äê£¬µÚ2¸övalarray<int>¶ÔÏó¿ÉÄÜÎª24¡¢48ºÍ
-	144Æ¿¡£Wine×îºÃÓÐ1¸öint³ÉÔ±ÓÃÓÚ´æ´¢ÄêÊý¡£ÁíÍâ£¬Ò»Ð©typedef¿ÉÄÜ
-	ÓÐÖúÓÚ¼ò»¯±à³Ì¹¤×÷£º
+	Wineç±»æœ‰ä¸€ä¸ªstringç±»å¯¹è±¡æˆå‘˜ï¼ˆå‚è§ç¬¬4ç« ï¼‰å’Œä¸€ä¸ªPairå¯¹è±¡
+	ï¼ˆå‚è§æœ¬ç« ï¼‰ï¼›å…¶ä¸­å‰è€…ç”¨äºŽå­˜å‚¨è‘¡è„é…’çš„åç§°ï¼Œè€ŒåŽè€…æœ‰2ä¸ª
+	valarray<int>å¯¹è±¡ï¼ˆå‚è§æœ¬ç« ï¼‰ï¼Œè¿™ä¸¤ä¸ªvalarray<int>å¯¹è±¡åˆ†åˆ«ä¿å­˜äº†è‘¡
+	è„é…’çš„é…¿é€ å¹´ä»½å’Œè¯¥å¹´ç”Ÿäº§çš„ç“¶æ•°ã€‚ä¾‹å¦‚ï¼ŒPairçš„ç¬¬1ä¸ªvalarray<int>å¯¹
+	è±¡å¯èƒ½ä¸º1988ã€1992å’Œ1996å¹´ï¼Œç¬¬2ä¸ªvalarray<int>å¯¹è±¡å¯èƒ½ä¸º24ã€48å’Œ
+	144ç“¶ã€‚Wineæœ€å¥½æœ‰1ä¸ªintæˆå‘˜ç”¨äºŽå­˜å‚¨å¹´æ•°ã€‚å¦å¤–ï¼Œä¸€äº›typedefå¯èƒ½
+	æœ‰åŠ©äºŽç®€åŒ–ç¼–ç¨‹å·¥ä½œï¼š
 
-	ÕâÑù£¬PairArray±íÊ¾µÄÊÇÀàÐÍPair<std::valarray<int>,
-	std::valarray<int> >¡£Ê¹ÓÃ°üº¬À´ÊµÏÖWineÀà£¬²¢ÓÃÒ»¸ö¼òµ¥µÄ³ÌÐò¶ÔÆä
-	½øÐÐ²âÊÔ¡£WineÀàÓ¦¸ÃÓÐÒ»¸öÄ¬ÈÏ¹¹Ôìº¯ÊýÒÔ¼°ÈçÏÂ¹¹Ôìº¯Êý£º
+	è¿™æ ·ï¼ŒPairArrayè¡¨ç¤ºçš„æ˜¯ç±»åž‹Pair<std::valarray<int>,
+	std::valarray<int> >ã€‚ä½¿ç”¨åŒ…å«æ¥å®žçŽ°Wineç±»ï¼Œå¹¶ç”¨ä¸€ä¸ªç®€å•çš„ç¨‹åºå¯¹å…¶
+	è¿›è¡Œæµ‹è¯•ã€‚Wineç±»åº”è¯¥æœ‰ä¸€ä¸ªé»˜è®¤æž„é€ å‡½æ•°ä»¥åŠå¦‚ä¸‹æž„é€ å‡½æ•°ï¼š
 
-	WineÀàÓ¦¸ÃÓÐÒ»¸öGetBottles( )·½·¨£¬Ëü¸ù¾ÝWine¶ÔÏóÄÜ¹»´æ´¢¼¸
-	ÖÖÄê·Ý£¨y£©£¬ÌáÊ¾ÓÃ»§ÊäÈëÄê·ÝºÍÆ¿Êý¡£·½·¨Label( )·µ»ØÒ»¸öÖ¸ÏòÆÏ
-	ÌÑ¾ÆÃû³ÆµÄÒýÓÃ¡£sum( )·½·¨·µ»ØPair¶ÔÏóÖÐµÚ¶þ¸övalarray<int>¶ÔÏóÖÐ
-	µÄÆ¿Êý×ÜºÍ¡£
+	Wineç±»åº”è¯¥æœ‰ä¸€ä¸ªGetBottles( )æ–¹æ³•ï¼Œå®ƒæ ¹æ®Wineå¯¹è±¡èƒ½å¤Ÿå­˜å‚¨å‡ 
+	ç§å¹´ä»½ï¼ˆyï¼‰ï¼Œæç¤ºç”¨æˆ·è¾“å…¥å¹´ä»½å’Œç“¶æ•°ã€‚æ–¹æ³•Label( )è¿”å›žä¸€ä¸ªæŒ‡å‘è‘¡
+	è„é…’åç§°çš„å¼•ç”¨ã€‚sum( )æ–¹æ³•è¿”å›žPairå¯¹è±¡ä¸­ç¬¬äºŒä¸ªvalarray<int>å¯¹è±¡ä¸­
+	çš„ç“¶æ•°æ€»å’Œã€‚
 
-	²âÊÔ³ÌÐòÓ¦ÌáÊ¾ÓÃ»§ÊäÈëÆÏÌÑ¾ÆÃû³Æ¡¢ÔªËØ¸öÊýÒÔ¼°Ã¿¸öÔªËØ´æ´¢
-	µÄÄê·ÝºÍÆ¿ÊýµÈÐÅÏ¢¡£³ÌÐò½«Ê¹ÓÃÕâÐ©Êý¾ÝÀ´¹¹ÔìÒ»¸öWine¶ÔÏó£¬È»ºó
-	ÏÔÊ¾¶ÔÏóÖÐ±£´æµÄÐÅÏ¢
+	æµ‹è¯•ç¨‹åºåº”æç¤ºç”¨æˆ·è¾“å…¥è‘¡è„é…’åç§°ã€å…ƒç´ ä¸ªæ•°ä»¥åŠæ¯ä¸ªå…ƒç´ å­˜å‚¨
+	çš„å¹´ä»½å’Œç“¶æ•°ç­‰ä¿¡æ¯ã€‚ç¨‹åºå°†ä½¿ç”¨è¿™äº›æ•°æ®æ¥æž„é€ ä¸€ä¸ªWineå¯¹è±¡ï¼Œç„¶åŽ
+	æ˜¾ç¤ºå¯¹è±¡ä¸­ä¿å­˜çš„ä¿¡æ¯
 */
 
 /*
 	14.2
-	²ÉÓÃË½ÓÐ¼Ì³Ð¶ø²»ÊÇ°üº¬À´Íê³É±à³ÌÁ·Ï°1¡£Í¬Ñù£¬Ò»Ð©typedef
-	¿ÉÄÜ»áÓÐËù°ïÖú£¬ÁíÍâ£¬Äú¿ÉÄÜ»¹ÐèÒª¿¼ÂÇÖîÈçÏÂÃæÕâÑùµÄÓï¾äµÄº¬
-	Òå£º
-	ÄúÉè¼ÆµÄÀàÓ¦¸Ã¿ÉÒÔÊ¹ÓÃ±à³ÌÁ·Ï°1ÖÐµÄ²âÊÔ³ÌÐò½øÐÐ²âÊÔ¡£
+	é‡‡ç”¨ç§æœ‰ç»§æ‰¿è€Œä¸æ˜¯åŒ…å«æ¥å®Œæˆç¼–ç¨‹ç»ƒä¹ 1ã€‚åŒæ ·ï¼Œä¸€äº›typedef
+	å¯èƒ½ä¼šæœ‰æ‰€å¸®åŠ©ï¼Œå¦å¤–ï¼Œæ‚¨å¯èƒ½è¿˜éœ€è¦è€ƒè™‘è¯¸å¦‚ä¸‹é¢è¿™æ ·çš„è¯­å¥çš„å«
+	ä¹‰ï¼š
+	æ‚¨è®¾è®¡çš„ç±»åº”è¯¥å¯ä»¥ä½¿ç”¨ç¼–ç¨‹ç»ƒä¹ 1ä¸­çš„æµ‹è¯•ç¨‹åºè¿›è¡Œæµ‹è¯•ã€‚
 
 */
 
@@ -541,9 +541,9 @@ void function_14_1_2(void);
 
 /*
 	14.3
-	¶¨ÒåÒ»¸öQueueTpÄ£°å¡£È»ºóÔÚÒ»¸öÀàËÆÓÚ³ÌÐòÇåµ¥14.12µÄ³Ì
-	ÐòÖÐ´´½¨Ò»¸öÖ¸ÏòWorkerµÄÖ¸Õë¶ÓÁÐ£¨²Î¼û³ÌÐòÇåµ¥14.10ÖÐµÄ¶¨
-	Òå£©£¬²¢Ê¹ÓÃ¸Ã¶ÓÁÐÀ´²âÊÔËü¡£
+	å®šä¹‰ä¸€ä¸ªQueueTpæ¨¡æ¿ã€‚ç„¶åŽåœ¨ä¸€ä¸ªç±»ä¼¼äºŽç¨‹åºæ¸…å•14.12çš„ç¨‹
+	åºä¸­åˆ›å»ºä¸€ä¸ªæŒ‡å‘Workerçš„æŒ‡é’ˆé˜Ÿåˆ—ï¼ˆå‚è§ç¨‹åºæ¸…å•14.10ä¸­çš„å®š
+	ä¹‰ï¼‰ï¼Œå¹¶ä½¿ç”¨è¯¥é˜Ÿåˆ—æ¥æµ‹è¯•å®ƒã€‚
 */
 
 #ifndef QUEUETP_H_
@@ -694,11 +694,11 @@ void function_14_3(void);
 
 /*
 	14.4
-	PersonÀà±£´æÈËµÄÃûºÍÐÕ¡£³ý¹¹Ôìº¯ÊýÍâ£¬Ëü»¹ÓÐShow( )·½
-	·¨£¬ÓÃÓÚÏÔÊ¾ÃûºÍÐÕ¡£GunslingerÀàÒÔPersonÀàÎªÐé»ùÀàÅÉÉú¶øÀ´£¬Ëü°ü
-	º¬Ò»¸öDraw( )³ÉÔ±£¬¸Ã·½·¨·µ»ØÒ»¸ödoubleÖµ£¬±íÊ¾Ç¹ÊÖµÄ°ÎÇ¹Ê±¼ä¡£
-	Õâ¸öÀà»¹°üº¬Ò»¸öint³ÉÔ±£¬±íÊ¾Ç¹ÊÖÇ¹ÉÏµÄ¿ÌºÛÊý¡£×îºó£¬Õâ¸öÀà»¹°ü
-	º¬Ò»¸öShow( )º¯Êý£¬ÓÃÓÚÏÔÊ¾ËùÓÐÕâÐ©ÐÅÏ¢¡£
+	Personç±»ä¿å­˜äººçš„åå’Œå§“ã€‚é™¤æž„é€ å‡½æ•°å¤–ï¼Œå®ƒè¿˜æœ‰Show( )æ–¹
+	æ³•ï¼Œç”¨äºŽæ˜¾ç¤ºåå’Œå§“ã€‚Gunslingerç±»ä»¥Personç±»ä¸ºè™šåŸºç±»æ´¾ç”Ÿè€Œæ¥ï¼Œå®ƒåŒ…
+	å«ä¸€ä¸ªDraw( )æˆå‘˜ï¼Œè¯¥æ–¹æ³•è¿”å›žä¸€ä¸ªdoubleå€¼ï¼Œè¡¨ç¤ºæžªæ‰‹çš„æ‹”æžªæ—¶é—´ã€‚
+	è¿™ä¸ªç±»è¿˜åŒ…å«ä¸€ä¸ªintæˆå‘˜ï¼Œè¡¨ç¤ºæžªæ‰‹æžªä¸Šçš„åˆ»ç—•æ•°ã€‚æœ€åŽï¼Œè¿™ä¸ªç±»è¿˜åŒ…
+	å«ä¸€ä¸ªShow( )å‡½æ•°ï¼Œç”¨äºŽæ˜¾ç¤ºæ‰€æœ‰è¿™äº›ä¿¡æ¯ã€‚
 */
 
 #ifndef PERSONMI_H_
@@ -718,8 +718,8 @@ private:
 	string firstname;
 	string lastname;
 protected:
-	virtual void Data() const;  // Ðé±£»¤·½·¨´òÓ¡»ùÀà³ÉÔ±ÐÅÏ¢£¬Ê¹µÃÅÉÉúÀà¿ÉÒÔ¼ä½Ó·ÃÎÊ
-	virtual void Get();		// Ðé±£»¤·½·¨´òÓ¡»ùÀà³ÉÔ±ÐÅÏ¢£¬Ê¹µÃÅÉÉúÀà¿ÉÒÔ¼ä½Ó·ÃÎÊ
+	virtual void Data() const;  // è™šä¿æŠ¤æ–¹æ³•æ‰“å°åŸºç±»æˆå‘˜ä¿¡æ¯ï¼Œä½¿å¾—æ´¾ç”Ÿç±»å¯ä»¥é—´æŽ¥è®¿é—®
+	virtual void Get();		// è™šä¿æŠ¤æ–¹æ³•æ‰“å°åŸºç±»æˆå‘˜ä¿¡æ¯ï¼Œä½¿å¾—æ´¾ç”Ÿç±»å¯ä»¥é—´æŽ¥è®¿é—®
 
 };
 
@@ -732,14 +732,14 @@ public:
 
 	void Set();
 	void Show() const;
-	double Draw() const;    // ´òÓ¡Ç¹ÊÖµÄ°ÎÇ¹Ê±¼ä
+	double Draw() const;    // æ‰“å°æžªæ‰‹çš„æ‹”æžªæ—¶é—´
 
 
 private:
 	int nicks;
 
 protected:
-	void Data() const;  // ÖØÐÂ¶¨Òå±£»¤·½·¨
+	void Data() const;  // é‡æ–°å®šä¹‰ä¿æŠ¤æ–¹æ³•
 	void Get();
 };
 
@@ -751,12 +751,12 @@ public:
 	PokerPlayer(const Person& p) :Person(p) {}
 	void Set();
 	void Show()const;
-	int Draw()const;  //±íÊ¾ÆË¿ËÅÆµÄÖµ
+	int Draw()const;  //è¡¨ç¤ºæ‰‘å…‹ç‰Œçš„å€¼
 
 private:
 
 protected:
-	void Data()const;  //ÖØÐÂ¶¨Òå±£»¤·½·¨
+	void Data()const;  //é‡æ–°å®šä¹‰ä¿æŠ¤æ–¹æ³•
 
 };
 
@@ -770,13 +770,13 @@ public:
 	BadDude(const PokerPlayer& p, int n) :Person(p), Gunslinger(p, n), PokerPlayer(p) {}
 	void Set();
 	void Show()const;
-	double Gdraw()const;  // ´òÓ¡»µµ°°ÎÇ¹µÄÊ±¼ä
-	int Cdraw()const;	  // ´òÓ¡ÏÂÒ»ÕÅÆË¿ËÅÆµÄÖµ
+	double Gdraw()const;  // æ‰“å°åè›‹æ‹”æžªçš„æ—¶é—´
+	int Cdraw()const;	  // æ‰“å°ä¸‹ä¸€å¼ æ‰‘å…‹ç‰Œçš„å€¼
 
 private:
 
 protected:
-	void Data()const;     // ÖØÐÂ¶¨Òå±£»¤·½·¨
+	void Data()const;     // é‡æ–°å®šä¹‰ä¿æŠ¤æ–¹æ³•
 	void Get();
 
 };
@@ -790,12 +790,12 @@ void function_14_4(void);
 
 /*
 	14.5
-	×¢Òâ£¬¸ÃÀà²ã´Î½á¹¹Ê¹ÓÃÁË´øÐé»ùÀàµÄMI£¬ËùÒÔÒªÀÎ¼ÇÕâÖÖÇé¿ö
-	ÏÂÓÃÓÚ¹¹Ôìº¯Êý³õÊ¼»¯ÁÐ±íµÄÌØÊâ¹æÔò¡£»¹ÐèÒª×¢ÒâµÄÊÇ£¬ÓÐÐ©·½·¨±»
-	ÉùÃ÷Îª±£»¤µÄ¡£Õâ¿ÉÒÔ¼ò»¯Ò»Ð©highfink·½·¨µÄ´úÂë£¨ÀýÈç£¬Èç¹û
-	highfink::ShowAll( )Ö»ÊÇµ÷ÓÃfink::ShowAll( )ºÍmanager::ShwAll( )£¬ÔòËü
-	½«µ÷ÓÃabstr_emp::ShowAll( )Á½´Î£©¡£ÇëÌá¹©Àà·½·¨µÄÊµÏÖ£¬²¢ÔÚÒ»¸ö³Ì
-	ÐòÖÐ¶ÔÕâÐ©Àà½øÐÐ²âÊÔ¡£ÏÂÃæÊÇÒ»¸öÐ¡ÐÍ²âÊÔ³ÌÐò
+	æ³¨æ„ï¼Œè¯¥ç±»å±‚æ¬¡ç»“æž„ä½¿ç”¨äº†å¸¦è™šåŸºç±»çš„MIï¼Œæ‰€ä»¥è¦ç‰¢è®°è¿™ç§æƒ…å†µ
+	ä¸‹ç”¨äºŽæž„é€ å‡½æ•°åˆå§‹åŒ–åˆ—è¡¨çš„ç‰¹æ®Šè§„åˆ™ã€‚è¿˜éœ€è¦æ³¨æ„çš„æ˜¯ï¼Œæœ‰äº›æ–¹æ³•è¢«
+	å£°æ˜Žä¸ºä¿æŠ¤çš„ã€‚è¿™å¯ä»¥ç®€åŒ–ä¸€äº›highfinkæ–¹æ³•çš„ä»£ç ï¼ˆä¾‹å¦‚ï¼Œå¦‚æžœ
+	highfink::ShowAll( )åªæ˜¯è°ƒç”¨fink::ShowAll( )å’Œmanager::ShwAll( )ï¼Œåˆ™å®ƒ
+	å°†è°ƒç”¨abstr_emp::ShowAll( )ä¸¤æ¬¡ï¼‰ã€‚è¯·æä¾›ç±»æ–¹æ³•çš„å®žçŽ°ï¼Œå¹¶åœ¨ä¸€ä¸ªç¨‹
+	åºä¸­å¯¹è¿™äº›ç±»è¿›è¡Œæµ‹è¯•ã€‚ä¸‹é¢æ˜¯ä¸€ä¸ªå°åž‹æµ‹è¯•ç¨‹åº
 */
 
 #ifndef EMP_H_
@@ -843,8 +843,8 @@ private:
 	int inchargeof;
 
 protected:
-	int InChargeOf()const { return inchargeof; }  // ÁîÅÉÉúÀàÄÜ¹»·ÃÎÊ»ùÀà³ÉÔ± 
-	int& InChargeOf() { return inchargeof; }		  // ÁîÅÉÉúÀàÄÜ¹»·ÃÎÊ»ùÀà³ÉÔ±²¢½øÐÐÐÞ¸Ä 
+	int InChargeOf()const { return inchargeof; }  // ä»¤æ´¾ç”Ÿç±»èƒ½å¤Ÿè®¿é—®åŸºç±»æˆå‘˜ 
+	int& InChargeOf() { return inchargeof; }		  // ä»¤æ´¾ç”Ÿç±»èƒ½å¤Ÿè®¿é—®åŸºç±»æˆå‘˜å¹¶è¿›è¡Œä¿®æ”¹ 
 
 };
 
@@ -863,8 +863,8 @@ private:
 
 
 protected:
-	const string ReportsTo() const { return reportsto; } // ÁîÅÉÉúÀàÄÜ¹»·ÃÎÊ»ùÀà³ÉÔ±
-	string& ReportsTo() { return reportsto; }			 // ÁîÅÉÉúÀàÄÜ¹»·ÃÎÊ»ùÀà³ÉÔ±²¢½øÐÐÐÞ¸Ä
+	const string ReportsTo() const { return reportsto; } // ä»¤æ´¾ç”Ÿç±»èƒ½å¤Ÿè®¿é—®åŸºç±»æˆå‘˜
+	string& ReportsTo() { return reportsto; }			 // ä»¤æ´¾ç”Ÿç±»èƒ½å¤Ÿè®¿é—®åŸºç±»æˆå‘˜å¹¶è¿›è¡Œä¿®æ”¹
 
 
 };
@@ -890,20 +890,20 @@ void function_14_5(void);
 
 /*
 	15.1
-	1£®¶ÔTvºÍRemoteÀà×öÈçÏÂÐÞ¸Ä£º
-	a£®ÈÃËüÃÇ»¥ÎªÓÑÔª£»
-	b£®ÔÚRemoteÀàÖÐÌí¼ÓÒ»¸ö×´Ì¬±äÁ¿³ÉÔ±£¬¸Ã³ÉÔ±ÃèÊöÒ£¿ØÆ÷ÊÇ´¦
-	ÓÚ³£¹æÄ£Ê½»¹ÊÇ»¥¶¯Ä£Ê½£»
-	c£®ÔÚRemoteÖÐÌí¼ÓÒ»¸öÏÔÊ¾Ä£Ê½µÄ·½·¨£»
-	d£®ÔÚTvÀàÖÐÌí¼ÓÒ»¸ö¶ÔRemoteÖÐÐÂ³ÉÔ±½øÐÐÇÐ»»µÄ·½·¨£¬¸Ã·½·¨
-	Ó¦½öµ±TV´¦ÓÚ´ò¿ª×´Ì¬Ê±²ÅÄÜÔËÐÐ¡£
-	±àÐ´Ò»¸öÐ¡³ÌÐòÀ´²âÊÔÕâÐ©ÐÂÌØÐÔ¡£
+	1ï¼Žå¯¹Två’ŒRemoteç±»åšå¦‚ä¸‹ä¿®æ”¹ï¼š
+	aï¼Žè®©å®ƒä»¬äº’ä¸ºå‹å…ƒï¼›
+	bï¼Žåœ¨Remoteç±»ä¸­æ·»åŠ ä¸€ä¸ªçŠ¶æ€å˜é‡æˆå‘˜ï¼Œè¯¥æˆå‘˜æè¿°é¥æŽ§å™¨æ˜¯å¤„
+	äºŽå¸¸è§„æ¨¡å¼è¿˜æ˜¯äº’åŠ¨æ¨¡å¼ï¼›
+	cï¼Žåœ¨Remoteä¸­æ·»åŠ ä¸€ä¸ªæ˜¾ç¤ºæ¨¡å¼çš„æ–¹æ³•ï¼›
+	dï¼Žåœ¨Tvç±»ä¸­æ·»åŠ ä¸€ä¸ªå¯¹Remoteä¸­æ–°æˆå‘˜è¿›è¡Œåˆ‡æ¢çš„æ–¹æ³•ï¼Œè¯¥æ–¹æ³•
+	åº”ä»…å½“TVå¤„äºŽæ‰“å¼€çŠ¶æ€æ—¶æ‰èƒ½è¿è¡Œã€‚
+	ç¼–å†™ä¸€ä¸ªå°ç¨‹åºæ¥æµ‹è¯•è¿™äº›æ–°ç‰¹æ€§ã€‚
 */
 
 
 #ifndef TV_H_
 #define TV_H_
-class Remote;// ÏÈÉùÃ÷RemoteÀàÈ»ºóÔÙ¶¨Òå£¬ÒÔ±ã±àÒëÆ÷ÓÐ×ã¹»µÄÐÅÏ¢±àÒëÊ¹ÓÃRemoteÀàµÄ·½·¨
+class Remote;// å…ˆå£°æ˜ŽRemoteç±»ç„¶åŽå†å®šä¹‰ï¼Œä»¥ä¾¿ç¼–è¯‘å™¨æœ‰è¶³å¤Ÿçš„ä¿¡æ¯ç¼–è¯‘ä½¿ç”¨Remoteç±»çš„æ–¹æ³•
 
 class Tv
 {
@@ -925,7 +925,7 @@ public:
 	void set_mode() { mode = (mode == Antenna) ? Cable : Antenna; }
 	void set_input() { input = (input == TV) ? DVD : TV; }
 	void settings()const;
-	void set_status(Remote& r);  // ¶ÔRemote ÀàÖÐ×´Ì¬³ÉÔ±½øÐÐÇÐ»»µÄ·½·¨
+	void set_status(Remote& r);  // å¯¹Remote ç±»ä¸­çŠ¶æ€æˆå‘˜è¿›è¡Œåˆ‡æ¢çš„æ–¹æ³•
 
 private:
 	int state;
@@ -944,8 +944,8 @@ public:
 	enum
 	{
 		Convention, Interaction
-	};  // Convention±íÊ¾³£¹æÄ£Ê½£¬Interaction ±íÊ¾»¥¶¯Ä£Ê½
-	Remote(int m = Tv::TV, int s = Convention) :mode(m), status(s) {} //Ä¬ÈÏÎª³£¹æÄ£Ê½
+	};  // Conventionè¡¨ç¤ºå¸¸è§„æ¨¡å¼ï¼ŒInteraction è¡¨ç¤ºäº’åŠ¨æ¨¡å¼
+	Remote(int m = Tv::TV, int s = Convention) :mode(m), status(s) {} //é»˜è®¤ä¸ºå¸¸è§„æ¨¡å¼
 	bool volup(Tv& t) { return t.volup(); }
 	bool voldown(Tv& t) { return t.voldown(); }
 	void onoff(Tv& t) { t.onoff(); }
@@ -960,7 +960,7 @@ public:
 private:
 
 	int mode;
-	int status;	// ×´Ì¬±äÁ¿³ÉÔ±
+	int status;	// çŠ¶æ€å˜é‡æˆå‘˜
 
 
 };
@@ -985,17 +985,17 @@ void function_15_1(void);
 
 /*
 	15.2
-	ÐÞ¸Ä³ÌÐòÇåµ¥15.11£¬Ê¹Á½ÖÖÒì³£ÀàÐÍ¶¼ÊÇ´ÓÍ·ÎÄ¼þ<stdexcept>
-	Ìá¹©µÄlogic_errorÀàÅÉÉú³öÀ´µÄÀà¡£ÈÃÃ¿¸öwhat( )·½·¨¶¼±¨¸æº¯ÊýÃûºÍ
-	ÎÊÌâµÄÐÔÖÊ¡£Òì³£¶ÔÏó²»ÓÃ´æ´¢´íÎóµÄ²ÎÊýÖµ£¬¶øÖ»ÐèÖ§³Öwhat( )·½
-	·¨¡£
+	ä¿®æ”¹ç¨‹åºæ¸…å•15.11ï¼Œä½¿ä¸¤ç§å¼‚å¸¸ç±»åž‹éƒ½æ˜¯ä»Žå¤´æ–‡ä»¶<stdexcept>
+	æä¾›çš„logic_errorç±»æ´¾ç”Ÿå‡ºæ¥çš„ç±»ã€‚è®©æ¯ä¸ªwhat( )æ–¹æ³•éƒ½æŠ¥å‘Šå‡½æ•°åå’Œ
+	é—®é¢˜çš„æ€§è´¨ã€‚å¼‚å¸¸å¯¹è±¡ä¸ç”¨å­˜å‚¨é”™è¯¯çš„å‚æ•°å€¼ï¼Œè€Œåªéœ€æ”¯æŒwhat( )æ–¹
+	æ³•ã€‚
 
 	15.3
-	Õâ¸öÁ·Ï°Óë±à³ÌÁ·Ï°2ÏàÍ¬£¬µ«Òì³£ÀàÊÇ´ÓÒ»¸öÕâÑùµÄ»ùÀàÅÉÉú
-	¶øÀ´µÄ£ºËüÊÇ´Ólogic_errorÅÉÉú¶øÀ´µÄ£¬²¢´æ´¢Á½¸ö²ÎÊýÖµ¡£Òì³£ÀàÓ¦
-	¸ÃÓÐÒ»¸öÕâÑùµÄ·½·¨£º±¨¸æÕâÐ©ÖµÒÔ¼°º¯ÊýÃû¡£³ÌÐòÊ¹ÓÃÒ»¸öcatch¿éÀ´
-	²¶»ñ»ùÀàÒì³££¬ÆäÖÐÈÎºÎÒ»ÖÖ´Ó¸Ã»ùÀàÒì³£ÅÉÉú¶øÀ´µÄÒì³£¶¼½«µ¼ÖÂÑ­
-	»·½áÊø¡£
+	è¿™ä¸ªç»ƒä¹ ä¸Žç¼–ç¨‹ç»ƒä¹ 2ç›¸åŒï¼Œä½†å¼‚å¸¸ç±»æ˜¯ä»Žä¸€ä¸ªè¿™æ ·çš„åŸºç±»æ´¾ç”Ÿ
+	è€Œæ¥çš„ï¼šå®ƒæ˜¯ä»Žlogic_erroræ´¾ç”Ÿè€Œæ¥çš„ï¼Œå¹¶å­˜å‚¨ä¸¤ä¸ªå‚æ•°å€¼ã€‚å¼‚å¸¸ç±»åº”
+	è¯¥æœ‰ä¸€ä¸ªè¿™æ ·çš„æ–¹æ³•ï¼šæŠ¥å‘Šè¿™äº›å€¼ä»¥åŠå‡½æ•°åã€‚ç¨‹åºä½¿ç”¨ä¸€ä¸ªcatchå—æ¥
+	æ•èŽ·åŸºç±»å¼‚å¸¸ï¼Œå…¶ä¸­ä»»ä½•ä¸€ç§ä»Žè¯¥åŸºç±»å¼‚å¸¸æ´¾ç”Ÿè€Œæ¥çš„å¼‚å¸¸éƒ½å°†å¯¼è‡´å¾ª
+	çŽ¯ç»“æŸã€‚
 
 */
 
@@ -1050,9 +1050,9 @@ void function_15_2_3(void);
 /*
 
 	15.4
-	³ÌÐòÇåµ¥15.16ÔÚÃ¿¸ötryºóÃæ¶¼Ê¹ÓÃÁ½¸öcatch¿é£¬ÒÔÈ·±£
-	nbad_indexÒì³£µ¼ÖÂ·½·¨label_val( )±»µ÷ÓÃ¡£ÇëÐÞ¸Ä¸Ã³ÌÐò£¬ÔÚÃ¿¸ötry
-	¿éºóÃæÖ»Ê¹ÓÃÒ»¸öcatch¿é£¬²¢Ê¹ÓÃRTTIÀ´È·±£ºÏÊÊÊ±µ÷ÓÃlabel_val( )
+	ç¨‹åºæ¸…å•15.16åœ¨æ¯ä¸ªtryåŽé¢éƒ½ä½¿ç”¨ä¸¤ä¸ªcatchå—ï¼Œä»¥ç¡®ä¿
+	nbad_indexå¼‚å¸¸å¯¼è‡´æ–¹æ³•label_val( )è¢«è°ƒç”¨ã€‚è¯·ä¿®æ”¹è¯¥ç¨‹åºï¼Œåœ¨æ¯ä¸ªtry
+	å—åŽé¢åªä½¿ç”¨ä¸€ä¸ªcatchå—ï¼Œå¹¶ä½¿ç”¨RTTIæ¥ç¡®ä¿åˆé€‚æ—¶è°ƒç”¨label_val( )
 
 */
 
@@ -1125,12 +1125,12 @@ void function_15_4(void);
 
 /*
 	16.1
-	»ØÎÄÖ¸µÄÊÇË³¶ÁºÍÄæ¶Á¶¼Ò»ÑùµÄ×Ö·û´®¡£ÀýÈç£¬¡°tot¡±ºÍ¡°otto¡±¶¼
-	ÊÇ¼ò¶ÌµÄ»ØÎÄ¡£±àÐ´Ò»¸ö³ÌÐò£¬ÈÃÓÃ»§ÊäÈë×Ö·û´®£¬²¢½«×Ö·û´®ÒýÓÃ´«
-	µÝ¸øÒ»¸öboolº¯Êý¡£Èç¹û×Ö·û´®ÊÇ»ØÎÄ£¬¸Ãº¯Êý½«·µ»Øtrue£¬·ñÔò·µ»Ø
-	false¡£´ËÊ±£¬²»Òªµ£ÐÄÖîÈç´óÐ¡Ð´¡¢¿Õ¸ñºÍ±êµã·ûºÅÕâÐ©¸´ÔÓµÄÎÊÌâ¡£
-	¼´Õâ¸ö¼òµ¥µÄ°æ±¾½«¾Ü¾ø¡°Otto¡±ºÍ¡°Madam£¬I'm Adam¡±¡£Çë²é¿´¸½Â¼FÖÐ
-	µÄ×Ö·û´®·½·¨ÁÐ±í£¬ÒÔ¼ò»¯ÕâÏîÈÎÎñ¡£
+	å›žæ–‡æŒ‡çš„æ˜¯é¡ºè¯»å’Œé€†è¯»éƒ½ä¸€æ ·çš„å­—ç¬¦ä¸²ã€‚ä¾‹å¦‚ï¼Œâ€œtotâ€å’Œâ€œottoâ€éƒ½
+	æ˜¯ç®€çŸ­çš„å›žæ–‡ã€‚ç¼–å†™ä¸€ä¸ªç¨‹åºï¼Œè®©ç”¨æˆ·è¾“å…¥å­—ç¬¦ä¸²ï¼Œå¹¶å°†å­—ç¬¦ä¸²å¼•ç”¨ä¼ 
+	é€’ç»™ä¸€ä¸ªboolå‡½æ•°ã€‚å¦‚æžœå­—ç¬¦ä¸²æ˜¯å›žæ–‡ï¼Œè¯¥å‡½æ•°å°†è¿”å›žtrueï¼Œå¦åˆ™è¿”å›ž
+	falseã€‚æ­¤æ—¶ï¼Œä¸è¦æ‹…å¿ƒè¯¸å¦‚å¤§å°å†™ã€ç©ºæ ¼å’Œæ ‡ç‚¹ç¬¦å·è¿™äº›å¤æ‚çš„é—®é¢˜ã€‚
+	å³è¿™ä¸ªç®€å•çš„ç‰ˆæœ¬å°†æ‹’ç»â€œOttoâ€å’Œâ€œMadamï¼ŒI'm Adamâ€ã€‚è¯·æŸ¥çœ‹é™„å½•Fä¸­
+	çš„å­—ç¬¦ä¸²æ–¹æ³•åˆ—è¡¨ï¼Œä»¥ç®€åŒ–è¿™é¡¹ä»»åŠ¡ã€‚
 
 */
 bool ispalindrome(const string& s);
@@ -1138,11 +1138,11 @@ void function_16_1(void);
 
 /*
 	16.2
-	Óë±à³ÌÁ·Ï°1ÖÐ¸ø³öµÄÎÊÌâÏàÍ¬£¬µ«Òª¿¼ÂÇÖîÈç´óÐ¡Ð´¡¢¿Õ¸ñºÍ
-	±êµã·ûºÅÕâÑùµÄ¸´ÔÓÎÊÌâ¡£¼´¡°Madam£¬I'm Adam¡±½«×÷Îª»ØÎÄÀ´²âÊÔ¡£
-	ÀýÈç£¬²âÊÔº¯Êý¿ÉÄÜ»á½«×Ö·û´®ËõÂÔÎª¡°madamimadam¡±£¬È»ºó²âÊÔµ¹¹ý
-	À´ÊÇ·ñÒ»Ñù¡£²»ÒªÍüÁËÓÐÓÃµÄcctype¿â£¬Äú¿ÉÄÜ´ÓÖÐÕÒµ½¼¸¸öÓÐÓÃµÄ
-	STLº¯Êý£¬¾¡¹Ü²»Ò»¶¨·ÇÒªÊ¹ÓÃËüÃÇ¡£
+	ä¸Žç¼–ç¨‹ç»ƒä¹ 1ä¸­ç»™å‡ºçš„é—®é¢˜ç›¸åŒï¼Œä½†è¦è€ƒè™‘è¯¸å¦‚å¤§å°å†™ã€ç©ºæ ¼å’Œ
+	æ ‡ç‚¹ç¬¦å·è¿™æ ·çš„å¤æ‚é—®é¢˜ã€‚å³â€œMadamï¼ŒI'm Adamâ€å°†ä½œä¸ºå›žæ–‡æ¥æµ‹è¯•ã€‚
+	ä¾‹å¦‚ï¼Œæµ‹è¯•å‡½æ•°å¯èƒ½ä¼šå°†å­—ç¬¦ä¸²ç¼©ç•¥ä¸ºâ€œmadamimadamâ€ï¼Œç„¶åŽæµ‹è¯•å€’è¿‡
+	æ¥æ˜¯å¦ä¸€æ ·ã€‚ä¸è¦å¿˜äº†æœ‰ç”¨çš„cctypeåº“ï¼Œæ‚¨å¯èƒ½ä»Žä¸­æ‰¾åˆ°å‡ ä¸ªæœ‰ç”¨çš„
+	STLå‡½æ•°ï¼Œå°½ç®¡ä¸ä¸€å®šéžè¦ä½¿ç”¨å®ƒä»¬ã€‚
 */
 string ToLower(string& st);
 void function_16_2(void);
@@ -1150,30 +1150,30 @@ void function_16_2(void);
 
 /*
 	16.3
-	ÐÞ¸Ä³ÌÐòÇåµ¥16.3£¬Ê¹Ö®´ÓÎÄ¼þÖÐ¶ÁÈ¡µ¥´Ê¡£Ò»ÖÖ·½°¸ÊÇ£¬Ê¹
-	ÓÃvector<string>¶ÔÏó¶ø²»ÊÇstringÊý×é¡£ÕâÑù±ã¿ÉÒÔÊ¹ÓÃpush_back( )½«
-	Êý¾ÝÎÄ¼þÖÐµÄµ¥´Ê¸´ÖÆµ½vector<string>¶ÔÏóÖÐ£¬²¢Ê¹ÓÃsize( )À´È·¶¨µ¥
-	´ÊÁÐ±íµÄ³¤¶È¡£ÓÉÓÚ³ÌÐòÓ¦¸ÃÃ¿´Î´ÓÎÄ¼þÖÐ¶ÁÈ¡Ò»¸öµ¥´Ê£¬Òò´ËÓ¦Ê¹ÓÃ
-	ÔËËã·û>>¶ø²»ÊÇgetline( )¡£ÎÄ¼þÖÐ°üº¬µÄµ¥´ÊÓ¦¸ÃÓÃ¿Õ¸ñ¡¢ÖÆ±í·û»ò»»
-	ÐÐ·û·Ö¸ô¡£
+	ä¿®æ”¹ç¨‹åºæ¸…å•16.3ï¼Œä½¿ä¹‹ä»Žæ–‡ä»¶ä¸­è¯»å–å•è¯ã€‚ä¸€ç§æ–¹æ¡ˆæ˜¯ï¼Œä½¿
+	ç”¨vector<string>å¯¹è±¡è€Œä¸æ˜¯stringæ•°ç»„ã€‚è¿™æ ·ä¾¿å¯ä»¥ä½¿ç”¨push_back( )å°†
+	æ•°æ®æ–‡ä»¶ä¸­çš„å•è¯å¤åˆ¶åˆ°vector<string>å¯¹è±¡ä¸­ï¼Œå¹¶ä½¿ç”¨size( )æ¥ç¡®å®šå•
+	è¯åˆ—è¡¨çš„é•¿åº¦ã€‚ç”±äºŽç¨‹åºåº”è¯¥æ¯æ¬¡ä»Žæ–‡ä»¶ä¸­è¯»å–ä¸€ä¸ªå•è¯ï¼Œå› æ­¤åº”ä½¿ç”¨
+	è¿ç®—ç¬¦>>è€Œä¸æ˜¯getline( )ã€‚æ–‡ä»¶ä¸­åŒ…å«çš„å•è¯åº”è¯¥ç”¨ç©ºæ ¼ã€åˆ¶è¡¨ç¬¦æˆ–æ¢
+	è¡Œç¬¦åˆ†éš”ã€‚
 */
 void function_16_3(void);
 
 
 /*
 	remark 20240430
-	for Ñ­»·Ê¹ÓÃ
+	for å¾ªçŽ¯ä½¿ç”¨
 */
 void for_practise(void);
 
 
 /*
 	16.4
-	±àÐ´Ò»¸ö¾ßÓÐÀÏÊ½·ç¸ñ½Ó¿ÚµÄº¯Êý£¬ÆäÔ­ÐÍÈçÏÂ£º
-	Êµ²ÎÓ¦ÊÇÊý×éÃûºÍÊý×éÖÐµÄÔªËØ¸öÊý¡£¸Ãº¯Êý¶ÔÊý×é½øÐÐÅÅÐò£¬É¾
-	³ýÖØ¸´µÄÖµ£¬·µ»ØËõ¼õºóÊý×éÖÐµÄÔªËØÊýÄ¿¡£ÇëÊ¹ÓÃSTLº¯Êý±àÐ´¸Ãº¯
-	Êý£¨Èç¹û¾ö¶¨Ê¹ÓÃÍ¨ÓÃµÄunique( )º¯Êý£¬Çë×¢ÒâËü½«·µ»Ø½á¹ûÇø¼äµÄ½á
-	Î²£©¡£Ê¹ÓÃÒ»¸öÐ¡³ÌÐò²âÊÔ¸Ãº¯Êý¡£
+	ç¼–å†™ä¸€ä¸ªå…·æœ‰è€å¼é£Žæ ¼æŽ¥å£çš„å‡½æ•°ï¼Œå…¶åŽŸåž‹å¦‚ä¸‹ï¼š
+	å®žå‚åº”æ˜¯æ•°ç»„åå’Œæ•°ç»„ä¸­çš„å…ƒç´ ä¸ªæ•°ã€‚è¯¥å‡½æ•°å¯¹æ•°ç»„è¿›è¡ŒæŽ’åºï¼Œåˆ 
+	é™¤é‡å¤çš„å€¼ï¼Œè¿”å›žç¼©å‡åŽæ•°ç»„ä¸­çš„å…ƒç´ æ•°ç›®ã€‚è¯·ä½¿ç”¨STLå‡½æ•°ç¼–å†™è¯¥å‡½
+	æ•°ï¼ˆå¦‚æžœå†³å®šä½¿ç”¨é€šç”¨çš„unique( )å‡½æ•°ï¼Œè¯·æ³¨æ„å®ƒå°†è¿”å›žç»“æžœåŒºé—´çš„ç»“
+	å°¾ï¼‰ã€‚ä½¿ç”¨ä¸€ä¸ªå°ç¨‹åºæµ‹è¯•è¯¥å‡½æ•°ã€‚
 */
 void function_16_4(void);
 
@@ -1184,8 +1184,8 @@ void print_array(long ar[], int n);
 
 /*
 	16.5
-	ÎÊÌâÓë±à³ÌÁ·Ï°4ÏàÍ¬£¬µ«Òª±àÐ´Ò»¸öÄ£°åº¯Êý£º
-	ÔÚÒ»¸öÊ¹ÓÃlongÊµÀýºÍstringÊµÀýµÄÐ¡³ÌÐòÖÐ²âÊÔ¸Ãº¯Êý¡£
+	é—®é¢˜ä¸Žç¼–ç¨‹ç»ƒä¹ 4ç›¸åŒï¼Œä½†è¦ç¼–å†™ä¸€ä¸ªæ¨¡æ¿å‡½æ•°ï¼š
+	åœ¨ä¸€ä¸ªä½¿ç”¨longå®žä¾‹å’Œstringå®žä¾‹çš„å°ç¨‹åºä¸­æµ‹è¯•è¯¥å‡½æ•°ã€‚
 */
 void function_16_5(void);
 
@@ -1198,13 +1198,13 @@ void print_array1(T ar[], int n);
 
 /*
 	16.6
-	Ê¹ÓÃSTL queueÄ£°åÀà¶ø²»ÊÇµÚ12ÕÂµÄQueueÀà£¬ÖØÐÂ±àÐ´³ÌÐò
-	Çåµ¥12.12ËùÊ¾µÄÊ¾Àý¡£
+	ä½¿ç”¨STL queueæ¨¡æ¿ç±»è€Œä¸æ˜¯ç¬¬12ç« çš„Queueç±»ï¼Œé‡æ–°ç¼–å†™ç¨‹åº
+	æ¸…å•12.12æ‰€ç¤ºçš„ç¤ºä¾‹ã€‚
 */
 
 const int  MIN_PER_HR_L = 60;
 
-class Customer1  // ÀàÉùÃ÷¼°¶¨Òå·ÅÖÃÔÚ´Ë
+class Customer1  // ç±»å£°æ˜ŽåŠå®šä¹‰æ”¾ç½®åœ¨æ­¤
 {
 public:
 	Customer1() { arrive = processtime = 0; }
@@ -1224,22 +1224,22 @@ private:
 
 };
 
-using Item_L = Customer1; //Item ÀàÐÍÎªCustomer;
+using Item_L = Customer1; //Item ç±»åž‹ä¸ºCustomer;
 
 void function_16_6(void);
 
 /*
 	16.7
-	²ÊÆ±¿¨ÊÇÒ»¸ö³£¼ûµÄÓÎÏ·¡£¿¨Æ¬ÉÏÊÇ´ø±àºÅµÄÔ²µã£¬ÆäÖÐÒ»Ð©
-	Ô²µã±»Ëæ»úÑ¡ÖÐ¡£±àÐ´Ò»¸ölotto( )º¯Êý£¬Ëü½ÓÊÜÁ½¸ö²ÎÊý¡£µÚÒ»¸ö²ÎÊý
-	ÊÇ²ÊÆ±¿¨ÉÏÔ²µãµÄ¸öÊý£¬µÚ¶þ¸ö²ÎÊýÊÇËæ»úÑ¡ÔñµÄÔ²µã¸öÊý¡£¸Ãº¯Êý·µ
-	»ØÒ»¸övector<int>¶ÔÏó£¬ÆäÖÐ°üº¬£¨°´ÅÅÁÐºóµÄË³Ðò£©Ëæ»úÑ¡ÔñµÄºÅ
-	Âë¡£ÀýÈç£¬¿ÉÒÔÕâÑùÊ¹ÓÃ¸Ãº¯Êý£º
-	ÕâÑù½«°ÑÒ»¸öÊ¸Á¿¸³¸øwinner£¬¸ÃÊ¸Á¿°üº¬1¡«51ÖÐËæ»úÑ¡¶¨µÄ6¸ö
-	Êý×Ö¡£×¢Òâ£¬½ö½öÊ¹ÓÃrand( )ÎÞ·¨Íê³ÉÕâÏîÈÎÎñ£¬ÒòËü»áÉú³ÉÖØ¸´µÄ
-	Öµ¡£ÌáÊ¾£ºÈÃº¯Êý´´½¨Ò»¸ö°üº¬ËùÓÐ¿ÉÄÜÖµµÄÊ¸Á¿£¬Ê¹ÓÃ
-	random_shuffle( )£¬È»ºóÍ¨¹ý´òÂÒºóµÄÊ¸Á¿µÄµÚÒ»¸öÖµÀ´»ñÈ¡Öµ¡£±àÐ´
-	Ò»¸öÐ¡³ÌÐòÀ´²âÊÔÕâ¸öº¯Êý¡£
+	å½©ç¥¨å¡æ˜¯ä¸€ä¸ªå¸¸è§çš„æ¸¸æˆã€‚å¡ç‰‡ä¸Šæ˜¯å¸¦ç¼–å·çš„åœ†ç‚¹ï¼Œå…¶ä¸­ä¸€äº›
+	åœ†ç‚¹è¢«éšæœºé€‰ä¸­ã€‚ç¼–å†™ä¸€ä¸ªlotto( )å‡½æ•°ï¼Œå®ƒæŽ¥å—ä¸¤ä¸ªå‚æ•°ã€‚ç¬¬ä¸€ä¸ªå‚æ•°
+	æ˜¯å½©ç¥¨å¡ä¸Šåœ†ç‚¹çš„ä¸ªæ•°ï¼Œç¬¬äºŒä¸ªå‚æ•°æ˜¯éšæœºé€‰æ‹©çš„åœ†ç‚¹ä¸ªæ•°ã€‚è¯¥å‡½æ•°è¿”
+	å›žä¸€ä¸ªvector<int>å¯¹è±¡ï¼Œå…¶ä¸­åŒ…å«ï¼ˆæŒ‰æŽ’åˆ—åŽçš„é¡ºåºï¼‰éšæœºé€‰æ‹©çš„å·
+	ç ã€‚ä¾‹å¦‚ï¼Œå¯ä»¥è¿™æ ·ä½¿ç”¨è¯¥å‡½æ•°ï¼š
+	è¿™æ ·å°†æŠŠä¸€ä¸ªçŸ¢é‡èµ‹ç»™winnerï¼Œè¯¥çŸ¢é‡åŒ…å«1ï½ž51ä¸­éšæœºé€‰å®šçš„6ä¸ª
+	æ•°å­—ã€‚æ³¨æ„ï¼Œä»…ä»…ä½¿ç”¨rand( )æ— æ³•å®Œæˆè¿™é¡¹ä»»åŠ¡ï¼Œå› å®ƒä¼šç”Ÿæˆé‡å¤çš„
+	å€¼ã€‚æç¤ºï¼šè®©å‡½æ•°åˆ›å»ºä¸€ä¸ªåŒ…å«æ‰€æœ‰å¯èƒ½å€¼çš„çŸ¢é‡ï¼Œä½¿ç”¨
+	random_shuffle( )ï¼Œç„¶åŽé€šè¿‡æ‰“ä¹±åŽçš„çŸ¢é‡çš„ç¬¬ä¸€ä¸ªå€¼æ¥èŽ·å–å€¼ã€‚ç¼–å†™
+	ä¸€ä¸ªå°ç¨‹åºæ¥æµ‹è¯•è¿™ä¸ªå‡½æ•°ã€‚
 */
 
 vector<int> Lotto(int dot_len, int random_choice);
@@ -1247,14 +1247,14 @@ void function_16_7(void);
 
 /*
 	16.8
-	MatºÍPatÏ£ÍûÑûÇëËûÃÇµÄÅóÓÑÀ´²Î¼ÓÅÉ¶Ô¡£ËûÃÇÒª±àÐ´Ò»¸ö³Ì
-	ÐòÍê³ÉÏÂÃæµÄÈÎÎñ¡£
-	ÈÃMatÊäÈëËûÅóÓÑµÄÐÕÃûÁÐ±í¡£ÐÕÃû´æ´¢ÔÚÒ»¸öÈÝÆ÷ÖÐ£¬È»ºó°´ÅÅ
-	ÁÐºóµÄË³ÐòÏÔÊ¾³öÀ´¡£
-	ÈÃPatÊäÈëËýÅóÓÑµÄÐÕÃûÁÐ±í¡£ÐÕÃû´æ´¢ÔÚÁíÒ»¸öÈÝÆ÷ÖÐ£¬È»ºó°´
-	ÅÅÁÐºóµÄË³ÐòÏÔÊ¾³öÀ´¡£
-	´´½¨µÚÈý¸öÈÝÆ÷£¬½«Á½¸öÁÐ±íºÏ²¢£¬É¾³ýÖØ¸´µÄ²¿·Ö£¬²¢ÏÔÊ¾Õâ¸ö
-	ÈÝÆ÷µÄÄÚÈÝ¡£
+	Matå’ŒPatå¸Œæœ›é‚€è¯·ä»–ä»¬çš„æœ‹å‹æ¥å‚åŠ æ´¾å¯¹ã€‚ä»–ä»¬è¦ç¼–å†™ä¸€ä¸ªç¨‹
+	åºå®Œæˆä¸‹é¢çš„ä»»åŠ¡ã€‚
+	è®©Matè¾“å…¥ä»–æœ‹å‹çš„å§“ååˆ—è¡¨ã€‚å§“åå­˜å‚¨åœ¨ä¸€ä¸ªå®¹å™¨ä¸­ï¼Œç„¶åŽæŒ‰æŽ’
+	åˆ—åŽçš„é¡ºåºæ˜¾ç¤ºå‡ºæ¥ã€‚
+	è®©Patè¾“å…¥å¥¹æœ‹å‹çš„å§“ååˆ—è¡¨ã€‚å§“åå­˜å‚¨åœ¨å¦ä¸€ä¸ªå®¹å™¨ä¸­ï¼Œç„¶åŽæŒ‰
+	æŽ’åˆ—åŽçš„é¡ºåºæ˜¾ç¤ºå‡ºæ¥ã€‚
+	åˆ›å»ºç¬¬ä¸‰ä¸ªå®¹å™¨ï¼Œå°†ä¸¤ä¸ªåˆ—è¡¨åˆå¹¶ï¼Œåˆ é™¤é‡å¤çš„éƒ¨åˆ†ï¼Œå¹¶æ˜¾ç¤ºè¿™ä¸ª
+	å®¹å™¨çš„å†…å®¹ã€‚
 */
 
 void function_16_8(void);
@@ -1262,27 +1262,27 @@ void function_16_8(void);
 
 /*
 	16.9
-	Ïà¶ÔÓÚÊý×é£¬ÔÚÁ´±íÖÐÌí¼ÓºÍÉ¾³ýÔªËØ¸üÈÝÒ×£¬µ«ÅÅÐòËÙ¶È¸ü
-	Âý¡£Õâ¾ÍÒý³öÁËÒ»ÖÖ¿ÉÄÜÐÔ£ºÏà¶ÔÓÚÊ¹ÓÃÁ´±íËã·¨½øÐÐÅÅÐò£¬½«Á´±í¸´
-	ÖÆµ½Êý×éÖÐ£¬¶ÔÊý×é½øÐÐÅÅÐò£¬ÔÙ½«ÅÅÐòºóµÄ½á¹û¸´ÖÆµ½Á´±íÖÐµÄËÙ¶È
-	¿ÉÄÜ¸ü¿ì£»µ«ÕâÒ²¿ÉÄÜÕ¼ÓÃ¸ü¶àµÄÄÚ´æ¡£ÇëÊ¹ÓÃÈçÏÂ·½·¨¼ìÑéÉÏÊö¼Ù
-	Éè¡£
-	a£®´´½¨´óÐÍvector<int>¶ÔÏóvi0£¬²¢Ê¹ÓÃrand( )¸øËüÌá¹©³õÊ¼Öµ¡£
-	b£®´´½¨vector<int>¶ÔÏóviºÍlist<int>¶ÔÏóli£¬ËüÃÇµÄ³¤¶È¶¼ºÍ³õÊ¼Öµ
-	Óëvi0ÏàÍ¬¡£
-	c£®¼ÆËãÊ¹ÓÃSTLËã·¨sort( )¶Ôvi½øÐÐÅÅÐòËùÐèµÄÊ±¼ä£¬ÔÙ¼ÆËãÊ¹ÓÃ
-	listµÄ·½·¨sort( )¶Ôli½øÐÐÅÅÐòËùÐèµÄÊ±¼ä¡£
-	d£®½«liÖØÖÃÎªÅÅÐòµÄvi0µÄÄÚÈÝ£¬²¢¼ÆËãÖ´ÐÐÈçÏÂ²Ù×÷ËùÐèµÄÊ±
-	¼ä£º½«liµÄÄÚÈÝ¸´ÖÆµ½viÖÐ£¬¶Ôvi½øÐÐÅÅÐò£¬²¢½«½á¹û¸´ÖÆµ½liÖÐ¡£
-	Òª¼ÆËãÕâÐ©²Ù×÷ËùÐèµÄÊ±¼ä£¬¿ÉÊ¹ÓÃctime¿âÖÐµÄclock( )¡£ÕýÈç³Ì
-	ÐòÇåµ¥5.14ÑÝÊ¾µÄ£¬¿ÉÊ¹ÓÃÏÂÃæµÄÓï¾äÀ´»ñÈ¡¿ªÊ¼Ê±¼ä£º
-	ÔÙÔÚ²Ù×÷½áÊøºóÊ¹ÓÃÏÂÃæµÄÓï¾ä»ñÈ¡¾­¹ýÁË¶à³¤Ê±¼ä£º
-	ÕâÖÖ²âÊÔ²¢·Ç¾ø¶Ô¿É¿¿£¬ÒòÎª½á¹ûÈ¡¾öÓÚºÜ¶àÒòËØ£¬Èç¿ÉÓÃÄÚ´æ
-	Á¿¡¢ÊÇ·ñÖ§³Ö¶à´¦ÀíÒÔ¼°Êý×é£¨ÁÐ±í£©µÄ³¤¶È£¨Ëæ×ÅÒªÅÅÐòµÄÔªËØÊýÔö
-	¼Ó£¬Êý×éÏà¶ÔÓÚÁÐ±íµÄÐ§ÂÊ½«¸üÃ÷ÏÔ£©¡£ÁíÍâ£¬Èç¹û±àÒëÆ÷Ìá¹©ÁËÄ¬ÈÏ
-	Éú³É·½Ê½ºÍ·¢²¼Éú³É·½Ê½£¬ÇëÊ¹ÓÃ·¢²¼Éú³É·½Ê½¡£¼øÓÚµ±½ñ¼ÆËã»úµÄËÙ
-	¶È·Ç³£¿ì£¬Òª»ñµÃÓÐÒâÒåµÄ½á¹û£¬¿ÉÄÜÐèÒªÊ¹ÓÃ¾¡¿ÉÄÜ´óµÄÊý×é¡£Àý
-	Èç£¬¿É³¢ÊÔ°üº¬100000¡¢1000000ºÍ10000000¸öÔªËØ¡£
+	ç›¸å¯¹äºŽæ•°ç»„ï¼Œåœ¨é“¾è¡¨ä¸­æ·»åŠ å’Œåˆ é™¤å…ƒç´ æ›´å®¹æ˜“ï¼Œä½†æŽ’åºé€Ÿåº¦æ›´
+	æ…¢ã€‚è¿™å°±å¼•å‡ºäº†ä¸€ç§å¯èƒ½æ€§ï¼šç›¸å¯¹äºŽä½¿ç”¨é“¾è¡¨ç®—æ³•è¿›è¡ŒæŽ’åºï¼Œå°†é“¾è¡¨å¤
+	åˆ¶åˆ°æ•°ç»„ä¸­ï¼Œå¯¹æ•°ç»„è¿›è¡ŒæŽ’åºï¼Œå†å°†æŽ’åºåŽçš„ç»“æžœå¤åˆ¶åˆ°é“¾è¡¨ä¸­çš„é€Ÿåº¦
+	å¯èƒ½æ›´å¿«ï¼›ä½†è¿™ä¹Ÿå¯èƒ½å ç”¨æ›´å¤šçš„å†…å­˜ã€‚è¯·ä½¿ç”¨å¦‚ä¸‹æ–¹æ³•æ£€éªŒä¸Šè¿°å‡
+	è®¾ã€‚
+	aï¼Žåˆ›å»ºå¤§åž‹vector<int>å¯¹è±¡vi0ï¼Œå¹¶ä½¿ç”¨rand( )ç»™å®ƒæä¾›åˆå§‹å€¼ã€‚
+	bï¼Žåˆ›å»ºvector<int>å¯¹è±¡viå’Œlist<int>å¯¹è±¡liï¼Œå®ƒä»¬çš„é•¿åº¦éƒ½å’Œåˆå§‹å€¼
+	ä¸Žvi0ç›¸åŒã€‚
+	cï¼Žè®¡ç®—ä½¿ç”¨STLç®—æ³•sort( )å¯¹viè¿›è¡ŒæŽ’åºæ‰€éœ€çš„æ—¶é—´ï¼Œå†è®¡ç®—ä½¿ç”¨
+	listçš„æ–¹æ³•sort( )å¯¹liè¿›è¡ŒæŽ’åºæ‰€éœ€çš„æ—¶é—´ã€‚
+	dï¼Žå°†lié‡ç½®ä¸ºæŽ’åºçš„vi0çš„å†…å®¹ï¼Œå¹¶è®¡ç®—æ‰§è¡Œå¦‚ä¸‹æ“ä½œæ‰€éœ€çš„æ—¶
+	é—´ï¼šå°†liçš„å†…å®¹å¤åˆ¶åˆ°viä¸­ï¼Œå¯¹viè¿›è¡ŒæŽ’åºï¼Œå¹¶å°†ç»“æžœå¤åˆ¶åˆ°liä¸­ã€‚
+	è¦è®¡ç®—è¿™äº›æ“ä½œæ‰€éœ€çš„æ—¶é—´ï¼Œå¯ä½¿ç”¨ctimeåº“ä¸­çš„clock( )ã€‚æ­£å¦‚ç¨‹
+	åºæ¸…å•5.14æ¼”ç¤ºçš„ï¼Œå¯ä½¿ç”¨ä¸‹é¢çš„è¯­å¥æ¥èŽ·å–å¼€å§‹æ—¶é—´ï¼š
+	å†åœ¨æ“ä½œç»“æŸåŽä½¿ç”¨ä¸‹é¢çš„è¯­å¥èŽ·å–ç»è¿‡äº†å¤šé•¿æ—¶é—´ï¼š
+	è¿™ç§æµ‹è¯•å¹¶éžç»å¯¹å¯é ï¼Œå› ä¸ºç»“æžœå–å†³äºŽå¾ˆå¤šå› ç´ ï¼Œå¦‚å¯ç”¨å†…å­˜
+	é‡ã€æ˜¯å¦æ”¯æŒå¤šå¤„ç†ä»¥åŠæ•°ç»„ï¼ˆåˆ—è¡¨ï¼‰çš„é•¿åº¦ï¼ˆéšç€è¦æŽ’åºçš„å…ƒç´ æ•°å¢ž
+	åŠ ï¼Œæ•°ç»„ç›¸å¯¹äºŽåˆ—è¡¨çš„æ•ˆçŽ‡å°†æ›´æ˜Žæ˜¾ï¼‰ã€‚å¦å¤–ï¼Œå¦‚æžœç¼–è¯‘å™¨æä¾›äº†é»˜è®¤
+	ç”Ÿæˆæ–¹å¼å’Œå‘å¸ƒç”Ÿæˆæ–¹å¼ï¼Œè¯·ä½¿ç”¨å‘å¸ƒç”Ÿæˆæ–¹å¼ã€‚é‰´äºŽå½“ä»Šè®¡ç®—æœºçš„é€Ÿ
+	åº¦éžå¸¸å¿«ï¼Œè¦èŽ·å¾—æœ‰æ„ä¹‰çš„ç»“æžœï¼Œå¯èƒ½éœ€è¦ä½¿ç”¨å°½å¯èƒ½å¤§çš„æ•°ç»„ã€‚ä¾‹
+	å¦‚ï¼Œå¯å°è¯•åŒ…å«100000ã€1000000å’Œ10000000ä¸ªå…ƒç´ ã€‚
 
 */
 const long big[3] = { 100000,1000000,10000000 };
@@ -1291,11 +1291,11 @@ void test_sort(long n);
 void function_16_9(void);
 
 
-// ÊäÈëÊý¾Ýinput
-// Êä³öÊý¾Ýoutput
-// ²ÉÑùÂÊ±ä»»±¶Êýstep = fs_after / fs_before
-// ÊäÈëÐÅºÅ³¤¶Èlengthin
-// Êä³öÐÅºÅ³¤¶Èlengthout
+// è¾“å…¥æ•°æ®input
+// è¾“å‡ºæ•°æ®output
+// é‡‡æ ·çŽ‡å˜æ¢å€æ•°step = fs_after / fs_before
+// è¾“å…¥ä¿¡å·é•¿åº¦lengthin
+// è¾“å‡ºä¿¡å·é•¿åº¦lengthout
 
 
 typedef struct
@@ -1306,3 +1306,4 @@ typedef struct
 
 void Downfs(Complex* input, Complex* output, double step, int lengthin, int* lengthout);
 
+void function_0611();

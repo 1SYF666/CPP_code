@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS 1
+ï»¿#define _CRT_SECURE_NO_WARNINGS 1
 
 #include"function.h"
 
@@ -10,11 +10,11 @@ void function_6_1(char* ch)
 		*ch = (islower(*ch) ? toupper(*ch) : tolower(*ch));
 
 		// int isdigit(int c);
-		// Èç¹ûcÊÇÒ»¸öÊý×Ö£¬Ôò¸Ãº¯Êý·µ»Ø·ÇÁãÖµ£¬·ñÔò·µ»Ø0¡£
+		// ï¿½ï¿½ï¿½cï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ö£ï¿½ï¿½ï¿½Ãºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø·ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ò·µ»ï¿½0ï¿½ï¿½
 
 		if (!isdigit(*ch))
 		{
-			// Êä³ö·Ç×Ö·û
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½
 			cout.put(*ch);
 		}
 	}
@@ -1232,14 +1232,14 @@ void function_10_1(void)
 }
 
 
-BankAccount::BankAccount()//Ä¬ÈÏ¹¹Ôìº¯Êý
+BankAccount::BankAccount()//Ä¬ï¿½Ï¹ï¿½ï¿½ìº¯ï¿½ï¿½
 {
 	name = "no name";
 	acctnum = "no acctnum";
 	balance = 0.0;
 }
 
-BankAccount::BankAccount(const std::string& client, const std::string& num, double bal) //ÓÃ»§¹¹Ôìº¯Êý
+BankAccount::BankAccount(const std::string& client, const std::string& num, double bal) //ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ìº¯ï¿½ï¿½
 {
 	name = client;
 	acctnum = num;
@@ -1275,7 +1275,7 @@ void BankAccount::withdraw(double cash)
 	using std::cout;
 	using std::endl;
 
-	if (balance < cash)  // È¡¿îÊý´óÓÚµ±Ç°ÕË»§½ð¶îÊ±µÄÇé¿ö
+	if (balance < cash)  // È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½Ç°ï¿½Ë»ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½
 	{
 		cout << "You can't withdraw more than your deposit!" << endl;
 		return;
@@ -1477,7 +1477,7 @@ void function_10_4(void)
 	Sales objects[2] =
 	{
 		Sales(temp,4),Sales()
-	}; //Ê×ÔªËØÄ¬ÈÏ³õÊ¼»¯£¬´ÎÔªËØÓÃ»§³õÊ¼»¯
+	}; //ï¿½ï¿½Ôªï¿½ï¿½Ä¬ï¿½Ï³ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½
 
 	std::cout << "The first object information:" << endl;
 	objects[0].show_sales();

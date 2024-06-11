@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS 1
+ï»¿#define _CRT_SECURE_NO_WARNINGS 1
 
 #include"founction2.h"
 
@@ -582,8 +582,8 @@ void function_12_5(void)
 	cout << "Enter maximum size of queue: ";
 	int qs;
 	cin >> qs;
-	Queue line1(qs);	//¹¹ÔìµÚÒ»Ì¨ATM»ú
-	Queue line2(qs);	//¹¹ÔìµÚ¶şÌ¨ATM»ú
+	Queue line1(qs);	//æ„é€ ç¬¬ä¸€å°ATMæœº
+	Queue line2(qs);	//æ„é€ ç¬¬äºŒå°ATMæœº
 
 	cout << "Enter the number of simulation hours:";
 	int hours;
@@ -600,8 +600,8 @@ void function_12_5(void)
 	long customers = 0;
 	long served = 0;
 	long sum_line = 0;
-	long wait_time1 = 0; // µÚÒ»Ì¨ATM»úµÄµÈ´ıÊ±¼ä
-	long wait_time2 = 0; // µÚ¶şÌ¨ATM»úµÄµÈ´ıÊ±¼ä
+	long wait_time1 = 0; // ç¬¬ä¸€å°ATMæœºçš„ç­‰å¾…æ—¶é—´
+	long wait_time2 = 0; // ç¬¬äºŒå°ATMæœºçš„ç­‰å¾…æ—¶é—´
 	long line_wait = 0;
 
 	for (int cycle = 0; cycle < cyclelimit; cycle++)
@@ -716,14 +716,14 @@ void Cd::Report()const
 	cout << "Selections: " << selections << endl;
 	cout << "Performers: " << playtime << endl;
 }
-Cd& Cd::operator=(const Cd& d)  // ÖØĞÂ¸³ÖµÔËËã·û
+Cd& Cd::operator=(const Cd& d)  // é‡æ–°èµ‹å€¼è¿ç®—ç¬¦
 {
 	if (this == &d)
 	{
 		return *this;
 	}
-	delete[] performers;		// ÊÍ·ÅÔ­ÓĞÒÑ·ÖÅäµÄÄÚ´æ¿Õ¼ä
-	delete[] labels;		    // ÊÍ·ÅÔ­ÓĞÒÑ·ÖÅäµÄÄÚ´æ¿Õ¼ä
+	delete[] performers;		// é‡Šæ”¾åŸæœ‰å·²åˆ†é…çš„å†…å­˜ç©ºé—´
+	delete[] labels;		    // é‡Šæ”¾åŸæœ‰å·²åˆ†é…çš„å†…å­˜ç©ºé—´
 	performers = new char[std::strlen(d.performers) + 1];
 	strcpy(performers, d.performers);
 	labels = new char[std::strlen(d.labels) + 1];
@@ -896,7 +896,7 @@ baseDMA& baseDMA:: operator=(const baseDMA& rs)
 }
 void baseDMA::View() const
 {
-	std::cout << "Classname: " << show_classname() << std::endl; //µ÷ÓÃ»ùÀàprotectedÖĞµÄshow_classname·½·¨ÏÔÊ¾»ùÀàÊı¾İ³ÉÔ±;
+	std::cout << "Classname: " << show_classname() << std::endl; //è°ƒç”¨åŸºç±»protectedä¸­çš„show_classnameæ–¹æ³•æ˜¾ç¤ºåŸºç±»æ•°æ®æˆå‘˜;
 	std::cout << "Label: " << label << std::endl;
 	std::cout << "Rating: " << rating << std::endl;
 }
@@ -929,7 +929,7 @@ lacksDMA& lacksDMA:: operator=(const lacksDMA& rs)
 	{
 		return *this;
 	}
-	DMA::operator=(rs); //µ÷ÓÃ»ùÀàDMAµÄ¸³ÖµÔËËã·û·½·¨³õÊ¼»¯ÅÉÉúÀàlackDMAµÄ»ùÀàÊı¾İ³ÉÔ±
+	DMA::operator=(rs); //è°ƒç”¨åŸºç±»DMAçš„èµ‹å€¼è¿ç®—ç¬¦æ–¹æ³•åˆå§‹åŒ–æ´¾ç”Ÿç±»lackDMAçš„åŸºç±»æ•°æ®æˆå‘˜
 	strncpy(color, rs.color, COL_LEN - 1);
 	color[COL_LEN - 1] = '\0';
 	return *this;
@@ -937,7 +937,7 @@ lacksDMA& lacksDMA:: operator=(const lacksDMA& rs)
 
 void lacksDMA::View()const
 {
-	std::cout << "Classname: " << show_classname() << std::endl; //µ÷ÓÃ»ùÀàprotectedÖĞµÄshow_classname·½·¨ÏÔÊ¾»ùÀàÊı¾İ³ÉÔ±;
+	std::cout << "Classname: " << show_classname() << std::endl; //è°ƒç”¨åŸºç±»protectedä¸­çš„show_classnameæ–¹æ³•æ˜¾ç¤ºåŸºç±»æ•°æ®æˆå‘˜;
 	std::cout << "Color: " << color << std::endl;
 }
 
@@ -979,7 +979,7 @@ hasDMA& hasDMA:: operator=(const hasDMA& rs)
 }
 void hasDMA::View()const
 {
-	std::cout << "Classname: " << show_classname() << std::endl; //µ÷ÓÃ»ùÀàprotectedÖĞµÄshow_classname·½·¨ÏÔÊ¾»ùÀàÊı¾İ³ÉÔ±;
+	std::cout << "Classname: " << show_classname() << std::endl; //è°ƒç”¨åŸºç±»protectedä¸­çš„show_classnameæ–¹æ³•æ˜¾ç¤ºåŸºç±»æ•°æ®æˆå‘˜;
 	std::cout << "Style: " << style << std::endl;
 }
 
@@ -1052,7 +1052,7 @@ Port::Port(const char* br, const char* st, int b)
 	brand = new char[strlen(br) + 1];
 	strcpy(brand, br);
 	strncpy(style, st, 20);
-	style[19] = '\0';    //±£Ö¤×Ö·û´®ÊÇµÈĞ§µÄ
+	style[19] = '\0';    //ä¿è¯å­—ç¬¦ä¸²æ˜¯ç­‰æ•ˆçš„
 	bottles = b;
 }
 Port::Port(const Port& p)
@@ -1081,12 +1081,12 @@ Port& Port::operator=(const Port& p)
 Port& Port:: operator+=(int b)
 {
 	bottles += b;
-	return *this;//·µ»Øµ÷ÓÃ¶ÔÏóµÄÒıÓÃ
+	return *this;//è¿”å›è°ƒç”¨å¯¹è±¡çš„å¼•ç”¨
 }
 Port& Port:: operator-=(int b)
 {
 	bottles -= b;
-	return *this; //·µ»Øµ÷ÓÃ¶ÔÏóµÄÒıÓÃ
+	return *this; //è¿”å›è°ƒç”¨å¯¹è±¡çš„å¼•ç”¨
 }
 
 void Port::Show()const
@@ -1153,25 +1153,25 @@ void function_13_4(void)
 	VintagePort wine2("Lafei", 10, "strong wine", 1876);
 	VintagePort wine3("Merlot", 50, "middle wine", 1976);
 	cout << "Here is the Port object:\n";
-	wine1.Show();          //µ÷ÓÃ»ùÀàShow·½·¨;
-	cout << wine1 << endl; //µ÷ÓÃ»ùÀàÖØÔØÊä³öÁ÷ÔËËã·û;
+	wine1.Show();          //è°ƒç”¨åŸºç±»Showæ–¹æ³•;
+	cout << wine1 << endl; //è°ƒç”¨åŸºç±»é‡è½½è¾“å‡ºæµè¿ç®—ç¬¦;
 
 	cout << "\nHere are the VintagePort objects:\n";
-	wine2.Show();          //µ÷ÓÃÅÉÉúÀàShow·½·¨;
-	cout << wine2 << endl; //µ÷ÓÃÅÉÉúÀàÖØÔØÊä³öÁ÷ÔËËã·û;
-	wine3.Show();          //µ÷ÓÃÅÉÉúÀàShow·½·¨;
-	cout << wine3 << endl; //µ÷ÓÃÅÉÉúÀàÖØÔØÊä³öÁ÷ÔËËã·û;
+	wine2.Show();          //è°ƒç”¨æ´¾ç”Ÿç±»Showæ–¹æ³•;
+	cout << wine2 << endl; //è°ƒç”¨æ´¾ç”Ÿç±»é‡è½½è¾“å‡ºæµè¿ç®—ç¬¦;
+	wine3.Show();          //è°ƒç”¨æ´¾ç”Ÿç±»Showæ–¹æ³•;
+	cout << wine3 << endl; //è°ƒç”¨æ´¾ç”Ÿç±»é‡è½½è¾“å‡ºæµè¿ç®—ç¬¦;
 
 	cout << "\nGallo add 20 bottles:\n";
-	wine1 += 20; //µ÷ÓÃ»ùÀàÖØÔØ+=ÔËËã·û;
+	wine1 += 20; //è°ƒç”¨åŸºç±»é‡è½½+=è¿ç®—ç¬¦;
 	wine1.Show();
 
 	cout << "\nLafei add 10 bottles:\n";
-	wine2 += 10; //µ÷ÓÃÅÉÉúÀàÖØÔØ+=ÔËËã·û;
+	wine2 += 10; //è°ƒç”¨æ´¾ç”Ÿç±»é‡è½½+=è¿ç®—ç¬¦;
 	wine2.Show();
 
 	cout << "\nMerlot minus 10 bottles:\n";
-	wine3 -= 10; //µ÷ÓÃÅÉÉúÀàÖØÔØ-=ÔËËã·û;
+	wine3 -= 10; //è°ƒç”¨æ´¾ç”Ÿç±»é‡è½½-=è¿ç®—ç¬¦;
 	wine3.Show();
 
 }
@@ -1181,7 +1181,7 @@ Wine::Wine(const char* l, int y):string(l)
 {
 	//wine_name = 1;
 	//year_and_bottle.Set(ArrayInt(y), ArrayInt(y));
-	//Ê¹ÓÃÒşÊ½ÔËËã·ûµ÷ÓÃË½ÓĞ¶ÔÏó¹¹Ôìº¯Êı½øĞĞ³õÊ¼»¯
+	//ä½¿ç”¨éšå¼è¿ç®—ç¬¦è°ƒç”¨ç§æœ‰å¯¹è±¡æ„é€ å‡½æ•°è¿›è¡Œåˆå§‹åŒ–
 	PairArray::operator=(PairArray(ArrayInt(y), ArrayInt(y)));
 	year = y;
 }
@@ -1189,7 +1189,7 @@ Wine::Wine(const char* l, int y, const int yr[], const int bot[]):string(l)
 {
 	//wine_name = l;
 	//year_and_bottle.Set(ArrayInt(yr, y), ArrayInt(bot, y));
-	// Ê¹ÓÃÒşÊ½¸³ÖµÔËËã·ûµ÷ÓÃË½ÓĞ¶ÔÏó¹¹Ôìº¯Êı½øĞĞ³õÊ¼»¯
+	// ä½¿ç”¨éšå¼èµ‹å€¼è¿ç®—ç¬¦è°ƒç”¨ç§æœ‰å¯¹è±¡æ„é€ å‡½æ•°è¿›è¡Œåˆå§‹åŒ–
 	PairArray::operator=(PairArray(ArrayInt(yr, y), ArrayInt(bot, y)));
 
 	year = y;
@@ -1314,7 +1314,7 @@ void function_14_3(void)
 		{
 			temp = new Worker;
 			cin.get();
-			if (lolas.isfull()) //ÈôÊÇ¶ÓÁĞÒÑÂúÔò´òÓ¡ĞÅÏ¢²¢ÊÍ·Ånew·ÖÅäµÄÄÚ´æ;
+			if (lolas.isfull()) //è‹¥æ˜¯é˜Ÿåˆ—å·²æ»¡åˆ™æ‰“å°ä¿¡æ¯å¹¶é‡Šæ”¾newåˆ†é…çš„å†…å­˜;
 			{
 				cout << "Queue is full!" << endl;
 				delete temp;
@@ -1407,7 +1407,7 @@ void Gunslinger::Show()const
 
 double Gunslinger::Draw() const
 {
-	return double(rand() % 5 + 1); //Ç¹ÊÖµÄ°ÎÇ¹Ê±¼äÉèÖÃÎª1µ½5Ö®¼äµÄÖµ£»
+	return double(rand() % 5 + 1); //æªæ‰‹çš„æ‹”æªæ—¶é—´è®¾ç½®ä¸º1åˆ°5ä¹‹é—´çš„å€¼ï¼›
 }
 
 void PokerPlayer::Data()const
@@ -1428,7 +1428,7 @@ void PokerPlayer::Show()const
 	Data();
 }
 
-int PokerPlayer::Draw()const  //ÆË¿ËÅÆµÄÖµ
+int PokerPlayer::Draw()const  //æ‰‘å…‹ç‰Œçš„å€¼
 {
 	return rand() % 52 + 1;
 }
@@ -1997,7 +1997,7 @@ void function_15_4(void)
 	{
 		cout << bad.what();
 		LabeledSales::nbad_index* ni = nullptr;
-		if (ni = dynamic_cast<LabeledSales::nbad_index*>(&bad))  //RTTIÊ¶±ğÀàĞÍ
+		if (ni = dynamic_cast<LabeledSales::nbad_index*>(&bad))  //RTTIè¯†åˆ«ç±»å‹
 		{
 			cout << "Company: " << ni->label_val() << endl;
 			cout << "bad index: " << ni->bi_val() << endl;
@@ -2021,7 +2021,7 @@ void function_15_4(void)
 		cout << bad.what();
 		LabeledSales::nbad_index* ni = nullptr;
 
-		if (ni = dynamic_cast<LabeledSales::nbad_index*>(&bad)) // RTTIÊ¶±ğÀàĞÍ
+		if (ni = dynamic_cast<LabeledSales::nbad_index*>(&bad)) // RTTIè¯†åˆ«ç±»å‹
 		{
 			cout << "Company: " << ni->label_val() << endl;
 			cout << "bad index: " << ni->bi_val() << endl;
@@ -2095,7 +2095,7 @@ void function_16_3(void)
 	vector<string>wordlist;
 	infile.open("wordlist.txt");
 
-	if (!infile.is_open()) //¼ì²âÎÄ¼şÊÇ·ñ³É¹¦´ò¿ª
+	if (!infile.is_open()) //æ£€æµ‹æ–‡ä»¶æ˜¯å¦æˆåŠŸæ‰“å¼€
 	{
 		cout << "Can't open file wordlist.txt" << endl;
 		cout << "Program terminating." << endl;
@@ -2254,8 +2254,8 @@ void function_16_6(void)
 	cout << "cast Study:Bank of Heather Automatic Teller\n";
 	cout << "Enter maximum size of queue: ";
 	int qs;
-	cin >> qs;		// ¶ÓÁĞÈİÁ¿µÄ×î´óÖµ;
-	queue<Item_L> line; // ÉùÃ÷Ò»¸öqueueÄ£°åÀàĞÍÎªItem;
+	cin >> qs;		// é˜Ÿåˆ—å®¹é‡çš„æœ€å¤§å€¼;
+	queue<Item_L> line; // å£°æ˜ä¸€ä¸ªqueueæ¨¡æ¿ç±»å‹ä¸ºItem;
 
 	cout << "Enter the number of simulation hours: ";
 	int hours;
@@ -2280,7 +2280,7 @@ void function_16_6(void)
 	{
 		if (newcustomer(min_per_cust))
 		{
-			if (line.size() == qs)  // ÈİÁ¿´ïµ½×î´óÖµ£»
+			if (line.size() == qs)  // å®¹é‡è¾¾åˆ°æœ€å¤§å€¼ï¼›
 			{
 				turnways++;
 			}
@@ -2288,12 +2288,12 @@ void function_16_6(void)
 			{
 				customers++;
 				temp.set(cycle);
-				line.push(temp); // Èë¶Ó
+				line.push(temp); // å…¥é˜Ÿ
 			}
 		}
 		if (wait_time <= 0 && !line.empty())
 		{
-			temp = line.front(); //»ñÈ¡¶ÓÍ·ÔªËØ
+			temp = line.front(); //è·å–é˜Ÿå¤´å…ƒç´ 
 			line.pop();
 			wait_time = temp.ptime();
 			line_wait += cycle - temp.when();
@@ -2303,7 +2303,7 @@ void function_16_6(void)
 		{
 			wait_time--;
 		}
-		sum_line += line.size();  // ¸ÄÎª»ñÈ¡¶ÓÁĞµ±Ç°³¤¶È
+		sum_line += line.size();  // æ”¹ä¸ºè·å–é˜Ÿåˆ—å½“å‰é•¿åº¦
 	}
 
 	if (customers > 0)
@@ -2396,11 +2396,11 @@ void function_16_8(void)
 void test_sort(long n)
 {
 	srand(time(0));
-	vector<int> vi0(n); //ÉùÃ÷Ò»¸öº¬ÓĞn¸öÔªËØµÄÏòÁ¿Êı×é;
+	vector<int> vi0(n); //å£°æ˜ä¸€ä¸ªå«æœ‰nä¸ªå…ƒç´ çš„å‘é‡æ•°ç»„;
 
 	for (int& x : vi0)
 	{
-		x = rand() % 100 + 1; // Ìá¹©³õÊ¼Öµ
+		x = rand() % 100 + 1; // æä¾›åˆå§‹å€¼
 	}
 
 	vector<int> vi(vi0);
@@ -2412,13 +2412,13 @@ void test_sort(long n)
 	sort(vi.begin(), vi.end());
 	clock_t end = clock();
 	cout << "Sort vi: " << static_cast<double>(end - start) / CLOCKS_PER_SEC << "s." << endl;
-	// ¼ÆËãÊ¹ÓÃSTLµÄsort¶ÔviÅÅĞòµÄÊ±¼ä
+	// è®¡ç®—ä½¿ç”¨STLçš„sortå¯¹viæ’åºçš„æ—¶é—´
 
 	start = clock();
 	li.sort();
 	end = clock();
 	cout << "Sort li: " << static_cast<double>(end - start) / CLOCKS_PER_SEC << "s." << endl;
-	// ¼ÆËãÊ¹ÓÃlistµÄsort·½·¨¶ÔliÅÅĞòµÄÊ±¼ä
+	// è®¡ç®—ä½¿ç”¨listçš„sortæ–¹æ³•å¯¹liæ’åºçš„æ—¶é—´
 
 	sort(vi0.begin(), vi0.end());
 	copy(vi0.begin(), vi0.end(), li.begin());
@@ -2429,7 +2429,7 @@ void test_sort(long n)
 	end = clock();
 
 	cout << "Sort vi and copy to li: " << static_cast<double>(end - start) / CLOCKS_PER_SEC << "s." << endl;
-	//¼ÆËã½«liµÄÄÚÈİ¸´ÖÆµ½viÖĞ²¢¶Ôvi½øĞĞÅÅĞòºóÔÙ½«½á¹û¸´ÖÆ»ØliÖĞµÄÊ±¼ä;
+	//è®¡ç®—å°†liçš„å†…å®¹å¤åˆ¶åˆ°viä¸­å¹¶å¯¹viè¿›è¡Œæ’åºåå†å°†ç»“æœå¤åˆ¶å›liä¸­çš„æ—¶é—´;
 }
 
 void function_16_9(void)
@@ -2486,4 +2486,13 @@ void Downfs(Complex* input, Complex* output, double step, int lengthin, int* len
 	}
 
 	*lengthout = k;
+}
+
+
+
+
+void function_0611()
+{
+	printf("hello world \n");
+	printf("2024/06/11 \n");
 }
