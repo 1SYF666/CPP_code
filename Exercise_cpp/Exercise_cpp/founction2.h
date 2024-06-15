@@ -1307,3 +1307,5 @@ typedef struct
 void Downfs(Complex* input, Complex* output, double step, int lengthin, int* lengthout);
 
 void function_0611();
+
+void function_0615();

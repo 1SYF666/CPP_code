@@ -15,22 +15,6 @@ D:\Postgraduate\code\code1\CPP_code\Exercise_cpp\Exercise_cpp\founction2.cpp(217
 D:\Postgraduate\code\code1\CPP_code\Exercise_cpp\Exercise_cpp\founction2.cpp(2252,12): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
 D:\Postgraduate\code\code1\CPP_code\Exercise_cpp\Exercise_cpp\founction2.cpp(2306,24): warning C4267: “+=”: 从“size_t”转换到“long”，可能丢失数据
 D:\Postgraduate\code\code1\CPP_code\Exercise_cpp\Exercise_cpp\founction2.cpp(2398,12): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
-  function.cpp
-D:\Postgraduate\code\code1\CPP_code\Exercise_cpp\Exercise_cpp\function.cpp(1171,19): warning C4267: “+=”: 从“size_t”转换到“int”，可能丢失数据
-D:\Postgraduate\code\code1\CPP_code\Exercise_cpp\Exercise_cpp\function.cpp(2010,12): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
-D:\Postgraduate\code\code1\CPP_code\Exercise_cpp\Exercise_cpp\function.cpp(2079,12): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
-D:\Postgraduate\code\code1\CPP_code\Exercise_cpp\Exercise_cpp\function.cpp(2188,20): warning C4244: “初始化”: 从“double”转换到“long”，可能丢失数据
-D:\Postgraduate\code\code1\CPP_code\Exercise_cpp\Exercise_cpp\function.cpp(2228,17): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
-D:\Postgraduate\code\code1\CPP_code\Exercise_cpp\Exercise_cpp\function.cpp(1137,9): warning C4244: “return”: 从“double”转换到“T”，可能丢失数据
-          with
-          [
-              T=int
-          ]
-D:\Postgraduate\code\code1\CPP_code\Exercise_cpp\Exercise_cpp\function.cpp(1121,10): message : 查看对正在编译的函数 模板 实例化“T SumArray<int>(T [],int)”的引用
-          with
-          [
-              T=int
-          ]
   test.cpp
   正在生成代码...
   Exercise_cpp.vcxproj -> D:\Postgraduate\code\code1\CPP_code\Exercise_cpp\x64\Debug\Exercise_cpp.exe
