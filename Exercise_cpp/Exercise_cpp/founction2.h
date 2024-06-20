@@ -1309,3 +1309,5 @@ void Downfs(Complex* input, Complex* output, double step, int lengthin, int* len
 void function_0611();
 
 void function_0615();
+
+void function_0620();

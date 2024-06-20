@@ -2511,3 +2511,25 @@ void function_0615()
 		printf("\n");/*每一行后换行*/
 	}
 }
+
+
+void function_0620()
+{
+	/*a存放原始数组数据，b存放旋转后数组数据*/
+	int  a[4][4], b[4][4], i, j;
+	printf("input 16 numbers: ");
+	/*输入一组数据存放到数组a中，然后旋转存放到b数组中*/
+	for (i = 0; i < 4; i++)
+		for (j = 0; j < 4; j++)
+		{
+			scanf("%d", &a[i][j]);
+			b[3 - j][i] = a[i][j];
+		}
+	printf("array b:\n");
+	for (i = 0; i < 4; i++)
+	{
+		for (j = 0; j < 4; j++)
+			printf("%6d", b[i][j]);
+		printf("\n");
+	}
+}
