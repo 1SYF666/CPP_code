@@ -1315,3 +1315,5 @@ void function_0620();
 void function_0621();
 
 void function_0622();
+
+void function0627();
