@@ -1,2 +1,21 @@
-﻿  test.cpp
+﻿  founction2.cpp
+D:\Postgraduate\code\code1\CPP_code\Exercise_cpp\Exercise_cpp\founction2.cpp(83,14): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+D:\Postgraduate\code\code1\CPP_code\Exercise_cpp\Exercise_cpp\founction2.cpp(123,14): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+D:\Postgraduate\code\code1\CPP_code\Exercise_cpp\Exercise_cpp\founction2.cpp(130,13): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+D:\Postgraduate\code\code1\CPP_code\Exercise_cpp\Exercise_cpp\founction2.cpp(178,13): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+D:\Postgraduate\code\code1\CPP_code\Exercise_cpp\Exercise_cpp\founction2.cpp(360,24): warning C4244: “参数”: 从“double”转换到“long”，可能丢失数据
+D:\Postgraduate\code\code1\CPP_code\Exercise_cpp\Exercise_cpp\founction2.cpp(579,12): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
+D:\Postgraduate\code\code1\CPP_code\Exercise_cpp\Exercise_cpp\founction2.cpp(1865,16): warning C4101: “m”: 未引用的局部变量
+D:\Postgraduate\code\code1\CPP_code\Exercise_cpp\Exercise_cpp\founction2.cpp(2091,12): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
+D:\Postgraduate\code\code1\CPP_code\Exercise_cpp\Exercise_cpp\founction2.cpp(2116,14): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+D:\Postgraduate\code\code1\CPP_code\Exercise_cpp\Exercise_cpp\founction2.cpp(2138,12): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+D:\Postgraduate\code\code1\CPP_code\Exercise_cpp\Exercise_cpp\founction2.cpp(2149,22): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+D:\Postgraduate\code\code1\CPP_code\Exercise_cpp\Exercise_cpp\founction2.cpp(2153,23): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+D:\Postgraduate\code\code1\CPP_code\Exercise_cpp\Exercise_cpp\founction2.cpp(2177,18): warning C4244: “=”: 从“wint_t”转换到“char”，可能丢失数据
+D:\Postgraduate\code\code1\CPP_code\Exercise_cpp\Exercise_cpp\founction2.cpp(2252,12): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
+D:\Postgraduate\code\code1\CPP_code\Exercise_cpp\Exercise_cpp\founction2.cpp(2306,24): warning C4267: “+=”: 从“size_t”转换到“long”，可能丢失数据
+D:\Postgraduate\code\code1\CPP_code\Exercise_cpp\Exercise_cpp\founction2.cpp(2398,12): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
+D:\Postgraduate\code\code1\CPP_code\Exercise_cpp\Exercise_cpp\founction2.cpp(2571,11): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+  test.cpp
+  正在生成代码...
   Exercise_cpp.vcxproj -> D:\Postgraduate\code\code1\CPP_code\Exercise_cpp\x64\Debug\Exercise_cpp.exe
