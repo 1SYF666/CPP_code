@@ -1321,3 +1321,5 @@ void function0627();
 void function0629();
 
 void function_0703();
+
+void sort_0704(int* x, int n);
